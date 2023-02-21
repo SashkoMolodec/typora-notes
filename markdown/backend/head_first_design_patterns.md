@@ -253,3 +253,134 @@ An implementation example. We want to print the whole menu, that consists of sub
 We could say that we are violating the SRP because The Composite Pattern manages a hierarchy AND it performs operations related to Menus. We trade it for *transparency*. By allowing the Component interface to contain the child management operations *and* the leaf operations, a client can treat both composites and leaves uniformly. 
 
 We still may loose a bit of *safety*, because of some unexpected method calls. Can resolve this by separating interfaces, so inappropriate method calls would be handled at compile time. But in that case we need to use instanceof's and conditionals, that breaks transparency. 
+
+
+
+### The State Pattern
+
+The State Pattern allows an object to alter its behavior when its internal state changes. The object will appear to change its class. 
+
+> *Appear* to change its class because from the client perspective we can totally change the object behavior with other state, however we are only using composition (change current state reference) to delegate other behavior.
+
+<img src="./../../src/img/backend/head_first_patterns/29.png" alt="image-20230111201745617" style="zoom: 40%;" />
+
+An implementation example below:
+
+**Context class**
+
+<img src="./../../src/img/backend/head_first_patterns/28.png" alt="image-20230111201915742" style="zoom:42%;" />
+
+**State class:**
+
+<img src="./../../src/img/backend/head_first_patterns/30.png" alt="image-20230111202117822" style="zoom:42%;" />
+
+- The State pattern allows an object to have many different behaviors that are based on its internal state
+- The Context gets its behavior by delegating to the current state objects it is composed with
+- By encapsulating each state into a class, we localize any changes that will need to be made
+- The State and Strategy Patterns have the same class diagram,  but they differ in intent:
+  - The Strategy Pattern typically configures Context classes with a behavior or algorithm (and maybe not change it because some algorithm would be the most appropriate)
+  - The State Pattern allows a Context to change its behavior as the state of the Context changes (it logically can dynamically change as the program goes)
+  - State transitions can be controlled by the State classes or by the Context classes (`setState()`)
+- State classes may be shared among Context instances (but need to be careful about internal contexts in state instances)
+
+
+
+### The Proxy Pattern
+
+**The Proxy Pattern** provides a surrogate or placeholder for another object to control access to it. Use this pattern to create a representative object that controls access to another object, which may be remote, expensive to create (virtual proxy), or in need of securing (protection proxy).
+
+- A Remote Proxy manages interaction between a client and a remote object
+- A Virtual Proxy controls access to the methods of an object based on the caller
+- A Protection Proxy controls access to the methods of an object based on the caller
+- There are other, such as caching proxies, synchronization proxies, firewall proxies, copy-on-write proxies and more
+
+> Proxy is structurally similar to Decorator, but the two patterns differ in their purpose. The Decorator Pattern adds behavior to an object, while Proxy controls access.
+
+<img src="./../../src/img/backend/head_first_patterns/31.png" alt="image-20230115121541130" style="zoom:45%;" />
+
+
+
+Remote proxy example (Gumball monitor wants to get information from GumballMachine object that is remote):
+
+<img src="./../../src/img/backend/head_first_patterns/32.png" alt="image-20230115121740404" style="zoom:45%;" />
+
+Implementation using Java RMI:
+
+<img src="./../../src/img/backend/head_first_patterns/33.png" alt="image-20230115122120349" style="zoom:45%;" />
+
+<img src="./../../src/img/backend/head_first_patterns/34.png" alt="image-20230115122141325" style="zoom:45%;" />
+
+
+
+Virtual proxy example (image loading):
+
+<img src="./../../src/img/backend/head_first_patterns/35.png" alt="image-20230115122523055" style="zoom:45%;" />
+
+
+
+Java's built-in support for Proxy can build a dynamic proxy class on demand and dispatch all calls on it to a handler of your choosing.
+
+Protection proxy using Java API's Proxy:
+
+<img src="./../../src/img/backend/head_first_patterns/36.png" alt="image-20230115122743341" style="zoom:45%;" />
+
+Code example (create proxy so user can change his person fields but not geekScore & opposite proxy to that):
+
+<img src="./../../src/img/backend/head_first_patterns/37.png" alt="image-20230115123051612" style="zoom:45%;" />
+
+Instantiating the Proxy object:
+
+<img src="./../../src/img/backend/head_first_patterns/38.png" alt="image-20230115123218601" style="zoom:45%;" />
+
+
+
+### The Compound Pattern
+
+**A Compound Pattern** combines two or more patterns into a solution that solves a recurring or general problem. 
+
+The Model View Controller (MVC) is a compound pattern consisting of the Observer, Strategy, and Composite Patterns. MVC has been adapted to the web.
+
+- The model makes use of the Observer Pattern so that it can keep observers updated yet stay decoupled from them
+- The controller is the Strategy for the view. The view can use different implementations of the controller to get different behavior
+- The view use the Composite Pattern to implement the user interface, which usually consists of nested components like panels, frames, and buttons.
+- The Adapter Pattern can be used to adapt a new model to an existing view and controller
+
+
+
+### Leftover Patterns
+
+#### Bridge
+
+Use the Bridge Pattern to vary not only your implementations, but also your abstractions.
+
+#### Builder
+
+Use the Builder Pattern to encapsulate the construction of a product and allow it to be constructed in steps.
+
+#### Chain of Responsibility
+
+Use the Chain of Responsibility when you want to give more than one object a change to handle a request.
+
+#### Flyweight
+
+Use the Flyweight Pattern when one instance of a class can be used to provide many virtual instances.
+
+#### Interpreter
+
+Use the Interpreter Pattern to build an interpreter for a language.
+
+#### Mediator
+
+Use the Mediator Pattern to centralize complex communications and control between related objects.
+
+#### Memento
+
+Use the Memento Pattern when you need to be able to return an object to one of its previous states; for instance, if your user requests an "undo".
+
+#### Prototype
+
+Use the Prototype Pattern when creating an instance of a given class is either expensive or complicated
+
+#### Visitor
+
+Use the Visitor Pattern when you want to add capabilities to a composite of objects and encapsulation is not important.

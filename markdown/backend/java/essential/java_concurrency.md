@@ -27,7 +27,7 @@ The property of executing multiple threads and processes at the same time is *co
 
 #### Creating threads
 
-<img src="C:\Users\sanyk\AppData\Roaming\Typora\typora-user-images\image-20220706215411796.png" alt="image-20220706215411796" style="zoom:50%;" />
+<img src="./../../../../src/img/java/essential/concurrency6.png" alt="image-20220706215411796" style="zoom:50%;" />
 
 
 
@@ -42,7 +42,7 @@ Future<?> submit(Runnable task) // (or <T>); Executes a Runnable task at some po
     
 ```
 
-<img src="C:\Users\sanyk\AppData\Roaming\Typora\typora-user-images\image-20220706221308035.png" alt="image-20220706221308035" style="zoom:50%;" />
+<img src="./../../../../src/img/java/essential/concurrency4.png" alt="image-20220706221308035" style="zoom:50%;" />
 
 > As Future<V> is a generic class, the type V is determined by the return type of the Runnable method. Since the return type of Runnable.run() is void, the get() method always returns null.
 
@@ -56,13 +56,13 @@ Callable for short, which is similar to Runnable except that its call() method r
 
 #### ScheduledExecutorService
 
-<img src="C:\Users\sanyk\AppData\Roaming\Typora\typora-user-images\image-20220706222738030.png" alt="image-20220706222738030" style="zoom:50%;" />
+<img src="./../../../../src/img/java/essential/concurrency5.png" alt="image-20220706222738030" style="zoom:50%;" />
 
 
 
 #### Thread Executors
 
-<img src="C:\Users\sanyk\AppData\Roaming\Typora\typora-user-images\image-20220706222850122.png" alt="image-20220706222850122" style="zoom:50%;" />
+<img src="./../../../../src/img/java/essential/concurrency3.png" alt="image-20220706222850122" style="zoom:50%;" />
 
 
 
@@ -78,7 +78,7 @@ Callable for short, which is similar to Runnable except that its call() method r
   without any interference by another thread
 - Each atomic class includes numerous methods that are equivalent to many of the primitive built-in operators that we use on primitives, such as the assignment operator = and the increment operators ++
 
-<img src="C:\Users\sanyk\AppData\Roaming\Typora\typora-user-images\image-20220706223646247.png" alt="image-20220706223646247" style="zoom:50%;" />
+<img src="./../../../../src/img/java/essential/concurrency2.png" alt="image-20220706223646247" style="zoom:50%;" />
 
 ```java
 private AtomicInteger sheepCount = new AtomicInteger(0);
@@ -98,7 +98,7 @@ private AtomicInteger sheepCount = new AtomicInteger(0);
 
 You should use a concurrent collection class anytime that you are going to have multiple threads modify a collections object outside a synchronized block or method, even if you don’t expect a concurrency problem. On the other hand, if all of the threads are accessing an established immutable or read-only collection, a concurrent collection class is not required.
 
-<img src="C:\Users\sanyk\AppData\Roaming\Typora\typora-user-images\image-20220706230358373.png" alt="image-20220706230358373" style="zoom:50%;" />
+<img src="./../../../../src/img/java/essential/concurrency1.png" alt="image-20220706230358373" style="zoom:50%;" />
 
 
 

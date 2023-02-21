@@ -98,3 +98,28 @@ The *immutable object* pattern is a creational pattern based on the idea of crea
 > 3. Don’t define any setter methods.
 > 4. Don’t allow referenced mutable objects to be modified or accessed directly.
 > 5. Prevent methods from being overridden. 
+
+
+
+#### OOD
+
+Original [here](https://betterprogramming.pub/solid-principles-with-almost-real-life-examples-in-java-b292a4e2c18b).
+
+1. Single Responsibility
+   Each class should have only one sole purpose, and not be filled with excessive functionality.
+
+2.  Open-Closed Principle
+
+   Classes should be open for extension, closed for modification.
+   In other words, you should not have to rewrite an existing class for implementing new features.
+
+3. Liskov-Substitution Principle
+   A sub-class should be able to fulfill each feature of its parent class and could be treated as its parent class.
+
+4. Interface Segregation Principle
+
+   Interfaces should not force classes to implement what they can’t do. Large interfaces should be divided into small ones.
+
+5. Dependency Inversion Principle
+
+   Components should depend on abstractions, not on concretions.

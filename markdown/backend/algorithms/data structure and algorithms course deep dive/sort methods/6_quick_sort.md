@@ -19,7 +19,7 @@
 
 - Table comparison below:
 
-![image-20220806134740958](C:\Users\sanyk\AppData\Roaming\Typora\typora-user-images\image-20220806134740958.png)
+![image-20220806134740958](./../../../../../src/img/algorithms/1)
 
 
 
