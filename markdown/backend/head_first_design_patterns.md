@@ -1,4 +1,4 @@
-## Head First Design Patterns
+## :classical_building: Head First Design Patterns
 
 [:arrow_backward:](backend_index)
 

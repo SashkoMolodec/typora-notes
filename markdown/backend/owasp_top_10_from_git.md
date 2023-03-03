@@ -1,4 +1,6 @@
-### OWASP Top 10 from github
+## :lock: OWASP Top 10 from github
+
+[:arrow_backward:](backend_index)
 
 [toc] 
 
@@ -77,16 +79,16 @@ An API is vulnerable if it:
 * Uses plain text, non-encrypted, or weakly hashed passwords.
 * Uses weak encryption keys.
 
-## Example Attack Scenarios
+**Example Attack Scenarios**
 
-## Scenario #1
+**Scenario #1**
 
 [Credential stuffing][1] (using [lists of known usernames/passwords][2]), is a
 common attack. If an application does not implement automated threat or
 credential stuffing protections, the application can be used as a password
 oracle (tester) to determine if the credentials are valid.
 
-## Scenario #2
+**Scenario #2**
 
 An attacker starts the password recovery workflow by issuing a POST request to
 `/api/system/verification-codes` and by providing the username in the request
@@ -96,7 +98,7 @@ possible combinations using a multi-threaded script, against the
 `/api/system/verification-codes/{smsToken}` endpoint to discover the right token
 within a few minutes.
 
-## How To Prevent
+**How To Prevent**
 
 * Make sure you know all the possible flows to authenticate to the API (mobile/
   web/deep links that implement one-click authentication/etc.)
@@ -118,15 +120,15 @@ within a few minutes.
 * API keys should not be used for user authentication, but for [client app/
   project authentication][5].
 
-## References
+**References**
 
-### OWASP
+**OWASP**
 
 * [OWASP Key Management Cheat Sheet][6]
 * [OWASP Authentication Cheatsheet][3]
 * [Credential Stuffing][1]
 
-### External
+**External**
 
 * [CWE-798: Use of Hard-coded Credentials][7]
 
@@ -144,23 +146,22 @@ within a few minutes.
 
 
 
-API3:2019 Excessive Data Exposure
-=================================
+#### API3:2019 Excessive Data Exposure
 
 | Threat agents/Attack vectors                                 | Security Weakness                                            | Impacts                                                      |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | API Specific : Exploitability **3**                          | Prevalence **2** : Detectability **2**                       | Technical **2** : Business Specific                          |
 | Exploitation of Excessive Data Exposure is simple, and is usually performed by sniffing the traffic to analyze the API responses, looking for sensitive data exposure that should not be returned to the user. | APIs rely on clients to perform the data filtering. Since APIs are used as data sources, sometimes developers try to implement them in a generic way without thinking about the sensitivity of the exposed data. Automatic tools usually can’t detect this type of vulnerability because it’s hard to differentiate between legitimate data returned from the API, and sensitive data that should not be returned without a deep understanding of the application. | Excessive Data Exposure commonly leads to exposure of sensitive data. |
 
-## Is the API Vulnerable?
+**Is the API Vulnerable?**
 
 The API returns sensitive data to the client by design. This data is usually
 filtered on the client side before being presented to the user. An attacker can
 easily sniff the traffic and see the sensitive data.
 
-## Example Attack Scenarios
+**Example Attack Scenarios**
 
-### Scenario #1
+**Scenario #1**
 
 The mobile team uses the `/api/articles/{articleId}/comments/{commentId}`
 endpoint in the articles view to render comments metadata. Sniffing the mobile
@@ -169,7 +170,7 @@ comment’s author is also returned. The endpoint implementation uses a generic
 `toJSON()` method on the `User` model, which contains PII, to serialize the
 object.
 
-### Scenario #2
+**Scenario #2**
 
 An IOT-based surveillance system allows administrators to create users with
 different permissions. An admin created a user account for a new security guard
@@ -183,7 +184,7 @@ While the client GUI shows only cameras which the security guard should have
 access to, the actual API response contains a full list of all the cameras in
 the site.
 
-## How To Prevent
+**How To Prevent**
 
 * Never rely on the client side to filter sensitive data.
 * Review the responses from the API to make sure they contain only legitimate
@@ -199,10 +200,9 @@ the site.
   security. As part of this mechanism define and enforce data returned by all
   API methods, including errors.
 
+**References**
 
-## References
-
-### External
+**External**
 
 * [CWE-213: Intentional Information Exposure][1]
 
@@ -214,15 +214,14 @@ the site.
 
 
 
-API4:2019 Lack of Resources & Rate Limiting
-===========================================
+#### API4:2019 Lack of Resources & Rate Limiting
 
 | Threat agents/Attack vectors                                 | Security Weakness                                            | Impacts                                                      |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | API Specific : Exploitability **2**                          | Prevalence **3** : Detectability **3**                       | Technical **2** : Business Specific                          |
 | Exploitation requires simple API requests. No authentication is required. Multiple concurrent requests can be performed from a single local computer or by using cloud computing resources. | It’s common to find APIs that do not implement rate limiting or APIs where limits are not properly set. | Exploitation may lead to DoS, making the API unresponsive or even unavailable. |
 
-## Is the API Vulnerable?
+**Is the API Vulnerable?**
 
 API requests consume resources such as network, CPU, memory, and storage. The
 amount of resources required to satisfy a request greatly depends on the user
@@ -238,16 +237,16 @@ of the following limits is missing or set inappropriately (e.g., too low/high):
 * Number of requests per client/resource
 * Number of records per page to return in a single request response
 
-## Example Attack Scenarios
+**Example Attack Scenarios**
 
-### Scenario #1
+**Scenario #1**
 
 An attacker uploads a large image by issuing a POST request to `/api/v1/images`.
 When the upload is complete, the API creates multiple thumbnails with different
 sizes. Due to the size of the uploaded image, available memory is exhausted
 during the creation of thumbnails and the API becomes unresponsive.
 
-### Scenario #2
+**Scenario #2**
 
 We have an application that contains the users' list on a UI with a limit of
 `200` users per page. The users' list is retrieved from the server using the
@@ -259,7 +258,7 @@ or any other clients (aka DoS).
 The same scenario might be used to provoke Integer Overflow or Buffer Overflow
 errors.
 
-## How To Prevent
+**How To Prevent**
 
 * Docker makes it easy to limit [memory][1], [CPU][2], [number of restarts][3],
   [file descriptors, and processes][4].
@@ -274,17 +273,16 @@ errors.
   payloads such as maximum length for strings and maximum number of elements in
   arrays.
 
+**References**
 
-## References
-
-### OWASP
+**OWASP**
 
 * [Blocking Brute Force Attacks][5]
 * [Docker Cheat Sheet - Limit resources (memory, CPU, file descriptors,
   processes, restarts)][6]
 * [REST Assessment Cheat Sheet][7]
 
-### External
+**External**
 
 * [CWE-307: Improper Restriction of Excessive Authentication Attempts][8]
 * [CWE-770: Allocation of Resources Without Limits or Throttling][9]
@@ -308,15 +306,14 @@ errors.
 
 
 
-API5:2019 Broken Function Level Authorization
-=============================================
+#### API5:2019 Broken Function Level Authorization
 
 | Threat agents/Attack vectors                                 | Security Weakness                                            | Impacts                                                      |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | API Specific : Exploitability **3**                          | Prevalence **2** : Detectability **1**                       | Technical **2** : Business Specific                          |
 | Exploitation requires the attacker to send legitimate API calls to the API endpoint that they should not have access to. These endpoints might be exposed to anonymous users or regular, non-privileged users. It’s easier to discover these flaws in APIs since APIs are more structured, and the way to access certain functions is more predictable (e.g., replacing the HTTP method from GET to PUT, or changing the “users” string in the URL to "admins"). | Authorization checks for a function or resource are usually managed via configuration, and sometimes at the code level. Implementing proper checks can be a confusing task, since modern applications can contain many types of roles or groups and complex user hierarchy (e.g., sub-users, users with more than one role). | Such flaws allow attackers to access unauthorized functionality. Administrative functions are key targets for this type of attack. |
 
-## Is the API Vulnerable?
+**Is the API Vulnerable?**
 
 The best way to find broken function level authorization issues is to perform
 deep analysis of the authorization mechanism, while keeping in mind the user
@@ -339,9 +336,9 @@ under a specific relative path, like `api/admins`, it’s very common to find
 these administrative endpoints under other relative paths together with regular
 endpoints, like `api/users`.
 
-## Example Attack Scenarios
+**Example Attack Scenarios**
 
-### Scenario #1
+**Scenario #1**
 
 During the registration process to an application that allows only invited users
 to join, the mobile application triggers an API call to
@@ -362,7 +359,7 @@ POST /api/invites/new
 {“email”:”hugo@malicious.com”,”role”:”admin”}
 ```
 
-### Scenario #2
+**Scenario #2**
 
 An API contains an endpoint that should be exposed only to administrators -
 `GET /api/admin/v1/users/all`. This endpoint returns the details of all the
@@ -371,7 +368,7 @@ checks. An attacker who learned the API structure takes an educated guess and
 manages to access this endpoint, which exposes sensitive details of the users of
 the application.
 
-## How To Prevent
+**How To Prevent**
 
 Your application should have a consistent and easy to analyze authorization
 module that is invoked from all your business functions. Frequently, such
@@ -388,15 +385,15 @@ code.
 * Make sure that administrative functions inside a regular controller implements
   authorization checks based on the user’s group and role.
 
-## References
+**References**
 
-### OWASP
+**OWASP**
 
 * [OWASP Article on Forced Browsing][1]
 * [OWASP Top 10 2013-A7-Missing Function Level Access Control][2]
 * [OWASP Development Guide: Chapter on Authorization][3]
 
-### External
+**External**
 
 * [CWE-285: Improper Authorization][4]
 
@@ -411,15 +408,14 @@ code.
 
 
 
-API6:2019 - Mass Assignment
-===========================
+#### API6:2019 - Mass Assignment
 
 | Threat agents/Attack vectors                                 | Security Weakness                                            | Impacts                                                      |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | API Specific : Exploitability **2**                          | Prevalence **2** : Detectability **2**                       | Technical **2** : Business Specific                          |
 | Exploitation usually requires an understanding of the business logic, objects' relations, and the API structure. Exploitation of mass assignment is easier in APIs, since by design they expose the underlying implementation of the application along with the properties’ names. | Modern frameworks encourage developers to use functions that automatically bind input from the client into code variables and internal objects. Attackers can use this methodology to update or overwrite sensitive object’s properties that the developers never intended to expose. | Exploitation may lead to privilege escalation, data tampering, bypass of security mechanisms, and more. |
 
-## Is the API Vulnerable?
+**Is the API Vulnerable?**
 
 Objects in modern applications might contain many properties. Some of these
 properties should be updated directly by the client (e.g., `user.first_name` or
@@ -439,9 +435,9 @@ Examples for sensitive properties:
 * **Internal properties**: `article.created_time` should only be set internally
   by the application.
 
-## Example Attack Scenarios
+**Example Attack Scenarios**
 
-### Scenario #1
+**Scenario #1**
 
 A ride sharing application provides a user the option to edit basic information
 for their profile. During this process, an API call is sent to
@@ -467,7 +463,7 @@ The attacker replays the first request with the following payload:
 Since the endpoint is vulnerable to mass assignment, the attacker receives
 credits without paying.
 
-### Scenario #2
+**Scenario #2**
 
 A video sharing portal allows users to upload content and download content in
 different formats. An attacker who explores the API found that the endpoint
@@ -481,7 +477,7 @@ The attacker sets a malicious value as follows:
 `"mp4_conversion_params":"-v codec h264 && format C:/"`. This value will cause a
 shell command injection once the attacker downloads the video as MP4.
 
-## How To Prevent
+**How To Prevent**
 
 * If possible, avoid using functions that automatically bind a client’s input
   into code variables or internal objects.
@@ -491,9 +487,9 @@ shell command injection once the attacker downloads the video as MP4.
 * If applicable, explicitly define and enforce schemas for the input data
   payloads.
 
-## References
+**References**
 
-### External
+**External**
 
 * [CWE-915: Improperly Controlled Modification of Dynamically-Determined Object Attributes][1]
 
@@ -505,15 +501,14 @@ shell command injection once the attacker downloads the video as MP4.
 
 
 
-API7:2019 Security Misconfiguration
-===================================
+#### API7:2019 Security Misconfiguration
 
 | Threat agents/Attack vectors                                 | Security Weakness                                            | Impacts                                                      |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | API Specific : Exploitability **3**                          | Prevalence **3** : Detectability **3**                       | Technical **2** : Business Specific                          |
 | Attackers will often attempt to find unpatched flaws, common endpoints, or unprotected files and directories to gain unauthorized access or knowledge of the system. | Security misconfiguration can happen at any level of the API stack, from the network level to the application level. Automated tools are available to detect and exploit misconfigurations such as unnecessary services or legacy options. | Security misconfigurations can not only expose sensitive user data, but also system details that may lead to full server compromise. |
 
-## Is the API Vulnerable?
+**Is the API Vulnerable?**
 
 The API might be vulnerable if:
 
@@ -527,9 +522,9 @@ The API might be vulnerable if:
 * Error messages include stack traces, or other sensitive information is
   exposed.
 
-## Example Attack Scenarios
+**Example Attack Scenarios**
 
-### Scenario #1
+**Scenario #1**
 
 An attacker finds the `.bash_history` file under the root directory of the
 server, which contains commands used by the DevOps team to access the API:
@@ -541,7 +536,7 @@ $ curl -X GET 'https://api.server/endpoint/' -H 'authorization: Basic Zm9vOmJhcg
 An attacker could also find new endpoints on the API that are used only by the
 DevOps team and are not documented.
 
-### Scenario #2
+**Scenario #2**
 
 To target a specific service, an attacker uses a popular search engine to search
 for  computers directly accessible from the Internet. The attacker found a host
@@ -550,7 +545,7 @@ host was using the default configuration, which has authentication disabled by
 default, and the attacker gained access to millions of records with PII,
 personal preferences, and authentication data.
 
-### Scenario #3
+**Scenario #3**
 
 Inspecting traffic of a mobile application an attacker finds out that not all
 HTTP traffic is performed on a secure protocol (e.g., TLS). The attacker finds
@@ -559,7 +554,7 @@ interaction is binary, despite the fact that API traffic is performed on a
 secure protocol, the attacker finds a pattern on API responses size, which he
 uses to track user preferences over the rendered content (e.g., profile images).
 
-## How To Prevent
+**How To Prevent**
 
 The API life cycle should include:
 
@@ -584,16 +579,16 @@ Furthermore:
   front-end) should implement a proper Cross-Origin Resource Sharing (CORS)
   policy.
 
-## References
+**References**
 
-### OWASP
+**OWASP**
 
 * [OWASP Secure Headers Project][1]
 * [OWASP Testing Guide: Configuration Management][2]
 * [OWASP Testing Guide: Testing for Error Codes][3]
 * [OWASP Testing Guide: Test Cross Origin Resource Sharing][9]
 
-### External
+**External**
 
 * [CWE-2: Environmental Security Flaws][4]
 * [CWE-16: Configuration][5]
@@ -617,15 +612,14 @@ Furthermore:
 
 
 
-API8:2019 Injection
-===================
+#### API8:2019 Injection
 
 | Threat agents/Attack vectors                                 | Security Weakness                                            | Impacts                                                      |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | API Specific : Exploitability **3**                          | Prevalence **2** : Detectability **3**                       | Technical **3** : Business Specific                          |
 | Attackers will feed the API with malicious data through whatever injection vectors are available (e.g., direct input, parameters, integrated services, etc.), expecting it to be sent to an interpreter. | Injection flaws are very common and are often found in SQL, LDAP, or NoSQL queries, OS commands, XML parsers, and ORM. These flaws are easy to discover when reviewing the source code. Attackers can use scanners and fuzzers. | Injection can lead to information disclosure and data loss. It may also lead to DoS, or complete host takeover. |
 
-## Is the API Vulnerable?
+I**s the API Vulnerable?**
 
 The API is vulnerable to injection flaws if:
 
@@ -636,9 +630,9 @@ The API is vulnerable to injection flaws if:
 * Data coming from external systems (e.g., integrated systems) is not validated,
   filtered, or sanitized by the API.
 
-## Example Attack Scenarios
+**Example Attack Scenarios**
 
-### Scenario #1
+**Scenario #1**
 
 Firmware of a parental control device provides the endpoint
 `/api/CONFIG/restore` which expects an appId to be sent as a multipart
@@ -658,7 +652,7 @@ vulnerable firmware:
 $ curl -k "https://${deviceIP}:4567/api/CONFIG/restore" -F 'appid=$(/etc/pod/power_down.sh)'
 ```
 
-### Scenario #2
+**Scenario #2**
 
 We have an application with basic CRUD functionality for operations with
 bookings. An attacker managed to identify that NoSQL injection might be possible
@@ -686,7 +680,7 @@ user's booking:
 DELETE /api/bookings?bookingId[$ne]=678
 ```
 
-## How To Prevent
+**How To Prevent**
 
 Preventing injection requires keeping data separate from commands and queries.
 
@@ -703,16 +697,16 @@ Preventing injection requires keeping data separate from commands and queries.
   each input parameter.
 * Define data types and strict patterns for all string parameters.
 
-## References
+**References**
 
-### OWASP
+**OWASP**
 
 * [OWASP Injection Flaws][1]
 * [SQL Injection][2]
 * [NoSQL Injection Fun with Objects and Arrays][3]
 * [Command Injection][4]
 
-### External
+**External**
 
 * [CWE-77: Command Injection][5]
 * [CWE-89: SQL Injection][6]
@@ -730,15 +724,14 @@ Preventing injection requires keeping data separate from commands and queries.
 
 
 
-API9:2019 Improper Assets Management
-====================================
+#### API9:2019 Improper Assets Management
 
 | Threat agents/Attack vectors                                 | Security Weakness                                            | Impacts                                                      |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | API Specific : Exploitability **3**                          | Prevalence **3** : Detectability **2**                       | Technical **2** : Business Specific                          |
 | Old API versions are usually unpatched and are an easy way to compromise systems without having to fight state-of-the-art security mechanisms, which might be in place to protect the most recent API versions. | Outdated documentation makes it more difficult to find and/or fix vulnerabilities. Lack of assets inventory and retire strategies leads to running unpatched systems, resulting in leakage of sensitive data. It’s common to find unnecessarily exposed API hosts because of modern concepts like microservices, which make applications easy to deploy and independent (e.g., cloud computing, k8s). | Attackers may gain access to sensitive data, or even takeover the server through old, unpatched API versions connected to the same database. |
 
-## Is the API Vulnerable?
+**Is the API Vulnerable?**
 
 The API might be vulnerable if:
 
@@ -757,9 +750,9 @@ The API might be vulnerable if:
   outdated.
 * Old or previous API versions are running unpatched.
 
-## Example Attack Scenarios
+**Example Attack Scenarios**
 
-### Scenario #1
+**Scenario #1**
 
 After redesigning their applications, a local search service left an old API
 version (`api.someservice.com/v1`) running, unprotected, and with access to the
@@ -768,7 +761,7 @@ attacker found the API address (`api.someservice.com/v2`). Replacing `v2` with
 `v1` in the URL gave the attacker access to the old, unprotected API,
 exposing the personal identifiable information (PII) of over 100 Million users.
 
-### Scenario #2
+**Scenario #2**
 
 A social network implemented a rate-limiting mechanism that blocks attackers
 from using brute-force to guess reset password tokens. This mechanism wasn’t
@@ -779,7 +772,7 @@ runs the same API, including the reset password mechanism, but the rate limiting
 mechanism was not in place. The researcher was able to reset the password of any
 user by using a simple brute-force to guess the 6 digits token.
 
-## How To Prevent
+**How To Prevent**
 
 * Inventory all API hosts and document important aspects of each one of them,
   focusing on the API environment (e.g., production, staging, test,
@@ -797,9 +790,9 @@ user by using a simple brute-force to guess the 6 digits token.
 * Avoid using production data with non-production API deployments. If this is unavoidable, these endpoints should get the same security treatment as the production ones.
 * When newer versions of APIs include security improvements, perform risk analysis to make the decision of the mitigation actions required for the older version: for example, whether it is possible to backport the improvements without breaking API compatibility or you need to take the older version out quickly and force all clients to move to the latest version.
 
-## References
+**References**
 
-### External
+**External**
 
 * [CWE-1059: Incomplete Documentation][1]
 * [OpenAPI Initiative][2]
@@ -813,15 +806,14 @@ user by using a simple brute-force to guess the 6 digits token.
 
 
 
-API10:2019 Insufficient Logging & Monitoring
-============================================
+#### API10:2019 Insufficient Logging & Monitoring
 
 | Threat agents/Attack vectors                                 | Security Weakness                                            | Impacts                                                      |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | API Specific : Exploitability **2**                          | Prevalence **3** : Detectability **1**                       | Technical **2** : Business Specific                          |
 | Attackers take advantage of lack of logging and monitoring to abuse systems without being noticed. | Without logging and monitoring, or with insufficient logging and monitoring, it is almost impossible to track suspicious activities and respond to them in a timely fashion. | Without visibility over on-going malicious activities, attackers have plenty of time to fully compromise systems. |
 
-## Is the API Vulnerable?
+**Is the API Vulnerable?**
 
 The API is vulnerable if:
 
@@ -831,9 +823,9 @@ The API is vulnerable if:
 * Logs are not continuously monitored.
 * API infrastructure is not continuously monitored.
 
-## Example Attack Scenarios
+**Example Attack Scenarios**
 
-### Scenario #1
+**Scenario #1**
 
 Access keys of an administrative API were leaked on a public repository. The
 repository owner was notified by email about the potential leak, but took more
@@ -841,7 +833,7 @@ than 48 hours to act upon the incident, and access keys exposure may have
 allowed access to sensitive data. Due to insufficient logging, the company is
 not able to assess what data was accessed by malicious actors.
 
-### Scenario #2
+**Scenario #2**
 
 A video-sharing platform was hit by a “large-scale” credential stuffing attack.
 Despite failed logins being logged, no alerts were triggered during the timespan
@@ -849,7 +841,7 @@ of the attack. As a reaction to user complaints, API logs were analyzed and the
 attack was detected. The company had to make a public announcement asking users
 to reset their passwords, and report the incident to regulatory authorities.
 
-## How To Prevent
+**How To Prevent**
 
 * Log all failed authentication attempts, denied access, and input validation
   errors.
@@ -865,16 +857,16 @@ to reset their passwords, and report the incident to regulatory authorities.
 * Configure custom dashboards and alerts, enabling suspicious activities to be
   detected and responded to earlier.
 
-## References
+**References**
 
-### OWASP
+**OWASP**
 
 * [OWASP Logging Cheat Sheet][2]
 * [OWASP Proactive Controls: Implement Logging and Intrusion Detection][3]
 * [OWASP Application Security Verification Standard: V7: Error Handling and
   Logging Verification Requirements][4]
 
-### External
+**External**
 
 * [CWE-223: Omission of Security-relevant Information][5]
 * [CWE-778: Insufficient Logging][6]

@@ -6,7 +6,7 @@
 
 #### formatting
 
-Код читається зверху-вниз: з більш абстрактного до більш конкретного.
+Код читається зверху-вниз: з більш абстрактного до більш конкретного - як статті в газетах.
 
 Якщо функція викликається іншою, то її краще десь неподалік закинути, аби можна було швидко знайти.
 
@@ -55,7 +55,7 @@ public static String renderPageWithSetupsAndTeardowns(
 - подія (без вихідного параметру), тут треба спеціально підбирати такі назви, аби користувач це зрозумів. 
 
 Якщо передаємо й модифікуємо, то краще повертати це назад. Й out параметр передавати й не повертати теж якось не дуже.
-*StringBuffer transform(StringBuffer in) > StringBuffer transform(StringBuffer out)*
+*StringBuffer transform(StringBuffer in) > void transform(StringBuffer out)*
 
 Аргументи-прапорці - дуже паскудна річ.
 
@@ -245,3 +245,175 @@ AspectJ - дуже круте розширення джави, на якій м�
 Погано, коли клас має кілька synchronized методів, бо може вилізти багато помилок. Одного такого методу буде досить.
 
 Синхронізовані секції мають мати мінімальний розмір. 
+
+
+
+### New
+
+#### Meaningful Names
+
+The length of a name should correspond to the size of its scope.
+
+No need of type encoding (`phoneString`).
+
+Encode the implementation, not the interface (do not use naming `IShapeFactory` but `ShapeFactoryImpl`).
+
+When constructors are overloaded, use static factory methods with names that describe the arguments. For example,
+
+```java
+Complex fulcrumPoint = Complex.FromRealNumber(23.0);
+```
+
+
+Pick one word for absctarct concept (it's confusing to have `fetch`, `retrieve `and `get` as equivalent methods of different classes).
+
+Place names in context for your readed by enclosing them in well-named classes, functions, or namespaces.
+
+
+
+#### Functions
+
+The blocks within if statements, else statements, while statements should be one line long. It would probably be a function call (with a good descriptive name).
+
+In order to make sure that functions are doing "one thing", we need to make sure that the statements within are at the same level of abstraction.
+If we can extract another function from a function without restatement of its implementation then it's doing more than "one thing".
+
+`switch` statement violates SRP (more than one reason to change) and OCP (change whenever new types are added). Tolerate `switch` if they appear only once, are used to create polymorphic objects and are hidden behind an inheritance (may use Abstract Factory pattern).
+
+Don't be afraid to make a function name long.
+
+Avoid passing three arguments. 
+
+Output arguments are harder to understand than input arguments. One input argument is the next best thing to no arguments, for example `Includer.render(pageData)`. Clearly, we will render the data in the `pageData` object.
+
+**Common Monoadic forms**
+
+Good:
+
+```java
+boolean fileExists("MyFile")
+InputStream fileOpen("MyFile")
+void passwordAttemtFailedNTimes(int attempts) //event
+```
+
+Bad:
+
+```java
+void includeSetupPageInto(StringBuffer pageText)
+```
+
+Better:
+
+```java
+StringBuffer transform(StringBuffer in)
+```
+
+> If a function is going to transform its input, the transformation should appear as the return value.
+
+**Dyadic Functions**
+
+We should generally try to convert them into monoadic. May try to make the method as a class member of some argumnet (`writeField` inside `outputStream` to say `outputStream.writeField(name)`).
+
+Good when:
+
+- Ordered components of a single value (`new Point(0,0)`)
+
+
+When a function seems to need more than two or three arguments, maybe we should wrap them into a separate class to pass only one instance.
+
+In general, output arugments should be avoided. **If your function must change the state of something, have it change the state of its owning object**.
+
+Extract the bodies of the `try` and `catch` block out into function of their own. 
+
+> Functions do one thing, error handling is one thing, thus functions that handles erros should do nothing else. 
+
+
+
+#### Object and data structures
+
+Objects expose behavior and hide data. Easy to add new objects without changing existing behaviors. Hard to add new behaviors to existing objects.
+
+Data structures expose data and have no significant behavior. Easy to add new behaviors to existing data structures. Hard to add new data structures to existing functions.
+
+**The Law of Demeter**
+
+A modue should not know about the innards of the objects it manipulates. Method *f* of a class *C* should only call the methods of these:
+
+- *C*
+- An object created by *f*
+- An object passed as an argument to *f*
+- An object held in an instance variable of *C*
+
+The method should not invoke methods on objects that are returned by any of the allowed functions. Talk to friends, not strangers.
+Bad example:
+
+```java
+final String outputDir = ctxt.getOptions().getScratchDir().getAbsolutePath()
+```
+
+> Note! if ctxt, Options and ScratchDir are just data structures (like DTOs) without behaviour, then they naturally expose their internal structure so no Demeter applies here.
+
+
+
+#### Exceptions
+
+Write tests that force exceptions, and then add behavior to your handler to satisfy your tests (catch thrown by test exception). This will cause to build the transaction scope of the `try` block first and maintain the transcation nature of that scope.
+
+If we are calling a null-returning method from a third-party API, consider wrapping that method with a method that either throws an exception or returns a special case object.
+
+
+
+#### Tests
+
+**TDD** 3 laws:
+
+- You may not write production code until you have written a failing unit test
+- You may not write more of a unit test than is sufficient to fail, and not compiling is failing
+- You may not write more production code thant is sufficient to pass the currently failing test
+
+
+
+#### Classes
+
+Classes should have a small number of instance variables. Each of the methods of a class should manipulate one ore more of those variables. The more variables a method manipulates **the more cohesive** that method is to its class. It's good to have a high cohesion (згуртованість). 
+
+> When classes lose cohesion - split them.
+
+Do not depend on implementation details but on the interface - isolate the changes. Very useful when integrating third party. We are minimizing coupling (зв'язність) in this way. **The lack of coupling** means that the elements of our system are better isolated from each other and from change.
+
+
+
+#### Emergence
+
+Design is "simple" if it follows there rules:
+
+- Runs all the tests
+- Contains no duplications
+- Expresses the intent of the programmer
+- Minimizes the number of classes and methods
+
+The rules are given in order of importance.
+
+
+
+#### Multithreading
+
+Recommendations for testing (page 187 in details):
+
+- Treat spurious failures as candidate threading issues
+
+  > Do not ignore system failures as one-offs.
+
+- Get your nonthreaded code working first
+
+- Make your threaded code pluggable
+
+  > Make your thread-based code especially pluggable so that you can run it in various configurations.
+
+- Make your threaded code tunable (tune number of threads)
+
+- Run with more threads than processors
+
+- Run on different platforms
+
+- Instrument your code to try and force failures (hand-coded or automated)

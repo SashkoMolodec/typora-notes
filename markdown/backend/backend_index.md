@@ -25,5 +25,9 @@
 
 ​	:classical_building: Head First Design patterns book [notes](head_first_design_patterns)
 
-​	
+​	:lock: OWASP Top 10 from github [notes](owasp_top_10_from_git)
+
+​	:pen: Refactoring [principles](refactoring.md)
+
+​	:fire: Microservices Architecture course guide [notes](microservices_architecture_course.md)
 
