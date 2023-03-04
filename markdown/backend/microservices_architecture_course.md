@@ -254,7 +254,7 @@ Cons:
 
 Direct communication is bad:
 
-<img src="/Users/okravch/my/typora-notes/src/img/backend/microservices/image-20230301173213469.png" alt="image-20230301173213469" style="zoom:45%;" />
+<img src="../../src/img/backend/microservices/image-20230301173213469.png" alt="image-20230301173213469" style="zoom:45%;" />
 
 If some service will break it will affect others. Solutions are Service discovery:
 
