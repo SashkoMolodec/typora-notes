@@ -1,0 +1,889 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
+.mac-os-11 { --title-bar-height:28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.6; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex:2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.42857rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left: 28px solid transparent; border-right: 28px solid transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right: 8px solid transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+.md-inline-math-container mjx-container { zoom: 0.95; }
+
+
+.CodeMirror { height: auto; }
+.CodeMirror.cm-s-inner { background: inherit; }
+.CodeMirror-scroll { overflow: auto hidden; z-index: 3; }
+.CodeMirror-gutter-filler, .CodeMirror-scrollbar-filler { background-color: rgb(255, 255, 255); }
+.CodeMirror-gutters { border-right: 1px solid rgb(221, 221, 221); background: inherit; white-space: nowrap; }
+.CodeMirror-linenumber { padding: 0px 3px 0px 5px; text-align: right; color: rgb(153, 153, 153); }
+.cm-s-inner .cm-keyword { color: rgb(119, 0, 136); }
+.cm-s-inner .cm-atom, .cm-s-inner.cm-atom { color: rgb(34, 17, 153); }
+.cm-s-inner .cm-number { color: rgb(17, 102, 68); }
+.cm-s-inner .cm-def { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-variable { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-variable-2 { color: rgb(0, 85, 170); }
+.cm-s-inner .cm-variable-3 { color: rgb(0, 136, 85); }
+.cm-s-inner .cm-string { color: rgb(170, 17, 17); }
+.cm-s-inner .cm-property { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-operator { color: rgb(152, 26, 26); }
+.cm-s-inner .cm-comment, .cm-s-inner.cm-comment { color: rgb(170, 85, 0); }
+.cm-s-inner .cm-string-2 { color: rgb(255, 85, 0); }
+.cm-s-inner .cm-meta { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-qualifier { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-builtin { color: rgb(51, 0, 170); }
+.cm-s-inner .cm-bracket { color: rgb(153, 153, 119); }
+.cm-s-inner .cm-tag { color: rgb(17, 119, 0); }
+.cm-s-inner .cm-attribute { color: rgb(0, 0, 204); }
+.cm-s-inner .cm-header, .cm-s-inner.cm-header { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-quote, .cm-s-inner.cm-quote { color: rgb(0, 153, 0); }
+.cm-s-inner .cm-hr, .cm-s-inner.cm-hr { color: rgb(153, 153, 153); }
+.cm-s-inner .cm-link, .cm-s-inner.cm-link { color: rgb(0, 0, 204); }
+.cm-negative { color: rgb(221, 68, 68); }
+.cm-positive { color: rgb(34, 153, 34); }
+.cm-header, .cm-strong { font-weight: 700; }
+.cm-del { text-decoration: line-through; }
+.cm-em { font-style: italic; }
+.cm-link { text-decoration: underline; }
+.cm-error { color: red; }
+.cm-invalidchar { color: red; }
+.cm-constant { color: rgb(38, 139, 210); }
+.cm-defined { color: rgb(181, 137, 0); }
+div.CodeMirror span.CodeMirror-matchingbracket { color: rgb(0, 255, 0); }
+div.CodeMirror span.CodeMirror-nonmatchingbracket { color: rgb(255, 34, 34); }
+.cm-s-inner .CodeMirror-activeline-background { background: inherit; }
+.CodeMirror { position: relative; overflow: hidden; }
+.CodeMirror-scroll { height: 100%; outline: 0px; position: relative; box-sizing: content-box; background: inherit; }
+.CodeMirror-sizer { position: relative; }
+.CodeMirror-gutter-filler, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-vscrollbar { position: absolute; z-index: 6; display: none; outline: 0px; }
+.CodeMirror-vscrollbar { right: 0px; top: 0px; overflow: hidden; }
+.CodeMirror-hscrollbar { bottom: 0px; left: 0px; overflow: auto hidden; }
+.CodeMirror-scrollbar-filler { right: 0px; bottom: 0px; }
+.CodeMirror-gutter-filler { left: 0px; bottom: 0px; }
+.CodeMirror-gutters { position: absolute; left: 0px; top: 0px; padding-bottom: 10px; z-index: 3; overflow-y: hidden; }
+.CodeMirror-gutter { white-space: normal; height: 100%; box-sizing: content-box; padding-bottom: 30px; margin-bottom: -32px; display: inline-block; }
+.CodeMirror-gutter-wrapper { position: absolute; z-index: 4; background: 0px 0px !important; border: none !important; }
+.CodeMirror-gutter-background { position: absolute; top: 0px; bottom: 0px; z-index: 4; }
+.CodeMirror-gutter-elt { position: absolute; cursor: default; z-index: 4; }
+.CodeMirror-lines { cursor: text; }
+.CodeMirror pre { border-radius: 0px; border-width: 0px; background: 0px 0px; font-family: inherit; font-size: inherit; margin: 0px; white-space: pre; overflow-wrap: normal; color: inherit; z-index: 2; position: relative; overflow: visible; }
+.CodeMirror-wrap pre { overflow-wrap: break-word; white-space: pre-wrap; word-break: normal; }
+.CodeMirror-code pre { border-right: 30px solid transparent; width: fit-content; }
+.CodeMirror-wrap .CodeMirror-code pre { border-right: none; width: auto; }
+.CodeMirror-linebackground { position: absolute; inset: 0px; z-index: 0; }
+.CodeMirror-linewidget { position: relative; z-index: 2; overflow: auto; }
+.CodeMirror-wrap .CodeMirror-scroll { overflow-x: hidden; }
+.CodeMirror-measure { position: absolute; width: 100%; height: 0px; overflow: hidden; visibility: hidden; }
+.CodeMirror-measure pre { position: static; }
+.CodeMirror div.CodeMirror-cursor { position: absolute; visibility: hidden; border-right: none; width: 0px; }
+.CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+.CodeMirror-focused div.CodeMirror-cursor { visibility: inherit; }
+.cm-searching { background: rgba(255, 255, 0, 0.4); }
+span.cm-underlined { text-decoration: underline; }
+span.cm-strikethrough { text-decoration: line-through; }
+.cm-tw-syntaxerror { color: rgb(255, 255, 255); background-color: rgb(153, 0, 0); }
+.cm-tw-deleted { text-decoration: line-through; }
+.cm-tw-header5 { font-weight: 700; }
+.cm-tw-listitem:first-child { padding-left: 10px; }
+.cm-tw-box { border-style: solid; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-color: inherit; border-top-width: 0px !important; }
+.cm-tw-underline { text-decoration: underline; }
+@media print {
+  .CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+}
+
+
+:root {
+    --side-bar-bg-color: #fafafa;
+    --control-text-color: #777;
+}
+
+@include-when-export url(https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
+
+/* open-sans-regular - latin-ext_latin */
+  /* open-sans-italic - latin-ext_latin */
+    /* open-sans-700 - latin-ext_latin */
+    /* open-sans-700italic - latin-ext_latin */
+  html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    font-family: "Open Sans","Clear Sans", "Helvetica Neue", Helvetica, Arial, 'Segoe UI Emoji', sans-serif;
+    color: rgb(51, 51, 51);
+    line-height: 1.6;
+}
+
+#write {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 30px;
+    padding-bottom: 100px;
+}
+
+@media only screen and (min-width: 1400px) {
+    #write {
+        max-width: 1024px;
+    }
+}
+
+@media only screen and (min-width: 1800px) {
+    #write {
+        max-width: 1200px;
+    }
+}
+
+#write > ul:first-child,
+#write > ol:first-child{
+    margin-top: 30px;
+}
+
+a {
+    color: #4183C4;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+h1 tt,
+h1 code {
+    font-size: inherit;
+}
+h2 tt,
+h2 code {
+    font-size: inherit;
+}
+h3 tt,
+h3 code {
+    font-size: inherit;
+}
+h4 tt,
+h4 code {
+    font-size: inherit;
+}
+h5 tt,
+h5 code {
+    font-size: inherit;
+}
+h6 tt,
+h6 code {
+    font-size: inherit;
+}
+h1 {
+    font-size: 2.25em;
+    line-height: 1.2;
+    border-bottom: 1px solid #eee;
+}
+h2 {
+    font-size: 1.75em;
+    line-height: 1.225;
+    border-bottom: 1px solid #eee;
+}
+
+/*@media print {
+    .typora-export h1,
+    .typora-export h2 {
+        border-bottom: none;
+        padding-bottom: initial;
+    }
+
+    .typora-export h1::after,
+    .typora-export h2::after {
+        content: "";
+        display: block;
+        height: 100px;
+        margin-top: -96px;
+        border-top: 1px solid #eee;
+    }
+}*/
+
+h3 {
+    font-size: 1.5em;
+    line-height: 1.43;
+}
+h4 {
+    font-size: 1.25em;
+}
+h5 {
+    font-size: 1em;
+}
+h6 {
+   font-size: 1em;
+    color: #777;
+}
+p,
+blockquote,
+ul,
+ol,
+dl,
+table{
+    margin: 0.8em 0;
+}
+li>ol,
+li>ul {
+    margin: 0 0;
+}
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+li p.first {
+    display: inline-block;
+}
+ul,
+ol {
+    padding-left: 30px;
+}
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+blockquote {
+    border-left: 4px solid #dfe2e5;
+    padding: 0 15px;
+    color: #777777;
+}
+blockquote blockquote {
+    padding-right: 0;
+}
+table {
+    padding: 0;
+    word-break: initial;
+}
+table tr {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+table tr:nth-child(2n),
+thead {
+    background-color: #f8f8f8;
+}
+table th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    margin: 0;
+    padding: 6px 13px;
+}
+table td {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 6px 13px;
+}
+table th:first-child,
+table td:first-child {
+    margin-top: 0;
+}
+table th:last-child,
+table td:last-child {
+    margin-bottom: 0;
+}
+
+.CodeMirror-lines {
+    padding-left: 4px;
+}
+
+.code-tooltip {
+    box-shadow: 0 1px 1px 0 rgba(0,28,36,.3);
+    border-top: 1px solid #eef2f2;
+}
+
+.md-fences,
+code,
+tt {
+    border: 1px solid #e7eaed;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    padding: 0;
+    padding: 2px 4px 0px 4px;
+    font-size: 0.9em;
+}
+
+code {
+    background-color: #f3f4f4;
+    padding: 0 2px 0 2px;
+}
+
+.md-fences {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+
+
+.md-task-list-item > input {
+  margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+    table,
+    pre {
+        page-break-inside: avoid;
+    }
+    pre {
+        word-wrap: break-word;
+    }
+}
+
+.md-fences {
+    background-color: #f8f8f8;
+}
+#write pre.md-meta-block {
+    padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block>.code-tooltip {
+    bottom: .375rem;
+}
+
+.md-mathjax-midline {
+    background: #fafafa;
+}
+
+#write>h3.md-focus:before{
+    left: -1.5625rem;
+    top: .375rem;
+}
+#write>h4.md-focus:before{
+    left: -1.5625rem;
+    top: .285714286rem;
+}
+#write>h5.md-focus:before{
+    left: -1.5625rem;
+    top: .285714286rem;
+}
+#write>h6.md-focus:before{
+    left: -1.5625rem;
+    top: .285714286rem;
+}
+.md-image>.md-meta {
+    /*border: 1px solid #ddd;*/
+    border-radius: 3px;
+    padding: 2px 0px 0px 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: #a7a7a7;
+    opacity: 1;
+}
+
+.md-toc { 
+    margin-top:20px;
+    padding-bottom:20px;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/** focus mode */
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header, .context-menu, .megamenu-content, footer{
+    font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state{
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: #fafafa;
+    background-color: var(--side-bar-bg-color);
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+/*.html-for-mac {
+    --item-hover-bg-color: #E6F0FE;
+}*/
+
+#md-notification .btn {
+    border: 0;
+}
+
+.dropdown-menu .divider {
+    border-color: #e5e5e5;
+    opacity: 0.4;
+}
+
+.ty-preferences .window-content {
+    background-color: #fafafa;
+}
+
+.ty-preferences .nav-group-item.active {
+    color: white;
+    background: #999;
+}
+
+.menu-item-container a.menu-style-btn {
+    background-color: #f5f8fa;
+    background-image: linear-gradient( 180deg , hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0)); 
+}
+
+
+
+mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+  min-height: 1px;
+  min-width: 1px;
+}
+
+mjx-container[jax="SVG"] > svg a {
+  fill: blue;
+  stroke: blue;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line], svg[data-table] > g > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame], svg[data-table] > g > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed, svg[data-table] > g > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted, svg[data-table] > g > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > g > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
+  stroke-width: 3;
+}
+
+g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+.MathJax g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
+                            stroke-width: 0;
+                        }
+</style>
+<title>ultimate_aws_certified_dev_associate</title>
+</head>
+<body class='typora-export'><div class='typora-export-content'>
+<div id='write'  class=''><h2 id='ultimate-aws-certified-developer-associate-2023-new-dva-c02'><span>Ultimate AWS Certified Developer Associate 2023 NEW DVA-C02</span></h2><p><span>Section 3: Getting started with AWS
+14min</span></p><ol start='8' ><li><span>AWS Cloud Overview - Regions &amp;amp; AZ</span></li></ol><p><span>8min</span></p><ol start='9' ><li><span>Tour of the AWS Console &amp;amp; Services in AWS</span></li></ol><p><span>4min</span></p><ol start='10' ><li><span>About the UI changes in the course</span></li></ol><p><span>2min
+Section 4: IAM &amp;amp; AWS CLI
+54min</span></p><ol start='11' ><li><span>IAM Introduction: Users, Groups, Policies</span></li></ol><p><span>3min</span></p><ol start='12' ><li><span>IAM Users &amp;amp; Groups Hands On</span></li></ol><p><span>7min</span></p><ol start='13' ><li><span>IAM Policies</span></li></ol><p><span>3min</span></p><ol start='14' ><li><span>IAM Policies Hands On</span></li></ol><p><span>6min</span></p><ol start='15' ><li><span>IAM MFA Overview</span></li></ol><p><span>4min</span></p><ol start='16' ><li><span>IAM MFA Hands On</span></li></ol><p><span>3min</span></p><ol start='17' ><li><span>AWS Access Keys, CLI and SDK</span></li></ol><p><span>4min</span></p><ol start='18' ><li><span>AWS CLI Setup on Windows</span></li></ol><p><span>2min</span></p><ol start='19' ><li><span>AWS CLI Setup on Mac OS X</span></li></ol><p><span>1min</span></p><ol start='20' ><li><span>AWS CLI Setup on Linux</span></li></ol><p><span>2min</span></p><ol start='21' ><li><span>AWS CLI Hands On</span></li></ol><p><span>4min</span></p><ol start='22' ><li><span>AWS CloudShell</span></li></ol><p><span>4min</span></p><ol start='23' ><li><span>IAM Roles for AWS Services</span></li></ol><p><span>2min</span></p><ol start='24' ><li><span>IAM Roles Hands On</span></li></ol><p><span>2min</span></p><ol start='25' ><li><span>IAM Security Tools</span></li></ol><p><span>1min</span></p><ol start='26' ><li><span>IAM Security Tools Hands On</span></li></ol><p><span>2min</span></p><ol start='27' ><li><span>IAM Best Practices</span></li></ol><p><span>2min</span></p><ol start='28' ><li><span>IAM Summary</span></li></ol><p><span>2min
+Section 5: EC2 Fundamentals
+1hr 22min</span></p><ol start='29' ><li><span>AWS Budget Setup</span></li></ol><p><span>5min</span></p><ol start='30' ><li><span>EC2 Basics</span></li></ol><p><span>5min</span></p><ol start='31' ><li><span>Create an EC2 Instance with EC2 User Data to have a Website Hands On</span></li></ol><p><span>14min</span></p><ol start='32' ><li><span>EC2 Instance Types Basics</span></li></ol><p><span>6min</span></p><ol start='33' ><li><span>Security Groups &amp;amp; Classic Ports Overview</span></li></ol><p><span>7min</span></p><ol start='34' ><li><span>Security Groups Hands On</span></li></ol><p><span>5min</span></p><ol start='35' ><li><span>SSH Overview</span></li></ol><p><span>3min</span></p><ol start='36' ><li><span>How to SSH using Linux or Mac</span></li></ol><p><span>7min</span></p><ol start='37' ><li><span>How to SSH using Windows</span></li></ol><p><span>6min</span></p><ol start='38' ><li><span>How to SSH using Windows 10</span></li></ol><p><span>5min</span></p><ol start='39' ><li><span>SSH Troubleshooting</span></li></ol><p><span>1min</span></p><ol start='40' ><li><span>EC2 Instance Connect</span></li></ol><p><span>3min</span></p><ol start='41' ><li><span>EC2 Instance Roles Demo</span></li></ol><p><span>4min</span></p><ol start='42' ><li><span>EC2 Instance Purchasing Options</span></li></ol><p><span>10min
+Section 6: EC2 Instance Storage
+54min</span></p><ol start='43' ><li><span>EBS Overview</span></li></ol><p><span>5min</span></p><ol start='44' ><li><span>EBS Hands On</span></li></ol><p><span>6min</span></p><ol start='45' ><li><span>EBS Snapshots</span></li></ol><p><span>2min</span></p><ol start='46' ><li><span>EBS Snapshots - Hands On</span></li></ol><p><span>4min</span></p><ol start='47' ><li><span>AMI Overview</span></li></ol><p><span>3min</span></p><ol start='48' ><li><span>AMI Hands On</span></li></ol><p><span>5min</span></p><ol start='49' ><li><span>EC2 Instance Store</span></li></ol><p><span>3min</span></p><ol start='50' ><li><span>EBS Volume Types</span></li></ol><p><span>6min</span></p><ol start='51' ><li><span>EBS Multi-Attach</span></li></ol><p><span>2min</span></p><ol start='52' ><li><span>Amazon EFS</span></li></ol><p><span>5min</span></p><ol start='53' ><li><span>Amazon EFS - Hands On</span></li></ol><p><span>11min</span></p><ol start='54' ><li><span>EFS vs EBS</span></li></ol><p><span>2min</span></p><ol start='55' ><li><span>EBS &amp;amp; EFS - Section Cleanup</span></li></ol><p><span>2min
+Section 7: AWS Fundamentals: ELB + ASG
+1hr 34min</span></p><ol start='56' ><li><span>High Availability and Scalability</span></li></ol><p><span>5min</span></p><ol start='57' ><li><span>Elastic Load Balancing (ELB) Overview</span></li></ol><p><span>6min</span></p><ol start='58' ><li><span>Note: About the Classic Load Balancer (CLB)</span></li></ol><p><span>1min</span></p><ol start='59' ><li><span>Application Load Balancer (ALB)</span></li></ol><p><span>6min</span></p><ol start='60' ><li><span>Application Load Balancer (ALB) - Hands On - Part 1</span></li></ol><p><span>9min</span></p><ol start='61' ><li><span>Application Load Balancer (ALB) - Hands On - Part 2</span></li></ol><p><span>4min</span></p><ol start='62' ><li><span>Network Load Balancer (NLB)</span></li></ol><p><span>4min</span></p><ol start='63' ><li><span>Network Load Balancer (NLB) - Hands On</span></li></ol><p><span>5min</span></p><ol start='64' ><li><span>Gateway Load Balancer (GWLB)</span></li></ol><p><span>4min</span></p><ol start='65' ><li><span>Elastic Load Balancer - Sticky Sessions</span></li></ol><p><span>6min</span></p><ol start='66' ><li><span>Elastic Load Balancer - Cross Zone Load Balancing</span></li></ol><p><span>6min</span></p><ol start='67' ><li><span>Elastic Load Balancer - SSL Certificates</span></li></ol><p><span>6min</span></p><ol start='68' ><li><span>Elastic Load Balancer - SSL Certificates - Hands On</span></li></ol><p><span>2min</span></p><ol start='69' ><li><span>Elastic Load Balancer - Connection Draining</span></li></ol><p><span>2min</span></p><ol start='70' ><li><span>Auto Scaling Groups (ASG) Overview</span></li></ol><p><span>5min</span></p><ol start='71' ><li><span>Auto Scaling Groups Hands On</span></li></ol><p><span>9min</span></p><ol start='72' ><li><span>Auto Scaling Groups - Scaling Policies</span></li></ol><p><span>5min</span></p><ol start='73' ><li><span>Auto Scaling Groups - Scaling Policies Hands On</span></li></ol><p><span>9min</span></p><ol start='74' ><li><span>[DVA-C02] Auto Scaling Groups - Instance Refresh</span></li></ol><p><span>2min
+Section 8: AWS Fundamentals: RDS + Aurora + ElastiCache
+1hr 4min</span></p><ol start='75' ><li><span>Amazon RDS Overview</span></li></ol><p><span>4min</span></p><ol start='76' ><li><span>RDS Read Replicas vs Multi AZ</span></li></ol><p><span>7min</span></p><ol start='77' ><li><span>Amazon RDS Hands On</span></li></ol><p><span>11min</span></p><ol start='78' ><li><span>Amazon Aurora</span></li></ol><p><span>6min</span></p><ol start='79' ><li><span>Amazon Aurora - Hands On</span></li></ol><p><span>7min</span></p><ol start='80' ><li><span>RDS &amp;amp; Aurora Security</span></li></ol><p><span>3min</span></p><ol start='81' ><li><span>[DVA-C02] RDS Proxy</span></li></ol><p><span>5min</span></p><ol start='82' ><li><span>[DVA-C02] ElastiCache Overview</span></li></ol><p><span>4min</span></p><ol start='83' ><li><span>ElastiCache Hands On</span></li></ol><p><span>5min</span></p><ol start='84' ><li><span>ElastiCache Strategies</span></li></ol><p><span>12min</span></p><ol start='85' ><li><span>[DVA-C02] Amazon MemoryDB for Redis - Overview</span></li></ol><p><span>1min
+Section 9: Route 53
+1hr 28min</span></p><ol start='86' ><li><span>What is a DNS?</span></li></ol><p><span>6min</span></p><ol start='87' ><li><span>Route 53 Overview</span></li></ol><p><span>6min</span></p><ol start='88' ><li><span>Route 53 - Registering a domain</span></li></ol><p><span>3min</span></p><ol start='89' ><li><span>Route 53 - Creating our first records</span></li></ol><p><span>4min</span></p><ol start='90' ><li><span>Route 53 - EC2 Setup</span></li></ol><p><span>6min</span></p><ol start='91' ><li><span>Route 53 - TTL</span></li></ol><p><span>5min</span></p><ol start='92' ><li><span>Route 53 CNAME vs Alias</span></li></ol><p><span>7min</span></p><ol start='93' ><li><span>Routing Policy - Simple</span></li></ol><p><span>4min</span></p><ol start='94' ><li><span>Routing Policy - Weighted</span></li></ol><p><span>5min</span></p><ol start='95' ><li><span>Routing Policy - Latency</span></li></ol><p><span>5min</span></p><ol start='96' ><li><span>Route 53 Health Checks</span></li></ol><p><span>5min</span></p><ol start='97' ><li><span>Route 53 - Health Checks Hands On</span></li></ol><p><span>5min</span></p><ol start='98' ><li><span>Routing Policy - Failover</span></li></ol><p><span>4min</span></p><ol start='99' ><li><span>Routing Policy - Geolocation</span></li></ol><p><span>4min</span></p><ol start='100' ><li><span>Routing Policy - Geoproximity</span></li></ol><p><span>3min</span></p><ol start='101' ><li><span>Routing Policy - Traffic Flow &amp;amp; Geoproximity Hands On</span></li></ol><p><span>8min</span></p><ol start='102' ><li><span>Routing Policy - Multi Value</span></li></ol><p><span>4min</span></p><ol start='103' ><li><span>3rd Party Domains &amp;amp; Route 53</span></li></ol><p><span>2min</span></p><ol start='104' ><li><span>Route 53 - Section Cleanup</span></li></ol><p><span>1min
+Section 10: VPC Fundamentals
+25min</span></p><ol start='105' ><li><span>VPC Fundamentals - Section Introduction</span></li></ol><p><span>1min</span></p><ol start='106' ><li><span>VPC, Subnets, IGW and NAT</span></li></ol><p><span>5min</span></p><ol start='107' ><li><span>NACL, SG, VPC Flow Logs</span></li></ol><p><span>5min</span></p><ol start='108' ><li><span>VPC Peering, Endpoints, VPN, DX</span></li></ol><p><span>6min</span></p><ol start='109' ><li><span>VPC Cheat Sheet &amp;amp; Closing Comments</span></li></ol><p><span>3min</span></p><ol start='110' ><li><span>Three Tier Architecture</span></li></ol><p><span>5min
+Section 11: Amazon S3 Introduction
+47min</span></p><ol start='111' ><li><span>S3 Overview</span></li></ol><p><span>5min</span></p><ol start='112' ><li><span>S3 Hands On</span></li></ol><p><span>6min</span></p><ol start='113' ><li><span>S3 Security: Bucket Policy</span></li></ol><p><span>5min</span></p><ol start='114' ><li><span>S3 Security: Bucket Policy Hands On</span></li></ol><p><span>4min</span></p><ol start='115' ><li><span>S3 Website Overview</span></li></ol><p><span>1min</span></p><ol start='116' ><li><span>S3 Website Hands On</span></li></ol><p><span>2min</span></p><ol start='117' ><li><span>S3 Versioning</span></li></ol><p><span>1min</span></p><ol start='118' ><li><span>S3 Versioning - Hands On</span></li></ol><p><span>4min</span></p><ol start='119' ><li><span>S3 Replication</span></li></ol><p><span>1min</span></p><ol start='120' ><li><span>S3 Replication Notes</span></li></ol><p><span>1min</span></p><ol start='121' ><li><span>S3 Replication - Hands On</span></li></ol><p><span>6min</span></p><ol start='122' ><li><span>S3 Storage Classes Overview</span></li></ol><p><span>6min</span></p><ol start='123' ><li><span>S3 Storage Classes Hands On</span></li></ol><p><span>4min
+Section 12: AWS CLI, SDK, IAM Roles &amp;amp; Policies
+36min</span></p><ol start='124' ><li><span>AWS CLI Dry Run</span></li></ol><p><span>5min</span></p><ol start='125' ><li><span>AWS CLI STS Decode</span></li></ol><p><span>5min</span></p><ol start='126' ><li><span>AWS EC2 Instance Metadata</span></li></ol><p><span>5min</span></p><ol start='127' ><li><span>AWS CLI Profiles</span></li></ol><p><span>3min</span></p><ol start='128' ><li><span>AWS CLI with MFA</span></li></ol><p><span>5min</span></p><ol start='129' ><li><span>AWS SDK Overview</span></li></ol><p><span>2min</span></p><ol start='130' ><li><span>Exponential Backoff &amp;amp; Service Limit Increase</span></li></ol><p><span>4min</span></p><ol start='131' ><li><span>AWS Credentials Provider &amp;amp; Chain</span></li></ol><p><span>5min</span></p><ol start='132' ><li><span>[DVA-C02] AWS Signature v4 Signing (Sigv4)</span></li></ol><p><span>3min
+Section 13: Advanced Amazon S3
+24min</span></p><ol start='133' ><li><span>S3 Lifecycle Rules (with S3 Analytics)</span></li></ol><p><span>4min</span></p><ol start='134' ><li><span>S3 Lifecycle Rules - Hands On</span></li></ol><p><span>2min</span></p><ol start='135' ><li><span>S3 Event Notifications</span></li></ol><p><span>2min</span></p><ol start='136' ><li><span>S3 Event Notifications - Hands On</span></li></ol><p><span>6min</span></p><ol start='137' ><li><span>S3 Performance</span></li></ol><p><span>5min</span></p><ol start='138' ><li><span>S3 Select &amp;amp; Glacier Select</span></li></ol><p><span>1min</span></p><ol start='139' ><li><span>[DVA-C02] S3 Object Tags &amp;amp; Metadata</span></li></ol><p><span>3min
+Section 14: Amazon S3 Security
+47min</span></p><ol start='140' ><li><span>S3 Encryption</span></li></ol><p><span>7min</span></p><ol start='141' ><li><span>S3 Encryption - Hands On</span></li></ol><p><span>5min</span></p><ol start='142' ><li><span>S3 Default Encryption</span></li></ol><p><span>1min</span></p><ol start='143' ><li><span>S3 CORS</span></li></ol><p><span>4min</span></p><ol start='144' ><li><span>S3 CORS Hands On</span></li></ol><p><span>7min</span></p><ol start='145' ><li><span>S3 MFA Delete</span></li></ol><p><span>1min</span></p><ol start='146' ><li><span>S3 MFA Delete Hands On</span></li></ol><p><span>6min</span></p><ol start='147' ><li><span>S3 Access Logs</span></li></ol><p><span>1min</span></p><ol start='148' ><li><span>S3 Access Logs - Hands On</span></li></ol><p><span>3min</span></p><ol start='149' ><li><span>S3 Pre-signed URLs</span></li></ol><p><span>2min</span></p><ol start='150' ><li><span>S3 Pre-signed URLs - Hands On</span></li></ol><p><span>2min</span></p><ol start='151' ><li><span>S3 Access Points</span></li></ol><p><span>4min</span></p><ol start='152' ><li><span>S3 Object Lambda</span></li></ol><p><span>3min
+Section 15: CloudFront
+47min</span></p><ol start='153' ><li><span>CloudFront - Overview</span></li></ol><p><span>5min</span></p><ol start='154' ><li><span>CloudFront Hands On</span></li></ol><p><span>5min</span></p><ol start='155' ><li><span>[DVA-C02] CloudFront - Caching &amp;amp; Caching Policies</span></li></ol><p><span>7min</span></p><ol start='156' ><li><span>[DVA-C02] CloudFront - Cache Invalidations</span></li></ol><p><span>3min</span></p><ol start='157' ><li><span>[DVA-C02] CloudFront - Cache Behaviors</span></li></ol><p><span>3min</span></p><ol start='158' ><li><span>[DVA-C02] CloudFront - Caching &amp;amp; Caching Invalidations - Hands On</span></li></ol><p><span>5min</span></p><ol start='159' ><li><span>CloudFront - ALB as an Origin</span></li></ol><p><span>2min</span></p><ol start='160' ><li><span>CloudFront - Geo Restriction</span></li></ol><p><span>1min</span></p><ol start='161' ><li><span>CloudFront Signed URL / Cookies</span></li></ol><p><span>4min</span></p><ol start='162' ><li><span>CloudFront Signed URL - Key Groups + Hands On</span></li></ol><p><span>5min</span></p><ol start='163' ><li><span>CloudFront Advanced Concepts</span></li></ol><p><span>7min</span></p><ol start='164' ><li><span>[DVA-C02] CloudFront - Real Time Logs</span></li></ol><p><span>1min
+Section 16: ECS, ECR &amp;amp; Fargate - Docker in AWS
+1hr 19min</span></p><ol start='165' ><li><span>Docker Introduction</span></li></ol><p><span>5min</span></p><ol start='166' ><li><span>Amazon ECS</span></li></ol><p><span>7min</span></p><ol start='167' ><li><span>IMPORTANT: ECS UI CHANGES</span></li></ol><p><span>1min</span></p><ol start='168' ><li><span>Creating ECS Cluster - Hands On</span></li></ol><p><span>5min</span></p><ol start='169' ><li><span>Creating ECS Service - Hands On</span></li></ol><p><span>10min</span></p><ol start='170' ><li><span>Amazon ECS - Auto Scaling</span></li></ol><p><span>3min</span></p><ol start='171' ><li><span>Amazon ECS - Rolling Updates</span></li></ol><p><span>3min</span></p><ol start='172' ><li><span>Amazon ECS - Solutions Architectures</span></li></ol><p><span>3min</span></p><ol start='173' ><li><span>Amazon ECS Task Definitions - Deep Dive</span></li></ol><p><span>9min</span></p><ol start='174' ><li><span>Amazon ECS Task Definitions - Hands On</span></li></ol><p><span>4min</span></p><ol start='175' ><li><span>Amazon ECS - Task Placements</span></li></ol><p><span>6min</span></p><ol start='176' ><li><span>Amazon ECR</span></li></ol><p><span>2min</span></p><ol start='177' ><li><span>Amazon ECR - Hands On</span></li></ol><p><span>6min</span></p><ol start='178' ><li><span>[DVA-C02] AWS CoPilot - Overview</span></li></ol><p><span>1min</span></p><ol start='179' ><li><span>[DVA-C02] AWS CoPilot - Hands On</span></li></ol><p><span>12min</span></p><ol start='180' ><li><span>Amazon EKS</span></li></ol><p><span>4min
+Section 17: AWS Elastic Beanstalk
+1hr 11min</span></p><ol start='181' ><li><span>AWS Elastic Beanstalk - Section Introduction</span></li></ol><p><span>1min</span></p><ol start='182' ><li><span>Elastic Beanstalk Overview (High level)</span></li></ol><p><span>5min</span></p><ol start='183' ><li><span>Beanstalk First Environment</span></li></ol><p><span>6min</span></p><ol start='184' ><li><span>Beanstalk Second Environment</span></li></ol><p><span>9min</span></p><ol start='185' ><li><span>Beanstalk Deployment Modes</span></li></ol><p><span>12min</span></p><ol start='186' ><li><span>Beanstalk Deployment Modes Hands On</span></li></ol><p><span>9min</span></p><ol start='187' ><li><span>Beanstalk CLI and Deployment Process</span></li></ol><p><span>2min</span></p><ol start='188' ><li><span>Beanstalk Lifecycle Policy Overview + Hands On</span></li></ol><p><span>3min</span></p><ol start='189' ><li><span>Beanstalk Extensions</span></li></ol><p><span>4min</span></p><ol start='190' ><li><span>Beanstalk &amp;amp; CloudFormation</span></li></ol><p><span>3min</span></p><ol start='191' ><li><span>Beanstalk Cloning</span></li></ol><p><span>2min</span></p><ol start='192' ><li><span>Beanstalk Migrations</span></li></ol><p><span>3min</span></p><ol start='193' ><li><span>Beanstalk with Docker</span></li></ol><p><span>7min</span></p><ol start='194' ><li><span>Beanstalk Advanced Concepts</span></li></ol><p><span>4min</span></p><ol start='195' ><li><span>Beanstalk Cleanup</span></li></ol><p><span>2min
+Section 18: AWS CICD: CodeCommit, CodePipeline, CodeBuild, CodeDeploy
+2hr 6min</span></p><ol start='196' ><li><span>AWS CICD - Section Introduction</span></li></ol><p><span>1min</span></p><ol start='197' ><li><span>Introduction to CICD in AWS</span></li></ol><p><span>6min</span></p><ol start='198' ><li><span>CodeCommit Overview</span></li></ol><p><span>4min</span></p><ol start='199' ><li><span>CodeCommit Hands On Part I</span></li></ol><p><span>6min</span></p><ol start='200' ><li><span>CodeCommit Hands On Part 2</span></li></ol><p><span>6min</span></p><ol start='201' ><li><span>CodePipeline Overview</span></li></ol><p><span>4min</span></p><ol start='202' ><li><span>CodePipeline - Hands On</span></li></ol><p><span>10min</span></p><ol start='203' ><li><span>[DVA-C02] CodePipeline - Extras</span></li></ol><p><span>5min</span></p><ol start='204' ><li><span>CodeBuild Overview</span></li></ol><p><span>6min</span></p><ol start='205' ><li><span>CodeBuild Hands On Part I</span></li></ol><p><span>5min</span></p><ol start='206' ><li><span>CodeBuild Hands On Part 2</span></li></ol><p><span>9min</span></p><ol start='207' ><li><span>[DVA-C02] CodePipeline - CloudFormation Integration</span></li></ol><p><span>3min</span></p><ol start='208' ><li><span>CodeDeploy Overview</span></li></ol><p><span>9min</span></p><ol start='209' ><li><span>CodeDeploy Hands On</span></li></ol><p><span>12min</span></p><ol start='210' ><li><span>CodeDeploy for EC2 and ASG</span></li></ol><p><span>3min</span></p><ol start='211' ><li><span>[DVA-C02] CodeDeploy - Extras</span></li></ol><p><span>1min</span></p><ol start='212' ><li><span>CodeStar - Overview</span></li></ol><p><span>2min</span></p><ol start='213' ><li><span>CodeStar - Hands On</span></li></ol><p><span>7min</span></p><ol start='214' ><li><span>[DVA-C02] CodeArtifact - Overview</span></li></ol><p><span>6min</span></p><ol start='215' ><li><span>[DVA-C02] CodeArtifact - Upstream Repositories &amp;amp; Domains</span></li></ol><p><span>6min</span></p><ol start='216' ><li><span>[DVA-C02] CodeArtifact - Hands On</span></li></ol><p><span>6min</span></p><ol start='217' ><li><span>CodeGuru - Overview</span></li></ol><p><span>3min</span></p><ol start='218' ><li><span>[DVA-C02] CodeGuru - Agent Configuration</span></li></ol><p><span>2min</span></p><ol start='219' ><li><span>[DVA-C02] AWS Cloud9 - Overview</span></li></ol><p><span>1min</span></p><ol start='220' ><li><span>[DVA-C02] AWS Cloud9 - Hands On</span></li></ol><p><span>4min
+Section 19: AWS CloudFormation
+1hr 6min</span></p><ol start='221' ><li><span>AWS CloudFormation - Section Introduction</span></li></ol><p><span>1min</span></p><ol start='222' ><li><span>CloudFormation Overview</span></li></ol><p><span>7min</span></p><ol start='223' ><li><span>CloudFormation Create Stack Hands On</span></li></ol><p><span>6min</span></p><ol start='224' ><li><span>CloudFormation Update and Delete Stack Hands On</span></li></ol><p><span>8min</span></p><ol start='225' ><li><span>YAML Crash Course</span></li></ol><p><span>4min</span></p><ol start='226' ><li><span>CloudFormation Resources</span></li></ol><p><span>6min</span></p><ol start='227' ><li><span>CloudFormation Parameters</span></li></ol><p><span>5min</span></p><ol start='228' ><li><span>CloudFormation Mappings</span></li></ol><p><span>3min</span></p><ol start='229' ><li><span>CloudFormation Outputs</span></li></ol><p><span>3min</span></p><ol start='230' ><li><span>CloudFormation Conditions</span></li></ol><p><span>2min</span></p><ol start='231' ><li><span>CloudFormation Intrinsic Functions</span></li></ol><p><span>6min</span></p><ol start='232' ><li><span>CloudFormation Rollbacks</span></li></ol><p><span>5min</span></p><ol start='233' ><li><span>[DVA-C02] CloudFormation Stack Notifications</span></li></ol><p><span>1min</span></p><ol start='234' ><li><span>CloudFormation ChangeSets, Nested Stacks &amp;amp; StackSet</span></li></ol><p><span>3min</span></p><ol start='235' ><li><span>CloudFormation Drift</span></li></ol><p><span>4min</span></p><ol start='236' ><li><span>[DVA-C02] CloudFormation Stack Policies</span></li></ol><p><span>1min
+Section 20: AWS Monitoring &amp;amp; Audit: CloudWatch, X-Ray and CloudTrail
+1hr 43min
+1hr 43min</span></p><ol start='237' ><li><span>AWS Monitoring - Section Introduction</span></li></ol><p><span>1min</span></p><ol start='238' ><li><span>Monitoring Overview in AWS</span></li></ol><p><span>3min</span></p><ol start='239' ><li><span>CloudWatch Metrics</span></li></ol><p><span>3min</span></p><ol start='240' ><li><span>CloudWatch Custom Metrics</span></li></ol><p><span>4min</span></p><ol start='241' ><li><span>CloudWatch Logs</span></li></ol><p><span>4min</span></p><ol start='242' ><li><span>CloudWatch Logs Hands On</span></li></ol><p><span>5min</span></p><ol start='243' ><li><span>CloudWatch Agent &amp;amp; CloudWatch Logs Agent</span></li></ol><p><span>3min</span></p><ol start='244' ><li><span>CloudWatch Logs Metric Filters</span></li></ol><p><span>6min</span></p><ol start='245' ><li><span>CloudWatch Alarms</span></li></ol><p><span>4min</span></p><ol start='246' ><li><span>CloudWatch Alarms Hands On</span></li></ol><p><span>5min</span></p><ol start='247' ><li><span>[DVA-C02] CloudWatch Synthetics</span></li></ol><p><span>3min</span></p><ol start='248' ><li><span>Amazon EventBridge</span></li></ol><p><span>4min</span></p><ol start='249' ><li><span>Amazon EventBridge - Hands On</span></li></ol><p><span>7min</span></p><ol start='250' ><li><span>[DVA-C02] Amazon EventBridge - Multi-Account Aggregation</span></li></ol><p><span>1min</span></p><ol start='251' ><li><span>[DVA-C02] X-Ray Overview</span></li></ol><p><span>7min</span></p><ol start='252' ><li><span>X-Ray Hands On</span></li></ol><p><span>8min</span></p><ol start='253' ><li><span>X-Ray: Instrumentation and Concepts</span></li></ol><p><span>5min</span></p><ol start='254' ><li><span>X-Ray: Sampling Rules</span></li></ol><p><span>2min</span></p><ol start='255' ><li><span>X-Ray APIs</span></li></ol><p><span>3min</span></p><ol start='256' ><li><span>X-Ray with Beanstalk</span></li></ol><p><span>3min</span></p><ol start='257' ><li><span>X-Ray &amp;amp; ECS</span></li></ol><p><span>4min</span></p><ol start='258' ><li><span>CloudTrail</span></li></ol><p><span>6min</span></p><ol start='259' ><li><span>CloudTrail Hands On</span></li></ol><p><span>11min</span></p><ol start='260' ><li><span>CloudTrail vs CloudWatch vs X-Ray</span></li></ol><p><span>1min</span></p><ol start='261' ><li><span>AWS Quick Clean-Up</span></li></ol><p><span>1min
+Section 21: AWS Integration &amp;amp; Messaging: SQS, SNS &amp;amp; Kinesis
+2hr 11min</span></p><ol start='262' ><li><span>AWS Integration &amp;amp; Messaging - Section Introduction</span></li></ol><p><span>1min</span></p><ol start='263' ><li><span>Introduction to Messaging</span></li></ol><p><span>3min</span></p><ol start='264' ><li><span>Amazon SQS - Standard Queues Overview</span></li></ol><p><span>11min</span></p><ol start='265' ><li><span>SQS - Standard Queue Hands On</span></li></ol><p><span>6min</span></p><ol start='266' ><li><span>SQS Queue Access Policy</span></li></ol><p><span>7min</span></p><ol start='267' ><li><span>SQS - Message Visibility Timeout</span></li></ol><p><span>5min</span></p><ol start='268' ><li><span>SQS - Dead Letter Queues</span></li></ol><p><span>3min</span></p><ol start='269' ><li><span>SQS - Dead Letter Queues - Hands On</span></li></ol><p><span>4min</span></p><ol start='270' ><li><span>SQS - Delay Queues</span></li></ol><p><span>2min</span></p><ol start='271' ><li><span>SQS - Certified Developer concepts</span></li></ol><p><span>6min</span></p><ol start='272' ><li><span>SQS - FIFO Queues</span></li></ol><p><span>4min</span></p><ol start='273' ><li><span>SQS - FIFO Queues Advanced</span></li></ol><p><span>5min</span></p><ol start='274' ><li><span>Amazon SNS</span></li></ol><p><span>4min</span></p><ol start='275' ><li><span>Amazon SNS and SQS -  Fan Out Pattern</span></li></ol><p><span>6min</span></p><ol start='276' ><li><span>SNS Hands On</span></li></ol><p><span>5min</span></p><ol start='277' ><li><span>Kinesis Overview</span></li></ol><p><span>1min</span></p><ol start='278' ><li><span>Kinesis Data Streams Overview</span></li></ol><p><span>6min</span></p><ol start='279' ><li><span>Kinesis Producers</span></li></ol><p><span>5min</span></p><ol start='280' ><li><span>Kinesis Consumers</span></li></ol><p><span>5min</span></p><ol start='281' ><li><span>Kinesis Data Streams Hands On</span></li></ol><p><span>10min</span></p><ol start='282' ><li><span>Kinesis Client Library</span></li></ol><p><span>3min</span></p><ol start='283' ><li><span>Kinesis Operations</span></li></ol><p><span>2min</span></p><ol start='284' ><li><span>Kinesis Data Firehose Overview</span></li></ol><p><span>5min</span></p><ol start='285' ><li><span>Kinesis Data Firehose Hands On</span></li></ol><p><span>8min</span></p><ol start='286' ><li><span>Kinesis Data Analytics</span></li></ol><p><span>4min</span></p><ol start='287' ><li><span>Data Ordering for Kinesis vs SQS FIFO</span></li></ol><p><span>7min</span></p><ol start='288' ><li><span>SQS vs SNS vs Kinesis</span></li></ol><p><span>3min
+Section 22: AWS Serverless: Lambda
+3hr 7min</span></p><ol start='289' ><li><span>AWS Lambda - Section Introduction</span></li></ol><p><span>1min</span></p><ol start='290' ><li><span>Serverless Introduction</span></li></ol><p><span>2min</span></p><ol start='291' ><li><span>AWS Lambda Overview</span></li></ol><p><span>7min</span></p><ol start='292' ><li><span>AWS Lambda - First Hands On</span></li></ol><p><span>10min</span></p><ol start='293' ><li><span>Lambda Synchronous Invocations</span></li></ol><p><span>2min</span></p><ol start='294' ><li><span>Lambda Synchronous Invocations Hands On</span></li></ol><p><span>2min</span></p><ol start='295' ><li><span>Lambda &amp;amp; Application Load Balancer</span></li></ol><p><span>3min</span></p><ol start='296' ><li><span>Lambda &amp;amp; Application Load Balancer Hands On</span></li></ol><p><span>8min</span></p><ol start='297' ><li><span>Lambda Asynchronous Invocations &amp;amp; DLQ</span></li></ol><p><span>3min</span></p><ol start='298' ><li><span>Lambda Asynchronous Invocations Hands On</span></li></ol><p><span>6min</span></p><ol start='299' ><li><span>Lambda &amp;amp; CloudWatch Events / EventBridge</span></li></ol><p><span>1min</span></p><ol start='300' ><li><span>Lambda &amp;amp; CloudWatch Events / EventBridge Hands On</span></li></ol><p><span>5min</span></p><ol start='301' ><li><span>Lambda &amp;amp; S3 Event Notifications</span></li></ol><p><span>2min</span></p><ol start='302' ><li><span>Lambda &amp;amp; S3 Event Notifications - Hands On</span></li></ol><p><span>4min</span></p><ol start='303' ><li><span>Lambda Event Source Mapping</span></li></ol><p><span>7min</span></p><ol start='304' ><li><span>Lambda Event Source Mapping Hands On (SQS)</span></li></ol><p><span>7min</span></p><ol start='305' ><li><span>[DVA-C02] Lambda Event &amp;amp; Context Objects</span></li></ol><p><span>3min</span></p><ol start='306' ><li><span>Lambda Destinations</span></li></ol><p><span>3min</span></p><ol start='307' ><li><span>Lambda Destinations Hands On</span></li></ol><p><span>7min</span></p><ol start='308' ><li><span>Lambda Permissions - IAM Roles &amp;amp; Resource Policies</span></li></ol><p><span>3min</span></p><ol start='309' ><li><span>Lambda Permissions - IAM Roles &amp;amp; Resource Policies - Hands On</span></li></ol><p><span>3min</span></p><ol start='310' ><li><span>Lambda Environment Variables</span></li></ol><p><span>1min</span></p><ol start='311' ><li><span>Lambda Environment Variables - Hands On</span></li></ol><p><span>3min</span></p><ol start='312' ><li><span>Lambda Monitoring &amp;amp; X-Ray Tracing</span></li></ol><p><span>2min</span></p><ol start='313' ><li><span>Lambda Monitoring &amp;amp; X-Ray Tracing - Hands On</span></li></ol><p><span>4min</span></p><ol start='314' ><li><span>[DVA-C02] Lambda@Edge &amp;amp; CloudFront Functions</span></li></ol><p><span>6min</span></p><ol start='315' ><li><span>Lambda in VPC</span></li></ol><p><span>4min</span></p><ol start='316' ><li><span>Lambda in VPC - Hands On</span></li></ol><p><span>5min</span></p><ol start='317' ><li><span>Lambda Function Performance</span></li></ol><p><span>5min</span></p><ol start='318' ><li><span>Lambda Function Performance - Hands On</span></li></ol><p><span>6min</span></p><ol start='319' ><li><span>Lambda Layers</span></li></ol><p><span>2min</span></p><ol start='320' ><li><span>[DVA-C02] Lambda File Systems Mounting</span></li></ol><p><span>4min</span></p><ol start='321' ><li><span>Lambda Concurrency</span></li></ol><p><span>6min</span></p><ol start='322' ><li><span>Lambda Concurrency Hands On</span></li></ol><p><span>3min</span></p><ol start='323' ><li><span>Lambda External Dependencies</span></li></ol><p><span>1min</span></p><ol start='324' ><li><span>Lambda External Dependencies - Hands On</span></li></ol><p><span>9min</span></p><ol start='325' ><li><span>Lambda and CloudFormation</span></li></ol><p><span>3min</span></p><ol start='326' ><li><span>Lambda and CloudFormation - Hands On</span></li></ol><p><span>6min</span></p><ol start='327' ><li><span>Lambda Layers - Hands On</span></li></ol><p><span>3min</span></p><ol start='328' ><li><span>[DVA-C02] Lambda Container Images</span></li></ol><p><span>5min</span></p><ol start='329' ><li><span>Lambda Versions and Aliases</span></li></ol><p><span>3min</span></p><ol start='330' ><li><span>Lambda Versions and Aliases - Hands On</span></li></ol><p><span>6min</span></p><ol start='331' ><li><span>[DVA-C02] Lambda and CodeDeploy</span></li></ol><p><span>3min</span></p><ol start='332' ><li><span>[DVA-C02] Lambda Function URL</span></li></ol><p><span>4min</span></p><ol start='333' ><li><span>[DVA-C02] Lambda Function URL - Hands On</span></li></ol><p><span>3min</span></p><ol start='334' ><li><span>[DVA-C02] Lambda - CodeGuru Integration</span></li></ol><p><span>1min</span></p><ol start='335' ><li><span>Lambda Limits</span></li></ol><p><span>2min</span></p><ol start='336' ><li><span>Lambda Best Practices</span></li></ol><p><span>1min
+Section 23: AWS Serverless: DynamoDB
+1hr 47min</span></p><ol start='337' ><li><span>DynamoDB - Section Introduction</span></li></ol><p><span>1min</span></p><ol start='338' ><li><span>DynamoDB Overview</span></li></ol><p><span>8min</span></p><ol start='339' ><li><span>DynamoDB Basics - Hands On</span></li></ol><p><span>9min</span></p><ol start='340' ><li><span>DynamoDB WCU &amp;amp; RCU - Throughput</span></li></ol><p><span>11min</span></p><ol start='341' ><li><span>DynamoDB WCU &amp;amp; RCU - Hands On</span></li></ol><p><span>4min</span></p><ol start='342' ><li><span>[DVA-C02] DynamoDB - Basic Operations</span></li></ol><p><span>8min</span></p><ol start='343' ><li><span>DynamoDB Basic APIs - Hands On</span></li></ol><p><span>3min</span></p><ol start='344' ><li><span>[DVA-C02] DynamoDB - Conditional Writes</span></li></ol><p><span>6min</span></p><ol start='345' ><li><span>DynamoDB Indexes (GSI + LSI)</span></li></ol><p><span>4min</span></p><ol start='346' ><li><span>DynamoDB Indexes (GSI + LSI) - Hands On</span></li></ol><p><span>4min</span></p><ol start='347' ><li><span>DynamoDB PartiQL</span></li></ol><p><span>3min</span></p><ol start='348' ><li><span>DynamoDB Optimistic Locking</span></li></ol><p><span>2min</span></p><ol start='349' ><li><span>DynamoDB DAX</span></li></ol><p><span>3min</span></p><ol start='350' ><li><span>DynamoDB DAX - Hands On</span></li></ol><p><span>4min</span></p><ol start='351' ><li><span>DynamoDB Streams</span></li></ol><p><span>4min</span></p><ol start='352' ><li><span>DynamoDB Streams - Hands On</span></li></ol><p><span>6min</span></p><ol start='353' ><li><span>DynamoDB TTL</span></li></ol><p><span>5min</span></p><ol start='354' ><li><span>DynamoDB CLI</span></li></ol><p><span>5min</span></p><ol start='355' ><li><span>DynamoDB Transactions</span></li></ol><p><span>4min</span></p><ol start='356' ><li><span>DynamoDB Session State</span></li></ol><p><span>2min</span></p><ol start='357' ><li><span>DynamoDB Partitioning Strategies</span></li></ol><p><span>1min</span></p><ol start='358' ><li><span>DynamoDB Conditional Writes, Concurrent Writes &amp;amp; Atomic Writes</span></li></ol><p><span>2min</span></p><ol start='359' ><li><span>DynamoDB Patterns with S3</span></li></ol><p><span>3min</span></p><ol start='360' ><li><span>DynamoDB Operations</span></li></ol><p><span>2min</span></p><ol start='361' ><li><span>DynamoDB Security &amp;amp; Other</span></li></ol><p><span>3min
+Section 24: AWS Serverless: API Gateway
+1hr 42min</span></p><ol start='362' ><li><span>API Gateway - Section Introduction</span></li></ol><p><span>1min</span></p><ol start='363' ><li><span>API Gateway Overview</span></li></ol><p><span>7min</span></p><ol start='364' ><li><span>API Gateway Basics Hands On</span></li></ol><p><span>10min</span></p><ol start='365' ><li><span>[DVA-C02] API Gateway Stages and Deployment</span></li></ol><p><span>4min</span></p><ol start='366' ><li><span>API Gateway Stages and Deployment Hands On</span></li></ol><p><span>8min</span></p><ol start='367' ><li><span>API Gateway Stages Configurations Hands On</span></li></ol><p><span>1min</span></p><ol start='368' ><li><span>API Gateway Canary Deployments</span></li></ol><p><span>1min</span></p><ol start='369' ><li><span>API Gateway Canary Deployments Hands On</span></li></ol><p><span>4min</span></p><ol start='370' ><li><span>[DVA-C02] API Gateway Integration Types &amp;amp; Mappings</span></li></ol><p><span>6min</span></p><ol start='371' ><li><span>API Gateway Mapping Templates Hands On</span></li></ol><p><span>4min</span></p><ol start='372' ><li><span>[DVA-C02] API Gateway Open API</span></li></ol><p><span>3min</span></p><ol start='373' ><li><span>[DVA-C02] API Gateway Open API - Hands On</span></li></ol><p><span>2min</span></p><ol start='374' ><li><span>API Gateway Caching</span></li></ol><p><span>4min</span></p><ol start='375' ><li><span>API Gateway Usage Plans &amp;amp; API Keys</span></li></ol><p><span>8min</span></p><ol start='376' ><li><span>[DVA-C02] API Gateway Monitoring, Logging and Tracing</span></li></ol><p><span>5min</span></p><ol start='377' ><li><span>API Gateway CORS &amp;amp; Hands On</span></li></ol><p><span>9min</span></p><ol start='378' ><li><span>API Gateway Authentication and Authorization</span></li></ol><p><span>9min</span></p><ol start='379' ><li><span>API Gateway REST API vs HTTP API</span></li></ol><p><span>1min</span></p><ol start='380' ><li><span>API Gateway Websocket API</span></li></ol><p><span>7min</span></p><ol start='381' ><li><span>API Gateway Websocket API Hands On</span></li></ol><p><span>8min</span></p><ol start='382' ><li><span>API Gateway - Architecture</span></li></ol><p><span>2min
+Section 25: AWS Serverless: SAM - Serverless Application Model
+1hr 4min</span></p><ol start='383' ><li><span>AWS SAM - Section Introduction</span></li></ol><p><span>1min</span></p><ol start='384' ><li><span>SAM Overview</span></li></ol><p><span>4min</span></p><ol start='385' ><li><span>Installing the SAM CLI</span></li></ol><p><span>2min</span></p><ol start='386' ><li><span>Creating first SAM Project</span></li></ol><p><span>4min</span></p><ol start='387' ><li><span>Deploying SAM Project</span></li></ol><p><span>6min</span></p><ol start='388' ><li><span>SAM API Gateway</span></li></ol><p><span>6min</span></p><ol start='389' ><li><span>SAM DynamoDB</span></li></ol><p><span>9min</span></p><ol start='390' ><li><span>SAM - CloudFormation Designer and Application Repository</span></li></ol><p><span>3min</span></p><ol start='391' ><li><span>SAM Policy Templates</span></li></ol><p><span>2min</span></p><ol start='392' ><li><span>SAM with CodeDeploy</span></li></ol><p><span>9min</span></p><ol start='393' ><li><span>[DVA-C02] SAM - Local Capabilities</span></li></ol><p><span>2min</span></p><ol start='394' ><li><span>SAM Section Summary</span></li></ol><p><span>1min</span></p><ol start='395' ><li><span>Serverless Application Repository (SAR)</span></li></ol><p><span>1min</span></p><ol start='396' ><li><span>Serverless Application Repository (SAR) - Hands On</span></li></ol><p><span>14min
+Section 26: Cloud Development Kit (CDK)
+25min</span></p><ol start='397' ><li><span>CDK Overview</span></li></ol><p><span>4min</span></p><ol start='398' ><li><span>CDK - Hands On</span></li></ol><p><span>12min</span></p><ol start='399' ><li><span>[DVA-C02] CDK - Constructs</span></li></ol><p><span>4min</span></p><ol start='400' ><li><span>[DVA-C02] CDK - Commands &amp;amp; Bootstraping</span></li></ol><p><span>3min</span></p><ol start='401' ><li><span>[DVA-C02] CDK - Unit Testing</span></li></ol><p><span>2min
+Section 27: Cognito: Cognito User Pools, Cognito Identity Pools &amp;amp; Cognito Sync
+43min</span></p><ol start='402' ><li><span>[DVA-C02] Cognito Overview</span></li></ol><p><span>1min</span></p><ol start='403' ><li><span>Cognito User Pools</span></li></ol><p><span>3min</span></p><ol start='404' ><li><span>[DVA-C02] Cognito User Pools Hands On</span></li></ol><p><span>10min</span></p><ol start='405' ><li><span>[DVA-C02] Cognito User Pools - Others</span></li></ol><p><span>6min</span></p><ol start='406' ><li><span>[DVA-C02] Application Load Balancer - User Authentication</span></li></ol><p><span>5min</span></p><ol start='407' ><li><span>Cognito Identity Pools</span></li></ol><p><span>7min</span></p><ol start='408' ><li><span>Cognito Identity Pools Hands On</span></li></ol><p><span>5min</span></p><ol start='409' ><li><span>[DVA-C02] Cognito User Pools vs Cognito Identity Pools</span></li></ol><p><span>4min
+Section 28: Other Serverless: Step Functions &amp;amp; AppSync
+56min</span></p><ol start='410' ><li><span>Step Functions Overview</span></li></ol><p><span>5min</span></p><ol start='411' ><li><span>Step Functions - Hands On</span></li></ol><p><span>8min</span></p><ol start='412' ><li><span>Step Functions - Error Handling</span></li></ol><p><span>6min</span></p><ol start='413' ><li><span>Step Functions - Error Handling Hands On</span></li></ol><p><span>6min</span></p><ol start='414' ><li><span>[DVA-C02] Step Functions - Wait For Task Token</span></li></ol><p><span>3min</span></p><ol start='415' ><li><span>[DVA-C02] Step Functions - Activity Tasks</span></li></ol><p><span>3min</span></p><ol start='416' ><li><span>[DVA-C02] Step Functions - Standard vs Express</span></li></ol><p><span>4min</span></p><ol start='417' ><li><span>[DVA-C02] AppSync Overview</span></li></ol><p><span>5min</span></p><ol start='418' ><li><span>AppSync Hands On</span></li></ol><p><span>5min</span></p><ol start='419' ><li><span>[DVA-C02] AWS Amplify</span></li></ol><p><span>5min</span></p><ol start='420' ><li><span>AWS Amplify - Hands On</span></li></ol><p><span>7min
+Section 29: Advanced Identity
+23min</span></p><ol start='421' ><li><span>STS Overview</span></li></ol><p><span>4min</span></p><ol start='422' ><li><span>Advanced IAM</span></li></ol><p><span>10min</span></p><ol start='423' ><li><span>Granting a User Permissions to Pass a Role to an AWS Service</span></li></ol><p><span>4min</span></p><ol start='424' ><li><span>AWS Directory Services</span></li></ol><p><span>6min
+Section 30: AWS Security &amp;amp; Encryption: KMS, Encryption SDK, SSM Parameter Store, IAM &amp;amp; STS
+1hr 37min</span></p><ol start='425' ><li><span>AWS Security - Section Introduction</span></li></ol><p><span>1min</span></p><ol start='426' ><li><span>Encryption 101</span></li></ol><p><span>5min</span></p><ol start='427' ><li><span>[DVA-C02] KMS Overview</span></li></ol><p><span>7min</span></p><ol start='428' ><li><span>KMS Hands On w/ CLI</span></li></ol><p><span>9min</span></p><ol start='429' ><li><span>KMS Encryption Patterns and Envelope Encryption</span></li></ol><p><span>7min</span></p><ol start='430' ><li><span>Encryption SDK CLI Hands On</span></li></ol><p><span>6min</span></p><ol start='431' ><li><span>KMS Limits</span></li></ol><p><span>3min</span></p><ol start='432' ><li><span>KMS and AWS Lambda Practice</span></li></ol><p><span>6min</span></p><ol start='433' ><li><span>S3 Bucket Key</span></li></ol><p><span>3min</span></p><ol start='434' ><li><span>[DVA-C02] KMS Key Policies &amp;amp; IAM Principals</span></li></ol><p><span>2min</span></p><ol start='435' ><li><span>[DVA-C02] CloudHSM Overview</span></li></ol><p><span>5min</span></p><ol start='436' ><li><span>SSM Parameter Store Overview</span></li></ol><p><span>4min</span></p><ol start='437' ><li><span>SSM Parameter Store Hands On (CLI)</span></li></ol><p><span>7min</span></p><ol start='438' ><li><span>SSM Parameter Store Hands On (AWS Lambda)</span></li></ol><p><span>10min</span></p><ol start='439' ><li><span>Secrets Manager - Overview</span></li></ol><p><span>1min</span></p><ol start='440' ><li><span>Secrets Manager - Hands On</span></li></ol><p><span>6min</span></p><ol start='441' ><li><span>[DVA-C02] Secrets Manager - CloudFormation Integration</span></li></ol><p><span>2min</span></p><ol start='442' ><li><span>SSM Parameter Store vs Secrets Manager</span></li></ol><p><span>2min</span></p><ol start='443' ><li><span>CloudWatch Logs Encryption</span></li></ol><p><span>4min</span></p><ol start='444' ><li><span>CodeBuild Security</span></li></ol><p><span>3min</span></p><ol start='445' ><li><span>[DVA-C02] AWS Nitro Enclaves</span></li></ol><p><span>3min
+Section 31: AWS Other Services
+32min</span></p><ol start='446' ><li><span>AWS Other Services - Section Introduction</span></li></ol><p><span>1min</span></p><ol start='447' ><li><span>AWS SES</span></li></ol><p><span>1min</span></p><ol start='448' ><li><span>[DVA-C02] Amazon OpenSearch Service - Overview</span></li></ol><p><span>4min</span></p><ol start='449' ><li><span>[DVA-C02] Amazon Athena - Overview</span></li></ol><p><span>5min</span></p><ol start='450' ><li><span>[DVA-C02] Amazon Athena - Hands On</span></li></ol><p><span>5min</span></p><ol start='451' ><li><span>[DVA-C02] Amazon MSK - Overview</span></li></ol><p><span>4min</span></p><ol start='452' ><li><span>Amazon Certificate Manager (ACM)</span></li></ol><p><span>1min</span></p><ol start='453' ><li><span>Amazon Certificate Manager (ACM) Hands On</span></li></ol><p><span>6min</span></p><ol start='454' ><li><span>[DVA-C02] ACM Private CA - Overview</span></li></ol><p><span>2min</span></p><ol start='455' ><li><span>[DVA-C02] AWS AppConfig - Overview</span></li></ol><p><span>3min
+Section 32: AWS Final Cleanup
+3min</span></p><ol start='456' ><li><span>AWS Final Cleanup</span></li></ol><p><span>3min</span></p><ol start='457' ><li><span>Cleanup Checklist</span></li></ol><p><span>1min
+Section 33: Preparing for the Exam - AWS Certified Developer Associate
+22min</span></p><ol start='458' ><li><span>Exam Preparation - Section Introduction</span></li></ol><p><span>1min</span></p><ol start='459' ><li><span>State of Learning Checkpoint</span></li></ol><p><span>6min</span></p><ol start='460' ><li><span>Exam Tips - AWS Certified Developer Associate</span></li></ol><p><span>8min</span></p></div></div>
+</body>
+</html>
