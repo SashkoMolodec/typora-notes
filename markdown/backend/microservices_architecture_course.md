@@ -85,7 +85,7 @@ Every service is handled by a single team.
 
 #### Products not projects
 
-The goal is not to deliver just a project (working code) but a workin product.
+The goal is not to deliver just a project (working code) but a working product.
 
 A product needs ongoing support and requires close relationship with the customer.
 

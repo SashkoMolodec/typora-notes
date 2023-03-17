@@ -6,7 +6,7 @@
 
   - Computation
   - Storage
-  - Network
+  - Network вау вау
 
   Infrastructure as a Service (**IaaS**)
 
@@ -31,4 +31,4 @@ Two major **disadvantages**:
 
 ### Scalability Patterns
 
- 
+#### Load Balancing

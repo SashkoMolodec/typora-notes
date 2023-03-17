@@ -4,7 +4,7 @@
 
 [toc]
 
-#### hashCode()
+#### hashCode() 
 
 ##### Contract between hashCode() and equals()
 
