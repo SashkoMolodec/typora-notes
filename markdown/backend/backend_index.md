@@ -31,3 +31,7 @@
 
 ​	:fire: Microservices Architecture course guide [notes](microservices_architecture_course.md)
 
+​	:office: Software architecture & Large scale systems [notes](software_architecture_large_scale_systems.md)
+
+​	:cloud: Cloud computing & software architecture patterns [notes](cloud_computing_software_architecture_patterns.md)
+

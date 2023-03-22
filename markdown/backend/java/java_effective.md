@@ -514,7 +514,162 @@ When writing a method that returns a sequence of elements, remember that some of
 
 Each time you write a method or constructor, you should think about what restrictions exist on its parameters. You should document these restrictions exist on its parameters + enforce them with explicit checks at the beginning of the method body.
 
-Item 50: 
+##### Item 50: Make defensive copies when needed
+
+Date is obsolete and should no longer be used in new code (not immutable) - use Instant or LocalDateTime or ZonedDateTime.
+
+It is essential to make a defensive copy of each mutable parameter to the constructor and use the copies as components (if we create immutable object especially).
+
+Defensive copies are made before checking the valiidity of the parameters, so the validity check is performed on the copies.
+
+Return defensive copes of mutable internal fields.
+
+If the cost is big then outline in the documentation not to modify the components.
+
+##### Item 51: Design method signatures carefully
+
+Choose method names carefully.
+
+Every method should "pull it's weight", do not create too many methods. 
+
+Avoid long parameter lists - up to 4. Tecnhiques for shortening long parameter lists:
+
+- break the method up into multiple methods, each of which requires only.a subset of params (may lead to too many methods, but it can help reduce the method count by increasing *orthogonality* - reuse method for various actions)
+- create helper classes to hold groups of parameters (static member classes)
+- adapt bulider pattern -> pass to it many parameters and run execute metho to do any validity checks and perform actual computation.
+
+Prefer two-element enum types to boolean parameters.
+
+##### Item 52: Use overloading judiciously
+
+The choice of which overloading to invoke is made at compile time - static. Overriding is dynamic.
+
+Avoid confusing uses of overloading. A safe, conservative policy is never to export two overloading with the same number of parameters.
+
+Do not overload methods to take different functional interfaces in the same argument position (problem of *inexact method references*).
+
+We should at least avoid situations where the same set of parameters can be passed to different overloadings by the addition of casts. If we cannot then we need to provide exactly the same behavior.
+
+##### Item 53: Use varags judiciously
+
+Varags are invaluable when need to define methods with a variable number of arguments. Precede (передуй) the varags parameters with any required parameters (`int a1, int a2, int a3, int... rest`). 
+
+Be aware of the performance consequences of using varags.
+
+##### Item 54: Return empty collections or arrays, not nulls
+
+Never return null in place of an empty array or collection. It makes API more difficult and more prone to error with no performance advantages.
+
+##### Item 55: Return optionals judiciously
+
+Never return a null value from an Optional-returnin method: it defeats the entire purpose of the facility.
+
+**You should declare a method to return `Optional` if it might not be able to return a result *and* clients will have to perform special processing if no result is returned.**
+
+Optionals are similar in spirit to checked exceptions, they confront the fact that there may be no value returned (but checked exceptions require boilerplate code).
+
+If you can *prove* that an optional is not empty then you may get the element without specifying an action to take if the optional is empty (just use `get()`).
+
+Use `map` on `Optional` instead of `isPresent` (Java 9):
+<img src="../../../src/img/backend/microservices/image-20230320161303253.png" alt="image-20230320161303253" style="zoom:50%;" />
+
+`Optional` has a `stream()` method, that converts into a stream containing an element if one is present in the optional, or none if it is empty.
+
+Container types should not be wrapped in optionals.
+
+You should never return an optional of a boxed primitive type (use `OptionalInt`, `OptionalLong` and `OptionalDouble`), with the possible exception ofthe "minor" primitive types, `Boolean`, `Byte`, `Character`, `Short` and `Float`.
+
+Finally, you should rarely use an optional in any other capacity than as a return value.(do not use as map keys or instance fields).
+
+##### Item 56: Write doc comments for all exposed API elements
+
+A good example:
+<img src="../../../src/img/backend/microservices/image-20230320162800866.png" alt="image-20230320162800866" style="zoom:50%;" />
+
+
+
+### General Programming
+
+##### Item 57: Minimize the scope of local variables
+
+Most powerful rule - declare local variables where it is first used.
+
+Prefer `for` loops to `while` loops (as you may create loop variables).
+
+If you need to access iterator in loop:
+<img src="../../../src/img/backend/microservices/image-20230320165831932.png" alt="image-20230320165831932" style="zoom:50%;" />
+
+##### Item 58: Prefer for-each loops to traditional for loops
+
+For-each loops provide no performance penalties.
+
+3 common situation where can't use for-each:
+
+- Destructive filtering - traverse and remove elements (so need to use iterator with `remove()` or use `removeIf()`)
+- Transforming - replace some or all values
+- Parallel iteration - traverse multiple collections in parallel, need explicit control over the iterator or index variable
+
+Implement `Iterable` when have a type that represents a group of elements - so be able to use in for-each loop.
+
+##### Item 59: Know and use the libraries
+
+> Every programmer should be familiar with the basics of java.lang, java.util, and java.io, and their subpackages.
+
+##### Item 60: Avoid `float` and `double` if exact answers are required
+
+These types are designed typically for scientific and engineering calculations. They perform *binary floating-point arithmetic*. 
+
+Use `BigDecimal` (if want to keep track of the decimal point and don't care about the cost), `int` or `long` for monetary calculations.
+
+##### Item 61: Prefer primitive types to boxed primitives
+
+Primitives have only their values, whereas boxed primitives have identities distinct from their values (can have the same value and different identities).
+
+Applying the == operator to boxed primitives is almost always wrong.
+
+##### Item 62: Avoid strings where other types are more appropriate 
+
+##### Item 63: Befare the performance of string concatenation
+
+Using the string concatenation (+) repeatedly to concatenate *n* strings requires time quadratic in *n*. The reason is immutability. So don't use the string concatenation operator to combine more than a few strings unless performance is irrelevant.
+
+##### Item 64: Refer to objects by their interfaces
+
+##### Item 65: Prefer interfaces to reflection
+
+If you are writing a program that has to work with classes unknown at compile time, you should, if at all possible, use reflection only to instantiate objects, and access the objects using some interface or superclass that is known at compile time.
+
+##### Item 66: Use native methods judiciously 
+
+The Java Native Interface (JNI) allows Java programs to call native methods, which are methods written in native programming languages such as C or C++.
+
+It is rarely advisable to use native methods for improver performance.
+
+Using native methods are no longer immune to memory corruption errors.
+
+##### Item 67: Optimize judiciously
+
+Strive to write good programs rather than fast ones; speed will follow. But to think about the performance whle desigining systems, APIs, wire-level protocols and persistent data formats. 
+
+Always examine the choice of algorithms.
+
+Use profiler for debugging and fixing performance.
+
+##### Item 69: Adhere to generally accepted naming conventions
+
+##### Item 70: Use checked exceptions for recoverable conditions and runtime exceptions for programming errors 
+
+##### Item 71: Avoid unnecessary use of checked exceptions
+
+Usage of checked exceptions may be justifed if the exceptional condition cannot be prevented by proper use of the API *and* the programmer using the API can take some useful action once confronted with the exception.
+
+Checked exceptions can increase the reliability but when overused = painful to use. 
+
+If callers won't be able to recover from failures, throw unchecked exceptions. If recover may be possible and you want to *force* callers to handle exceptional conditions, first consider returning an optional. If it's not providing insufficient information - throw checked exceptions.
+
+##### Item 72: Favor the use of standard exceptions
+
+
 
 
 

@@ -1,5 +1,9 @@
 ## Software Architecture & Design of Modern Large Scale Systems
 
+[:arrow_backward:](backend_index)
+
+[toc]
+
 The software architecutre of a system is a high-level description of the system's structure, its different components, and how those components communicate with each other to fulfil the systems' requirements and constraints.
 
 Software architecture is not about the technologies and implementation but about the abstraction (components). Components itself are a "black box" elements defined by their behavior and APIs. They may themselves be complex systems with their own software architecture diagrams.
