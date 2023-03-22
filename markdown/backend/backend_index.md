@@ -27,9 +27,13 @@
 
 ​	:lock: OWASP Top 10 from github [notes](owasp_top_10_from_git)
 
-​	:pen: Refactoring [principles](refactoring.md)
+​	:pen: Refactoring [principles](refactoring)
 
-​	:fire: Microservices Architecture course guide [notes](microservices_architecture_course.md)
+​	:fire: Microservices Architecture course guide [notes](microservices_architecture_course)
+
+​	:office: Software architecture & Large scale systems [notes](software_architecture_large_scale_systems)
+
+​	:cloud: Cloud computing & software architecture patterns [notes](cloud_computing_software_architecture_patterns)
 
 ​	:office: Software architecture & Large scale systems [notes](software_architecture_large_scale_systems.md)
 

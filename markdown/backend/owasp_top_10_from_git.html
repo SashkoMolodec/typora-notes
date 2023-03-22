@@ -1,0 +1,1029 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
+.mac-os-11 { --title-bar-height:28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.6; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex:2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.42857rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left: 28px solid transparent; border-right: 28px solid transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right: 8px solid transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+.md-inline-math-container mjx-container { zoom: 0.95; }
+
+
+.CodeMirror { height: auto; }
+.CodeMirror.cm-s-inner { background: inherit; }
+.CodeMirror-scroll { overflow: auto hidden; z-index: 3; }
+.CodeMirror-gutter-filler, .CodeMirror-scrollbar-filler { background-color: rgb(255, 255, 255); }
+.CodeMirror-gutters { border-right: 1px solid rgb(221, 221, 221); background: inherit; white-space: nowrap; }
+.CodeMirror-linenumber { padding: 0px 3px 0px 5px; text-align: right; color: rgb(153, 153, 153); }
+.cm-s-inner .cm-keyword { color: rgb(119, 0, 136); }
+.cm-s-inner .cm-atom, .cm-s-inner.cm-atom { color: rgb(34, 17, 153); }
+.cm-s-inner .cm-number { color: rgb(17, 102, 68); }
+.cm-s-inner .cm-def { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-variable { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-variable-2 { color: rgb(0, 85, 170); }
+.cm-s-inner .cm-variable-3 { color: rgb(0, 136, 85); }
+.cm-s-inner .cm-string { color: rgb(170, 17, 17); }
+.cm-s-inner .cm-property { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-operator { color: rgb(152, 26, 26); }
+.cm-s-inner .cm-comment, .cm-s-inner.cm-comment { color: rgb(170, 85, 0); }
+.cm-s-inner .cm-string-2 { color: rgb(255, 85, 0); }
+.cm-s-inner .cm-meta { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-qualifier { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-builtin { color: rgb(51, 0, 170); }
+.cm-s-inner .cm-bracket { color: rgb(153, 153, 119); }
+.cm-s-inner .cm-tag { color: rgb(17, 119, 0); }
+.cm-s-inner .cm-attribute { color: rgb(0, 0, 204); }
+.cm-s-inner .cm-header, .cm-s-inner.cm-header { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-quote, .cm-s-inner.cm-quote { color: rgb(0, 153, 0); }
+.cm-s-inner .cm-hr, .cm-s-inner.cm-hr { color: rgb(153, 153, 153); }
+.cm-s-inner .cm-link, .cm-s-inner.cm-link { color: rgb(0, 0, 204); }
+.cm-negative { color: rgb(221, 68, 68); }
+.cm-positive { color: rgb(34, 153, 34); }
+.cm-header, .cm-strong { font-weight: 700; }
+.cm-del { text-decoration: line-through; }
+.cm-em { font-style: italic; }
+.cm-link { text-decoration: underline; }
+.cm-error { color: red; }
+.cm-invalidchar { color: red; }
+.cm-constant { color: rgb(38, 139, 210); }
+.cm-defined { color: rgb(181, 137, 0); }
+div.CodeMirror span.CodeMirror-matchingbracket { color: rgb(0, 255, 0); }
+div.CodeMirror span.CodeMirror-nonmatchingbracket { color: rgb(255, 34, 34); }
+.cm-s-inner .CodeMirror-activeline-background { background: inherit; }
+.CodeMirror { position: relative; overflow: hidden; }
+.CodeMirror-scroll { height: 100%; outline: 0px; position: relative; box-sizing: content-box; background: inherit; }
+.CodeMirror-sizer { position: relative; }
+.CodeMirror-gutter-filler, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-vscrollbar { position: absolute; z-index: 6; display: none; outline: 0px; }
+.CodeMirror-vscrollbar { right: 0px; top: 0px; overflow: hidden; }
+.CodeMirror-hscrollbar { bottom: 0px; left: 0px; overflow: auto hidden; }
+.CodeMirror-scrollbar-filler { right: 0px; bottom: 0px; }
+.CodeMirror-gutter-filler { left: 0px; bottom: 0px; }
+.CodeMirror-gutters { position: absolute; left: 0px; top: 0px; padding-bottom: 10px; z-index: 3; overflow-y: hidden; }
+.CodeMirror-gutter { white-space: normal; height: 100%; box-sizing: content-box; padding-bottom: 30px; margin-bottom: -32px; display: inline-block; }
+.CodeMirror-gutter-wrapper { position: absolute; z-index: 4; background: 0px 0px !important; border: none !important; }
+.CodeMirror-gutter-background { position: absolute; top: 0px; bottom: 0px; z-index: 4; }
+.CodeMirror-gutter-elt { position: absolute; cursor: default; z-index: 4; }
+.CodeMirror-lines { cursor: text; }
+.CodeMirror pre { border-radius: 0px; border-width: 0px; background: 0px 0px; font-family: inherit; font-size: inherit; margin: 0px; white-space: pre; overflow-wrap: normal; color: inherit; z-index: 2; position: relative; overflow: visible; }
+.CodeMirror-wrap pre { overflow-wrap: break-word; white-space: pre-wrap; word-break: normal; }
+.CodeMirror-code pre { border-right: 30px solid transparent; width: fit-content; }
+.CodeMirror-wrap .CodeMirror-code pre { border-right: none; width: auto; }
+.CodeMirror-linebackground { position: absolute; inset: 0px; z-index: 0; }
+.CodeMirror-linewidget { position: relative; z-index: 2; overflow: auto; }
+.CodeMirror-wrap .CodeMirror-scroll { overflow-x: hidden; }
+.CodeMirror-measure { position: absolute; width: 100%; height: 0px; overflow: hidden; visibility: hidden; }
+.CodeMirror-measure pre { position: static; }
+.CodeMirror div.CodeMirror-cursor { position: absolute; visibility: hidden; border-right: none; width: 0px; }
+.CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+.CodeMirror-focused div.CodeMirror-cursor { visibility: inherit; }
+.cm-searching { background: rgba(255, 255, 0, 0.4); }
+span.cm-underlined { text-decoration: underline; }
+span.cm-strikethrough { text-decoration: line-through; }
+.cm-tw-syntaxerror { color: rgb(255, 255, 255); background-color: rgb(153, 0, 0); }
+.cm-tw-deleted { text-decoration: line-through; }
+.cm-tw-header5 { font-weight: 700; }
+.cm-tw-listitem:first-child { padding-left: 10px; }
+.cm-tw-box { border-style: solid; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-color: inherit; border-top-width: 0px !important; }
+.cm-tw-underline { text-decoration: underline; }
+@media print {
+  .CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+}
+
+
+:root {
+    --side-bar-bg-color: #fafafa;
+    --control-text-color: #777;
+}
+
+@include-when-export url(https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
+
+/* open-sans-regular - latin-ext_latin */
+  /* open-sans-italic - latin-ext_latin */
+    /* open-sans-700 - latin-ext_latin */
+    /* open-sans-700italic - latin-ext_latin */
+  html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    font-family: "Open Sans","Clear Sans", "Helvetica Neue", Helvetica, Arial, 'Segoe UI Emoji', sans-serif;
+    color: rgb(51, 51, 51);
+    line-height: 1.6;
+}
+
+#write {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 30px;
+    padding-bottom: 100px;
+}
+
+@media only screen and (min-width: 1400px) {
+    #write {
+        max-width: 1024px;
+    }
+}
+
+@media only screen and (min-width: 1800px) {
+    #write {
+        max-width: 1200px;
+    }
+}
+
+#write > ul:first-child,
+#write > ol:first-child{
+    margin-top: 30px;
+}
+
+a {
+    color: #4183C4;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+h1 tt,
+h1 code {
+    font-size: inherit;
+}
+h2 tt,
+h2 code {
+    font-size: inherit;
+}
+h3 tt,
+h3 code {
+    font-size: inherit;
+}
+h4 tt,
+h4 code {
+    font-size: inherit;
+}
+h5 tt,
+h5 code {
+    font-size: inherit;
+}
+h6 tt,
+h6 code {
+    font-size: inherit;
+}
+h1 {
+    font-size: 2.25em;
+    line-height: 1.2;
+    border-bottom: 1px solid #eee;
+}
+h2 {
+    font-size: 1.75em;
+    line-height: 1.225;
+    border-bottom: 1px solid #eee;
+}
+
+/*@media print {
+    .typora-export h1,
+    .typora-export h2 {
+        border-bottom: none;
+        padding-bottom: initial;
+    }
+
+    .typora-export h1::after,
+    .typora-export h2::after {
+        content: "";
+        display: block;
+        height: 100px;
+        margin-top: -96px;
+        border-top: 1px solid #eee;
+    }
+}*/
+
+h3 {
+    font-size: 1.5em;
+    line-height: 1.43;
+}
+h4 {
+    font-size: 1.25em;
+}
+h5 {
+    font-size: 1em;
+}
+h6 {
+   font-size: 1em;
+    color: #777;
+}
+p,
+blockquote,
+ul,
+ol,
+dl,
+table{
+    margin: 0.8em 0;
+}
+li>ol,
+li>ul {
+    margin: 0 0;
+}
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+li p.first {
+    display: inline-block;
+}
+ul,
+ol {
+    padding-left: 30px;
+}
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+blockquote {
+    border-left: 4px solid #dfe2e5;
+    padding: 0 15px;
+    color: #777777;
+}
+blockquote blockquote {
+    padding-right: 0;
+}
+table {
+    padding: 0;
+    word-break: initial;
+}
+table tr {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+table tr:nth-child(2n),
+thead {
+    background-color: #f8f8f8;
+}
+table th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    margin: 0;
+    padding: 6px 13px;
+}
+table td {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 6px 13px;
+}
+table th:first-child,
+table td:first-child {
+    margin-top: 0;
+}
+table th:last-child,
+table td:last-child {
+    margin-bottom: 0;
+}
+
+.CodeMirror-lines {
+    padding-left: 4px;
+}
+
+.code-tooltip {
+    box-shadow: 0 1px 1px 0 rgba(0,28,36,.3);
+    border-top: 1px solid #eef2f2;
+}
+
+.md-fences,
+code,
+tt {
+    border: 1px solid #e7eaed;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    padding: 0;
+    padding: 2px 4px 0px 4px;
+    font-size: 0.9em;
+}
+
+code {
+    background-color: #f3f4f4;
+    padding: 0 2px 0 2px;
+}
+
+.md-fences {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+
+
+.md-task-list-item > input {
+  margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+    table,
+    pre {
+        page-break-inside: avoid;
+    }
+    pre {
+        word-wrap: break-word;
+    }
+}
+
+.md-fences {
+    background-color: #f8f8f8;
+}
+#write pre.md-meta-block {
+    padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block>.code-tooltip {
+    bottom: .375rem;
+}
+
+.md-mathjax-midline {
+    background: #fafafa;
+}
+
+#write>h3.md-focus:before{
+    left: -1.5625rem;
+    top: .375rem;
+}
+#write>h4.md-focus:before{
+    left: -1.5625rem;
+    top: .285714286rem;
+}
+#write>h5.md-focus:before{
+    left: -1.5625rem;
+    top: .285714286rem;
+}
+#write>h6.md-focus:before{
+    left: -1.5625rem;
+    top: .285714286rem;
+}
+.md-image>.md-meta {
+    /*border: 1px solid #ddd;*/
+    border-radius: 3px;
+    padding: 2px 0px 0px 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: #a7a7a7;
+    opacity: 1;
+}
+
+.md-toc { 
+    margin-top:20px;
+    padding-bottom:20px;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/** focus mode */
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header, .context-menu, .megamenu-content, footer{
+    font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state{
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: #fafafa;
+    background-color: var(--side-bar-bg-color);
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+/*.html-for-mac {
+    --item-hover-bg-color: #E6F0FE;
+}*/
+
+#md-notification .btn {
+    border: 0;
+}
+
+.dropdown-menu .divider {
+    border-color: #e5e5e5;
+    opacity: 0.4;
+}
+
+.ty-preferences .window-content {
+    background-color: #fafafa;
+}
+
+.ty-preferences .nav-group-item.active {
+    color: white;
+    background: #999;
+}
+
+.menu-item-container a.menu-style-btn {
+    background-color: #f5f8fa;
+    background-image: linear-gradient( 180deg , hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0)); 
+}
+
+
+
+mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+  min-height: 1px;
+  min-width: 1px;
+}
+
+mjx-container[jax="SVG"] > svg a {
+  fill: blue;
+  stroke: blue;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line], svg[data-table] > g > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame], svg[data-table] > g > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed, svg[data-table] > g > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted, svg[data-table] > g > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > g > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
+  stroke-width: 3;
+}
+
+g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+.MathJax g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
+                            stroke-width: 0;
+                        }
+</style>
+<title>owasp_top_10_from_git</title>
+</head>
+<body class='typora-export'><div class='typora-export-content'>
+<div id='write'  class=''><h2 id='owasp-top-10-from-github'>🔒<span> OWASP Top 10 from github</span></h2><p><a href='backend_index'>◀️</a></p><div class='md-toc' mdtype='toc'><p class="md-toc-content" role="list"><span role="listitem" class="md-toc-item md-toc-h2"><a class="md-toc-inner" href="#owasp-top-10-from-github">🔒<span> OWASP Top 10 from github</span></a></span><span role="listitem" class="md-toc-item md-toc-h4"><a class="md-toc-inner" href="#api1:2019-broken-object-level-authorization"><span>API1:2019 Broken Object Level Authorization</span></a></span><span role="listitem" class="md-toc-item md-toc-h4"><a class="md-toc-inner" href="#api2:2019-broken-user-authentication"><span>API2:2019 Broken User Authentication</span></a></span><span role="listitem" class="md-toc-item md-toc-h4"><a class="md-toc-inner" href="#api3:2019-excessive-data-exposure"><span>API3:2019 Excessive Data Exposure</span></a></span><span role="listitem" class="md-toc-item md-toc-h4"><a class="md-toc-inner" href="#api4:2019-lack-of-resources---rate-limiting"><span>API4:2019 Lack of Resources &amp; Rate Limiting</span></a></span><span role="listitem" class="md-toc-item md-toc-h4"><a class="md-toc-inner" href="#api5:2019-broken-function-level-authorization"><span>API5:2019 Broken Function Level Authorization</span></a></span><span role="listitem" class="md-toc-item md-toc-h4"><a class="md-toc-inner" href="#api6:2019---mass-assignment"><span>API6:2019 - Mass Assignment</span></a></span><span role="listitem" class="md-toc-item md-toc-h4"><a class="md-toc-inner" href="#api7:2019-security-misconfiguration"><span>API7:2019 Security Misconfiguration</span></a></span><span role="listitem" class="md-toc-item md-toc-h4"><a class="md-toc-inner" href="#api8:2019-injection"><span>API8:2019 Injection</span></a></span><span role="listitem" class="md-toc-item md-toc-h4"><a class="md-toc-inner" href="#api9:2019-improper-assets-management"><span>API9:2019 Improper Assets Management</span></a></span><span role="listitem" class="md-toc-item md-toc-h4"><a class="md-toc-inner" href="#api10:2019-insufficient-logging---monitoring"><span>API10:2019 Insufficient Logging &amp; Monitoring</span></a></span></p></div><h4 id='api1:2019-broken-object-level-authorization'><span>API1:2019 Broken Object Level Authorization</span></h4><figure><table><thead><tr><th><span>Threat agents/Attack vectors</span></th><th><span>Security Weakness</span></th><th><span>Impacts</span></th></tr></thead><tbody><tr><td><span>API Specific : Exploitability </span><strong><span>3</span></strong></td><td><span>Prevalence </span><strong><span>3</span></strong><span> : Detectability </span><strong><span>2</span></strong></td><td><span>Technical </span><strong><span>3</span></strong><span> : Business Specific</span></td></tr><tr><td><span>Attackers can exploit API endpoints that are vulnerable to broken object level authorization by manipulating the ID of an object that is sent within the request. This may lead to unauthorized access to sensitive data. This issue is extremely common in API-based applications because the server component usually does not fully track the client’s state, and instead, relies more on parameters like object IDs, that are sent from the client to decide which objects to access.</span></td><td><span>This has been the most common and impactful attack on APIs. Authorization and access control mechanisms in modern applications are complex and wide-spread. Even if the application implements a proper infrastructure for authorization checks, developers might forget to use these checks before accessing a sensitive object. Access control detection is not typically amenable to automated static or dynamic testing.</span></td><td><span>Unauthorized access can result in data disclosure to unauthorized parties, data loss, or data manipulation. Unauthorized access to objects can also lead to full account takeover.</span></td></tr></tbody></table></figure><p><span></span><strong><span>Is the API Vulnerable?</span></strong></p><p><span>Object level authorization is an access control mechanism that is usually implemented at the code level to validate that one user can only access objects that they should have access to.</span></p><p><span>Every API endpoint that receives an ID of an object, and performs any type of action on the object, should implement object level authorization checks. The checks should validate that the logged-in user does have access to perform the requested action on the requested object.</span></p><p><span>Failures in this mechanism typically leads to unauthorized information disclosure, modification, or destruction of all data.</span></p><p><span></span><strong><span>Example Attack Scenarios</span></strong></p><p><span></span><strong><span>Scenario #1</span></strong></p><p><span>An e-commerce platform for online stores (shops) provides a listing page with the revenue charts for their hosted shops. Inspecting the browser requests, an attacker can identify the API endpoints used as a data source for those charts and their pattern </span><code>/shops/{shopName}/revenue_data.json</code><span>. Using another API endpoint, the attacker can get the list of all hosted shop names. With a simple script to manipulate the names in the list, replacing </span><code>{shopName}</code><span> in the URL, the attacker gains access to the sales data of thousands of e-commerce stores.</span></p><p><span></span><strong><span>Scenario #2</span></strong></p><p><span>While monitoring the network traffic of a wearable device, the following HTTP </span><code>PATCH</code><span> request gets the attention of an attacker due to the presence of a custom HTTP request header </span><code>X-User-Id: 54796</code><span>. Replacing the </span><code>X-User-Id</code><span> value with </span><code>54795</code><span>, the attacker receives a successful HTTP response, and is able to modify other users&#39; account data.</span></p><p><span></span><strong><span>How To Prevent</span></strong></p><ul><li><span>Implement a proper authorization mechanism that relies on the user policies and hierarchy.</span></li><li><span>Use an authorization mechanism to check if the logged-in user has access to perform the requested action on the record in every function that uses an input from the client to access a record in the database.</span></li><li><span>Prefer to use random and unpredictable values as GUIDs for records’ IDs.</span></li><li><span>Write tests to evaluate the authorization mechanism. Do not deploy vulnerable changes that break the tests.</span></li></ul><p><span></span><strong><span>References</span></strong></p><p><span></span><strong><span>External</span></strong></p><ul><li><a href='https://www.owasp.org/index.php/Log_Injection'><span>CWE-284: Improper Access Control</span></a></li><li><a href='https://www.owasp.org/index.php/Logging_Cheat_Sheet'><span>CWE-285: Improper Authorization</span></a></li><li><a href='https://www.owasp.org/index.php/OWASP_Proactive_Controls'><span>CWE-639: Authorization Bypass Through User-Controlled Key</span></a></li></ul><p>&nbsp;</p><hr /><p>&nbsp;</p><h4 id='api2:2019-broken-user-authentication'><span>API2:2019 Broken User Authentication</span></h4><figure><table><thead><tr><th><span>Threat agents/Attack vectors</span></th><th><span>Security Weakness</span></th><th><span>Impacts</span></th></tr></thead><tbody><tr><td><span>API Specific : Exploitability </span><strong><span>3</span></strong></td><td><span>Prevalence </span><strong><span>2</span></strong><span> : Detectability </span><strong><span>2</span></strong></td><td><span>Technical </span><strong><span>3</span></strong><span> : Business Specific</span></td></tr><tr><td><span>Authentication in APIs is a complex and confusing mechanism. Software and security engineers might have misconceptions about what are the boundaries of authentication and how to implement it correctly. In addition, the authentication mechanism is an easy target for attackers, since it’s exposed to everyone. These two points makes the authentication component potentially vulnerable to many exploits.</span></td><td><span>There are two sub-issues: 1. Lack of protection mechanisms: APIs endpoints that are responsible for authentication must be treated differently from regular endpoints and implement extra layers of protection 2. Misimplementation of the mechanism: The mechanism is used / implemented without considering the attack vectors, or it’s the wrong use case (e.g., an authentication mechanism designed for IoT clients might not be the right choice for web applications).</span></td><td><span>Attackers can gain control to other users’ accounts in the system, read their personal data, and perform sensitive actions on their behalf, like money transactions and sending personal messages.</span></td></tr></tbody></table></figure><p><span></span><strong><span>Is the API Vulnerable?</span></strong></p><p><span>Authentication endpoints and flows are assets that need to be protected. “Forgot password / reset password” should be treated the same way as authentication mechanisms.</span></p><p><span>An API is vulnerable if it:</span></p><ul><li><span>Permits </span><a href='https://www.owasp.org/index.php/Log_Injection'><span>credential stuffing</span></a><span> whereby the attacker has a list of valid
+usernames and passwords.</span></li><li><span>Permits attackers to perform a brute force attack on the same user account, without
+presenting captcha/account lockout mechanism.</span></li><li><span>Permits weak passwords.</span></li><li><span>Sends sensitive authentication details, such as auth tokens and passwords in
+the URL.</span></li><li><span>Doesn’t validate the authenticity of tokens.</span></li><li><span>Accepts unsigned/weakly signed JWT tokens (</span><code>&quot;alg&quot;:&quot;none&quot;</code><span>)/doesn’t
+validate their expiration date.</span></li><li><span>Uses plain text, non-encrypted, or weakly hashed passwords.</span></li><li><span>Uses weak encryption keys.</span></li></ul><p><span></span><strong><span>Example Attack Scenarios</span></strong></p><p><span></span><strong><span>Scenario #1</span></strong></p><p><a href='https://www.owasp.org/index.php/Log_Injection'><span>Credential stuffing</span></a><span> (using </span><a href='https://www.owasp.org/index.php/Logging_Cheat_Sheet'><span>lists of known usernames/passwords</span></a><span>), is a
+common attack. If an application does not implement automated threat or
+credential stuffing protections, the application can be used as a password
+oracle (tester) to determine if the credentials are valid.</span></p><p><span></span><strong><span>Scenario #2</span></strong></p><p><span>An attacker starts the password recovery workflow by issuing a POST request to
+</span><code>/api/system/verification-codes</code><span> and by providing the username in the request
+body. Next an SMS token with 6 digits is sent to the victim’s phone. Because the
+API does not implement a rate limiting policy, the attacker can test all
+possible combinations using a multi-threaded script, against the
+</span><code>/api/system/verification-codes/{smsToken}</code><span> endpoint to discover the right token
+within a few minutes.</span></p><p><span></span><strong><span>How To Prevent</span></strong></p><ul><li><span>Make sure you know all the possible flows to authenticate to the API (mobile/
+web/deep links that implement one-click authentication/etc.)</span></li><li><span>Ask your engineers what flows you missed.</span></li><li><span>Read about your authentication mechanisms. Make sure you understand what and
+how they are used. OAuth is not authentication, and neither is API keys.</span></li><li><span>Don&#39;t reinvent the wheel in authentication, token generation, password
+storage. Use the standards.</span></li><li><span>Credential recovery/forget password endpoints should be treated as login
+endpoints in terms of brute force, rate limiting, and lockout protections.</span></li><li><span>Use the </span><a href='https://www.owasp.org/index.php/OWASP_Proactive_Controls'><span>OWASP Authentication Cheatsheet</span></a><span>.</span></li><li><span>Where possible, implement multi-factor authentication.</span></li><li><span>Implement anti brute force mechanisms to mitigate credential stuffing,
+dictionary attack, and brute force attacks on your authentication endpoints.
+This mechanism should be stricter than the regular rate limiting mechanism on
+your API.</span></li><li><span>Implement </span><a href='https://github.com/OWASP/ASVS/blob/master/4.0/en/0x15-V7-Error-Logging.md'><span>account lockout</span></a><span> / captcha mechanism to prevent brute force
+against specific users. Implement weak-password checks.</span></li><li><span>API keys should not be used for user authentication, but for </span><a href='https://cwe.mitre.org/data/definitions/223.html'><span>client app/
+project authentication</span></a><span>.</span></li></ul><p><span></span><strong><span>References</span></strong></p><p><span></span><strong><span>OWASP</span></strong></p><ul><li><a href='https://cwe.mitre.org/data/definitions/778.html'><span>OWASP Key Management Cheat Sheet</span></a></li><li><a href='https://www.owasp.org/index.php/OWASP_Proactive_Controls'><span>OWASP Authentication Cheatsheet</span></a></li><li><a href='https://www.owasp.org/index.php/Log_Injection'><span>Credential Stuffing</span></a></li></ul><p><span></span><strong><span>External</span></strong></p><ul><li><a href='https://csrc.nist.gov/publications/detail/sp/800-123/final'><span>CWE-798: Use of Hard-coded Credentials</span></a></li></ul><p>&nbsp;</p><hr /><p>&nbsp;</p><h4 id='api3:2019-excessive-data-exposure'><span>API3:2019 Excessive Data Exposure</span></h4><figure><table><thead><tr><th><span>Threat agents/Attack vectors</span></th><th><span>Security Weakness</span></th><th><span>Impacts</span></th></tr></thead><tbody><tr><td><span>API Specific : Exploitability </span><strong><span>3</span></strong></td><td><span>Prevalence </span><strong><span>2</span></strong><span> : Detectability </span><strong><span>2</span></strong></td><td><span>Technical </span><strong><span>2</span></strong><span> : Business Specific</span></td></tr><tr><td><span>Exploitation of Excessive Data Exposure is simple, and is usually performed by sniffing the traffic to analyze the API responses, looking for sensitive data exposure that should not be returned to the user.</span></td><td><span>APIs rely on clients to perform the data filtering. Since APIs are used as data sources, sometimes developers try to implement them in a generic way without thinking about the sensitivity of the exposed data. Automatic tools usually can’t detect this type of vulnerability because it’s hard to differentiate between legitimate data returned from the API, and sensitive data that should not be returned without a deep understanding of the application.</span></td><td><span>Excessive Data Exposure commonly leads to exposure of sensitive data.</span></td></tr></tbody></table></figure><p><span></span><strong><span>Is the API Vulnerable?</span></strong></p><p><span>The API returns sensitive data to the client by design. This data is usually
+filtered on the client side before being presented to the user. An attacker can
+easily sniff the traffic and see the sensitive data.</span></p><p><span></span><strong><span>Example Attack Scenarios</span></strong></p><p><span></span><strong><span>Scenario #1</span></strong></p><p><span>The mobile team uses the </span><code>/api/articles/{articleId}/comments/{commentId}</code><span>
+endpoint in the articles view to render comments metadata. Sniffing the mobile
+application traffic, an attacker finds out that other sensitive data related to
+comment’s author is also returned. The endpoint implementation uses a generic
+</span><code>toJSON()</code><span> method on the </span><code>User</code><span> model, which contains PII, to serialize the
+object.</span></p><p><span></span><strong><span>Scenario #2</span></strong></p><p><span>An IOT-based surveillance system allows administrators to create users with
+different permissions. An admin created a user account for a new security guard
+that should only have access to specific buildings on the site. Once the
+security guard uses his mobile app, an API call is triggered to:
+</span><code>/api/sites/111/cameras</code><span> in order to receive data about the available cameras
+and show them on the dashboard. The response contains a list with details about
+cameras in the following format:
+</span><code>{&quot;id&quot;:&quot;xxx&quot;,&quot;live_access_token&quot;:&quot;xxxx-bbbbb&quot;,&quot;building_id&quot;:&quot;yyy&quot;}</code><span>.
+While the client GUI shows only cameras which the security guard should have
+access to, the actual API response contains a full list of all the cameras in
+the site.</span></p><p><span></span><strong><span>How To Prevent</span></strong></p><ul><li><span>Never rely on the client side to filter sensitive data.</span></li><li><span>Review the responses from the API to make sure they contain only legitimate
+data.</span></li><li><span>Backend engineers should always ask themselves &quot;who is the
+consumer of the data?&quot; before exposing a new API endpoint.</span></li><li><span>Avoid using generic methods such as </span><code>to_json()</code><span> and </span><code>to_string()</code><span>.
+Instead, cherry-pick specific properties you really want to return</span></li><li><span>Classify sensitive and personally identifiable information (PII) that
+your application stores and works with, reviewing all API calls returning such
+information to see if these responses pose a security issue.</span></li><li><span>Implement a schema-based response validation mechanism as an extra layer of
+security. As part of this mechanism define and enforce data returned by all
+API methods, including errors.</span></li></ul><p><span></span><strong><span>References</span></strong></p><p><span></span><strong><span>External</span></strong></p><ul><li><a href='https://www.owasp.org/index.php/Log_Injection'><span>CWE-213: Intentional Information Exposure</span></a></li></ul><p>&nbsp;</p><hr /><p>&nbsp;</p><h4 id='api4:2019-lack-of-resources---rate-limiting'><span>API4:2019 Lack of Resources &amp; Rate Limiting</span></h4><figure><table><thead><tr><th><span>Threat agents/Attack vectors</span></th><th><span>Security Weakness</span></th><th><span>Impacts</span></th></tr></thead><tbody><tr><td><span>API Specific : Exploitability </span><strong><span>2</span></strong></td><td><span>Prevalence </span><strong><span>3</span></strong><span> : Detectability </span><strong><span>3</span></strong></td><td><span>Technical </span><strong><span>2</span></strong><span> : Business Specific</span></td></tr><tr><td><span>Exploitation requires simple API requests. No authentication is required. Multiple concurrent requests can be performed from a single local computer or by using cloud computing resources.</span></td><td><span>It’s common to find APIs that do not implement rate limiting or APIs where limits are not properly set.</span></td><td><span>Exploitation may lead to DoS, making the API unresponsive or even unavailable.</span></td></tr></tbody></table></figure><p><span></span><strong><span>Is the API Vulnerable?</span></strong></p><p><span>API requests consume resources such as network, CPU, memory, and storage. The
+amount of resources required to satisfy a request greatly depends on the user
+input and endpoint business logic. Also, consider the fact that requests from
+multiple API clients compete for resources. An API is vulnerable if at least one
+of the following limits is missing or set inappropriately (e.g., too low/high):</span></p><ul><li><span>Execution timeouts</span></li><li><span>Max allocable memory</span></li><li><span>Number of file descriptors</span></li><li><span>Number of processes</span></li><li><span>Request payload size (e.g., uploads)</span></li><li><span>Number of requests per client/resource</span></li><li><span>Number of records per page to return in a single request response</span></li></ul><p><span></span><strong><span>Example Attack Scenarios</span></strong></p><p><span></span><strong><span>Scenario #1</span></strong></p><p><span>An attacker uploads a large image by issuing a POST request to </span><code>/api/v1/images</code><span>.
+When the upload is complete, the API creates multiple thumbnails with different
+sizes. Due to the size of the uploaded image, available memory is exhausted
+during the creation of thumbnails and the API becomes unresponsive.</span></p><p><span></span><strong><span>Scenario #2</span></strong></p><p><span>We have an application that contains the users&#39; list on a UI with a limit of
+</span><code>200</code><span> users per page. The users&#39; list is retrieved from the server using the
+following query: </span><code>/api/users?page=1&amp;size=200</code><span>. An attacker changes the </span><code>size</code><span>
+parameter to </span><code>200 000</code><span>, causing performance issues on the database. Meanwhile,
+the API becomes unresponsive and is unable to handle further requests from this
+or any other clients (aka DoS).</span></p><p><span>The same scenario might be used to provoke Integer Overflow or Buffer Overflow
+errors.</span></p><p><span></span><strong><span>How To Prevent</span></strong></p><ul><li><span>Docker makes it easy to limit </span><a href='https://www.owasp.org/index.php/Log_Injection'><span>memory</span></a><span>, </span><a href='https://www.owasp.org/index.php/Logging_Cheat_Sheet'><span>CPU</span></a><span>, </span><a href='https://www.owasp.org/index.php/OWASP_Proactive_Controls'><span>number of restarts</span></a><span>,
+</span><a href='https://github.com/OWASP/ASVS/blob/master/4.0/en/0x15-V7-Error-Logging.md'><span>file descriptors, and processes</span></a><span>.</span></li><li><span>Implement a limit on how often a client can call the API within a defined
+timeframe.</span></li><li><span>Notify the client when the limit is exceeded by providing the limit number and
+the time at which the limit will be reset.</span></li><li><span>Add proper server-side validation for query string and request body
+parameters, specifically the one that controls the number of records to be
+returned in the response.</span></li><li><span>Define and enforce maximum size of data on all incoming parameters and
+payloads such as maximum length for strings and maximum number of elements in
+arrays.</span></li></ul><p><span></span><strong><span>References</span></strong></p><p><span></span><strong><span>OWASP</span></strong></p><ul><li><a href='https://cwe.mitre.org/data/definitions/223.html'><span>Blocking Brute Force Attacks</span></a></li><li><a href='https://cwe.mitre.org/data/definitions/778.html'><span>Docker Cheat Sheet - Limit resources (memory, CPU, file descriptors,
+processes, restarts)</span></a></li><li><a href='https://csrc.nist.gov/publications/detail/sp/800-123/final'><span>REST Assessment Cheat Sheet</span></a></li></ul><p><span></span><strong><span>External</span></strong></p><ul><li><a href='https://letsencrypt.org/'><span>CWE-307: Improper Restriction of Excessive Authentication Attempts</span></a></li><li><a href='https://www.owasp.org/index.php/Test_Cross_Origin_Resource_Sharing_(OTG-CLIENT-007)'><span>CWE-770: Allocation of Resources Without Limits or Throttling</span></a></li><li><span>“_Rate Limiting (Throttling)_” - </span><a href='https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-204-draft.pdf'><span>Security Strategies for Microservices-based
+Application Systems</span></a><span>, NIST</span></li></ul><p>&nbsp;</p><hr /><p>&nbsp;</p><h4 id='api5:2019-broken-function-level-authorization'><span>API5:2019 Broken Function Level Authorization</span></h4><figure><table><thead><tr><th><span>Threat agents/Attack vectors</span></th><th><span>Security Weakness</span></th><th><span>Impacts</span></th></tr></thead><tbody><tr><td><span>API Specific : Exploitability </span><strong><span>3</span></strong></td><td><span>Prevalence </span><strong><span>2</span></strong><span> : Detectability </span><strong><span>1</span></strong></td><td><span>Technical </span><strong><span>2</span></strong><span> : Business Specific</span></td></tr><tr><td><span>Exploitation requires the attacker to send legitimate API calls to the API endpoint that they should not have access to. These endpoints might be exposed to anonymous users or regular, non-privileged users. It’s easier to discover these flaws in APIs since APIs are more structured, and the way to access certain functions is more predictable (e.g., replacing the HTTP method from GET to PUT, or changing the “users” string in the URL to &quot;admins&quot;).</span></td><td><span>Authorization checks for a function or resource are usually managed via configuration, and sometimes at the code level. Implementing proper checks can be a confusing task, since modern applications can contain many types of roles or groups and complex user hierarchy (e.g., sub-users, users with more than one role).</span></td><td><span>Such flaws allow attackers to access unauthorized functionality. Administrative functions are key targets for this type of attack.</span></td></tr></tbody></table></figure><p><span></span><strong><span>Is the API Vulnerable?</span></strong></p><p><span>The best way to find broken function level authorization issues is to perform
+deep analysis of the authorization mechanism, while keeping in mind the user
+hierarchy, different roles or groups in the application, and asking the
+following questions:</span></p><ul><li><span>Can a regular user access administrative endpoints?</span></li><li><span>Can a user perform sensitive actions (e.g., creation, modification, or
+erasure) that they should not have access to by simply changing the HTTP
+method (e.g., from </span><code>GET</code><span> to </span><code>DELETE</code><span>)?</span></li><li><span>Can a user from group X access a function that should be exposed only to users
+from group Y, by simply guessing the endpoint URL and parameters (e.g.,
+</span><code>/api/v1/users/export_all</code><span>)?</span></li></ul><p><span>Don’t assume that an API endpoint is regular or administrative only based on the
+URL path.</span></p><p><span>While developers might choose to expose most of the administrative endpoints
+under a specific relative path, like </span><code>api/admins</code><span>, it’s very common to find
+these administrative endpoints under other relative paths together with regular
+endpoints, like </span><code>api/users</code><span>.</span></p><p><span></span><strong><span>Example Attack Scenarios</span></strong></p><p><span></span><strong><span>Scenario #1</span></strong></p><p><span>During the registration process to an application that allows only invited users
+to join, the mobile application triggers an API call to
+</span><code>GET /api/invites/{invite_guid}</code><span>. The response contains a JSON with details
+about the invite, including the user’s role and the user’s email.</span></p><p><span>An attacker duplicated the request and manipulated the HTTP method and endpoint
+to </span><code>POST /api/invites/new</code><span>. This endpoint should only be accessed by
+administrators using the admin console, which does not implement function level
+authorization checks.</span></p><p><span>The attacker exploits the issue and sends himself an invite to create an
+admin account:</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="java"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="java"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.11111px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">POST <span>/api/i</span>nvites/<span class="cm-keyword">new</span></span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"></span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">{“email”:”hugo@malicious.com”,”role”:”admin”}</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 111px;"></div><div class="CodeMirror-gutters" style="display: none; height: 111px;"></div></div></div></pre><p><span></span><strong><span>Scenario #2</span></strong></p><p><span>An API contains an endpoint that should be exposed only to administrators -
+</span><code>GET /api/admin/v1/users/all</code><span>. This endpoint returns the details of all the
+users of the application and does not implement function-level authorization
+checks. An attacker who learned the API structure takes an educated guess and
+manages to access this endpoint, which exposes sensitive details of the users of
+the application.</span></p><p><span></span><strong><span>How To Prevent</span></strong></p><p><span>Your application should have a consistent and easy to analyze authorization
+module that is invoked from all your business functions. Frequently, such
+protection is provided by one or more components external to the application
+code.</span></p><ul><li><span>The enforcement mechanism(s) should deny all access by default, requiring
+explicit grants to specific roles for access to every function.</span></li><li><span>Review your API endpoints against function level authorization flaws, while
+keeping in mind the business logic of the application and groups hierarchy.</span></li><li><span>Make sure that all of your administrative controllers inherit from an
+administrative abstract controller that implements authorization checks based
+on the user’s group/role.</span></li><li><span>Make sure that administrative functions inside a regular controller implements
+authorization checks based on the user’s group and role.</span></li></ul><p><span></span><strong><span>References</span></strong></p><p><span></span><strong><span>OWASP</span></strong></p><ul><li><a href='https://www.owasp.org/index.php/Log_Injection'><span>OWASP Article on Forced Browsing</span></a></li><li><a href='https://www.owasp.org/index.php/Logging_Cheat_Sheet'><span>OWASP Top 10 2013-A7-Missing Function Level Access Control</span></a></li><li><a href='https://www.owasp.org/index.php/OWASP_Proactive_Controls'><span>OWASP Development Guide: Chapter on Authorization</span></a></li></ul><p><span></span><strong><span>External</span></strong></p><ul><li><a href='https://github.com/OWASP/ASVS/blob/master/4.0/en/0x15-V7-Error-Logging.md'><span>CWE-285: Improper Authorization</span></a></li></ul><p>&nbsp;</p><hr /><p>&nbsp;</p><h4 id='api6:2019---mass-assignment'><span>API6:2019 - Mass Assignment</span></h4><figure><table><thead><tr><th><span>Threat agents/Attack vectors</span></th><th><span>Security Weakness</span></th><th><span>Impacts</span></th></tr></thead><tbody><tr><td><span>API Specific : Exploitability </span><strong><span>2</span></strong></td><td><span>Prevalence </span><strong><span>2</span></strong><span> : Detectability </span><strong><span>2</span></strong></td><td><span>Technical </span><strong><span>2</span></strong><span> : Business Specific</span></td></tr><tr><td><span>Exploitation usually requires an understanding of the business logic, objects&#39; relations, and the API structure. Exploitation of mass assignment is easier in APIs, since by design they expose the underlying implementation of the application along with the properties’ names.</span></td><td><span>Modern frameworks encourage developers to use functions that automatically bind input from the client into code variables and internal objects. Attackers can use this methodology to update or overwrite sensitive object’s properties that the developers never intended to expose.</span></td><td><span>Exploitation may lead to privilege escalation, data tampering, bypass of security mechanisms, and more.</span></td></tr></tbody></table></figure><p><span></span><strong><span>Is the API Vulnerable?</span></strong></p><p><span>Objects in modern applications might contain many properties. Some of these
+properties should be updated directly by the client (e.g., </span><code>user.first_name</code><span> or
+</span><code>user.address</code><span>) and some of them should not (e.g., </span><code>user.is_vip</code><span> flag).</span></p><p><span>An API endpoint is vulnerable if it automatically converts client parameters
+into internal object properties, without considering the sensitivity and the
+exposure level of these properties. This could allow an attacker to update
+object properties that they should not have access to.</span></p><p><span>Examples for sensitive properties:</span></p><ul><li><span></span><strong><span>Permission-related properties</span></strong><span>: </span><code>user.is_admin</code><span>, </span><code>user.is_vip</code><span> should only
+be set by admins.</span></li><li><span></span><strong><span>Process-dependent properties</span></strong><span>: </span><code>user.cash</code><span> should only be set internally
+after payment verification.</span></li><li><span></span><strong><span>Internal properties</span></strong><span>: </span><code>article.created_time</code><span> should only be set internally
+by the application.</span></li></ul><p><span></span><strong><span>Example Attack Scenarios</span></strong></p><p><span></span><strong><span>Scenario #1</span></strong></p><p><span>A ride sharing application provides a user the option to edit basic information
+for their profile. During this process, an API call is sent to
+</span><code>PUT /api/v1/users/me</code><span> with the following legitimate JSON object:</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="java"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="java"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.11111px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span>{</span><span class="cm-attribute">&quot;user_name&quot;</span><span>:</span><span class="cm-string">&quot;inons&quot;</span><span>,</span><span class="cm-attribute">&quot;age&quot;</span><span>:</span><span class="cm-number">24</span><span>}</span></span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 111px;"></div><div class="CodeMirror-gutters" style="display: none; height: 111px;"></div></div></div></pre><p><span>The request </span><code>GET /api/v1/users/me</code><span> includes an additional credit_balance
+property:</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="java"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="java"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.11111px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span>{</span><span class="cm-attribute">&quot;user_name&quot;</span><span>:</span><span class="cm-string">&quot;inons&quot;</span><span>,</span><span class="cm-attribute">&quot;age&quot;</span><span>:</span><span class="cm-number">24</span><span>,</span><span class="cm-attribute">&quot;credit_balance&quot;</span><span>:</span><span class="cm-number">10</span><span>}</span></span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 111px;"></div><div class="CodeMirror-gutters" style="display: none; height: 111px;"></div></div></div></pre><p><span>The attacker replays the first request with the following payload:</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="java"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="java"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.11111px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span>{</span><span class="cm-attribute">&quot;user_name&quot;</span><span>:</span><span class="cm-string">&quot;attacker&quot;</span><span>,</span><span class="cm-attribute">&quot;age&quot;</span><span>:</span><span class="cm-number">60</span><span>,</span><span class="cm-attribute">&quot;credit_balance&quot;</span><span>:</span><span class="cm-number">99999</span><span>}</span></span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 111px;"></div><div class="CodeMirror-gutters" style="display: none; height: 111px;"></div></div></div></pre><p><span>Since the endpoint is vulnerable to mass assignment, the attacker receives
+credits without paying.</span></p><p><span></span><strong><span>Scenario #2</span></strong></p><p><span>A video sharing portal allows users to upload content and download content in
+different formats. An attacker who explores the API found that the endpoint
+</span><code>GET /api/v1/videos/{video_id}/meta_data</code><span> returns a JSON object with the video’s
+properties. One of the properties is </span><code>&quot;mp4_conversion_params&quot;:&quot;-v codec h264&quot;</code><span>,
+which indicates that the application uses a shell command to convert the video.</span></p><p><span>The attacker also found the endpoint </span><code>POST /api/v1/videos/new</code><span> is vulnerable to
+mass assignment and allows the client to set any property of the video object.
+The attacker sets a malicious value as follows:
+</span><code>&quot;mp4_conversion_params&quot;:&quot;-v codec h264 &amp;&amp; format C:/&quot;</code><span>. This value will cause a
+shell command injection once the attacker downloads the video as MP4.</span></p><p><span></span><strong><span>How To Prevent</span></strong></p><ul><li><span>If possible, avoid using functions that automatically bind a client’s input
+into code variables or internal objects.</span></li><li><span>Whitelist only the properties that should be updated by the client.</span></li><li><span>Use built-in features to blacklist properties that should not be accessed by
+clients.</span></li><li><span>If applicable, explicitly define and enforce schemas for the input data
+payloads.</span></li></ul><p><span></span><strong><span>References</span></strong></p><p><span></span><strong><span>External</span></strong></p><ul><li><a href='https://www.owasp.org/index.php/Log_Injection'><span>CWE-915: Improperly Controlled Modification of Dynamically-Determined Object Attributes</span></a></li></ul><p>&nbsp;</p><hr /><p>&nbsp;</p><h4 id='api7:2019-security-misconfiguration'><span>API7:2019 Security Misconfiguration</span></h4><figure><table><thead><tr><th><span>Threat agents/Attack vectors</span></th><th><span>Security Weakness</span></th><th><span>Impacts</span></th></tr></thead><tbody><tr><td><span>API Specific : Exploitability </span><strong><span>3</span></strong></td><td><span>Prevalence </span><strong><span>3</span></strong><span> : Detectability </span><strong><span>3</span></strong></td><td><span>Technical </span><strong><span>2</span></strong><span> : Business Specific</span></td></tr><tr><td><span>Attackers will often attempt to find unpatched flaws, common endpoints, or unprotected files and directories to gain unauthorized access or knowledge of the system.</span></td><td><span>Security misconfiguration can happen at any level of the API stack, from the network level to the application level. Automated tools are available to detect and exploit misconfigurations such as unnecessary services or legacy options.</span></td><td><span>Security misconfigurations can not only expose sensitive user data, but also system details that may lead to full server compromise.</span></td></tr></tbody></table></figure><p><span></span><strong><span>Is the API Vulnerable?</span></strong></p><p><span>The API might be vulnerable if:</span></p><ul><li><span>Appropriate security hardening is missing across any part of the application
+stack, or if it has improperly configured permissions on cloud services.</span></li><li><span>The latest security patches are missing, or the systems are out of date.</span></li><li><span>Unnecessary features are enabled (e.g., HTTP verbs).</span></li><li><span>Transport Layer Security (TLS) is missing.</span></li><li><span>Security directives are not sent to clients (e.g., </span><a href='https://www.owasp.org/index.php/Log_Injection'><span>Security Headers</span></a><span>).</span></li><li><span>A Cross-Origin Resource Sharing (CORS) policy is missing or improperly set.</span></li><li><span>Error messages include stack traces, or other sensitive information is
+exposed.</span></li></ul><p><span></span><strong><span>Example Attack Scenarios</span></strong></p><p><span></span><strong><span>Scenario #1</span></strong></p><p><span>An attacker finds the </span><code>.bash_history</code><span> file under the root directory of the
+server, which contains commands used by the DevOps team to access the API:</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="java"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="java"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.11111px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">$</span> <span class="cm-builtin">curl</span> <span>-X</span> GET <span class="cm-string">&#x27;https://api.server/endpoint/&#x27;</span> <span>-H</span> <span class="cm-string">&#x27;authorization: Basic Zm9vOmJhcg==&#x27;</span></span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 111px;"></div><div class="CodeMirror-gutters" style="display: none; height: 111px;"></div></div></div></pre><p><span>An attacker could also find new endpoints on the API that are used only by the
+DevOps team and are not documented.</span></p><p><span></span><strong><span>Scenario #2</span></strong></p><p><span>To target a specific service, an attacker uses a popular search engine to search
+for  computers directly accessible from the Internet. The attacker found a host
+running a popular database management system, listening on the default port. The
+host was using the default configuration, which has authentication disabled by
+default, and the attacker gained access to millions of records with PII,
+personal preferences, and authentication data.</span></p><p><span></span><strong><span>Scenario #3</span></strong></p><p><span>Inspecting traffic of a mobile application an attacker finds out that not all
+HTTP traffic is performed on a secure protocol (e.g., TLS). The attacker finds
+this to be true, specifically for the download of profile images. As user
+interaction is binary, despite the fact that API traffic is performed on a
+secure protocol, the attacker finds a pattern on API responses size, which he
+uses to track user preferences over the rendered content (e.g., profile images).</span></p><p><span></span><strong><span>How To Prevent</span></strong></p><p><span>The API life cycle should include:</span></p><ul><li><span>A repeatable hardening process leading to fast and easy deployment of a
+properly locked down environment.</span></li><li><span>A task to review and update configurations across the entire API stack. The
+review should include: orchestration files, API components, and cloud services
+(e.g., S3 bucket permissions).</span></li><li><span>A secure communication channel for all API interactions access to static
+assets (e.g., images).</span></li><li><span>An automated process to continuously assess the effectiveness of the
+configuration and settings in all environments.</span></li></ul><p><span>Furthermore:</span></p><ul><li><span>To prevent exception traces and other valuable information from being sent
+back to attackers, if applicable, define and enforce all API response payload
+schemas including error responses.</span></li><li><span>Ensure API can only be accessed by the specified HTTP verbs. All other HTTP
+verbs should be disabled (e.g. </span><code>HEAD</code><span>).</span></li><li><span>APIs expecting to be accessed from browser-based clients (e.g., WebApp
+front-end) should implement a proper Cross-Origin Resource Sharing (CORS)
+policy.</span></li></ul><p><span></span><strong><span>References</span></strong></p><p><span></span><strong><span>OWASP</span></strong></p><ul><li><a href='https://www.owasp.org/index.php/Log_Injection'><span>OWASP Secure Headers Project</span></a></li><li><a href='https://www.owasp.org/index.php/Logging_Cheat_Sheet'><span>OWASP Testing Guide: Configuration Management</span></a></li><li><a href='https://www.owasp.org/index.php/OWASP_Proactive_Controls'><span>OWASP Testing Guide: Testing for Error Codes</span></a></li><li><a href='https://www.owasp.org/index.php/Test_Cross_Origin_Resource_Sharing_(OTG-CLIENT-007)'><span>OWASP Testing Guide: Test Cross Origin Resource Sharing</span></a></li></ul><p><span></span><strong><span>External</span></strong></p><ul><li><a href='https://github.com/OWASP/ASVS/blob/master/4.0/en/0x15-V7-Error-Logging.md'><span>CWE-2: Environmental Security Flaws</span></a></li><li><a href='https://cwe.mitre.org/data/definitions/223.html'><span>CWE-16: Configuration</span></a></li><li><a href='https://cwe.mitre.org/data/definitions/778.html'><span>CWE-388: Error Handling</span></a></li><li><a href='https://csrc.nist.gov/publications/detail/sp/800-123/final'><span>Guide to General Server Security</span></a><span>, NIST</span></li><li><a href='https://letsencrypt.org/'><span>Let’s Encrypt: a free, automated, and open Certificate Authority</span></a></li></ul><p>&nbsp;</p><hr /><p>&nbsp;</p><h4 id='api8:2019-injection'><span>API8:2019 Injection</span></h4><figure><table><thead><tr><th><span>Threat agents/Attack vectors</span></th><th><span>Security Weakness</span></th><th><span>Impacts</span></th></tr></thead><tbody><tr><td><span>API Specific : Exploitability </span><strong><span>3</span></strong></td><td><span>Prevalence </span><strong><span>2</span></strong><span> : Detectability </span><strong><span>3</span></strong></td><td><span>Technical </span><strong><span>3</span></strong><span> : Business Specific</span></td></tr><tr><td><span>Attackers will feed the API with malicious data through whatever injection vectors are available (e.g., direct input, parameters, integrated services, etc.), expecting it to be sent to an interpreter.</span></td><td><span>Injection flaws are very common and are often found in SQL, LDAP, or NoSQL queries, OS commands, XML parsers, and ORM. These flaws are easy to discover when reviewing the source code. Attackers can use scanners and fuzzers.</span></td><td><span>Injection can lead to information disclosure and data loss. It may also lead to DoS, or complete host takeover.</span></td></tr></tbody></table></figure><p><span>I</span><strong><span>s the API Vulnerable?</span></strong></p><p><span>The API is vulnerable to injection flaws if:</span></p><ul><li><span>Client-supplied data is not validated, filtered, or sanitized by the API.</span></li><li><span>Client-supplied data is directly used or concatenated to SQL/NoSQL/LDAP
+queries, OS commands, XML parsers, and Object Relational Mapping (ORM)/Object
+Document Mapper (ODM).</span></li><li><span>Data coming from external systems (e.g., integrated systems) is not validated,
+filtered, or sanitized by the API.</span></li></ul><p><span></span><strong><span>Example Attack Scenarios</span></strong></p><p><span></span><strong><span>Scenario #1</span></strong></p><p><span>Firmware of a parental control device provides the endpoint
+</span><code>/api/CONFIG/restore</code><span> which expects an appId to be sent as a multipart
+parameter. Using a decompiler, an attacker finds out that the appId is passed
+directly into a system call without any sanitization:</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="java"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="java"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.11111px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-builtin">snprintf</span>(cmd, <span class="cm-number">128</span>, <span class="cm-string">&quot;%srestore_backup.sh /tmp/postfile.bin %s %d&quot;</span>,</span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">         <span class="cm-string">&quot;/mnt/shares/usr/bin/scripts/&quot;</span>, appid, <span class="cm-number">66</span>);</span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">system(cmd);</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 111px;"></div><div class="CodeMirror-gutters" style="display: none; height: 111px;"></div></div></div></pre><p><span>The following command allows the attacker to shut down any device with the same
+vulnerable firmware:</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="java"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="java"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.11111px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">$</span> <span class="cm-builtin">curl</span> <span>-k</span> <span class="cm-string">&quot;https://<span class="cm-variable">$</span>{deviceIP}:4567/api/CONFIG/restore&quot;</span> <span class="cm-operator">-F</span> <span class="cm-string">&#x27;appid=$(/etc/pod/power_down.sh)&#x27;</span></span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 111px;"></div><div class="CodeMirror-gutters" style="display: none; height: 111px;"></div></div></div></pre><p><span></span><strong><span>Scenario #2</span></strong></p><p><span>We have an application with basic CRUD functionality for operations with
+bookings. An attacker managed to identify that NoSQL injection might be possible
+through </span><code>bookingId</code><span> query string parameter in the delete booking request. This
+is how the request looks like: </span><code>DELETE /api/bookings?bookingId=678</code><span>.</span></p><p><span>The API server uses the following function to handle delete requests:</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="java"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="java"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.11111px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">router.<span class="hljs-title function_">delete</span>(<span class="cm-string">&#x27;/bookings&#x27;</span>, <span class="cm-keyword">async</span> <span class="cm-keyword">function</span> (<span>req, res, next</span>) {</span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  <span class="cm-keyword">try</span> {</span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">      <span class="cm-keyword">const</span> deletedBooking = <span class="cm-keyword">await</span> <span class="hljs-title class_">Bookings</span>.<span class="hljs-title function_">findOneAndRemove</span>({<span class="cm-string">&#x27;_id&#x27;</span> : req.<span class="cm-property">query</span>.<span class="cm-property">bookingId</span>});</span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">      res.<span class="hljs-title function_">status</span>(<span class="cm-number">200</span>);</span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  } <span class="cm-keyword">catch</span> (err) {</span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">     res.<span class="hljs-title function_">status</span>(<span class="cm-number">400</span>).<span class="hljs-title function_">json</span>({<span class="cm-attribute">error</span>: <span class="cm-string">&#x27;Unexpected error occured while processing a request&#x27;</span>});</span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  }</span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">});</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 111px;"></div><div class="CodeMirror-gutters" style="display: none; height: 111px;"></div></div></div></pre><p><span>The attacker intercepted the request and changed </span><code>bookingId</code><span> query string
+parameter as shown below. In this case, the attacker managed to delete another
+user&#39;s booking:</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="java"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="java"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.11111px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">DELETE <span>/api/</span>bookings?bookingId[<span class="cm-variable">$ne</span>]=<span class="cm-number">678</span></span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 111px;"></div><div class="CodeMirror-gutters" style="display: none; height: 111px;"></div></div></div></pre><p><span></span><strong><span>How To Prevent</span></strong></p><p><span>Preventing injection requires keeping data separate from commands and queries.</span></p><ul><li><span>Perform data validation using a single, trustworthy, and actively maintained
+library.</span></li><li><span>Validate, filter, and sanitize all client-provided data, or other data coming
+from integrated systems.</span></li><li><span>Special characters should be escaped using the specific syntax for the target
+interpreter.</span></li><li><span>Prefer a safe API that provides a parameterized interface.</span></li><li><span>Always limit the number of returned records to prevent mass disclosure in case
+of injection.</span></li><li><span>Validate incoming data using sufficient filters to only allow valid values for
+each input parameter.</span></li><li><span>Define data types and strict patterns for all string parameters.</span></li></ul><p><span></span><strong><span>References</span></strong></p><p><span></span><strong><span>OWASP</span></strong></p><ul><li><a href='https://www.owasp.org/index.php/Log_Injection'><span>OWASP Injection Flaws</span></a></li><li><a href='https://www.owasp.org/index.php/Logging_Cheat_Sheet'><span>SQL Injection</span></a></li><li><a href='https://www.owasp.org/index.php/OWASP_Proactive_Controls'><span>NoSQL Injection Fun with Objects and Arrays</span></a></li><li><a href='https://github.com/OWASP/ASVS/blob/master/4.0/en/0x15-V7-Error-Logging.md'><span>Command Injection</span></a></li></ul><p><span></span><strong><span>External</span></strong></p><ul><li><a href='https://cwe.mitre.org/data/definitions/223.html'><span>CWE-77: Command Injection</span></a></li><li><a href='https://cwe.mitre.org/data/definitions/778.html'><span>CWE-89: SQL Injection</span></a></li></ul><p>&nbsp;</p><hr /><p>&nbsp;</p><h4 id='api9:2019-improper-assets-management'><span>API9:2019 Improper Assets Management</span></h4><figure><table><thead><tr><th><span>Threat agents/Attack vectors</span></th><th><span>Security Weakness</span></th><th><span>Impacts</span></th></tr></thead><tbody><tr><td><span>API Specific : Exploitability </span><strong><span>3</span></strong></td><td><span>Prevalence </span><strong><span>3</span></strong><span> : Detectability </span><strong><span>2</span></strong></td><td><span>Technical </span><strong><span>2</span></strong><span> : Business Specific</span></td></tr><tr><td><span>Old API versions are usually unpatched and are an easy way to compromise systems without having to fight state-of-the-art security mechanisms, which might be in place to protect the most recent API versions.</span></td><td><span>Outdated documentation makes it more difficult to find and/or fix vulnerabilities. Lack of assets inventory and retire strategies leads to running unpatched systems, resulting in leakage of sensitive data. It’s common to find unnecessarily exposed API hosts because of modern concepts like microservices, which make applications easy to deploy and independent (e.g., cloud computing, k8s).</span></td><td><span>Attackers may gain access to sensitive data, or even takeover the server through old, unpatched API versions connected to the same database.</span></td></tr></tbody></table></figure><p><span></span><strong><span>Is the API Vulnerable?</span></strong></p><p><span>The API might be vulnerable if:</span></p><ul><li><p><span>The purpose of an API host is unclear, and there are no explicit answers to
+the following questions:</span></p><ul><li><span>Which environment is the API running in (e.g., production, staging, test,
+development)?</span></li><li><span>Who should have network access to the API (e.g., public, internal, partners)?</span></li><li><span>Which API version is running?</span></li><li><span>What data is gathered and processed by the API (e.g., PII)?</span></li><li><span>What&#39;s the data flow?</span></li></ul></li><li><p><span>There is no documentation, or the existing documentation is not updated.</span></p></li><li><p><span>There is no retirement plan for each API version.</span></p></li><li><p><span>Hosts inventory is missing or outdated.</span></p></li><li><p><span>Integrated services inventory, either first- or third-party, is missing or
+outdated.</span></p></li><li><p><span>Old or previous API versions are running unpatched.</span></p></li></ul><p><span></span><strong><span>Example Attack Scenarios</span></strong></p><p><span></span><strong><span>Scenario #1</span></strong></p><p><span>After redesigning their applications, a local search service left an old API
+version (</span><code>api.someservice.com/v1</code><span>) running, unprotected, and with access to the
+user database. While targeting one of the latest released applications, an
+attacker found the API address (</span><code>api.someservice.com/v2</code><span>). Replacing </span><code>v2</code><span> with
+</span><code>v1</code><span> in the URL gave the attacker access to the old, unprotected API,
+exposing the personal identifiable information (PII) of over 100 Million users.</span></p><p><span></span><strong><span>Scenario #2</span></strong></p><p><span>A social network implemented a rate-limiting mechanism that blocks attackers
+from using brute-force to guess reset password tokens. This mechanism wasn’t
+implemented as part of the API code itself, but in a separate component between
+the client and the official API (</span><code>www.socialnetwork.com</code><span>).
+A researcher found a beta API host (</span><code>www.mbasic.beta.socialnetwork.com</code><span>) that
+runs the same API, including the reset password mechanism, but the rate limiting
+mechanism was not in place. The researcher was able to reset the password of any
+user by using a simple brute-force to guess the 6 digits token.</span></p><p><span></span><strong><span>How To Prevent</span></strong></p><ul><li><span>Inventory all API hosts and document important aspects of each one of them,
+focusing on the API environment (e.g., production, staging, test,
+development), who should have network access to the host (e.g., public,
+internal, partners) and the API version.</span></li><li><span>Inventory integrated services and document important aspects such as their
+role in the system, what data is exchanged (data flow), and its sensitivity.</span></li><li><span>Document all aspects of your API such as authentication, errors, redirects,
+rate limiting, cross-origin resource sharing (CORS) policy and endpoints,
+including their parameters, requests, and responses.</span></li><li><span>Generate documentation automatically by adopting open standards. Include the
+documentation build in your CI/CD pipeline.</span></li><li><span>Make API documentation available to those authorized to use the API.</span></li><li><span>Use external protection measures such as API security firewalls for all exposed versions of your APIs, not just for the current production version.</span></li><li><span>Avoid using production data with non-production API deployments. If this is unavoidable, these endpoints should get the same security treatment as the production ones.</span></li><li><span>When newer versions of APIs include security improvements, perform risk analysis to make the decision of the mitigation actions required for the older version: for example, whether it is possible to backport the improvements without breaking API compatibility or you need to take the older version out quickly and force all clients to move to the latest version.</span></li></ul><p><span></span><strong><span>References</span></strong></p><p><span></span><strong><span>External</span></strong></p><ul><li><a href='https://www.owasp.org/index.php/Log_Injection'><span>CWE-1059: Incomplete Documentation</span></a></li><li><a href='https://www.owasp.org/index.php/Logging_Cheat_Sheet'><span>OpenAPI Initiative</span></a></li></ul><p>&nbsp;</p><hr /><p>&nbsp;</p><h4 id='api10:2019-insufficient-logging---monitoring'><span>API10:2019 Insufficient Logging &amp; Monitoring</span></h4><figure><table><thead><tr><th><span>Threat agents/Attack vectors</span></th><th><span>Security Weakness</span></th><th><span>Impacts</span></th></tr></thead><tbody><tr><td><span>API Specific : Exploitability </span><strong><span>2</span></strong></td><td><span>Prevalence </span><strong><span>3</span></strong><span> : Detectability </span><strong><span>1</span></strong></td><td><span>Technical </span><strong><span>2</span></strong><span> : Business Specific</span></td></tr><tr><td><span>Attackers take advantage of lack of logging and monitoring to abuse systems without being noticed.</span></td><td><span>Without logging and monitoring, or with insufficient logging and monitoring, it is almost impossible to track suspicious activities and respond to them in a timely fashion.</span></td><td><span>Without visibility over on-going malicious activities, attackers have plenty of time to fully compromise systems.</span></td></tr></tbody></table></figure><p><span></span><strong><span>Is the API Vulnerable?</span></strong></p><p><span>The API is vulnerable if:</span></p><ul><li><span>It does not produce any logs, the logging level is not set correctly, or log
+messages do not include enough detail.</span></li><li><span>Log integrity is not guaranteed (e.g., </span><a href='https://www.owasp.org/index.php/Log_Injection'><span>Log Injection</span></a><span>).</span></li><li><span>Logs are not continuously monitored.</span></li><li><span>API infrastructure is not continuously monitored.</span></li></ul><p><span></span><strong><span>Example Attack Scenarios</span></strong></p><p><span></span><strong><span>Scenario #1</span></strong></p><p><span>Access keys of an administrative API were leaked on a public repository. The
+repository owner was notified by email about the potential leak, but took more
+than 48 hours to act upon the incident, and access keys exposure may have
+allowed access to sensitive data. Due to insufficient logging, the company is
+not able to assess what data was accessed by malicious actors.</span></p><p><span></span><strong><span>Scenario #2</span></strong></p><p><span>A video-sharing platform was hit by a “large-scale” credential stuffing attack.
+Despite failed logins being logged, no alerts were triggered during the timespan
+of the attack. As a reaction to user complaints, API logs were analyzed and the
+attack was detected. The company had to make a public announcement asking users
+to reset their passwords, and report the incident to regulatory authorities.</span></p><p><span></span><strong><span>How To Prevent</span></strong></p><ul><li><span>Log all failed authentication attempts, denied access, and input validation
+errors.</span></li><li><span>Logs should be written using a format suited to be consumed by a log
+management solution, and should include enough detail to identify the
+malicious actor.</span></li><li><span>Logs should be handled as sensitive data, and their integrity should be
+guaranteed at rest and transit.</span></li><li><span>Configure a monitoring system to continuously monitor the infrastructure,
+network, and the API functioning.</span></li><li><span>Use a Security Information and Event Management (SIEM) system to aggregate and
+manage logs from all components of the API stack and hosts.</span></li><li><span>Configure custom dashboards and alerts, enabling suspicious activities to be
+detected and responded to earlier.</span></li></ul><p><span></span><strong><span>References</span></strong></p><p><span></span><strong><span>OWASP</span></strong></p><ul><li><a href='https://www.owasp.org/index.php/Logging_Cheat_Sheet'><span>OWASP Logging Cheat Sheet</span></a></li><li><a href='https://www.owasp.org/index.php/OWASP_Proactive_Controls'><span>OWASP Proactive Controls: Implement Logging and Intrusion Detection</span></a></li><li><a href='https://github.com/OWASP/ASVS/blob/master/4.0/en/0x15-V7-Error-Logging.md'><span>OWASP Application Security Verification Standard: V7: Error Handling and
+Logging Verification Requirements</span></a></li></ul><p><span></span><strong><span>External</span></strong></p><ul><li><a href='https://cwe.mitre.org/data/definitions/223.html'><span>CWE-223: Omission of Security-relevant Information</span></a></li><li><a href='https://cwe.mitre.org/data/definitions/778.html'><span>CWE-778: Insufficient Logging</span></a></li></ul></div></div>
+</body>
+</html>

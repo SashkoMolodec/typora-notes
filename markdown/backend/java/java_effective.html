@@ -1,0 +1,847 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
+.mac-os-11 { --title-bar-height:28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.6; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex:2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.42857rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left: 28px solid transparent; border-right: 28px solid transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right: 8px solid transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+.md-inline-math-container mjx-container { zoom: 0.95; }
+
+
+.CodeMirror { height: auto; }
+.CodeMirror.cm-s-inner { background: inherit; }
+.CodeMirror-scroll { overflow: auto hidden; z-index: 3; }
+.CodeMirror-gutter-filler, .CodeMirror-scrollbar-filler { background-color: rgb(255, 255, 255); }
+.CodeMirror-gutters { border-right: 1px solid rgb(221, 221, 221); background: inherit; white-space: nowrap; }
+.CodeMirror-linenumber { padding: 0px 3px 0px 5px; text-align: right; color: rgb(153, 153, 153); }
+.cm-s-inner .cm-keyword { color: rgb(119, 0, 136); }
+.cm-s-inner .cm-atom, .cm-s-inner.cm-atom { color: rgb(34, 17, 153); }
+.cm-s-inner .cm-number { color: rgb(17, 102, 68); }
+.cm-s-inner .cm-def { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-variable { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-variable-2 { color: rgb(0, 85, 170); }
+.cm-s-inner .cm-variable-3 { color: rgb(0, 136, 85); }
+.cm-s-inner .cm-string { color: rgb(170, 17, 17); }
+.cm-s-inner .cm-property { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-operator { color: rgb(152, 26, 26); }
+.cm-s-inner .cm-comment, .cm-s-inner.cm-comment { color: rgb(170, 85, 0); }
+.cm-s-inner .cm-string-2 { color: rgb(255, 85, 0); }
+.cm-s-inner .cm-meta { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-qualifier { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-builtin { color: rgb(51, 0, 170); }
+.cm-s-inner .cm-bracket { color: rgb(153, 153, 119); }
+.cm-s-inner .cm-tag { color: rgb(17, 119, 0); }
+.cm-s-inner .cm-attribute { color: rgb(0, 0, 204); }
+.cm-s-inner .cm-header, .cm-s-inner.cm-header { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-quote, .cm-s-inner.cm-quote { color: rgb(0, 153, 0); }
+.cm-s-inner .cm-hr, .cm-s-inner.cm-hr { color: rgb(153, 153, 153); }
+.cm-s-inner .cm-link, .cm-s-inner.cm-link { color: rgb(0, 0, 204); }
+.cm-negative { color: rgb(221, 68, 68); }
+.cm-positive { color: rgb(34, 153, 34); }
+.cm-header, .cm-strong { font-weight: 700; }
+.cm-del { text-decoration: line-through; }
+.cm-em { font-style: italic; }
+.cm-link { text-decoration: underline; }
+.cm-error { color: red; }
+.cm-invalidchar { color: red; }
+.cm-constant { color: rgb(38, 139, 210); }
+.cm-defined { color: rgb(181, 137, 0); }
+div.CodeMirror span.CodeMirror-matchingbracket { color: rgb(0, 255, 0); }
+div.CodeMirror span.CodeMirror-nonmatchingbracket { color: rgb(255, 34, 34); }
+.cm-s-inner .CodeMirror-activeline-background { background: inherit; }
+.CodeMirror { position: relative; overflow: hidden; }
+.CodeMirror-scroll { height: 100%; outline: 0px; position: relative; box-sizing: content-box; background: inherit; }
+.CodeMirror-sizer { position: relative; }
+.CodeMirror-gutter-filler, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-vscrollbar { position: absolute; z-index: 6; display: none; outline: 0px; }
+.CodeMirror-vscrollbar { right: 0px; top: 0px; overflow: hidden; }
+.CodeMirror-hscrollbar { bottom: 0px; left: 0px; overflow: auto hidden; }
+.CodeMirror-scrollbar-filler { right: 0px; bottom: 0px; }
+.CodeMirror-gutter-filler { left: 0px; bottom: 0px; }
+.CodeMirror-gutters { position: absolute; left: 0px; top: 0px; padding-bottom: 10px; z-index: 3; overflow-y: hidden; }
+.CodeMirror-gutter { white-space: normal; height: 100%; box-sizing: content-box; padding-bottom: 30px; margin-bottom: -32px; display: inline-block; }
+.CodeMirror-gutter-wrapper { position: absolute; z-index: 4; background: 0px 0px !important; border: none !important; }
+.CodeMirror-gutter-background { position: absolute; top: 0px; bottom: 0px; z-index: 4; }
+.CodeMirror-gutter-elt { position: absolute; cursor: default; z-index: 4; }
+.CodeMirror-lines { cursor: text; }
+.CodeMirror pre { border-radius: 0px; border-width: 0px; background: 0px 0px; font-family: inherit; font-size: inherit; margin: 0px; white-space: pre; overflow-wrap: normal; color: inherit; z-index: 2; position: relative; overflow: visible; }
+.CodeMirror-wrap pre { overflow-wrap: break-word; white-space: pre-wrap; word-break: normal; }
+.CodeMirror-code pre { border-right: 30px solid transparent; width: fit-content; }
+.CodeMirror-wrap .CodeMirror-code pre { border-right: none; width: auto; }
+.CodeMirror-linebackground { position: absolute; inset: 0px; z-index: 0; }
+.CodeMirror-linewidget { position: relative; z-index: 2; overflow: auto; }
+.CodeMirror-wrap .CodeMirror-scroll { overflow-x: hidden; }
+.CodeMirror-measure { position: absolute; width: 100%; height: 0px; overflow: hidden; visibility: hidden; }
+.CodeMirror-measure pre { position: static; }
+.CodeMirror div.CodeMirror-cursor { position: absolute; visibility: hidden; border-right: none; width: 0px; }
+.CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+.CodeMirror-focused div.CodeMirror-cursor { visibility: inherit; }
+.cm-searching { background: rgba(255, 255, 0, 0.4); }
+span.cm-underlined { text-decoration: underline; }
+span.cm-strikethrough { text-decoration: line-through; }
+.cm-tw-syntaxerror { color: rgb(255, 255, 255); background-color: rgb(153, 0, 0); }
+.cm-tw-deleted { text-decoration: line-through; }
+.cm-tw-header5 { font-weight: 700; }
+.cm-tw-listitem:first-child { padding-left: 10px; }
+.cm-tw-box { border-style: solid; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-color: inherit; border-top-width: 0px !important; }
+.cm-tw-underline { text-decoration: underline; }
+@media print {
+  .CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+}
+
+
+:root {
+    --side-bar-bg-color: #fafafa;
+    --control-text-color: #777;
+}
+
+@include-when-export url(https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
+
+/* open-sans-regular - latin-ext_latin */
+  /* open-sans-italic - latin-ext_latin */
+    /* open-sans-700 - latin-ext_latin */
+    /* open-sans-700italic - latin-ext_latin */
+  html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    font-family: "Open Sans","Clear Sans", "Helvetica Neue", Helvetica, Arial, 'Segoe UI Emoji', sans-serif;
+    color: rgb(51, 51, 51);
+    line-height: 1.6;
+}
+
+#write {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 30px;
+    padding-bottom: 100px;
+}
+
+@media only screen and (min-width: 1400px) {
+    #write {
+        max-width: 1024px;
+    }
+}
+
+@media only screen and (min-width: 1800px) {
+    #write {
+        max-width: 1200px;
+    }
+}
+
+#write > ul:first-child,
+#write > ol:first-child{
+    margin-top: 30px;
+}
+
+a {
+    color: #4183C4;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+h1 tt,
+h1 code {
+    font-size: inherit;
+}
+h2 tt,
+h2 code {
+    font-size: inherit;
+}
+h3 tt,
+h3 code {
+    font-size: inherit;
+}
+h4 tt,
+h4 code {
+    font-size: inherit;
+}
+h5 tt,
+h5 code {
+    font-size: inherit;
+}
+h6 tt,
+h6 code {
+    font-size: inherit;
+}
+h1 {
+    font-size: 2.25em;
+    line-height: 1.2;
+    border-bottom: 1px solid #eee;
+}
+h2 {
+    font-size: 1.75em;
+    line-height: 1.225;
+    border-bottom: 1px solid #eee;
+}
+
+/*@media print {
+    .typora-export h1,
+    .typora-export h2 {
+        border-bottom: none;
+        padding-bottom: initial;
+    }
+
+    .typora-export h1::after,
+    .typora-export h2::after {
+        content: "";
+        display: block;
+        height: 100px;
+        margin-top: -96px;
+        border-top: 1px solid #eee;
+    }
+}*/
+
+h3 {
+    font-size: 1.5em;
+    line-height: 1.43;
+}
+h4 {
+    font-size: 1.25em;
+}
+h5 {
+    font-size: 1em;
+}
+h6 {
+   font-size: 1em;
+    color: #777;
+}
+p,
+blockquote,
+ul,
+ol,
+dl,
+table{
+    margin: 0.8em 0;
+}
+li>ol,
+li>ul {
+    margin: 0 0;
+}
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+li p.first {
+    display: inline-block;
+}
+ul,
+ol {
+    padding-left: 30px;
+}
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+blockquote {
+    border-left: 4px solid #dfe2e5;
+    padding: 0 15px;
+    color: #777777;
+}
+blockquote blockquote {
+    padding-right: 0;
+}
+table {
+    padding: 0;
+    word-break: initial;
+}
+table tr {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+table tr:nth-child(2n),
+thead {
+    background-color: #f8f8f8;
+}
+table th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    margin: 0;
+    padding: 6px 13px;
+}
+table td {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 6px 13px;
+}
+table th:first-child,
+table td:first-child {
+    margin-top: 0;
+}
+table th:last-child,
+table td:last-child {
+    margin-bottom: 0;
+}
+
+.CodeMirror-lines {
+    padding-left: 4px;
+}
+
+.code-tooltip {
+    box-shadow: 0 1px 1px 0 rgba(0,28,36,.3);
+    border-top: 1px solid #eef2f2;
+}
+
+.md-fences,
+code,
+tt {
+    border: 1px solid #e7eaed;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    padding: 0;
+    padding: 2px 4px 0px 4px;
+    font-size: 0.9em;
+}
+
+code {
+    background-color: #f3f4f4;
+    padding: 0 2px 0 2px;
+}
+
+.md-fences {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+
+
+.md-task-list-item > input {
+  margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+    table,
+    pre {
+        page-break-inside: avoid;
+    }
+    pre {
+        word-wrap: break-word;
+    }
+}
+
+.md-fences {
+    background-color: #f8f8f8;
+}
+#write pre.md-meta-block {
+    padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block>.code-tooltip {
+    bottom: .375rem;
+}
+
+.md-mathjax-midline {
+    background: #fafafa;
+}
+
+#write>h3.md-focus:before{
+    left: -1.5625rem;
+    top: .375rem;
+}
+#write>h4.md-focus:before{
+    left: -1.5625rem;
+    top: .285714286rem;
+}
+#write>h5.md-focus:before{
+    left: -1.5625rem;
+    top: .285714286rem;
+}
+#write>h6.md-focus:before{
+    left: -1.5625rem;
+    top: .285714286rem;
+}
+.md-image>.md-meta {
+    /*border: 1px solid #ddd;*/
+    border-radius: 3px;
+    padding: 2px 0px 0px 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: #a7a7a7;
+    opacity: 1;
+}
+
+.md-toc { 
+    margin-top:20px;
+    padding-bottom:20px;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/** focus mode */
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header, .context-menu, .megamenu-content, footer{
+    font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state{
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: #fafafa;
+    background-color: var(--side-bar-bg-color);
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+/*.html-for-mac {
+    --item-hover-bg-color: #E6F0FE;
+}*/
+
+#md-notification .btn {
+    border: 0;
+}
+
+.dropdown-menu .divider {
+    border-color: #e5e5e5;
+    opacity: 0.4;
+}
+
+.ty-preferences .window-content {
+    background-color: #fafafa;
+}
+
+.ty-preferences .nav-group-item.active {
+    color: white;
+    background: #999;
+}
+
+.menu-item-container a.menu-style-btn {
+    background-color: #f5f8fa;
+    background-image: linear-gradient( 180deg , hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0)); 
+}
+
+
+
+mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+  min-height: 1px;
+  min-width: 1px;
+}
+
+mjx-container[jax="SVG"] > svg a {
+  fill: blue;
+  stroke: blue;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line], svg[data-table] > g > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame], svg[data-table] > g > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed, svg[data-table] > g > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted, svg[data-table] > g > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > g > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
+  stroke-width: 3;
+}
+
+g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+.MathJax g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
+                            stroke-width: 0;
+                        }
+</style>
+<title>java_effective</title>
+</head>
+<body class='typora-export'><div class='typora-export-content'>
+<div id='write'  class=''><h2 id='effective-java'><span>Effective Java</span></h2><p>◀️</p><div class='md-toc' mdtype='toc'><p class="md-toc-content" role="list"><span role="listitem" class="md-toc-item md-toc-h2"><a class="md-toc-inner" href="#effective-java"><span>Effective Java</span></a></span><span role="listitem" class="md-toc-item md-toc-h3"><a class="md-toc-inner" href="#creating-and-destroying-objects"><span>Creating and Destroying Objects</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#item-1:-consider-static-factory-methods-instead-of-constructs"><span>Item 1: Consider static factory methods instead of constructs</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#item-2.-consider-a-builder-when-faced-with-many-construcor-parameters"><span>Item 2. Consider a builder when faced with many construcor parameters</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#item-3.-enfore-the-singleton-property-with-a-private-constructor-or-an-enum-type"><span>Item 3. Enfore the singleton property with a private constructor or an enum type</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#item-4:-enfore-noninstantiability-with-a-private-constructor"><span>Item 4: Enfore noninstantiability with a private constructor</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#item-5:-prefer-dependency-injection-to-hardwiring-resources"><span>Item 5: Prefer dependency injection to hardwiring resources</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#item-6:-avoid-creating-unnecessary-objects"><span>Item 6: Avoid creating unnecessary objects</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#item-7:-eliminate-obsolete-object-references"><span>Item 7: Eliminate obsolete object references</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#item-8:-avoid-finalizers-and-cleaners"><span>Item 8: Avoid finalizers and cleaners</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#item-9:-prefer-try-with-resources-to-try-finally"><span>Item 9: Prefer try-with-resources to try-finally</span></a></span><span role="listitem" class="md-toc-item md-toc-h3"><a class="md-toc-inner" href="#method-common-to-all-objects"><span>Method Common to All Objects</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#item-10.-obey-the-general-contract-when-overriding-equals"><span>Item 10. Obey the general contract when overriding equals</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#item-11:-always-override-hashcode-when-override-equals"><span>Item 11: Always override </span><code>hashCode</code><span> when override </span><code>equals</code></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#item-12:-always-override-string"><span>Item 12: Always override String</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#item-13:-override-clone-judiciously"><span>Item 13: Override </span><code>clone</code><span> judiciously</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#item-14:-consider-implementng-comparable"><span>Item 14: Consider implementng Comparable</span></a></span><span role="listitem" class="md-toc-item md-toc-h3"><a class="md-toc-inner" href="#classes-and-interfaces"><span>Classes and Interfaces</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#item-15:-minimize-the-accessibility-of-classes-and-members"><span>Item 15: Minimize the accessibility of classes and members</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#item-16:-in-public-classes,-use-accessor-methods,-not-public-fields"><span>Item 16: In public classes, use accessor methods, not public fields</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#item-17:-minimize-mutability"><span>Item 17: Minimize mutability</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#item-18:-favor-composition-over-inheritance"><span>Item 18: Favor composition over inheritance</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#item-19:-design-and-document-for-inheritance-or-else-prohibit-it"><span>Item 19: Design and document for inheritance or else prohibit it</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#item-20:-prefer-interfaces-to-abstract-classes"><span>Item 20: Prefer interfaces to abstract classes</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#item-21:-design-interfaces-for-posterity-(потомство)"><span>Item 21: Design interfaces for posterity (потомство)</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#item-22:-use-interfaces-to-define-types"><span>Item 22: Use interfaces to define types</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#item-23:-prefer-class-hierachies-to-tagged-classes"><span>Item 23: Prefer class hierachies to tagged classes</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#item-24:-favor-static-member-classes-over-nonstatic"><span>Item 24: Favor static member classes over nonstatic</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#item-25:-limit-source-files-to-a-single-top-level-class"><span>Item 25: Limit source files to a single top-level class</span></a></span><span role="listitem" class="md-toc-item md-toc-h3"><a class="md-toc-inner" href="#generics"><span>Generics</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#item-26:-don-t-use-raw-types"><span>Item 26: Don&#39;t use raw types</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#item-27:-eliminate-unchecked-warnings"><span>Item 27: Eliminate unchecked warnings</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#item-28:-prefer-lists-to-arrays"><span>Item 28: Prefer lists to arrays</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#item-29:-favor-generic-types"><span>Item 29: Favor generic types</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#item-30:-favor-generic-methods"><span>Item 30: Favor generic methods</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#item-31:-use-bounded-wildcards-to-increase-api-flexibility"><span>Item 31: Use bounded wildcards to increase API flexibility</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#item-32:-combine-generics-and-varags-judiciously"><span>Item 32: Combine generics and varags judiciously</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#item-33:-consider-typesafe-heterogeneous-(неоднорідні)-containers"><span>Item 33: Consider typesafe heterogeneous (неоднорідні) containers</span></a></span><span role="listitem" class="md-toc-item md-toc-h3"><a class="md-toc-inner" href="#enums-and-annotations"><span>Enums and Annotations</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#item-34:-use-enums-instead-of-int-constants"><span>Item 34: Use enums instead of </span><code>int</code><span> constants</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#item-35:-use-instance-fields-instead-of-ordinals"><span>Item 35: Use instance fields instead of ordinals</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#item-36:-use-enumset-instead-of-bit-fields"><span>Item 36: Use EnumSet instead of bit fields</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#item-37:-use-enummap-instead-of-ordinal-indexing"><span>Item 37: Use EnumMap instead of ordinal indexing</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#item-38:-emulate-extensible-enums-with-interfaces"><span>Item 38: Emulate extensible enums with interfaces</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#item-39:-prefer-annotations-to-naming-patterns"><span>Item 39: Prefer annotations to naming patterns</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#item-40:-consistently-use-the-override-annotation"><span>Item 40: Consistently use the Override annotation</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#item-41:-use-marker-interfaces-to-define-types"><span>Item 41: Use marker interfaces to define types</span></a></span><span role="listitem" class="md-toc-item md-toc-h3"><a class="md-toc-inner" href="#lambdas-and-streams"><span>Lambdas and Streams</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#item-42:-prefer-lambdas-to-anonymous-classes"><span>Item 42: Prefer lambdas to anonymous classes</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#item-43:-prefer-method-references-to-lambdas"><span>Item 43: Prefer method references to lambdas</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#item-44:-favor-the-use-of-standard-functional-interfaces"><span>Item 44: Favor the use of standard functional interfaces</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#item-45:-use-streams-judiciously"><span>Item 45: Use streams judiciously</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#item-46:-prefer-side-effect-free-functions-in-streams"><span>Item 46: Prefer side-effect-free functions in streams</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#item-47:-prefer-collection-to-stream-as-a-return-type"><span>Item 47: Prefer Collection to Stream as a return type</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#item-48:-use-caution-when-making-streams-parallel"><span>Item 48: Use caution when making streams parallel</span></a></span><span role="listitem" class="md-toc-item md-toc-h3"><a class="md-toc-inner" href="#methods"><span>Methods</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#item-49:-check-parameters-for-validity"><span>Item 49: Check parameters for validity</span></a></span><span role="listitem" class="md-toc-item md-toc-h3"><a class="md-toc-inner" href="#concurrency"><span>Concurrency</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#item-78:-synchronize-access-to-shared-mutable-data-(synchronized,-volatile)"><span>Item 78: Synchronize access to shared mutable data (synchronized, volatile)</span></a></span><span role="listitem" class="md-toc-item md-toc-h2"><a class="md-toc-inner" href="#to-read-item-79-and-so-on...."><span>To read Item 79 and so on....</span></a></span></p></div><h3 id='creating-and-destroying-objects'><span>Creating and Destroying Objects</span></h3><h5 id='item-1:-consider-static-factory-methods-instead-of-constructs'><span>Item 1: Consider static factory methods instead of constructs</span></h5><p><span>from, of, value of, instance or getInstance... (9 page).</span></p><p><span>Advantages:</span></p><ul><li><p><span>Unlike constructors, they have name (it will help when have mutliple constructors and ambiguity what they create)</span></p></li><li><p><span>Not required to create new object each time it&#39;s invoked; it allows to use preconstructed instances, or to cache instances as they&#39;re constructed</span></p><blockquote><p><span>The ability to return the same objects from repeated invocations allows classes to maintain strict control over existing instances - classes are </span><em><span>instance controlled</span></em><span>.</span></p></blockquote></li><li><p><span>Can return an object of any subtype of their return type; we may hide implementation classes and return interface in static factory method (this technique leades to </span><em><span>interface-based</span></em><span> frameworks)</span></p></li><li><p><span>Depending on input parameters we may return different subclasses</span></p></li><li><p><span>When we return the interface in the process of compilation we don&#39;t need actual class implementation - it will be loaded in the runtime using some proxies, reflection or looking up a service loader</span></p><blockquote><p><span></span><em><span>Service provider frameworks</span></em><span> works in such way: it consists of </span><em><span>service interface</span></em><span>, which represents an implementation; a </span><em><span>provider registration API</span></em><span>, which providers use to register implementations; and a </span><em><span>service access API</span></em><span>, which clients use to obtain instances of the service. Optional fourth component is </span><em><span>service provider interface</span></em><span> - descibes a factory object that produce instances of the service interface.
+in the case of JDBC, </span><code>Connection</code><span> - service interface, </span><code>DriverManager.registerDriver</code><span> - provider registration API, </span><code>DriverManager.getConnection</code><span> - service access API, </span><code>Driver</code><span> - service provider interface.</span></p></blockquote></li></ul><p><span>Disadvantages:</span></p><ul><li><span>Classes without public or protected constructors cannot be subclassed (but in encourages developers to use composition instead)</span></li><li><span>Hard for programmers to find</span></li></ul><h5 id='item-2.-consider-a-builder-when-faced-with-many-construcor-parameters'><span>Item 2. Consider a builder when faced with many construcor parameters</span></h5><p><span>The builder pattern is a good choise when designing classes whose constructors or static factoris would have more than a handful of parameters (4 or more).</span></p><p><span>Disadvantage is that we need to create a builder, before creating an object. It may create problem in performance-critical situations.</span></p><p><span>Better to start from Buiders (if it&#39;s suitable) when designing and not use constructor or static factory methods.</span></p><h5 id='item-3.-enfore-the-singleton-property-with-a-private-constructor-or-an-enum-type'><span>Item 3. Enfore the singleton property with a private constructor or an enum type</span></h5><p><span>To maintain the singleton guarantee, declare all instance fields </span><code>transient</code><span> and provide a </span><code>readResolve</code><span> method. Otherwise, each time a serialized instance is desearilzed, a new instance will be created.</span></p><p><span>The easiest way is to use a </span><strong><span>single-element enum type</span></strong><span> to implement a singleton.</span></p><h5 id='item-4:-enfore-noninstantiability-with-a-private-constructor'><span>Item 4: Enfore noninstantiability with a private constructor</span></h5><p><span></span><em><span>Utility classes</span></em><span> are not designed to be instantiated (such as </span><code>util.Arrays</code><span>, </span><code>util.Collections</code><span>). They may be used to group static factory methods. 
+We won&#39;t be able to enfore this non by makin a class abstract - can be subclassed and then created. But we may create a regular class with a private constructor - it will solve the issue.</span></p><h5 id='item-5:-prefer-dependency-injection-to-hardwiring-resources'><span>Item 5: Prefer dependency injection to hardwiring resources</span></h5><p><span>Do not use a singleton or static utility class to implement a class that depends on other resources whose behavior can affect.</span></p><ul><li><span>Pass the resource into the constructor when creating a new instance. This is one form of dependency injection.</span></li><li><span>Pass a resource factory to the constructor</span></li></ul><h5 id='item-6:-avoid-creating-unnecessary-objects'><span>Item 6: Avoid creating unnecessary objects</span></h5><p><span>An object can always be reused if it is immutable. Use static factory methods in preference to constructors in immutable classes. We may also use caching.</span></p><h5 id='item-7:-eliminate-obsolete-object-references'><span>Item 7: Eliminate obsolete object references</span></h5><p><span>An obsolete reference is simply a reference that will never be dereferenced. Nulling out object references should be an exception rather than the norm. </span></p><p><span>You may expect memory leaks in places when class </span><strong><span>manages its own memory</span></strong><span>, for example working with arrays (</span><em><span>storage pool</span></em><span> that stores object references: some elements in the array may be in active portion (we have access to them) and other unimportant, with no access from our side, - garbage collector don&#39;t know we actually don&#39;t use those elements, they are totally valid).</span></p><p><span>Another common source of memory leaks is caches - we may forget about them. Use </span><code>WeakHashMap</code><span>.</span></p><p><span>Too many listeners and other callbacks that are accumulating. Store only weak references to them, as keys in a </span><code>WeakHashMap</code><span>.</span></p><p><span>Use a </span><em><span>heap profiler</span></em><span> to find memory leaks.</span></p><h5 id='item-8:-avoid-finalizers-and-cleaners'><span>Item 8: Avoid finalizers and cleaners</span></h5><h5 id='item-9:-prefer-try-with-resources-to-try-finally'><span>Item 9: Prefer try-with-resources to try-finally</span></h5><p><span>Use that approach when working with resources that must be closed. Implement </span><code>AutoClosable</code><span>. The resulting code is shorter and cleaner, and generated exceptions are more usefull:</span></p><blockquote><p><span>If exceptions are thrown by both the method call and </span><code>close</code><span> method, the latter exception is </span><em><span>supressed</span></em><span> in favor of the former.</span></p></blockquote><p>&nbsp;</p><h3 id='method-common-to-all-objects'><span>Method Common to All Objects</span></h3><h5 id='item-10.-obey-the-general-contract-when-overriding-equals'><span>Item 10. Obey the general contract when overriding equals</span></h5><p><span>Don&#39;t override the </span><code>equals</code><span> method unless you have to. </span><code>Object</code><span> implementation will be fine when, for example we are working with instance-controlled classes, singletons or enums. If we want to override </span><code>equals</code><span>, we need to compare all significant fields and preversve 5 positions of the </span><code>equals</code><span> contract:</span></p><ul><li><p><span>Reflexive - </span><code>x.equals(x)</code><span> returns true</span></p></li><li><p><span>Symmetric - </span><code>x.equals(y)</code><span> and </span><code>y.equals(x)</code><span> returns true</span></p><blockquote><p><span>For example </span><code>String</code><span> and our </span><code>CaseInsensitiveString</code><span> custom object. we may create good </span><code>equals</code><span> for our custom object but for the </span><code>String</code><span> it won&#39;t be the same - thus may violate symmetricity.</span></p></blockquote></li><li><p><span>Transitivte - </span><code>x.equals(y)</code><span>, </span><code>y.equals(z)</code><span>, </span><code>x.equals(z)</code><span> returns true</span></p><blockquote><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="java"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="java"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.11111px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable-3">ColorPoint</span> <span class="cm-variable">p1</span> <span class="cm-operator">=</span> <span class="cm-keyword">new</span> <span class="hljs-title class_">ColorPoint</span>(<span class="cm-number">1</span>, <span class="cm-number">2</span>, Color.RED);</span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable-3">Point</span> <span class="cm-variable">p2</span> <span class="cm-operator">=</span> <span class="cm-keyword">new</span> <span class="hljs-title class_">Point</span>(<span class="cm-number">1</span>, <span class="cm-number">2</span>);</span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable-3">ColorPoint</span> <span class="cm-variable">p3</span> <span class="cm-operator">=</span> <span class="cm-keyword">new</span> <span class="hljs-title class_">ColorPoint</span>(<span class="cm-number">1</span>, <span class="cm-number">2</span>, Color.BLUE);</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 111px;"></div><div class="CodeMirror-gutters" style="display: none; height: 111px;"></div></div></div></pre><p><code>p1.equals(p2)</code><span> and </span><code>p2.equals(p3)</code><span> returns true, while </span><code>p1.equals(p3)</code><span> returns false - transitivity violation. The problem here is that we omit the color parameter (because regular point doesn&#39;t have such).</span></p><p><span></span><strong><span>There is no way to extend an instantiable class and add a value component while preserving the equals contract.</span></strong><span> The only exception is that we can add a value component to a subclass of an </span><em><span>abstract</span></em><span> class because it is impossible to create a superclass instance directly.</span></p></blockquote></li><li><p><span>Consistent - multiple invocations of </span><code>x.equals(y)</code><span> must consistently return true or false</span></p><blockquote><p><span>Do not write an equals method that depends on unreliable resources. </span><code>equals</code><span> methods should perform only deterministic computations on memory-resident objects.</span></p></blockquote></li><li><p><code>x.equals(null)</code><span> returns false</span></p><blockquote><p><span>The </span><code>instanceoff</code><span> operator is specified to return false if its first operand is null.</span></p></blockquote></li></ul><p><span>Recipe for a high-quality </span><code>equals</code><span> method:</span></p><ol><li><p><span>Use == operator to check if the argument is a reference to this object</span></p></li><li><p><code>instanceof</code><span> operator to check if the argument has the correct type (class type or interface the class implements - to permit comparisons across those classes)</span></p></li><li><p><span>Cast the argument to the correct type</span></p></li><li><p><span>Check if &quot;significant&quot; fields are matching</span></p><blockquote><p><span>For float and double use </span><code>Float.compare</code><span>, </span><code>Double.compare</code><span>, for other primitive fields </span><code>==</code></p><p><span>Some object references may contain null, use </span><code>Object.equals</code></p></blockquote></li><li><p><span>Ask yourself if it is symetric? Is it transitive? Is it consistent? And also reflexivity and non-nulity</span></p></li></ol><h5 id='item-11:-always-override-hashcode-when-override-equals'><span>Item 11: Always override </span><code>hashCode</code><span> when override </span><code>equals</code></h5><p><a href='essential/java_object_methods.md#hashcode()'><span>Contract between hashCode and equals</span></a><span>.</span></p><p><span>We should not use any fields in </span><code>hashCode</code><span> that are not used in </span><code>equals</code><span> method - we would violate the second contract rule.</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="java"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="java"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.11111px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">//Typical hashCode method</span></span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-meta">@Override</span> <span class="cm-keyword">public</span> <span class="cm-variable-3">int</span> <span class="hljs-title function_">hashCode</span><span>()</span> {</span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  <span class="cm-variable-3">int</span> <span class="cm-variable">result</span> <span class="cm-operator">=</span> Short.hashCode(areaCode);</span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  result = <span class="cm-number">31</span> * result + Short.hashCode(prefix);</span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  result = <span class="cm-number">31</span> * result + Short.hashCode(lineNum);</span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  <span class="cm-keyword">return</span> result;</span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 111px;"></div><div class="CodeMirror-gutters" style="display: none; height: 111px;"></div></div></div></pre><blockquote><p><span>A nice property of 31 is that the mulitiplication can be replaced by a shift and a substraction for better performance on some archietectures: 31 * i == (i &lt;&lt; 5) - i. Modern VMs do this sort of optimization automatically.</span></p></blockquote><p><span>If the performance is not critical you may use static Object&#39;s method:</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="java"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="java"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.11111px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-meta">@Override</span> <span class="cm-keyword">public</span> <span class="cm-variable-3">int</span> <span class="hljs-title function_">hashCode</span><span>()</span> {</span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  <span class="cm-keyword">return</span> Objects.hash(lineNum, prefix, areaCode);</span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 111px;"></div><div class="CodeMirror-gutters" style="display: none; height: 111px;"></div></div></div></pre><p><span>If a class is immutable and the cost of computing hash code is significant, you may consider caching the hash code in the object. We may calculate them when instance is created (if we sure object will be used as hash keys).</span></p><p><span>Do not be tempted to exclude significant fields from the has code computation to improve performance. If we will meet with a big collection of items and we&#39;ll have not so many different hash codes = poor performance.</span></p><p><span>Don&#39;t provide a detailed specification for the value returned by hashCode, so clients can&#39;t reasonably depend on it; in future release maybe we&#39;ll change it.</span></p><h5 id='item-12:-always-override-string'><span>Item 12: Always override String</span></h5><p><span>Provide pragmattic access to the information contained in the value returned by </span><code>toString</code><span>.</span></p><h5 id='item-13:-override-clone-judiciously'><span>Item 13: Override </span><code>clone</code><span> judiciously</span></h5><p><span>Using </span><code>Cloneable</code><span> is bad (creates object without constructor), an easier approach to object copying is to provide a copy constructor or a copy factory. They don&#39;t rely on a risk-prone extralinguistic object creation mechanism; don&#39;t conflict with the proper use of final fields; don&#39;t throw unnecessary chekced exceptions; not require casts.</span></p><h5 id='item-14:-consider-implementng-comparable'><span>Item 14: Consider implementng Comparable</span></h5><p><span>By implementing </span><code>Comparable</code><span>, you allow your class to interoperate with all of the many generic algorithms and collection implementations which uses that interface.</span></p><p><code>compareTo</code><span> must obey the same restriction as in </span><code>equals</code><span>: reflexivity, symmetry, transitivity. Same caveat applies: no way to extend an instantiable class with a new value component while preserving the </span><code>compareTo</code><span> contract. Use composition. </span></p><p><span>Equality test imposed by the </span><code>compareTo</code><span> should generally return the same results as the </span><code>equals</code><span> method - to preserve consistency.</span></p><p><span>Do not use relational operators &lt; and &gt; in </span><code>compareTo</code><span>, use </span><code>Type.compare</code><span> static method or the comparator construction methods in the </span><code>Comparator</code><span> interface.</span></p><p>&nbsp;</p><h3 id='classes-and-interfaces'><span>Classes and Interfaces</span></h3><h5 id='item-15:-minimize-the-accessibility-of-classes-and-members'><span>Item 15: Minimize the accessibility of classes and members</span></h5><p><span>Information hiding increases software reuse because components that aren&#39;t tightly coupled often prove useful in other contexts. And we may work on the implementation in total isolation (if we did the encapsulation).</span></p><p><span>You may make fields package-private for testing, but not public.</span></p><p><span>Instance fields of public classes should rarely bu public - if those fields are mutable they are also </span><strong><span>not genereally thread-safe</span></strong><span>.</span></p><p><span>It&#39;s wrong for a class to have a public static final array, or an accessor that returns such a field (because it&#39;s modifiable). Make the public array private and add a public immutable list.</span></p><h5 id='item-16:-in-public-classes,-use-accessor-methods,-not-public-fields'><span>Item 16: In public classes, use accessor methods, not public fields</span></h5><p><span>If a class is accessible outside its package, provide accessor methods to preserve the flexibility to change the class internal representation (though questionable, for public classes to expose immutable fields).</span></p><p><span>If a class is package-private or is a private nested class, there is nothing inherently wrong with exposing its data fields.</span></p><h5 id='item-17:-minimize-mutability'><span>Item 17: Minimize mutability</span></h5><p><span>To make a class immutable:</span></p><ol><li><p><span>Don&#39;t provide methods that modify the object&#39;s state (</span><em><span>mutators</span></em><span>).</span></p></li><li><p><span>Ensure that the class can&#39;t be extended.</span></p><blockquote><p><span>There 2 ways:</span></p><ul><li><span>Make a class final</span></li><li><span>Make all of its constructors private or package-private and add public static factories. This approach allows the use of multiple package-private implementation classes (as we may extend the class and access constructors)</span></li></ul></blockquote></li><li><p><span>Make all fields final.</span></p></li><li><p><span>Make all fields private.</span></p><blockquote><p><span>It&#39;s permissible to have public final fields containing primitive values or references to immutable objects, but it precludes (виключає) changing the internal representation in a later release.</span></p></blockquote></li><li><p><span>Ensure exclusive access to any mutable components. If we have any fields that refer to mutable objects, ensure that clients of the class cannot obtain references to these objects. Make </span><em><span>defensive</span></em><span> copies in constructors, accessors and </span><code>readObject</code><span> methods.</span></p></li><li><p><span>If some field inside a class is mutable = issue with the default </span><strong><span>serializer</span></strong><span>. Provide an explicit </span><code>readObject</code><span> or </span><code>readResolve</code><span> method, or the use </span><code>ObjectOutputStream.writeUnshared</code><span>.</span></p></li></ol><p><span>Immutable objects are inherently thread-safe; they require no synchronization.</span></p><p><span>An immutalbe class can provide statc factories that cache frequently requested isntances to avoid creating new instances when exisitng ones would do. </span><strong><span>All the boxed primitive classes</span></strong><span> </span><strong><span>and</span></strong><span> </span><code>BigInteger</code><span> </span><strong><span>do this</span></strong><span>.</span></p><p><span>The major disadvantage of immutable classes is that they require a separate object for each distinct value - it provides possible performance issues, especially in a multistep operation that generates a new obect at every step. The solution here is to define common steps and provide some smart internal implementation in the immutable class, using mutable field (or mutable companion class). If hard to predict user multistep operations then provide a </span><em><span>public</span></em><span> mutable companion class (for e.g. String has companions StringBuilder and StringBuffer).</span></p><p><span>Classes should be immutable unless there&#39;s a very good reason to make them mutable. If a class cannot be made immutable, limit it&#39;s mutability as much as possible. </span></p><blockquote><p><span>Reducing the number of states in which an object can exist makes it easier to reasin about the object and reducece the likelihood of errors.</span></p></blockquote><p><span></span><strong><span>Constructors should create fully initialized objects with all of their invariants established</span></strong><span>. Don&#39;t provide a public initalization method separate from constructor or static factory unless a very good reason.</span></p><h5 id='item-18:-favor-composition-over-inheritance'><span>Item 18: Favor composition over inheritance</span></h5><p><span>Unlike method invocation, inheritance violates encapsulation. 
+A subclass depends on the impl details of its superclass for its proper function. The superclass impl may change from relaese to release and we might forget to update our sublcass accordingly = possible bugs and security holes. So a subclass must evolve in tandem with its superclass - best if they are located in the same package.</span></p><p><span>Inheritance is appropriate only in circumstances where the subclass really is a subtype of the superclass. A class B should extend a class A only if an &quot;is-a&quot; relationship exists between the two classes.</span></p><p><span>If you use inheritance where composition is appropriate, you needlessly expose impl details. The resulting API ties you to the original impl, forever limiting the performance of your class. </span></p><h5 id='item-19:-design-and-document-for-inheritance-or-else-prohibit-it'><span>Item 19: Design and document for inheritance or else prohibit it</span></h5><p><span>The class must document its </span><em><span>self-use</span></em><span> of overridable methods (overridable - nonfinal and either publc or protected). A method that invokes overridable method should contain a description of these invocations at the end of javadoc (@implSpec). This section describes the inner workings of the method (do this and that, that and this, and a little bit of it all). </span></p><blockquote><p><span>But the good API documentation describes </span><em><span>what</span></em><span> a given does and not </span><em><span>how</span></em><span>? Yes, but the fact that inheritance violates encapsulation, the subclassing is not pretty safe and we should point out all the important stuff that user may override so it won&#39;t break.</span></p></blockquote><p><span>A class may provide hooks into its internal working in the form of judiciously chosen protected methods (or even protected fields). For example provide user the ability to use other algorithm inside some method.</span></p><p><span>The only way to test a class designed for inheritance is to write subclasses (3 classes should be good).</span></p><p><span></span><strong><span>Constructors must not invoke overridable methods</span></strong><span>, directly or indirectly. The superclass constructor runs before the subclass constructor, so the overriding method in the subclass will get invoked before the subclass constructors has run - will be nulls, exception and a lot of failures.</span></p><p><span>Neither </span><code>clone</code><span> or </span><code>readObject</code><span> may invoke an overridable method, directly on indirectly. If we decide to implement Serializable in a class designed of inheritance and the class has a </span><code>readResolve</code><span> or </span><code>writeReplace</code><span> method - make it </span><strong><span>protected</span></strong><span>.</span></p><p><span>If a class implements some interface that captures is essence, such as Set, List, or Map, then you should feel no compunction about prohibiting subclassing. The </span><em><span>wrapper</span></em><span> class pattern provides a superior alternative to inhertance for augmenting the functionality.
+If it&#39;s not possible, to prohibit subclassing - ensure that the class never invokes any of its overridable methods, and document this as well. To perform this, move the body of each overridable method to a private &quot;helper method&quot;.</span></p><h5 id='item-20:-prefer-interfaces-to-abstract-classes'><span>Item 20: Prefer interfaces to abstract classes</span></h5><p><span>Interfaces are ideal for defining </span><em><span>mixins</span></em><span> (type that a class can implement in addition to its &quot;primary&quot; type).</span></p><p><span>Interfaces allow for the construction of nonhierarchial type frameworks.</span></p><p><span>We may provide assistance in implementation by using default methods but there are limitations - we cannot provide default methods for </span><code>Object</code><span> methods (</span><code>equals</code><span> and </span><code>hashCode</code><span>). Also, interfaces are not permitted to contain instance fields or nonpublic static members. For a solution consider providing an abstact </span><em><span>skeletal implementation class</span></em><span> to go with an interface. By convention they are called Abstract</span><em><span>Interface</span></em><span> (</span><code>AbstractCollection</code><span>, </span><code>AbstractSet</code><span>, </span><code>AbstractMap</code><span>).</span></p><blockquote><p><span>It&#39;s optional to extend a skeletal abstract class - user can always implement the interface directly. The class will still benefit from any default methods inside the interface.</span></p></blockquote><p><span>Good documentation is essential in a skeletal implementation.</span></p><h5 id='item-21:-design-interfaces-for-posterity-(потомство)'><span>Item 21: Design interfaces for posterity (потомство)</span></h5><p><span>Using default methods to add new methods should be avoided unless the need is critical, in which case we need to look if we could break an existing interface implementation. However, default methods are very useful for providing standard method implementations when an interface is created, to ease the task of implementing the interface.</span></p><h5 id='item-22:-use-interfaces-to-define-types'><span>Item 22: Use interfaces to define types</span></h5><p><span>Interfaces should be used only to define types. They should not be used merely to export constants.</span></p><h5 id='item-23:-prefer-class-hierachies-to-tagged-classes'><span>Item 23: Prefer class hierachies to tagged classes</span></h5><h5 id='item-24:-favor-static-member-classes-over-nonstatic'><span>Item 24: Favor static member classes over nonstatic</span></h5><p><span>There are 4 kinds: </span><em><span>static member classes, nonstatic member classes, anonymous classes and local classes</span></em><span>.</span></p><p><span>One common use of a nonstatic member class is to define an </span><em><span>Adapter</span></em><span> that allows an instance of the outer class to be viewed as an instance of some unrelated class (implementations in Map such as </span><code>keySet</code><span>, </span><code>entrySet</code><span> or iterators).</span></p><p><span>If we declare a member class that does not require access to an enclosing instance, alway put the static modifier in its declaration.</span></p><blockquote><p><span>We may cause an memory leak if we use non-static member classes - when enclosing class instance should be eligible for garbage collecting but it has invisible references to it&#39;s nested member classes.</span></p></blockquote><p><span>Common use of private static member classes is to represent components of the object represented by their enclosing class (</span><code>Entry</code><span> in </span><code>Map</code><span> that not need to reference it&#39;s enclosing class).</span></p><h5 id='item-25:-limit-source-files-to-a-single-top-level-class'><span>Item 25: Limit source files to a single top-level class</span></h5><p><span>Never put multiple top-level classes or interfaces in a single source file. The only alternative is to use static classes.</span></p><p>&nbsp;</p><h3 id='generics'><span>Generics</span></h3><h5 id='item-26:-don-t-use-raw-types'><span>Item 26: Don&#39;t use raw types</span></h5><h5 id='item-27:-eliminate-unchecked-warnings'><span>Item 27: Eliminate unchecked warnings</span></h5><h5 id='item-28:-prefer-lists-to-arrays'><span>Item 28: Prefer lists to arrays</span></h5><p><span>Arrays are </span><em><span>covariant</span></em><span> (deficient as causes runtime exceptions) and </span><em><span>reifiable</span></em><span>, lists are </span><em><span>invariant</span></em><span> and </span><em><span>erased</span></em><span> (cannot use </span><code>instanceof</code><span> or as an element in an array). </span></p><blockquote><p><span></span><em><span>Reifiable</span></em><span> type information is fully avaiable at runtime (primitives, non-generic types, raw types, invocations of unbound wildcards).</span></p><p><span></span><em><span>Non-reifiable</span></em><span> types are types where information has been removed at compile-time by type erasure - and discard (or erase) their element type info at runtime.</span></p></blockquote><p><span>With an array you find errors on runtime (ClassCastExceptions), and with lists on compile-time, which is much safer. </span></p><blockquote><p><span>Why can&#39;t you make a generic array in Java?</span></p><p><span>It&#39;s because Java&#39;s arrays (unlike generics) contain, at runtime, information about its component type. So you must know the component type when you create the array. Since you don&#39;t know what </span><code>T</code><span> is at runtime, you can&#39;t create the array.</span></p><p><span>If generic array creation were legal, then compiler generated casts would correct the program at compile time but </span><strong><span>it can fail at runtime, which violates the core fundamental system of generic types</span></strong><span>.</span></p><p><span>You could do such: </span><code>(E[]) new Object[]</code><span> , but the compiler won&#39;t be able to prove the program is typesafe, only you can by your own (if 100% then can supress warning). And also on the runtime the array type won&#39;t be E[], it will always be Object[].
+It also causes </span><em><span>heap pollution</span></em><span> - the runtime type of the array does not match its compile-time type (unless E happens to be Object).</span></p></blockquote><blockquote><p><span></span><strong><a href='https://en.wikipedia.org/wiki/Memory_management#Manual_memory_management'><span>Heap</span></a><span> pollution</span></strong><span> is a situation that arises when a variable of a </span><a href='https://en.wikipedia.org/wiki/Java_syntax#Generics'><span>parameterized type</span></a><span> refers to an object that is not of that parameterized type. It may cause ClassCastException in some time.</span></p></blockquote><h5 id='item-29:-favor-generic-types'><span>Item 29: Favor generic types</span></h5><p><span>Generic types are safer and easier to use than types that require casts in client code.</span></p><h5 id='item-30:-favor-generic-methods'><span>Item 30: Favor generic methods</span></h5><p><span>The type paramater list, which declares the type parameters, goes between a method&#39;s modifiers and its return type:</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="java"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="java"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.11111px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">public</span> <span class="cm-keyword">static</span> &lt;E&gt; Set&lt;E&gt; <span class="hljs-title function_">union</span><span>(Set&lt;E&gt; s1, Set&lt;E2&gt; s2)</span>;</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 111px;"></div><div class="CodeMirror-gutters" style="display: none; height: 111px;"></div></div></div></pre><p><span>It is permissible, but rare, for a type parameter to be bounded by some expression involving that type paramatere itself. It&#39;s called </span><em><span>recursive type bound</span></em><span>. Common use - </span><code>Comparable</code><span>:</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="java"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="java"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.11111px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">//Using a recursive type bound to express mutual comparability</span></span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">public</span> <span class="cm-keyword">static</span> &lt;E <span class="cm-keyword">extends</span> <span class="hljs-title class_">Comparable</span>&lt;E&gt;&gt; E <span class="hljs-title function_">max</span><span>(Collection&lt;E&gt; c)</span>;</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 111px;"></div><div class="CodeMirror-gutters" style="display: none; height: 111px;"></div></div></div></pre><p><span>May be read as &quot;any type E that can be compared to itself&quot;, which corresponds to mutual comparability. Now, inside the method implementation you may use </span><code>compareTo</code><span> method.</span></p><h5 id='item-31:-use-bounded-wildcards-to-increase-api-flexibility'><span>Item 31: Use bounded wildcards to increase API flexibility</span></h5><p><span>Iterable of some subtype of E - </span><code>Iterable&lt;? extends E&gt;</code><span>, collection of some supertype of E - </span><code>Collection&lt;? super E&gt;</code><span>.</span></p><p><span>For maximum flexibility, use wildcard types on input parameters that represent producers and consumers. If a param is both producer and consumer - need an exact type match (so no wildcards here).
+</span><strong><span>PECS stands for producer-extends, consumer-super</span></strong><span>.
+If T is producer, use </span><code>&lt;? extends T</code><span>, if T consumer use </span><code>&lt;? super T&gt;</code><span>.</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="java"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="java"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.11111px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">public</span> <span class="cm-keyword">static</span> &lt;T <span class="cm-keyword">extends</span> <span class="hljs-title class_">Comparable</span>&lt;? <span class="cm-builtin">super</span> T&gt;&gt; T <span class="hljs-title function_">max</span><span>(List&lt;? extends T&gt; list)</span></span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 111px;"></div><div class="CodeMirror-gutters" style="display: none; height: 111px;"></div></div></div></pre><p><code>list</code><span> argument produces T instances. The type parameter T is tricky. Originally, T was specified to extend </span><code>Comparable&lt;T&gt;</code><span> but a comparable of T consumes T instances (and produces integers indicating order relations), so should be </span><code>Comparable&lt;? super T&gt;</code><span>. This declaration allows to pass a class which super class implements Comparable. More generally, the wildcard is required to support types that do not implement Comparable directly but extend a type that does.</span></p><blockquote><p><span>Comparable and comparators are always consumers.</span></p></blockquote><p><span>Do not use bounded wildcards types as return types. It would force users to use wildcard types, which means wrong API design. Wildcards should be invisible for them.</span></p><p><span>If a type parameter appears only once in a method declaration, replace it with a wildcard (</span><code>&lt;?&gt;</code><span>).</span></p><h5 id='item-32:-combine-generics-and-varags-judiciously'><span>Item 32: Combine generics and varags judiciously</span></h5><p><span>When you invoke a varags method, an array is created to hold the varags parameters; that array is visible so as a consequence, you get compiler warnings when varags params have generic or parameterized types.</span></p><p><span>The </span><code>SafeVarags</code><span> annotation constitutes a promise by the author of a method that it is typesafe. </span></p><blockquote><p><span>**How to ensure it? **
+Generic array is created when the method is invoked, to hold the varags parameters. If the method doesn&#39;t store anything into the array (which would overwrite the parameters ) and doesn&#39;t allow a reference to the array to escape (which would enable untrusted code to access the array), then it&#39;s safe.</span></p></blockquote><p><span>It is unsafe to give another method access to a generic varags parameter array, with 2 exceptions: safe to pass if method is </span><code>SafeVarags</code><span> annotated or if method computes some function of the contents of the array.</span></p><h5 id='item-33:-consider-typesafe-heterogeneous-(неоднорідні)-containers'><span>Item 33: Consider typesafe heterogeneous (неоднорідні) containers</span></h5><p><span>The normal use of generics (using Collections API) restricts you to a fixed number of type parameters per container. You can get around this restriction by placing the type parameter on the key rather than the container. Use </span><code>Class</code><span> objects as keys for such typesafe heterogeneous containers.</span></p><p><span>When a class literal is passed among methods to communicate both compile-time and runtime type information, it is called </span><em><span>type token</span></em><span> (</span><code>String.class</code><span> is of type </span><code>Class&lt;String&gt;</code><span>).</span></p><p><span></span><strong><span>Typesafe heterogeneous container pattern implementation</span></strong><span> on page 152.</span></p><blockquote><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="java"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="java"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.11111px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">private</span> Map&lt;Class&lt;?&gt;, Object&gt; favorites = <span class="cm-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;()</span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">...</span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">public</span> &lt;T&gt; <span class="cm-keyword">void</span> <span class="hljs-title function_">putFavorite</span><span>(Class&lt;T&gt; type, T instance)</span>;</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 111px;"></div><div class="CodeMirror-gutters" style="display: none; height: 111px;"></div></div></div></pre></blockquote><p>&nbsp;</p><h3 id='enums-and-annotations'><span>Enums and Annotations</span></h3><h5 id='item-34:-use-enums-instead-of-int-constants'><span>Item 34: Use enums instead of </span><code>int</code><span> constants</span></h5><p><span>Enums are more readable, safer, and more powerful.</span></p><p><span>To associate data with enum constants, declare instane fields and write a constructor that takes the data and stores it in the fields. Enums are immutable, so all fields should be final.</span></p><p><span>Associate different behavior with each constant - </span><em><span>constant specific method implementation</span></em><span>:
+</span><img src="../../../src/img/backend/microservices/image-20230315144714714.png" alt="image-20230315144714714" style="zoom:50%;" /></p><p><span>If implemented </span><code>toString</code><span>, consider also implementing </span><code>fromString</code><span>:
+</span><img src="../../../src/img/backend/microservices/image-20230315145047784.png" alt="image-20230315145047784" style="zoom:50%;" /></p><blockquote><p><span>Set of constant may be changed. The enum feature was specifically designed to allow for binary compatible evolution of enum types.</span></p></blockquote><p><span>Consider the strategy enum pattern if some, but not all, enum consants share common behaviors.</span></p><h5 id='item-35:-use-instance-fields-instead-of-ordinals'><span>Item 35: Use instance fields instead of ordinals</span></h5><p><span>If the constants will be reordered then we may break the code entirely.</span></p><p><span>Never derive a value associated with an enum from its ordinal; store it in an instance field instead.</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="java"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="java"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.11111px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">public</span> <span class="cm-keyword">enum</span> <span class="hljs-title class_">Ensemble</span> {</span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">SOLO(<span class="cm-number">1</span>), DUET(<span class="cm-number">2</span>), TRIO(<span class="cm-number">3</span>)</span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">private</span> <span class="cm-keyword">final</span> <span class="cm-variable-3">int</span> numberOfMusicians;</span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">...</span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 111px;"></div><div class="CodeMirror-gutters" style="display: none; height: 111px;"></div></div></div></pre><h5 id='item-36:-use-enumset-instead-of-bit-fields'><span>Item 36: Use EnumSet instead of bit fields</span></h5><h5 id='item-37:-use-enummap-instead-of-ordinal-indexing'><span>Item 37: Use EnumMap instead of ordinal indexing</span></h5><p><span>You may see code that uses the </span><code>ordinal</code><span> method and </span><code>values</code><span> to index into an array or list. That&#39;s bad as requires unchecked cast when implementing. </span><code>ints</code><span> do not provide type safety - if we use wrong value the program will sliently do the wrong thing or </span><code>ArrayIndexOutOfBoundsException</code><span>.
+Instead use </span><code>EnumMap</code><span>:
+</span><img src="../../../src/img/backend/microservices/image-20230315151853092.png" alt="image-20230315151853092" style="zoom:50%;" /></p><h5 id='item-38:-emulate-extensible-enums-with-interfaces'><span>Item 38: Emulate extensible enums with interfaces</span></h5><p><span>One compelling use case for extensible enumerated types, which is </span><em><span>operation codes</span></em><span>, also known as </span><em><span>opcodes</span></em><span> - an enumerated type whose elements represent operations on some machine (for example simple calculator).
+</span><img src="../../../src/img/backend/microservices/image-20230315152155027.png" alt="image-20230315152155027" style="zoom:50%;" /><span>\
+</span><img src="../../../src/img/backend/microservices/image-20230315152342343.png" alt="image-20230315152342343" style="zoom:50%;" /></p><p><span>It is possible to pass in an entire extension enum type and use its elements in addidtion to or instead of those of the base type:
+</span><img src="../../../src/img/backend/microservices/image-20230315152510451.png" alt="image-20230315152510451" style="zoom:50%;" /></p><h5 id='item-39:-prefer-annotations-to-naming-patterns'><span>Item 39: Prefer annotations to naming patterns</span></h5><p><span>It was a common to use </span><em><span>naming patterns</span></em><span> to indicate that some program elements demanded special treatment by a tool or a framework (start with </span><code>test</code><span> in old junit lib). You may make typographical mistakes here and there is no way to ensure that they are used only on appropraite program elements. Annotations solve this problem.</span></p><h5 id='item-40:-consistently-use-the-override-annotation'><span>Item 40: Consistently use the Override annotation</span></h5><p><span>You should use the Override annotation on every method declaration that you believe to override a superclass declaration. The one minor exception is when writing a class that&#39;s not abstract and implementing abstract method.</span></p><p><span>In an abstract class or an interface it is worth annotating </span><em><span>all</span></em><span> mehods that you believe to override superclass or superinterface methods, whether concrete or abstract (</span><code>Set</code><span> interface add no new methods to </span><code>Collection</code><span> and it should include override annotations to be sure it didn&#39;t accidentally add new methods).</span></p><h5 id='item-41:-use-marker-interfaces-to-define-types'><span>Item 41: Use marker interfaces to define types</span></h5><p><span>Marker interfaces have two advantages over marker annotations:</span></p><ul><li><span>marker interface define a type that is implemented by instances of the marked class; marker annotations do not. The existence of marker interface type allow to catch errors at compile time (in annotation we do this only at runtime)</span></li><li><span>it can be targeted more precisely (apply only to some implementations of a particular interface)</span></li></ul><p><span>The chief advantage of marker annotations is that they are part of the larger annotation facility (allow for consistency in annotation-based frameworks).</span></p><p><span>&quot;Might I want to write one or more methods that accept only objects that have this marking (implemented that interface)?&quot; - if yes then use marker interfaces, if no then stick to annotations.</span></p><p>&nbsp;</p><h3 id='lambdas-and-streams'><span>Lambdas and Streams</span></h3><h5 id='item-42:-prefer-lambdas-to-anonymous-classes'><span>Item 42: Prefer lambdas to anonymous classes</span></h5><p><span>Don&#39;t use anonymous classes for function objects unless you have to create instances of types that aren&#39;t functional interfaces.</span></p><h5 id='item-43:-prefer-method-references-to-lambdas'><span>Item 43: Prefer method references to lambdas</span></h5><p><span>The more parameters a method has, the more boilerplate you can eliminate with a method reference. </span></p><p><span>Where method references are shorter and cleaner, use them: where they aren&#39;t, stick with lambdas.</span></p><h5 id='item-44:-favor-the-use-of-standard-functional-interfaces'><span>Item 44: Favor the use of standard functional interfaces</span></h5><blockquote><p><span>Using Template Method pattern is less atractive now. You may provide a static factory or constructor that accepts a function object to achieve the same effect.</span></p></blockquote><h5 id='item-45:-use-streams-judiciously'><span>Item 45: Use streams judiciously</span></h5><p><span>Overusing streams makes programs hard to read and maintain.</span></p><p><span>Refrain from using streams to process char values.</span></p><p><span>You may combine streams and iteration (for code blocks) approaches.</span></p><h5 id='item-46:-prefer-side-effect-free-functions-in-streams'><span>Item 46: Prefer side-effect-free functions in streams</span></h5><p><span>The essence of programming stream pipelines is side-effect-free function objects. </span></p><p><span>The </span><code>forEach</code><span> operation should be used only to report the result of a stream computation, not to perform the computation. Occasionally, it makes sense to use </span><code>forEach</code><span> for other purpose, such as adding the results of a stream computation to a preexisting collection.</span></p><p><span>In order to use stream need to know collectors. Most important are </span><code>toList</code><span>, </span><code>toSet</code><span>, </span><code>toMap</code><span>, </span><code>groupingBy</code><span> and </span><code>joining</code><span>.</span></p><h5 id='item-47:-prefer-collection-to-stream-as-a-return-type'><span>Item 47: Prefer Collection to Stream as a return type</span></h5><p><span>When writing a method that returns a sequence of elements, remember that some of your users may want to process them as a stream while other may want to iterate over them.</span></p><h5 id='item-48:-use-caution-when-making-streams-parallel'><span>Item 48: Use caution when making streams parallel</span></h5><p>&nbsp;</p><h3 id='methods'><span>Methods</span></h3><h5 id='item-49:-check-parameters-for-validity'><span>Item 49: Check parameters for validity</span></h5><p><span>Each time you write a method or constructor, you should think about what restrictions exist on its parameters. You should document these restrictions exist on its parameters + enforce them with explicit checks at the beginning of the method body.</span></p><p><span>Item 50: </span></p><p>&nbsp;</p><h3 id='concurrency'><span>Concurrency</span></h3><h5 id='item-78:-synchronize-access-to-shared-mutable-data-(synchronized,-volatile)'><span>Item 78: Synchronize access to shared mutable data (synchronized, volatile)</span></h5><blockquote><p><span>A mutex (or mutual exclusion) is </span><strong><span>the simplest type of synchronizer – it ensures that only one thread can execute the critical section of a computer program at a time</span></strong><span>. To access a critical section, a thread acquires the mutex, then accesses the critical section, and finally releases the mutex.</span></p></blockquote><p><span>The </span><code>synchronized</code><span> keyword ensures that only a single thread can execute a method or block at one time. </span></p><ul><li><p><span>Not only does synchronization prevent threads from observing an object in an inconsistent state, but it ensures that each thread entering a synchronized method or block sees the effects of all previous modifications that were guarded by the same lock.</span></p></li><li><p><span>The language specification guarantees that reading or writing a variable is </span><em><span>atomic</span></em><span> unless the variable is of type </span><code>long</code><span> or </span><code>double</code><span> (even if multiple threads modify the variable concurrently and without synchronization), but there is a problem. It guarantees that when reading a field it won&#39;t be some random value BUT it does not guarantee that a value written by one thread will be visible to another.
+</span><strong><span>Synchronization is required for reliable communication between threads as well as for mutual exclusion.</span></strong></p><blockquote><p><span>Doing </span><code>a = 28</code><span> (with </span><code>a</code><span> being an </span><code>int</code><span>) is an atomic operation. But doing </span><code>a++</code><span> is not an atomic operation because it requires a read of the value of </span><code>a</code><span>, an incrementation, and </span><code>a</code><span> write to </span><code>a</code><span> of the result.
+</span><code>AtomicInteger</code><span> solves this issue by providing atomic operations.</span></p></blockquote><blockquote><p><span></span><em><span>Memory model</span></em><span> of the language specifies when changes made by one thread become visible to others.</span></p></blockquote></li><li><p><span></span><strong><span>Synchronization is not guaranteed to work unless both read and write operations are synchronized.</span></strong><span>
+</span><img src="./../../../src/img/java/effective/2.png" alt="image-20230220233120637" style="zoom:45%;" /><span>
+Here we provided </span><code>synchronized </code><span> not for mutual exclusion but only for the communication purposes. Less verbose and with better performance would be to use </span><code>volatile</code><span> modifier. It performs no mutual exclusion but it guarantees that any thread that reads the field will see the most recently written value.
+</span><img src="./../../../src/img/java/effective/1.png" alt="image-20230220234302053" style="zoom:45%;" /></p></li><li><p><span>It is acceptable for one thread to modify a data object for a while and then to share it with other threads, synchronizing only the act of sharing the object reference. Other threads can then read the object without further synchronization so long as it isn’t modified again. Such objects are said to be </span><em><span>effectively immutable</span></em><span>. Transferring such an object reference from one thread to others is called </span><em><span>safe publication</span></em><span>. Ways to safely publish an object reference:</span></p><ul><li><span>store in static field as part of class initialization</span></li><li><span>volatile field</span></li><li><span>final field</span></li><li><span>field that is accessed with normal locking</span></li><li><span>put it into a concurrent collection</span></li></ul></li></ul><p>&nbsp;</p><p>&nbsp;</p><h2 id='to-read-item-79-and-so-on....'><span>To read Item 79 and so on....</span></h2></div></div>
+</body>
+</html>
