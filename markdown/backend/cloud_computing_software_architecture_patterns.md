@@ -564,3 +564,146 @@ Considerations:
 
 #### Circuit Breaker
 
+Retry pattern - optimistic approach (error is short, tempoty, recoverable), Circuit Breaker - pessimistic approach (more sever and long lasting).
+
+<img src="../../src/img/backend/microservices/image-20230325161112301.png" alt="image-20230325161112301" style="zoom:45%;" />
+
+States
+
+<img src="../../src/img/backend/microservices/Знімок екрана 2023-03-25 о 18.30.53-9762209.png" alt="Знімок екрана 2023-03-25 о 18.30.53" style="zoom:40%;" />
+
+The open state goes to half-open automatically after some time and then it passes through a little percentage of requests. If few of them are successful then we get back to closed state.
+
+We may replace half-open state with asynchronus ping / health check (save on network bandwidth, CPU and memory resources but need to decide on frequency of pings - if sent too many we may overwhelm the remote service that is already in a bad state; if sending not enough then we may preventing our users from using a healthy service for no reason).
+
+As with the Retry pattern we may implement Circuit with shared library or ambassador sidecar pattern.
+
+
+
+---
+
+#### Dead Letter Queue
+
+<img src="../../src/img/backend/microservices/image-20230325185142587.png" alt="image-20230325185142587" style="zoom:45%;" />
+
+> Event driven architecture - benefits:
+>
+> - Decoupling producers from consumers
+> - greater scalability
+> - async communicaiton
+
+It's important to add information about the reason for the failure to the message that gets into the DLQ - Error Details Header, stack trace.
+
+
+
+---
+
+### Software Deployment Patterns
+
+#### Rolling Deployment
+
+<img src="../../src/img/backend/microservices/image-20230326133431528.png" alt="image-20230326133431528" style="zoom:50%;" />
+
+Roll an update gradually: when one instance is not processing any request then the load balancer stops sending requests and instance get updated. If successful then it connects again to load balancer. We complete this process with each instance. 
+
+It's very cheap and a lot safer than a big bang approach. But downsides:
+
+- no isolation between new and old version instances (may break the system)
+- risk of cascading failure (when one instance gets shutdown others will process a lot more requests so they may break) 
+
+
+
+---
+
+#### Blue-Green Deployment
+
+<img src="../../src/img/backend/microservices/Знімок екрана 2023-03-26 о 13.39.54.png" alt="Знімок екрана 2023-03-26 о 13.39.54" style="zoom:50%;" />
+
+Benefits:
+
+- an equal amount of servers for Blue and Green environments (if we spot a bug on Green env then we just switch back to Blue with all that traffic)
+- single version of the software at any given moment
+
+Downsides:
+
+- twice as many servers as we need - additional cost
+
+
+
+---
+
+#### Canary Release
+
+<img src="../../src/img/backend/microservices/image-20230326134755891.png" alt="image-20230326134755891" style="zoom:50%;" />
+
+Borrows from Rolling Deployment and Blue-Green Deployment patterns.
+
+Dedicate a small subset of the exisitng group of servers and update their versions. Then with load balancer we let only beta users to those updated servers for performance & other testing. If canary version is good then update all other servers using rolling release for example.
+
+Benefits: 
+
+- safety - we have hours or days of testing before rolling out the new version 
+
+Challenges:
+
+- setting clear success criteria for automated release and monitoring
+
+
+
+---
+
+### Production Testing Patterns
+
+#### A/B Testing
+
+<img src="../../src/img/backend/microservices/image-20230326141039412.png" alt="image-20230326141039412" style="zoom:50%;" />
+
+A/B testing goal is testing a new feature. **We as well dedicate a small portion of servers** for a different version of software. After testing our version is typically removed and replaced with the previous software version.
+
+Users don't know they are part of an experiment - this gets us genuine data.
+
+
+
+---
+
+#### Chaos Engineering
+
+<img src="../../src/img/backend/microservices/image-20230326141022297.png" alt="image-20230326141022297" style="zoom:50%;" />
+
+We won't know about some issues before they actually hapen. Those issues are very rare. But the results can be catastrophic. 
+
+Solution of chaos engineering: embracing the inherent chaos in a cloud-based distributed system. So we **systematically inject random but controlled failures** into our own production systems.
+
+Benefits:
+
+- force engineers to thining about failures during develpoment
+- test the ability of the development team to:
+  - monitor
+  - recognize outages
+  - analyze logs
+  - discover production issues
+
+Real tool is Chaos Monkey - responsible for randomly terminating cloud servers.
+
+Failure injection tools:
+
+- latency injecton (between services or db)
+- restrict access to database (for e.g. test if system can use its replica in another cloud region)
+- resource exhaustion (delibaretly fill up the disk space on a instance or db) 
+
+Steps to implement:
+
+1. Meaure the baseline
+2. Constructing hypothesis - what we expect from the system
+3. Inject the failure
+4. Monitoring
+5. Documenting
+6. Restore to the original state
+
+Those tests should be performed **continiously**.
+
+Important considerations:
+
+- minimizing the "blast radious" of failures to make surue the negative impact on users is minimal
+- stayting within our "error budget"
+- never promising 100% availability to users 

@@ -655,7 +655,13 @@ Always examine the choice of algorithms.
 
 Use profiler for debugging and fixing performance.
 
-##### Item 69: Adhere to generally accepted naming conventions
+##### Item 68: Adhere to generally accepted naming conventions
+
+
+
+### Exceptions
+
+##### Item 69: Use exceptions only for exceptional conditions
 
 ##### Item 70: Use checked exceptions for recoverable conditions and runtime exceptions for programming errors 
 
