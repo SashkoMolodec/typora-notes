@@ -1,0 +1,846 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
+.mac-os-11 { --title-bar-height:28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.6; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex:2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.42857rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left: 28px solid transparent; border-right: 28px solid transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right: 8px solid transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+.md-inline-math-container mjx-container { zoom: 0.95; }
+
+
+.CodeMirror { height: auto; }
+.CodeMirror.cm-s-inner { background: inherit; }
+.CodeMirror-scroll { overflow: auto hidden; z-index: 3; }
+.CodeMirror-gutter-filler, .CodeMirror-scrollbar-filler { background-color: rgb(255, 255, 255); }
+.CodeMirror-gutters { border-right: 1px solid rgb(221, 221, 221); background: inherit; white-space: nowrap; }
+.CodeMirror-linenumber { padding: 0px 3px 0px 5px; text-align: right; color: rgb(153, 153, 153); }
+.cm-s-inner .cm-keyword { color: rgb(119, 0, 136); }
+.cm-s-inner .cm-atom, .cm-s-inner.cm-atom { color: rgb(34, 17, 153); }
+.cm-s-inner .cm-number { color: rgb(17, 102, 68); }
+.cm-s-inner .cm-def { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-variable { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-variable-2 { color: rgb(0, 85, 170); }
+.cm-s-inner .cm-variable-3 { color: rgb(0, 136, 85); }
+.cm-s-inner .cm-string { color: rgb(170, 17, 17); }
+.cm-s-inner .cm-property { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-operator { color: rgb(152, 26, 26); }
+.cm-s-inner .cm-comment, .cm-s-inner.cm-comment { color: rgb(170, 85, 0); }
+.cm-s-inner .cm-string-2 { color: rgb(255, 85, 0); }
+.cm-s-inner .cm-meta { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-qualifier { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-builtin { color: rgb(51, 0, 170); }
+.cm-s-inner .cm-bracket { color: rgb(153, 153, 119); }
+.cm-s-inner .cm-tag { color: rgb(17, 119, 0); }
+.cm-s-inner .cm-attribute { color: rgb(0, 0, 204); }
+.cm-s-inner .cm-header, .cm-s-inner.cm-header { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-quote, .cm-s-inner.cm-quote { color: rgb(0, 153, 0); }
+.cm-s-inner .cm-hr, .cm-s-inner.cm-hr { color: rgb(153, 153, 153); }
+.cm-s-inner .cm-link, .cm-s-inner.cm-link { color: rgb(0, 0, 204); }
+.cm-negative { color: rgb(221, 68, 68); }
+.cm-positive { color: rgb(34, 153, 34); }
+.cm-header, .cm-strong { font-weight: 700; }
+.cm-del { text-decoration: line-through; }
+.cm-em { font-style: italic; }
+.cm-link { text-decoration: underline; }
+.cm-error { color: red; }
+.cm-invalidchar { color: red; }
+.cm-constant { color: rgb(38, 139, 210); }
+.cm-defined { color: rgb(181, 137, 0); }
+div.CodeMirror span.CodeMirror-matchingbracket { color: rgb(0, 255, 0); }
+div.CodeMirror span.CodeMirror-nonmatchingbracket { color: rgb(255, 34, 34); }
+.cm-s-inner .CodeMirror-activeline-background { background: inherit; }
+.CodeMirror { position: relative; overflow: hidden; }
+.CodeMirror-scroll { height: 100%; outline: 0px; position: relative; box-sizing: content-box; background: inherit; }
+.CodeMirror-sizer { position: relative; }
+.CodeMirror-gutter-filler, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-vscrollbar { position: absolute; z-index: 6; display: none; outline: 0px; }
+.CodeMirror-vscrollbar { right: 0px; top: 0px; overflow: hidden; }
+.CodeMirror-hscrollbar { bottom: 0px; left: 0px; overflow: auto hidden; }
+.CodeMirror-scrollbar-filler { right: 0px; bottom: 0px; }
+.CodeMirror-gutter-filler { left: 0px; bottom: 0px; }
+.CodeMirror-gutters { position: absolute; left: 0px; top: 0px; padding-bottom: 10px; z-index: 3; overflow-y: hidden; }
+.CodeMirror-gutter { white-space: normal; height: 100%; box-sizing: content-box; padding-bottom: 30px; margin-bottom: -32px; display: inline-block; }
+.CodeMirror-gutter-wrapper { position: absolute; z-index: 4; background: 0px 0px !important; border: none !important; }
+.CodeMirror-gutter-background { position: absolute; top: 0px; bottom: 0px; z-index: 4; }
+.CodeMirror-gutter-elt { position: absolute; cursor: default; z-index: 4; }
+.CodeMirror-lines { cursor: text; }
+.CodeMirror pre { border-radius: 0px; border-width: 0px; background: 0px 0px; font-family: inherit; font-size: inherit; margin: 0px; white-space: pre; overflow-wrap: normal; color: inherit; z-index: 2; position: relative; overflow: visible; }
+.CodeMirror-wrap pre { overflow-wrap: break-word; white-space: pre-wrap; word-break: normal; }
+.CodeMirror-code pre { border-right: 30px solid transparent; width: fit-content; }
+.CodeMirror-wrap .CodeMirror-code pre { border-right: none; width: auto; }
+.CodeMirror-linebackground { position: absolute; inset: 0px; z-index: 0; }
+.CodeMirror-linewidget { position: relative; z-index: 2; overflow: auto; }
+.CodeMirror-wrap .CodeMirror-scroll { overflow-x: hidden; }
+.CodeMirror-measure { position: absolute; width: 100%; height: 0px; overflow: hidden; visibility: hidden; }
+.CodeMirror-measure pre { position: static; }
+.CodeMirror div.CodeMirror-cursor { position: absolute; visibility: hidden; border-right: none; width: 0px; }
+.CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+.CodeMirror-focused div.CodeMirror-cursor { visibility: inherit; }
+.cm-searching { background: rgba(255, 255, 0, 0.4); }
+span.cm-underlined { text-decoration: underline; }
+span.cm-strikethrough { text-decoration: line-through; }
+.cm-tw-syntaxerror { color: rgb(255, 255, 255); background-color: rgb(153, 0, 0); }
+.cm-tw-deleted { text-decoration: line-through; }
+.cm-tw-header5 { font-weight: 700; }
+.cm-tw-listitem:first-child { padding-left: 10px; }
+.cm-tw-box { border-style: solid; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-color: inherit; border-top-width: 0px !important; }
+.cm-tw-underline { text-decoration: underline; }
+@media print {
+  .CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+}
+
+
+:root {
+    --side-bar-bg-color: #fafafa;
+    --control-text-color: #777;
+}
+
+@include-when-export url(https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
+
+/* open-sans-regular - latin-ext_latin */
+  /* open-sans-italic - latin-ext_latin */
+    /* open-sans-700 - latin-ext_latin */
+    /* open-sans-700italic - latin-ext_latin */
+  html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    font-family: "Open Sans","Clear Sans", "Helvetica Neue", Helvetica, Arial, 'Segoe UI Emoji', sans-serif;
+    color: rgb(51, 51, 51);
+    line-height: 1.6;
+}
+
+#write {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 30px;
+    padding-bottom: 100px;
+}
+
+@media only screen and (min-width: 1400px) {
+    #write {
+        max-width: 1024px;
+    }
+}
+
+@media only screen and (min-width: 1800px) {
+    #write {
+        max-width: 1200px;
+    }
+}
+
+#write > ul:first-child,
+#write > ol:first-child{
+    margin-top: 30px;
+}
+
+a {
+    color: #4183C4;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+h1 tt,
+h1 code {
+    font-size: inherit;
+}
+h2 tt,
+h2 code {
+    font-size: inherit;
+}
+h3 tt,
+h3 code {
+    font-size: inherit;
+}
+h4 tt,
+h4 code {
+    font-size: inherit;
+}
+h5 tt,
+h5 code {
+    font-size: inherit;
+}
+h6 tt,
+h6 code {
+    font-size: inherit;
+}
+h1 {
+    font-size: 2.25em;
+    line-height: 1.2;
+    border-bottom: 1px solid #eee;
+}
+h2 {
+    font-size: 1.75em;
+    line-height: 1.225;
+    border-bottom: 1px solid #eee;
+}
+
+/*@media print {
+    .typora-export h1,
+    .typora-export h2 {
+        border-bottom: none;
+        padding-bottom: initial;
+    }
+
+    .typora-export h1::after,
+    .typora-export h2::after {
+        content: "";
+        display: block;
+        height: 100px;
+        margin-top: -96px;
+        border-top: 1px solid #eee;
+    }
+}*/
+
+h3 {
+    font-size: 1.5em;
+    line-height: 1.43;
+}
+h4 {
+    font-size: 1.25em;
+}
+h5 {
+    font-size: 1em;
+}
+h6 {
+   font-size: 1em;
+    color: #777;
+}
+p,
+blockquote,
+ul,
+ol,
+dl,
+table{
+    margin: 0.8em 0;
+}
+li>ol,
+li>ul {
+    margin: 0 0;
+}
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+li p.first {
+    display: inline-block;
+}
+ul,
+ol {
+    padding-left: 30px;
+}
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+blockquote {
+    border-left: 4px solid #dfe2e5;
+    padding: 0 15px;
+    color: #777777;
+}
+blockquote blockquote {
+    padding-right: 0;
+}
+table {
+    padding: 0;
+    word-break: initial;
+}
+table tr {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+table tr:nth-child(2n),
+thead {
+    background-color: #f8f8f8;
+}
+table th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    margin: 0;
+    padding: 6px 13px;
+}
+table td {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 6px 13px;
+}
+table th:first-child,
+table td:first-child {
+    margin-top: 0;
+}
+table th:last-child,
+table td:last-child {
+    margin-bottom: 0;
+}
+
+.CodeMirror-lines {
+    padding-left: 4px;
+}
+
+.code-tooltip {
+    box-shadow: 0 1px 1px 0 rgba(0,28,36,.3);
+    border-top: 1px solid #eef2f2;
+}
+
+.md-fences,
+code,
+tt {
+    border: 1px solid #e7eaed;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    padding: 0;
+    padding: 2px 4px 0px 4px;
+    font-size: 0.9em;
+}
+
+code {
+    background-color: #f3f4f4;
+    padding: 0 2px 0 2px;
+}
+
+.md-fences {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+
+
+.md-task-list-item > input {
+  margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+    table,
+    pre {
+        page-break-inside: avoid;
+    }
+    pre {
+        word-wrap: break-word;
+    }
+}
+
+.md-fences {
+    background-color: #f8f8f8;
+}
+#write pre.md-meta-block {
+    padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block>.code-tooltip {
+    bottom: .375rem;
+}
+
+.md-mathjax-midline {
+    background: #fafafa;
+}
+
+#write>h3.md-focus:before{
+    left: -1.5625rem;
+    top: .375rem;
+}
+#write>h4.md-focus:before{
+    left: -1.5625rem;
+    top: .285714286rem;
+}
+#write>h5.md-focus:before{
+    left: -1.5625rem;
+    top: .285714286rem;
+}
+#write>h6.md-focus:before{
+    left: -1.5625rem;
+    top: .285714286rem;
+}
+.md-image>.md-meta {
+    /*border: 1px solid #ddd;*/
+    border-radius: 3px;
+    padding: 2px 0px 0px 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: #a7a7a7;
+    opacity: 1;
+}
+
+.md-toc { 
+    margin-top:20px;
+    padding-bottom:20px;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/** focus mode */
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header, .context-menu, .megamenu-content, footer{
+    font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state{
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: #fafafa;
+    background-color: var(--side-bar-bg-color);
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+/*.html-for-mac {
+    --item-hover-bg-color: #E6F0FE;
+}*/
+
+#md-notification .btn {
+    border: 0;
+}
+
+.dropdown-menu .divider {
+    border-color: #e5e5e5;
+    opacity: 0.4;
+}
+
+.ty-preferences .window-content {
+    background-color: #fafafa;
+}
+
+.ty-preferences .nav-group-item.active {
+    color: white;
+    background: #999;
+}
+
+.menu-item-container a.menu-style-btn {
+    background-color: #f5f8fa;
+    background-image: linear-gradient( 180deg , hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0)); 
+}
+
+
+
+mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+  min-height: 1px;
+  min-width: 1px;
+}
+
+mjx-container[jax="SVG"] > svg a {
+  fill: blue;
+  stroke: blue;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line], svg[data-table] > g > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame], svg[data-table] > g > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed, svg[data-table] > g > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted, svg[data-table] > g > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > g > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
+  stroke-width: 3;
+}
+
+g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+.MathJax g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
+                            stroke-width: 0;
+                        }
+</style>
+<title>spring_microservices_in_action</title>
+</head>
+<body class='typora-export'><div class='typora-export-content'>
+<div id='write'  class=''><h2 id='spring-microservices-in-action'><span>Spring Microservices in Action</span></h2><p><a href='spring_index'>◀️</a></p><div class='md-toc' mdtype='toc'><p class="md-toc-content" role="list"><span role="listitem" class="md-toc-item md-toc-h2"><a class="md-toc-inner" href="#spring-microservices-in-action"><span>Spring Microservices in Action</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#cloud-computing-models"><span>Cloud computing models</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#technologies-to-implement-microservices-patterns"><span>Technologies to implement microservices patterns</span></a></span><span role="listitem" class="md-toc-item md-toc-h3"><a class="md-toc-inner" href="#build-microservices-with-spring-boot"><span>Build microservices with Spring Boot</span></a></span><span role="listitem" class="md-toc-item md-toc-h4"><a class="md-toc-inner" href="#perspectives-when-designing-microservices"><span>Perspectives when designing microservices</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#when-not-to-use-microservices"><span>When not to use microservices</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#operational-lifecycles-of-a-microservice"><span>Operational lifecycles of a microservice</span></a></span><span role="listitem" class="md-toc-item md-toc-h3"><a class="md-toc-inner" href="#docker-integration"><span>Docker Integration</span></a></span><span role="listitem" class="md-toc-item md-toc-h4"><a class="md-toc-inner" href="#docker-maven-plugin"><span>Docker maven plugin</span></a></span><span role="listitem" class="md-toc-item md-toc-h3"><a class="md-toc-inner" href="#spring-cloud-configuration-server"><span>Spring Cloud Configuration Server</span></a></span><span role="listitem" class="md-toc-item md-toc-h4"><a class="md-toc-inner" href="#spring-cloud-config-server"><span>Spring Cloud Config Server</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#spring-cloud-bus"><span>Spring Cloud Bus</span></a></span><span role="listitem" class="md-toc-item md-toc-h3"><a class="md-toc-inner" href="#on-service-discovery"><span>On service discovery</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#legacy-way"><span>Legacy way</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#service-discovery-in-the-cloud"><span>Service discovery in the cloud</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#client-side-load-balancing"><span>Client-side load balancing</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#implementation-notes"><span>Implementation notes</span></a></span><span role="listitem" class="md-toc-item md-toc-h3"><a class="md-toc-inner" href="#resiliency-patterns-with-spring-cloud-and-resilience4j"><span>Resiliency patterns with Spring Cloud and Resilience4j</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#bulkhead-pattern"><span>Bulkhead pattern</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#semaphore-vs-thread-pool"><span>Semaphore vs thread pool</span></a></span><span role="listitem" class="md-toc-item md-toc-h3"><a class="md-toc-inner" href="#spring-cloud-gateway"><span>Spring Cloud Gateway</span></a></span><span role="listitem" class="md-toc-item md-toc-h4"><a class="md-toc-inner" href="#predicate-and-filter-factories"><span>Predicate and Filter Factories</span></a></span><span role="listitem" class="md-toc-item md-toc-h3"><a class="md-toc-inner" href="#securing-your-microservices"><span>Securing your microservices</span></a></span><span role="listitem" class="md-toc-item md-toc-h3"><a class="md-toc-inner" href="#event-driven-architecture-with-spring-cloud-stream"><span>Event-driven architecture with Spring Cloud Stream</span></a></span><span role="listitem" class="md-toc-item md-toc-h4"><a class="md-toc-inner" href="#spring-cloud-stream"><span>Spring Cloud Stream</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#consumer-group"><span>Consumer group</span></a></span><span role="listitem" class="md-toc-item md-toc-h3"><a class="md-toc-inner" href="#distributed-tracing-with-spring-cloud-sleuth-and-zipkin"><span>Distributed tracing with Spring Cloud Sleuth and Zipkin</span></a></span><span role="listitem" class="md-toc-item md-toc-h3"><a class="md-toc-inner" href="#deplyoing-shite"><span>Deplyoing shite</span></a></span></p></div><p><span>A microservice is a small, lousely coupled, distributed service. We can decompose big application into easy-to-manage components with narrowly defined responsibilies. </span></p><h5 id='cloud-computing-models'><span>Cloud computing models</span></h5><p><img src="../../../src/img/backend/microservices/image-20230328192910672.png" alt="image-20230328192910672" style="zoom:50%;" /></p><p><span>Spring Cloud is collection of tools that wraps work of open source companies (VMware, Netflix, HashiCorp) in delivery patterns.</span></p><h5 id='technologies-to-implement-microservices-patterns'><span>Technologies to implement microservices patterns</span></h5><p><img src="../../../src/img/backend/microservices/image-20230328193113919.png" alt="image-20230328193113919" style="zoom:50%;" /></p><blockquote><p><span>Use </span><code>dependency:tree</code><span> for checking pulled maven dependencies.</span></p></blockquote><p><span></span><em><span>Cloud-native</span></em><span> application are built with scalable components like containers, deployed as microservices, and managed on virtual infrastructures through DevOps processes with continious delivery workflows.</span></p><blockquote><p><span>DevOps - software development methodology that focuses on communication, collaboration, and integration between software developers and IT operations. The primary goal is to automate the process of software delivery and infrastracture changes at lower costs.</span></p></blockquote><p><span>The twelve-factor application manifesto, provided by Heroku, provides best practices for building cloud-native microservices.</span></p><p><img src="../../../src/img/backend/microservices/image-20230329224503287.png" alt="image-20230329224503287" style="zoom:50%;" /></p><blockquote><p><span>Description of each on page 40.</span></p></blockquote><hr /><p>&nbsp;</p><h3 id='build-microservices-with-spring-boot'><span>Build microservices with Spring Boot</span></h3><p><span>Determine the correct right level of granularity:</span></p><ul><li><span>Start broad with our microservices and refactor to smaller services, don&#39;t go overboard (harder to change in future)</span></li><li><span>Focust first on how our services interact one another - helps establish coarse-grained interfaces of your problem domain</span></li><li><span>Service responsibilites change over time as our understanding of the problem domain grows - single microservice might grow into multiple services, with the original microservice ascting as an orchestration layer</span></li></ul><p><span>The service is likely coarse-grained if:</span></p><ul><li><span>Too many responsibilites - an overly diverse array of rules</span></li><li><span>A service that manages data across a large number of tables - if persist data to multiple tables or reaching out to tables outside of the service database</span></li><li><span>A service with too many test cases - from small number of test cases to hundreds</span></li></ul><p><span>Microservice is too fine-grained if:</span></p><ul><li><span>The microservices in one part of the problem domian breed like rabbits - the number of services to get a piece of work works tremendously </span></li><li><span>Microservices are heavily dependant on one another - microservice keep calling back and forth between each other to complete a single user request</span></li><li><span>Microservice become a collection of simple CRUD (create, replace, update, delete) service - microservices are an expression o business logic and not an abstraction layer over your data sources</span></li></ul><p><span>A microservice architecutre should be developed with an evolutionary thought process, where we know that we won&#39;t get the design right the first time.</span></p><h4 id='perspectives-when-designing-microservices'><span>Perspectives when designing microservices</span></h4><p><span>Need to have an integrated view:
+</span><img src="../../../src/img/backend/microservices/Знімок екрана 2023-03-29 о 23.52.31.png" alt="Знімок екрана 2023-03-29 о 23.52.31" style="zoom:67%;" /></p><h5 id='when-not-to-use-microservices'><span>When not to use microservices</span></h5><ul><li><span></span><em><span>Complexity when building distributed systems</span></em><span>
+Microservice architectures require a high degree of operational maturity, organization must invest in the automation and operational work (monitoring, scaling, and so on) - if not ready then no microservices.</span></li><li><span></span><em><span>Virtual server or container sprawl</span></em><span>
+The operational complexity and cost of managing and monitoring too many servers or containers (50-100) can be tremendous. The flexibility of microservices has to be weighed against the cost of running all of those servers.</span></li><li><span></span><em><span>Application type</span></em><span>
+If you&#39;re building small, department-level application, or apps with a small user base, the complexity might generate more expense than it&#39;s worth</span></li><li><span></span><em><span>Data transaction and consistency</span></em><span>
+A microservice works well as a mechanism for performing &quot;operational&quot; tasks like creating, adding, and performing non-complex queries against a data store. If app needs to do complex data aggregation or transformation across multiple data sources, the distributed nature will make this work difficult.</span></li></ul><h5 id='operational-lifecycles-of-a-microservice'><span>Operational lifecycles of a microservice</span></h5><ul><li><span></span><em><span>Service assembly</span></em><span> - how you package and deploy service to guarantee repeatability and consistency so the same service code and run-time engine are deployed the same way
+</span><img src="../../../src/img/backend/microservices/image-20230329234607513.png" alt="image-20230329234607513" style="zoom:70%;" /></li><li><span></span><em><span>Service bootstrapping</span></em><span> - how you separate your app and environment specific config code from the run-time code so that you can start and deploy a microservice instance quickly in any env
+</span><img src="../../../src/img/backend/microservices/image-20230329234727669.png" alt="image-20230329234727669" style="zoom:70%;" /></li><li><span></span><em><span>Service registration/discovery</span></em><span> - how you make the new deployed service instance discoverable by other application clients
+</span><img src="../../../src/img/backend/microservices/image-20230329235001757.png" alt="image-20230329235001757" style="zoom:70%;" /></li><li><span></span><em><span>Service monitoring</span></em><span> - need to monitor instances and ensure that any faults are routed around failing service instance, and these are taken down
+</span><img src="../../../src/img/backend/microservices/image-20230329235024141.png" alt="image-20230329235024141" style="zoom:70%;" /></li></ul><hr /><p>&nbsp;</p><h3 id='docker-integration'><span>Docker Integration</span></h3><p><span>Difference between VMs and containers:</span></p><p><img src="../../../src/img/backend/microservices/image-20230330230015532.png" alt="image-20230330230015532" style="zoom:50%;" /></p><p><span>Docker architecture:</span></p><p><img src="../../../src/img/backend/microservices/image-20230330230108181.png" alt="image-20230330230108181" style="zoom:50%;" /></p><h4 id='docker-maven-plugin'><span>Docker maven plugin</span></h4><p><img src="../../../src/img/backend/microservices/image-20230330230625172.png" alt="image-20230330230625172" style="zoom:50%;" /></p><p><img src="../../../src/img/backend/microservices/image-20230330230744289.png" alt="image-20230330230744289" style="zoom:50%;" /></p><p><span>There are various ways to build the jar - using a basic Dockerfile or with a multistage build (more optimized, page 101). Springboot supports Buildpack with layered JARs.</span></p><hr /><p>&nbsp;</p><h3 id='spring-cloud-configuration-server'><span>Spring Cloud Configuration Server</span></h3><p><span>With a cloud-based model, the application configuration data should be segregated completely from the application. The appropriate configuration data needs are then injected at run time so that the same server/application artifacts are consistently promoted throughout all environments.</span></p><p><img src="../../../src/img/backend/microservices/image-20230331200243785.png" alt="image-20230331200243785" style="zoom:55%;" /></p><p><span>Comparison of various implementations:
+</span><img src="../../../src/img/backend/microservices/Знімок екрана 2023-03-31 о 20.03.42.png" alt="Знімок екрана 2023-03-31 о 20.03.42" style="zoom:55%;" /><img src="../../../src/img/backend/microservices/image-20230331200436315.png" alt="image-20230331200436315" style="zoom:55%;" /></p><h4 id='spring-cloud-config-server'><span>Spring Cloud Config Server</span></h4><p><span>Spring uses profiles to launch a service to determine what environment properties are to be retrieved from the Spring Cloud Config service.</span></p><p><span>The Spring Cloud Config service can use a file-based, Git-based, or Vault-based application configuration repository to store application properties.</span></p><p><span>The Spring Cloud Config service lets you encrypt sensitive property files using symmetric and assymetric encryption.</span></p><p><span>Naming conventions are </span><em><span>appname-env.properties</span></em><span> or </span><em><span>appname-env.yml</span></em><span>. The env names translate directly into the URLs that will be accesses to browse the configuration.</span></p><p><img src="../../../src/img/backend/microservices/image-20230331200612622.png" alt="image-20230331200612622" style="zoom:55%;" /></p><p><img src="../../../src/img/backend/microservices/image_2023-04-04_12-10-42.png" alt="image_2023-04-04_12-10-42" style="zoom:50%;" /></p><p><span>Retrieving config information on service startup:</span></p><p><img src="../../../src/img/backend/microservices/image-20230331201003378.png" alt="image-20230331201003378" style="zoom:65%;" /></p><h5 id='spring-cloud-bus'><span>Spring Cloud Bus</span></h5><p><span>Update dynamically configuration without restarting services. Need to set up messaging broker (RabbitMQ) for Spring Cloud Bus to push update about config update to other services (when each of this service starts it also connects to RabbitMQ as listener). </span></p><p><img src="../../../src/img/backend/microservices/image_2023-04-04_12-59-51.png" alt="image_2023-04-04_12-59-51" style="zoom:50%;" /></p><hr /><p>&nbsp;</p><h3 id='on-service-discovery'><span>On service discovery</span></h3><p><span>A mechanism for finding the hostname or IP address of where a machine is located - </span><em><span>service discovery</span></em><span>. </span></p><p><span>Monolithic approach usually drives development teams down the path of overbuying their capacity needs. Capacity increases come in clumps and spikes and are rarely a smooth, steady process.
+Microservices allow us to scale out (horizontally) resources on demand.
+Service discovery helps increase application resiliency, because it automatically removes an instance from &quot;healthy list&quot; when it not passes health checks.</span></p><h5 id='legacy-way'><span>Legacy way</span></h5><p><span>DNS + network load balancer.</span></p><p><span>Access service by using a generic DNS (</span><code>my.app.com</code><span>) along with a path that uniquely represented the service that application want to invoke (</span><code>/service1</code><span>). The DNS would resolve to commercial or open source load balancer which has a routing table with servers hosting the service. The number of those servers is usually static and persistent (when crashes then restarts to same point). To achieve high availiablity there is secondary idle balancer that may become active when primary dies.  </span></p><p><img src="../../../src/img/backend/microservices/Знімок екрана 2023-04-03 о 21.50.40.png" alt="Знімок екрана 2023-04-03 о 21.50.40" style="zoom:50%;" /></p><p><span>Drawbacks:</span></p><ul><li><span>While the load balancer can be highly available, it&#39;s a single point of failure for your entire infrastructure</span></li><li><span>Centralizing your services into a single cluster of load balancers limits the ability to scale horizontally load-balancing infrastructure across multiple servers.
+Also, commercial load balancers have restrictive licensing model geared toward a fixed capacity rathen than a more variable model </span></li><li><span>Most traditional load balancers are statically managed, they aren&#39;t designed for fast registration and deregistration of services, usually there are centralized databases with routes and proprietary API to somehow change them</span></li><li><span>Because a load balancer acts as a proxy to the services, service consumer requests need to have them mapped to the physical services, that translation layer adds complexity  </span></li></ul><p><span>So in general it&#39;s okay to have such approach for some big corporate system with a few static servers, but not for the cloud applications. </span></p><h5 id='service-discovery-in-the-cloud'><span>Service discovery in the cloud</span></h5><p><span>The solution for a cloud-based microservice environment lies in:</span></p><ul><li><p><span></span><em><span>Highly available</span></em><span> - need to support &quot;hot&quot; clustering environment where service lookups can be shared across multiple nodes in a service discovery cluster</span></p><blockquote><p><span>Service dicsovery cluster - group of multiple service discovery instances which have identical configuration and work together to provide availability, reliablity and scalability.</span></p></blockquote></li><li><p><span></span><em><span>Peer-to-peer</span></em><span> - each node in the service discovery cluster shares the state of a service instance</span></p></li><li><p><span></span><em><span>Load balanced</span></em><span> - service discovery needs to dynamically load balance requests across all service instances </span></p></li><li><p><span></span><em><span>Resilient</span></em><span> - service discovery&#39;s client should cache service information locally. If service discovery dies, application can still function and locate other services (based on locally cache stored info)</span></p></li><li><p><span></span><em><span>Fault tolerant</span></em><span> - service discovery need to detect when a service isn&#39;t healthy and remove it from a list of available services</span></p></li></ul><p><img src="../../../src/img/backend/microservices/Знімок екрана 2023-04-03 о 22.22.40.png" alt="Знімок екрана 2023-04-03 о 22.22.40" style="zoom:50%;" /></p><h5 id='client-side-load-balancing'><span>Client-side load balancing</span></h5><p><img src="../../../src/img/backend/microservices/image-20230403222740571.png" alt="image-20230403222740571" style="zoom:50%;" /></p><p><span>When a consuming client needs to invoke a service</span></p><ol><li><span>It contacts the discovery service for all the instances a service consumer (client) is asking for and then caches data locally on the service consumer&#39;s machine.</span></li><li><span>Each time client wants to call the service it looks up the location information for the service from the cache. It will use a simple load-balancing algorithm like the round-robin to ensure service calls are spread across multiple services</span></li><li><span>The client periodically contacts the discovery service and refreshed its cache of service instances. The client cache is eventually consistent, but sometimes there can be errors. If fails, the local service discovery cache is invalidated and client will attempt to refresh its entries from service discovery agent.</span></li></ol><h5 id='implementation-notes'><span>Implementation notes</span></h5><p><span>You may use 3 different mechanism to invoke a service: </span></p><ul><li><span>Spring Cloud Discovery Client (lowest abstraction, bad to use)</span></li><li><span>Spring Cloud Load Balancer and backed RestTemplate (better)</span></li><li><span>Netflix&#39;s Feign client (best, configure with only annotations but need to handle specific Feign exceptions)</span></li></ul><hr /><p>&nbsp;</p><h3 id='resiliency-patterns-with-spring-cloud-and-resilience4j'><span>Resiliency patterns with Spring Cloud and Resilience4j</span></h3><p><span>A single, poorly performing service can trigger a cascading effect of resource exhaustion as the threads in the calling client are blocked when waiting for a service to complete.</span></p><p><img src="../../../src/img/backend/microservices/image-20230406012036855.png" alt="image-20230406012036855" style="zoom:50%;" /></p><p><span>Resilience4j is a fault tolerance library that offers patterns:</span></p><ul><li><span></span><em><span>Circuit breaker</span></em><span> - Stops making requests when an invoked service is failing</span></li><li><span></span><em><span>Retry</span></em><span> - Retries a service when it temprarly fails</span></li><li><span></span><em><span>Bulkhead</span></em><span> - Limits the number of outgoing concurrent service requests to avoid overload</span></li><li><span></span><em><span>Rate limit</span></em><span> - Limits the number of calls that a service receives at a time</span></li><li><span></span><em><span>Fallback</span></em><span> - Sets alternative paths for failing requests</span></li></ul><p><span>We may combine them, they will have such default order:</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="java"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="java"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.11111px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">Retry ( <span>CircuitBreaker</span> ( <span>RateLimiter</span> ( <span>TimeLimiter</span> ( <span>Bulkhead</span> ( <span>Function</span>) ) ) ) )</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 111px;"></div><div class="CodeMirror-gutters" style="display: none; height: 111px;"></div></div></div></pre><h5 id='bulkhead-pattern'><span>Bulkhead pattern</span></h5><p><span>There are 2 implementations:</span></p><ul><li><p><span></span><em><span>Semaphore bulkhead</span></em><span> - Uses a semaphore isolation approach, limits the number of concurrent requests to the service. Once the limit is reached, it starts rejecting requests
+</span><img src="../../../src/img/backend/microservices/image-20230406014014926.png" alt="image-20230406014014926" style="zoom:50%;" /></p><blockquote><p><span>Works fine if we have small number of remote resources being accessed within an application, and the call volumes to different services are relatively evenly distributed.
+If we have services with far higher volumes or longer completion time than other services, we can end up introducing thread exhautstion into our thread pools because one service ends up dominating all of the threads in the default thread pool.</span></p></blockquote></li><li><p><span></span><em><span>Thread pool bulkhead</span></em><span> - Uses a bounded queue and a fixed thread pool. This approach only rejects a request when the pool and the queue are full.</span></p><p><img src="../../../src/img/backend/microservices/image-20230406014041550.png" alt="image-20230406014041550" style="zoom:50%;" /></p></li></ul><blockquote><p><span>Proper sizing for a custom thread pool formula:</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="java"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="java"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.11111px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">(requests per <span class="cm-keyword">second</span> <span class="cm-keyword">at</span> peak when <span class="cm-keyword">the</span> service is healthy * <span class="cm-number">99</span>th percentile latency <span class="cm-keyword">in</span> <span class="cm-builtin">seconds</span>) + small amount <span class="cm-keyword">of</span> extra threads <span class="cm-keyword">for</span> overhead</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 111px;"></div><div class="CodeMirror-gutters" style="display: none; height: 111px;"></div></div></div></pre></blockquote><h5 id='semaphore-vs-thread-pool'><span>Semaphore vs thread pool</span></h5><p><span>A semaphore is used to limit resources and that resource can be the number of threads. The difference is using a semaphore this way limits the number of threads that’s actively running, not the number of threads created. For example say you are using 10 threads to handle 1000 jobs. Thread 1 finishes first and is destroyed, and then a new thread can be created to handle job 11. At any time there are only 10 threads running, but in the end a total number of 1000 threads are created and destroyed. The thread pool on the other hand, creates only 10 threads. When thread 1 is done, it is not destroyed but then continues to handle the next job. Creating and destroying threads take a lot of time so thread pool is obviously the recommended way to handle situations like this.</span></p><hr /><p>&nbsp;</p><h3 id='spring-cloud-gateway'><span>Spring Cloud Gateway</span></h3><p><span>Spring Cloud Gateway provides a library for building API gateways on top of Spring and Java. It provides a flexible way of routing requests based on a number of criteria, as well as focuses on cross-cutting concerns such as security, resiliency, and monitoring.</span></p><p><span>A Spring Cloud Gateway is a </span><em><span>reverse proxy</span></em><span>. A </span><em><span>reverse proxy</span></em><span> is an intermediate server that sits behind the client trying to reach a resource and the resource itself.</span></p><blockquote><p><span>Isn&#39;t a service gateway a single point of failure and potential bottleneck? To avoid this need to follow next rules:</span></p><ul><li><span>Load balancers are useful when placed in front of individual groups of services. In this case, a load balancer sitting in front of multiple service gateway instances is an appropriate design and ensures that your service gateway implementation can scale as needed. But having a load balancer sitting in front of all your service instances isn&#39;t a good idea because it becomes a bottleneck</span></li><li><span>Keep any code you write for your service gateway stateless. Don&#39;t store any information in memory for the service gateway. If you aren&#39;t careful, you can limit the scalability of the gateway. Then, you will need to ensure that the data gets replicated across all service gateway instances.</span></li><li><span>Keep the code you write for your service gateway light. The service gateway is the &quot;chokepoint&quot; for your service invocation. Complex code with multiple database calls can be the source of difficult-to-track performance problems in the service gateway.</span></li></ul></blockquote><h4 id='predicate-and-filter-factories'><span>Predicate and Filter Factories</span></h4><p><span>Architecture overview:</span></p><p><img src="../../../src/img/backend/microservices/Знімок екрана 2023-04-06 о 14.34.07.png" alt="Знімок екрана 2023-04-06 о 14.34.07" style="zoom:50%;" /></p><ul><li><p><span>Predicates are objects that allows us to check if the requests fulfill a set of given conditions before executing or processing a request.</span></p></li><li><p><span>Filters alllow us to modify the incoming and outgoing HTTP requests and responses.</span></p></li><li><p><span>The Spring Cloud Gateway integrates with Netflix&#39;s Eureka Server and can automatically map services registered with Eureka to a route.</span></p><blockquote><p><span>If use automatically locator enabled and try to send request to unvailable service -&gt; 404 error, as Spring Gateway didn&#39;t even built such route. However, if routes were built manually then 500 error, when trying to access dead service. </span></p></blockquote></li><li><p><span>With Spring Cloud Config Server, you can dynamically reload the route mappings without having to restart the Gateway server.</span></p></li><li><p><span>You may create custom business logic with pre- and post-filters</span></p></li><li><p><span>Pre-filters can be used to generate a correlation ID that can be injected into every service flowing through the gateway</span></p></li><li><p><span>Post-filters can be used to inject a correaltion ID into every HTTP service responce back to a service client</span></p></li></ul><hr /><p>&nbsp;</p><h3 id='securing-your-microservices'><span>Securing your microservices</span></h3><p><span>Proper security involves multiple layers of protection, including these:</span></p><ul><li><span></span><em><span>The application layer</span></em><span> - Ensures that the proper user controls are in place so that we can validate that a user is who they say they are (authentication) and that they have permission to do what they&#39;re trying to do (authorization)</span></li><li><span></span><em><span>Infrastructure</span></em><span> - Keeps the service running, patched, and up to date to minimize the risk of vulnerabilities</span></li><li><span></span><em><span>Network layer</span></em><span> - Implements network access controls so that a service is only accessible through well-defined ports and only to a small number of authorized servers</span></li></ul><p><span>OAuth2 is a token-based authorization framework that provides different mechanisms for protecting web service calls. These mechanism are called </span><em><span>grants</span></em><span> (password,).</span></p><p><span>OpenID Connect (OIDC) is a layer on top of the OAuth2 framework that provides authentication and profile information about who is logged in to the application (identity).</span></p><p><span>Keycloak is an open source identity and access management solution for microservices and applications.</span></p><p><span>You should also build your microservices around the following practices:</span></p><ul><li><span>Use HTTPS/Secure Sockets Layer (SSL) for all service communications</span></li><li><span>Use an API gateway for all service calls</span></li><li><span>Provide zones for your microservices by locking down unneeded network ports (inbound and outbound)</span></li></ul><p><img src="../../../src/img/backend/microservices/image-20230406223553585.png" alt="image-20230406223553585" style="zoom:50%;" /></p><hr /><p>&nbsp;</p><h3 id='event-driven-architecture-with-spring-cloud-stream'><span>Event-driven architecture with Spring Cloud Stream</span></h3><p><span>Using messaging to communicate state changes between services:</span></p><p><img src="../../../src/img/backend/microservices/image-20230408174504321.png" alt="image-20230408174504321" style="zoom:50%;" /></p><p><span>Provides benefits:</span></p><ul><li><p><span></span><em><span>Loose coupling</span></em><span> - when it comes to communicating state changes between 2 services, neither service knows about each other; so no hard dependencies and tight coupling </span></p></li><li><p><span></span><em><span>Durability</span></em><span> - the presence of queue guarantees that a message will be delivered even if the consumer of the service is down; so if licensing server is down the organization service still works good and sends messages to queue - it doesn&#39;t care; it works as well in other way - when organization service is down licence server can still use cache data</span></p></li><li><p><span></span><em><span>Scalability</span></em><span> - if a consumer reading a message from the queue isn&#39;t processing messages fast enough, it&#39;s a trivial task to spin up more consumers and have them process the messages</span></p><blockquote><p><span>Traditional scaling mechanism for reading messsages in a queue involved increasing the number of threads that a message could process at one time - we are limited by number of CPUs available.</span></p></blockquote></li><li><p><span></span><em><span>Flexibility</span></em><span> - the sender of a message has no idea who is going to consume it, so we can easily add new consumers</span></p></li></ul><p><span>Downsides:</span></p><ul><li><span></span><em><span>Message-handling semantics</span></em><span> - need to handle the logic of message order, how it may affect (maybe there should be a strict order), if a message fails do we retry processing the error or let fail? How to handle future messages related to that customer, if one of his messages failed, so we have inconsistent state?</span></li><li><span></span><em><span>Message visibility</span></em><span> - the async nature of messages means they might not be received or processed in close proximity to when the message is published or consumed; having things like correlation IDs is essential for debugging purposes</span></li><li><span></span><em><span>Message choreography</span></em><span> - more difficult to reason through its business logic because its code is no longer processes in a linear fashion - harder to debug</span></li></ul><h4 id='spring-cloud-stream'><span>Spring Cloud Stream</span></h4><p><img src="../../../src/img/backend/microservices/image-20230408182154274.png" alt="image-20230408182154274" style="zoom:50%;" /></p><ul><li><p><span>When a serive gets ready to publish a message, it will publish the message using a </span><em><span>source</span></em><span> - Spring-annotated interface that takes a POJO, which represents the message, serializes it and publishes to a channel</span></p></li><li><p><span>A </span><em><span>channel</span></em><span> is an abstraction over the queue that&#39;s going to hold the message after it&#39;s published by a message producer or consumed by a message consumer. We can describe a channel as a queue that sends and receives messages.</span></p><blockquote><p><span>A channel name is always associated with a target queue name, but that queue name is never directly exposed to the code (only through environmental variables). Instead, the channel name is used in the code, which means we can switch the queues the channel reads or writes from by changing the application configuration, not the application code:</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="java"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="java"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.11111px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-attribute">spring.cloud.stream.bindings.output.destination</span>=<span class="cm-string">orgChangeTopic</span></span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 111px;"></div><div class="CodeMirror-gutters" style="display: none; height: 111px;"></div></div></div></pre></blockquote></li><li><p><span>The </span><em><span>binder</span></em><span> is part of the Spring Cloud Stream framework, that talks to a specific message platform</span></p></li><li><p><span>When a service receives a message from a queue, it does it through a </span><em><span>sink</span></em><span> - it listens to a channel for incoming messages and deserializes the message back into a POJO object</span></p></li></ul><p><span>A Spring Cloud Stream message </span><em><span>source</span></em><span> is an annotated Java method that&#39;s used to publish messages to a message broekr&#39;s queue.
+A Spring Cloud Stream message </span><em><span>sink</span></em><span> is an annotated Java method that receives messages form a message broker&#39;s queue.</span></p><h5 id='consumer-group'><span>Consumer group</span></h5><p><img src="../../../src/img/backend/microservices/image-20230408190037992.png" alt="image-20230408190037992" style="zoom:50%;" /></p><p><span>The concept of a consumer group is this: we can have multiple services with each service having multiple instances listening to the same message queue. We want each unique service to process a copy of a message, but we </span><strong><span>only want one service instance within a group of service instances to consume and process a message</span></strong><span>.
+As long as all the service instances have the same group name, Spring Cloud Stream and the underlying message broker will guarantee that only one copy of the message will be consumed by a service instance belonging to that group.</span></p><p>&nbsp;</p><hr /><h3 id='distributed-tracing-with-spring-cloud-sleuth-and-zipkin'><span>Distributed tracing with Spring Cloud Sleuth and Zipkin</span></h3><p><span>Spring Cloud Sleuth allows us to seamlessly add tracing information (correlation IDs) to our microservices calls.</span></p><p><span>We integrate our Docker containers with the ELK (Elasticsearch, Logstash, Kibana) Stack. This lets us transform, store, visualise, and query the logging data from our services. </span></p><p>&nbsp;</p><p><img src="../../../src/img/backend/microservices/image-20230408202627407.png" alt="image-20230408202627407" style="zoom:50%;" /></p><p><span>Zipkin allows us to see the dependencies that exist between services and the flow of our transactions, and understand the performance characteristics of each microservice involved in a user&#39;s transaction.</span></p><p><span>Spring Cloud Sleuth easily integrates with Zipkin. 
+Sleuth maps each service call to the concept of a span. Zipkin then allows us to see the performance of a span.
+Spring Cloud Sleuth and Zipkin let us define our own custom spans so that we can understand the performance of non-Spring-based resources (a database server such as Postgres or Redis).</span></p><p>&nbsp;</p><hr /><h3 id='deplyoing-shite'><span>Deplyoing shite</span></h3><p>&nbsp;</p></div></div>
+</body>
+</html>
