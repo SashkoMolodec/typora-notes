@@ -12,3 +12,8 @@
 
 ​	:gear: [Spring DevTools](configuration/sb_dev_tools)
 
+
+
+#### :books: Books
+
+​	:deciduous_tree: Spring microservices in action [notes](spring_microservices_in_action)  

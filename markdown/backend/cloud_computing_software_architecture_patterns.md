@@ -164,7 +164,7 @@ Drawbacks:
 
 Follow the analogy of a sequence of steps in a dance - perform theirs steps when it's their turn to complete the entire flow of operations as a group.
 
-- Communication is async (without any central entity. ), we can easily:
+- Communication is async (without any central entity), we can easily:
   - Make changes to the system
   - Add/Remove services
 

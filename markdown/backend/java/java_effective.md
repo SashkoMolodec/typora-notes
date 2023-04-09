@@ -512,6 +512,15 @@ When writing a method that returns a sequence of elements, remember that some of
 
 ##### Item 49: Check parameters for validity
 
+Use the `Objects.requireNonNull` method instead of manually null checking.
+```java
+this.strategy = Objects.requireNonNull(strategy, "strategy")
+```
+
+Check parameters validity in constructors that are to be stored away for later use. Need to prevent the construction of an object that violates its class invariants.
+
+> Invariant means something that should stick to its conditions no matter whatever changes or whoever uses/transforms it.
+
 Each time you write a method or constructor, you should think about what restrictions exist on its parameters. You should document these restrictions exist on its parameters + enforce them with explicit checks at the beginning of the method body.
 
 ##### Item 50: Make defensive copies when needed
@@ -675,7 +684,44 @@ If callers won't be able to recover from failures, throw unchecked exceptions. I
 
 ##### Item 72: Favor the use of standard exceptions
 
+##### Item 73: Throw exceptions appropriate to the abstraction
 
+Higher layers should catch lower-level exceptions, and, in their place, throw exceptions that can be explained in terms of the higher-level abstraction - *exception translation*.
+
+You may as well pass the cause from lower level to higher level - *exception chaining*. Need to pass the exception to Throwable constructor to use it's `getCause()`.
+
+While exception translation is superior to mindless propagation of exceptions from lower layers, it should not be overused. The best way to deal with them is just to avoid, but sometimes you may check the validity of the higher-level parameter before passing to lower-layer.
+
+##### Item 74: Document all exceptions thrown by each method
+
+Always declare checked exceptions individually, and document precisely the conditions under which each one is thrown using Javadoc `@throw` tag.
+
+A well-documented list of the unchecked exceptions that method may throw effectively describes the *preconditions* for its successful execution.
+
+If an exception is thrown by many methods in a class for the same reason, you can document the exception in the class's documentation comment.
+
+##### Item 75: Include failure-capture information in detail messages
+
+To capture a failure, the detail message of an exception should contain the values of all parameters and fields that contributed to the exception. But do not include passwords, encryption keys, and the like in detail messages.
+
+One way to ensure that exception contain adequate failire-capture information in their detail messages is to require this info in exceptions constructors. The detail message can then be generated from passed info. It may be also appropriate, if for checked exceptions, to provide accessor method in order to recover from failure state with that data. And for unchecked that's also may be an option, on general principle.
+
+##### Item 76: Strive for failure atomicity
+
+A failed method invocation should leave the object in the state that it was in prior to the invocation. A method with this property is called *failure-atomicity*. Several ways to achive it:
+
+- Design immutable objects. If an operation fails we do not create new object, but we still have our existing consistent object;
+- For mutable objects the most common way is to check parameters for validity before performing the operation; exception is thrown before any modification;
+- Perform the operation on a temporary copy. It naturally occurs when for some computation our data was stored in faster temporary data structure;
+- Create recovery code (used mainly for durable disk-based data structures);
+
+It's not always desirable to achive failure atomicity because sometimes we may increase significantly the cost or complexity.
+
+##### Item 77: Don't ignore exceptions 
+
+An empty `catch` block defeats the purpose of exceptions.
+
+If we choose to leave it empty then `catch` block should contain a comment explaining why, and the variable should be named `ignored`.
 
 
 
