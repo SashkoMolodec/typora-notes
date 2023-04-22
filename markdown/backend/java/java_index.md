@@ -49,4 +49,6 @@
 
 #### :book: Books & other
 
-​	:boot: Java Modern book [notes](java modern)
+​	:boot: Java Modern book [notes](java_modern)
+
+​	:thumbsup: Java effective [notes](java_effective)
