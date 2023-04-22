@@ -1,0 +1,833 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
+.mac-os-11 { --title-bar-height:28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.6; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex:2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.42857rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left: 28px solid transparent; border-right: 28px solid transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right: 8px solid transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+.md-inline-math-container mjx-container { zoom: 0.95; }
+
+
+.CodeMirror { height: auto; }
+.CodeMirror.cm-s-inner { background: inherit; }
+.CodeMirror-scroll { overflow: auto hidden; z-index: 3; }
+.CodeMirror-gutter-filler, .CodeMirror-scrollbar-filler { background-color: rgb(255, 255, 255); }
+.CodeMirror-gutters { border-right: 1px solid rgb(221, 221, 221); background: inherit; white-space: nowrap; }
+.CodeMirror-linenumber { padding: 0px 3px 0px 5px; text-align: right; color: rgb(153, 153, 153); }
+.cm-s-inner .cm-keyword { color: rgb(119, 0, 136); }
+.cm-s-inner .cm-atom, .cm-s-inner.cm-atom { color: rgb(34, 17, 153); }
+.cm-s-inner .cm-number { color: rgb(17, 102, 68); }
+.cm-s-inner .cm-def { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-variable { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-variable-2 { color: rgb(0, 85, 170); }
+.cm-s-inner .cm-variable-3 { color: rgb(0, 136, 85); }
+.cm-s-inner .cm-string { color: rgb(170, 17, 17); }
+.cm-s-inner .cm-property { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-operator { color: rgb(152, 26, 26); }
+.cm-s-inner .cm-comment, .cm-s-inner.cm-comment { color: rgb(170, 85, 0); }
+.cm-s-inner .cm-string-2 { color: rgb(255, 85, 0); }
+.cm-s-inner .cm-meta { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-qualifier { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-builtin { color: rgb(51, 0, 170); }
+.cm-s-inner .cm-bracket { color: rgb(153, 153, 119); }
+.cm-s-inner .cm-tag { color: rgb(17, 119, 0); }
+.cm-s-inner .cm-attribute { color: rgb(0, 0, 204); }
+.cm-s-inner .cm-header, .cm-s-inner.cm-header { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-quote, .cm-s-inner.cm-quote { color: rgb(0, 153, 0); }
+.cm-s-inner .cm-hr, .cm-s-inner.cm-hr { color: rgb(153, 153, 153); }
+.cm-s-inner .cm-link, .cm-s-inner.cm-link { color: rgb(0, 0, 204); }
+.cm-negative { color: rgb(221, 68, 68); }
+.cm-positive { color: rgb(34, 153, 34); }
+.cm-header, .cm-strong { font-weight: 700; }
+.cm-del { text-decoration: line-through; }
+.cm-em { font-style: italic; }
+.cm-link { text-decoration: underline; }
+.cm-error { color: red; }
+.cm-invalidchar { color: red; }
+.cm-constant { color: rgb(38, 139, 210); }
+.cm-defined { color: rgb(181, 137, 0); }
+div.CodeMirror span.CodeMirror-matchingbracket { color: rgb(0, 255, 0); }
+div.CodeMirror span.CodeMirror-nonmatchingbracket { color: rgb(255, 34, 34); }
+.cm-s-inner .CodeMirror-activeline-background { background: inherit; }
+.CodeMirror { position: relative; overflow: hidden; }
+.CodeMirror-scroll { height: 100%; outline: 0px; position: relative; box-sizing: content-box; background: inherit; }
+.CodeMirror-sizer { position: relative; }
+.CodeMirror-gutter-filler, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-vscrollbar { position: absolute; z-index: 6; display: none; outline: 0px; }
+.CodeMirror-vscrollbar { right: 0px; top: 0px; overflow: hidden; }
+.CodeMirror-hscrollbar { bottom: 0px; left: 0px; overflow: auto hidden; }
+.CodeMirror-scrollbar-filler { right: 0px; bottom: 0px; }
+.CodeMirror-gutter-filler { left: 0px; bottom: 0px; }
+.CodeMirror-gutters { position: absolute; left: 0px; top: 0px; padding-bottom: 10px; z-index: 3; overflow-y: hidden; }
+.CodeMirror-gutter { white-space: normal; height: 100%; box-sizing: content-box; padding-bottom: 30px; margin-bottom: -32px; display: inline-block; }
+.CodeMirror-gutter-wrapper { position: absolute; z-index: 4; background: 0px 0px !important; border: none !important; }
+.CodeMirror-gutter-background { position: absolute; top: 0px; bottom: 0px; z-index: 4; }
+.CodeMirror-gutter-elt { position: absolute; cursor: default; z-index: 4; }
+.CodeMirror-lines { cursor: text; }
+.CodeMirror pre { border-radius: 0px; border-width: 0px; background: 0px 0px; font-family: inherit; font-size: inherit; margin: 0px; white-space: pre; overflow-wrap: normal; color: inherit; z-index: 2; position: relative; overflow: visible; }
+.CodeMirror-wrap pre { overflow-wrap: break-word; white-space: pre-wrap; word-break: normal; }
+.CodeMirror-code pre { border-right: 30px solid transparent; width: fit-content; }
+.CodeMirror-wrap .CodeMirror-code pre { border-right: none; width: auto; }
+.CodeMirror-linebackground { position: absolute; inset: 0px; z-index: 0; }
+.CodeMirror-linewidget { position: relative; z-index: 2; overflow: auto; }
+.CodeMirror-wrap .CodeMirror-scroll { overflow-x: hidden; }
+.CodeMirror-measure { position: absolute; width: 100%; height: 0px; overflow: hidden; visibility: hidden; }
+.CodeMirror-measure pre { position: static; }
+.CodeMirror div.CodeMirror-cursor { position: absolute; visibility: hidden; border-right: none; width: 0px; }
+.CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+.CodeMirror-focused div.CodeMirror-cursor { visibility: inherit; }
+.cm-searching { background: rgba(255, 255, 0, 0.4); }
+span.cm-underlined { text-decoration: underline; }
+span.cm-strikethrough { text-decoration: line-through; }
+.cm-tw-syntaxerror { color: rgb(255, 255, 255); background-color: rgb(153, 0, 0); }
+.cm-tw-deleted { text-decoration: line-through; }
+.cm-tw-header5 { font-weight: 700; }
+.cm-tw-listitem:first-child { padding-left: 10px; }
+.cm-tw-box { border-style: solid; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-color: inherit; border-top-width: 0px !important; }
+.cm-tw-underline { text-decoration: underline; }
+@media print {
+  .CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+}
+
+
+:root {
+    --side-bar-bg-color: #fafafa;
+    --control-text-color: #777;
+}
+
+@include-when-export url(https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
+
+/* open-sans-regular - latin-ext_latin */
+  /* open-sans-italic - latin-ext_latin */
+    /* open-sans-700 - latin-ext_latin */
+    /* open-sans-700italic - latin-ext_latin */
+  html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    font-family: "Open Sans","Clear Sans", "Helvetica Neue", Helvetica, Arial, 'Segoe UI Emoji', sans-serif;
+    color: rgb(51, 51, 51);
+    line-height: 1.6;
+}
+
+#write {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 30px;
+    padding-bottom: 100px;
+}
+
+@media only screen and (min-width: 1400px) {
+    #write {
+        max-width: 1024px;
+    }
+}
+
+@media only screen and (min-width: 1800px) {
+    #write {
+        max-width: 1200px;
+    }
+}
+
+#write > ul:first-child,
+#write > ol:first-child{
+    margin-top: 30px;
+}
+
+a {
+    color: #4183C4;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+h1 tt,
+h1 code {
+    font-size: inherit;
+}
+h2 tt,
+h2 code {
+    font-size: inherit;
+}
+h3 tt,
+h3 code {
+    font-size: inherit;
+}
+h4 tt,
+h4 code {
+    font-size: inherit;
+}
+h5 tt,
+h5 code {
+    font-size: inherit;
+}
+h6 tt,
+h6 code {
+    font-size: inherit;
+}
+h1 {
+    font-size: 2.25em;
+    line-height: 1.2;
+    border-bottom: 1px solid #eee;
+}
+h2 {
+    font-size: 1.75em;
+    line-height: 1.225;
+    border-bottom: 1px solid #eee;
+}
+
+/*@media print {
+    .typora-export h1,
+    .typora-export h2 {
+        border-bottom: none;
+        padding-bottom: initial;
+    }
+
+    .typora-export h1::after,
+    .typora-export h2::after {
+        content: "";
+        display: block;
+        height: 100px;
+        margin-top: -96px;
+        border-top: 1px solid #eee;
+    }
+}*/
+
+h3 {
+    font-size: 1.5em;
+    line-height: 1.43;
+}
+h4 {
+    font-size: 1.25em;
+}
+h5 {
+    font-size: 1em;
+}
+h6 {
+   font-size: 1em;
+    color: #777;
+}
+p,
+blockquote,
+ul,
+ol,
+dl,
+table{
+    margin: 0.8em 0;
+}
+li>ol,
+li>ul {
+    margin: 0 0;
+}
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+li p.first {
+    display: inline-block;
+}
+ul,
+ol {
+    padding-left: 30px;
+}
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+blockquote {
+    border-left: 4px solid #dfe2e5;
+    padding: 0 15px;
+    color: #777777;
+}
+blockquote blockquote {
+    padding-right: 0;
+}
+table {
+    padding: 0;
+    word-break: initial;
+}
+table tr {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+table tr:nth-child(2n),
+thead {
+    background-color: #f8f8f8;
+}
+table th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    margin: 0;
+    padding: 6px 13px;
+}
+table td {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 6px 13px;
+}
+table th:first-child,
+table td:first-child {
+    margin-top: 0;
+}
+table th:last-child,
+table td:last-child {
+    margin-bottom: 0;
+}
+
+.CodeMirror-lines {
+    padding-left: 4px;
+}
+
+.code-tooltip {
+    box-shadow: 0 1px 1px 0 rgba(0,28,36,.3);
+    border-top: 1px solid #eef2f2;
+}
+
+.md-fences,
+code,
+tt {
+    border: 1px solid #e7eaed;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    padding: 0;
+    padding: 2px 4px 0px 4px;
+    font-size: 0.9em;
+}
+
+code {
+    background-color: #f3f4f4;
+    padding: 0 2px 0 2px;
+}
+
+.md-fences {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+
+
+.md-task-list-item > input {
+  margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+    table,
+    pre {
+        page-break-inside: avoid;
+    }
+    pre {
+        word-wrap: break-word;
+    }
+}
+
+.md-fences {
+    background-color: #f8f8f8;
+}
+#write pre.md-meta-block {
+    padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block>.code-tooltip {
+    bottom: .375rem;
+}
+
+.md-mathjax-midline {
+    background: #fafafa;
+}
+
+#write>h3.md-focus:before{
+    left: -1.5625rem;
+    top: .375rem;
+}
+#write>h4.md-focus:before{
+    left: -1.5625rem;
+    top: .285714286rem;
+}
+#write>h5.md-focus:before{
+    left: -1.5625rem;
+    top: .285714286rem;
+}
+#write>h6.md-focus:before{
+    left: -1.5625rem;
+    top: .285714286rem;
+}
+.md-image>.md-meta {
+    /*border: 1px solid #ddd;*/
+    border-radius: 3px;
+    padding: 2px 0px 0px 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: #a7a7a7;
+    opacity: 1;
+}
+
+.md-toc { 
+    margin-top:20px;
+    padding-bottom:20px;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/** focus mode */
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header, .context-menu, .megamenu-content, footer{
+    font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state{
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: #fafafa;
+    background-color: var(--side-bar-bg-color);
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+/*.html-for-mac {
+    --item-hover-bg-color: #E6F0FE;
+}*/
+
+#md-notification .btn {
+    border: 0;
+}
+
+.dropdown-menu .divider {
+    border-color: #e5e5e5;
+    opacity: 0.4;
+}
+
+.ty-preferences .window-content {
+    background-color: #fafafa;
+}
+
+.ty-preferences .nav-group-item.active {
+    color: white;
+    background: #999;
+}
+
+.menu-item-container a.menu-style-btn {
+    background-color: #f5f8fa;
+    background-image: linear-gradient( 180deg , hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0)); 
+}
+
+
+
+mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+  min-height: 1px;
+  min-width: 1px;
+}
+
+mjx-container[jax="SVG"] > svg a {
+  fill: blue;
+  stroke: blue;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line], svg[data-table] > g > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame], svg[data-table] > g > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed, svg[data-table] > g > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted, svg[data-table] > g > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > g > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
+  stroke-width: 3;
+}
+
+g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+.MathJax g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
+                            stroke-width: 0;
+                        }
+</style>
+<title>cloud_native_in_action</title>
+</head>
+<body class='typora-export'><div class='typora-export-content'>
+<div id='write'  class=''><h2 id='cloud-native-in-action'><span>Cloud Native in Action</span></h2><p><a href='backend_index'>◀️</a></p><div class='md-toc' mdtype='toc'><p class="md-toc-content" role="list"><span role="listitem" class="md-toc-item md-toc-h2"><a class="md-toc-inner" href="#cloud-native-in-action"><span>Cloud Native in Action</span></a></span><span role="listitem" class="md-toc-item md-toc-h3"><a class="md-toc-inner" href="#cloud-native-patterns-and-technologies"><span>Cloud native patterns and technologies</span></a></span><span role="listitem" class="md-toc-item md-toc-h4"><a class="md-toc-inner" href="#12-factors-and-beyond"><span>12 Factors and beyond</span></a></span><span role="listitem" class="md-toc-item md-toc-h3"><a class="md-toc-inner" href="#cloud-native-development"><span>Cloud native development</span></a></span><span role="listitem" class="md-toc-item md-toc-h4"><a class="md-toc-inner" href="#working-with-embedded-servers"><span>Working with embedded servers</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#thread-per-request-model"><span>Thread-per-request model</span></a></span><span role="listitem" class="md-toc-item md-toc-h4"><a class="md-toc-inner" href="#testing-1"><span>Testing</span></a></span><span role="listitem" class="md-toc-item md-toc-h4"><a class="md-toc-inner" href="#deployment-pipeline:-build-and-test"><span>Deployment pipeline: Build and test</span></a></span><span role="listitem" class="md-toc-item md-toc-h3"><a class="md-toc-inner" href="#external-configuration"><span>External configuration</span></a></span><span role="listitem" class="md-toc-item md-toc-h4"><a class="md-toc-inner" href="#profiles"><span>Profiles</span></a></span><span role="listitem" class="md-toc-item md-toc-h4"><a class="md-toc-inner" href="#external-stuff"><span>External stuff</span></a></span><span role="listitem" class="md-toc-item md-toc-h3"><a class="md-toc-inner" href="#data-persistence-with-spring-data"><span>Data persistence with Spring Data</span></a></span><span role="listitem" class="md-toc-item md-toc-h4"><a class="md-toc-inner" href="#spring-data-jdbc-or-spring-data-jpa?"><span>Spring Data JDBC or Spring Data JPA?</span></a></span><span role="listitem" class="md-toc-item md-toc-h3"><a class="md-toc-inner" href="#containerizing-spring-boot"><span>Containerizing Spring Boot</span></a></span><span role="listitem" class="md-toc-item md-toc-h3"><a class="md-toc-inner" href="#kubernetes-fundamentals-for-spring-boot"><span>Kubernetes fundamentals for Spring Boot</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#from-containers-to-pods"><span>From containers to Pods</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#controlling-pods-with-deployments"><span>Controlling Pods with Deployments</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#kubernetes-manifest"><span>Kubernetes manifest</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#client-side-service-discovery-and-load-balancing"><span>Client-side service discovery and load balancing</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#server-side-service-discovery-and-load-balancing"><span>Server-side service discovery and load balancing</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#exposing-sping-boot-applications-with-kubernetes-services"><span>Exposing Sping Boot applications with Kubernetes Services</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#ensuring-disposability:-graceful-shutdown"><span>Ensuring disposability: Graceful shutdown</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#scaling-spring-boot-applications"><span>Scaling Spring Boot applications</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#local-kubernetes-development-with-tilt"><span>Local Kubernetes development with Tilt</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#octant"><span>Octant</span></a></span><span role="listitem" class="md-toc-item md-toc-h3"><a class="md-toc-inner" href="#reactive-spring:-resiliency-and-scalability"><span>Reactive Spring: Resiliency and Scalability</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#spring-stack"><span>Spring stack</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#resilient-applications-with-reactive-spring"><span>Resilient applications with Reactive Spring</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#testing-2"><span>Testing</span></a></span><span role="listitem" class="md-toc-item md-toc-h3"><a class="md-toc-inner" href="#api-gateway-and-circuit-breakers"><span>API gateway and circuit breakers</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#request-rate-limiters"><span>Request rate limiters</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#handling-sessions"><span>Handling sessions</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#ingress-object"><span>Ingress object</span></a></span><span role="listitem" class="md-toc-item md-toc-h3"><a class="md-toc-inner" href="#event-driven-applications-and-functions"><span>Event-driven applications and functions</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#functions-with-spring-cloud-function"><span>Functions with Spring Cloud Function</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#processing-messages-with-spring-cloud-stream"><span>Processing messages with Spring Cloud Stream</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#making-messaging-resilient-to-failures"><span>Making messaging resilient to failures</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#implementing-event-producers"><span>Implementing event producers</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#book-example-illustration"><span>Book example illustration</span></a></span></p></div><p><span>Cloud native application are highly distributive (розподілені) systems that are specifically designed for and live in the cloud.</span></p><p><span>The cloud is an IT infrastructure provided as a commodity (продукт) in terms of computing, storate, and networking resources.</span></p><p><span>The main properties of cloud native applications:</span></p><ul><li><span></span><em><span>Scalability</span></em></li><li><span></span><em><span>Loose coupling</span></em></li><li><span></span><em><span>Resilience</span></em></li><li><span></span><em><span>Observability</span></em><span> - inferring the internal state of an application from its external outputs</span></li><li><span></span><em><span>Manageability</span></em><span> - changing the internal state and outputs via external inputs. In this and previous case, the application artifact is never changes, it&#39;s immutable</span></li></ul><p><span>Continous delivery is a holistic engineers practice for delivering high quality software quickly, reliabliy, and safely.</span></p><p><span>Devops is a culture enabling collaboration among different roles to deliver business value together.</span></p><blockquote><p><span>Modern businesses go cloud native to produce software that can be delivered quickly, can be scaled dynamically depending on demand, and is always available and resilient to failures when optimizing costs.
+But it should consider the cost of migrating and its consequences. Migrating requires specific competencies that employees might not have yet.</span></p></blockquote><p><span>Cloud native architectural elements:</span></p><p><span> </span><img src="../../src/img/backend/microservices/image-20230410130015527.png" alt="image-20230410130015527" style="zoom:35%;" /></p><p><span>Dedicated platforms (such as Kubernetes) offer services to manage containers without directly handling the underlying layers. They provide container orchestration, cluster management, network services, and scheduling.</span></p><hr /><p>&nbsp;</p><h3 id='cloud-native-patterns-and-technologies'><span>Cloud native patterns and technologies</span></h3><h4 id='12-factors-and-beyond'><span>12 Factors and beyond</span></h4><ol><li><p><span>One codebase, one application</span></p><ul><li><span>Shared code should be tracked in its own codebase as a library that can be included as dependency or backing service</span></li><li><span>No need to rebuild the codebase for different environments</span></li></ul></li><li><p><span>API First</span></p><ul><li><span>Design API and how it will distribute among teams</span></li><li><span>API implementation can be changed internally in a future without affecting other application depending on it</span></li></ul></li><li><p><span>Dependency management</span></p><ul><li><span>All application dependencies should be declared explicitly in a manifest and be available for the dependency managet to download from a central repository</span></li></ul></li><li><p><span>Design, build, release, run</span></p><ul><li><span>A codebase goes through that stages and they should be separated</span></li><li><span>No code changes at runtime, the build and the release artifacts should be immutable</span></li></ul></li><li><p><span>Configuration, credentials, and code</span></p><ul><li><span>Configuration is everything likely to change between deployments</span></li><li><span>Only default configuration may stay with the application codebase</span></li></ul></li><li><p><span>Logs</span></p><ul><li><span>Should be log aggregators for tracing</span></li></ul></li><li><p><span>Disposability (одноразовість)</span></p><ul><li><span>Application are ephemeral - if application doens&#39;t respond we just terminate it and start a new instance</span></li><li><span>A </span><em><span>graceful shutdown</span></em><span> is when an application, on receivng a signal to terminate, stops accepting new requests, completes the ones already in progress, and finally exits</span></li></ul></li><li><p><span>Backing services</span></p><ul><li><span>Backing services can be defined as external resources that an application uses to deliver its functionality (databases, message brokers, caching systems, SMTP /FTP servers, RESTful web services)</span></li><li><span>You should not change code when changing resource (db for example). The attachement is done through resource binding</span></li></ul></li><li><p><span>Environment parity</span></p><ul><li><p><span>Keep all environments as similar as possible</span></p></li><li><p><span>Three gaps to solve:</span></p><ul><li><span>time gap - period between a code change and its deployment can be quite large, so promote automation and continous deployment to reduce this period</span></li><li><span>people gap - developer build applications, and operators manage their deployment in production; this gap can be resolved by embracing a DevOps culture, improving collaboration between devs and operators, &quot;you build it, you run it&quot;</span></li><li><span>tools gap - how backing services are handled, general the same type and version of them should be used in all environments</span></li></ul></li></ul></li><li><p><span>Administrative processes</span></p><ul><li><span>Database migrations, batch jobs, maintance jobs should be treated as one-off processes; they should be tracked in revision control and it&#39;s a good idea to frame those tasks as small standalone services that run once (configured as functions)</span></li></ul></li><li><p><span>Port binding</span></p><ul><li><span>App is self-contained - it doesn&#39;t depend on an external server in the execution environment (for example Srping boot has embedded tomcat to run application, no separate tomcat server and artifact)</span></li><li><span>Export services via port binding, our app can become a backing service for another application</span></li></ul></li><li><p><span>Stateless processes</span></p><ul><li><span>To ensure scalability, we design applications as stateless processes and adopt a </span><em><span>share-nothing architecture</span></em><span>: no state should be shared among different application instances (handle states in data sources)</span></li></ul></li><li><p><span>Concurrency</span></p><ul><li><span>Allow concurrent processing to serve many users at the same time</span></li><li><span>Processes are first-class citizens, they should be horizontally scalable, distributing the workload across many process on different machines</span></li><li><span>For example web proceses that handle HTTP requests and worker processes that execute scheduled jobs in the background</span></li></ul></li><li><p><span>Telemetry</span></p><ul><li><span>Every system should provide the correct data to monitor the system&#39;s behavior remotely - logs, metrics, traces, health status, and events</span></li></ul></li><li><p><span>Authentication and authorization</span></p></li></ol><hr /><p>&nbsp;</p><h3 id='cloud-native-development'><span>Cloud native development</span></h3><h4 id='working-with-embedded-servers'><span>Working with embedded servers</span></h4><p><span></span><em><span>Servlet container</span></em><span> - a component, part of a web server, that provides an execution context for web applications using the Java Servlet API (like for Spring MVC apps). Tomcat (Catalina) is one example.</span></p><p><span></span><em><span>Application server</span></em><span> - A server that provides a complete execution environment (like Jakarta EE) for differnt types of applications and supports several protocols, such as WildFly.</span></p><p><span>In web applications running in a Servlet container like Tomcat, requests are processed based on a model called </span><em><span>thread-per-request</span></em><span>. For each request, the application dedicates a thread exclusively to handling that specific request; the thread will not be used for anything else until a response is returned to the client. When the request-handling involves intensive operations like I/O, the thread will block until the operations are completed. For example, if a database read is required, the thread will wait until data is returned from the database. That’s why we say that this type of processing is synchronous and blocking.</span></p><p><span>The number of threads defines an upper limit to how many requests are supported concurrently. If the thread concurrency limit hits continiously, we can always tune the thread pool configuration to accept more workload (scale up or scale out).</span></p><h5 id='thread-per-request-model'><span>Thread-per-request model</span></h5><p><img src="../../src/img/backend/microservices/image-20230410194323936.png" alt="image-20230410194323936" style="zoom:50%;" /></p><p><span>The </span><code>DispatcherServlet</code><span> component provides a central entry point for request processing. When a client sends a new HTTP request for a specific URL pattern, </span><code>DispatcherServlet</code><span> asks the </span><code>HandlerMapping</code><span> component for the controller responsible for that endpoint, and it finally delegates the actual processing of the request to the specified controller. The controller processes the request, possibly by calling some other services, and then returns a response to </span><code>DispatcherServlet</code><span>, which finally replies to the client with an HTTP response.</span></p><p><span>Spring MVC relies on the web server to accomplish its functionality. The same is true for any web server implementing the Servlet API, but since we have embedded Tomcat we may even configure it easily.</span></p><p><span>An example:</span></p><p><img src="../../src/img/backend/microservices/image-20230410225846573.png" alt="image-20230410225846573" style="zoom:50%;" /></p><h4 id='testing-1'><span>Testing</span></h4><p><img src="../../src/img/backend/microservices/image-20230411105054651.png" alt="image-20230411105054651" style="zoom:50%;" /></p><p><span>Following continous delivery practices, we should aim at achieving fully automated tests in three out of four quadrants.</span></p><p><span>When tests are focused only on a “slice” of the application and only need a part of the configuration, Spring Boot provides several annotations for more targeted integration tests. When you use those annotations, a Spring application context is initialized, but only the components and configuration parts used by the specific functionality slice are loaded.</span></p><h4 id='deployment-pipeline:-build-and-test'><span>Deployment pipeline: Build and test</span></h4><p><span>Based on the concepts described by Jez Humble and Dave Farley in their Continuous Delivery book (Addison-Wesley Professional, 2010) and by Dave Farley in his Continuous Delivery Pipelines book (2021), we can identify a few key stages in a deployment pipeline:</span></p><ul><li><span></span><em><span>Commit stage</span></em><span>—After a developer commits new code to the mainline, this stage goes through build, unit tests, integration tests, static code analysis, and packaging. At the end of this stage, an executable application artifact is published to an artifact repository. It is a release candidate. For example, it can be a JAR artifact published to a Maven repository or a container image published to a container registry. This stage supports the continuous integration practice. It’s supposed to be fast, possibly under five minutes, to provide developers with fast feedback about their changes and allow them to move on to the next task.</span></li><li><span></span><em><span>Acceptance stage</span></em><span>—The publication of a new release candidate to the artifact repository triggers this stage, which consists of deploying the application to production-like environments and running additional tests to increase the confidence about its releasability. The tests that run in the acceptance stage are usually slow, but we should strive to keep the whole deployment pipeline execution to under one hour. Examples of tests included in this stage are functional acceptance tests and non-functional acceptance tests, such as performance tests, security tests, and compliance tests. If necessary, this stage can also include manual tasks like exploratory and usability tests. At the end of this stage, the release candidate is ready to be deployed to production at any time. If we are still not confident about it, this stage is missing some tests.</span></li><li><span></span><em><span>Production stage</span></em><span>—After a release candidate has gone through the commit and acceptance stages, we are confident enough to deploy it to production. This stage is triggered manually or automatically, depending on whether the organization has decided to adopt a continuous deployment practice. The new release candidate is deployed to a production environment using the same deployment scripts employed (and tested) in the acceptance stage. Optionally, some final automated tests can be run to verify that the deployment was successful.</span></li></ul><hr /><p>&nbsp;</p><h3 id='external-configuration'><span>External configuration</span></h3><h4 id='profiles'><span>Profiles</span></h4><p><span>Profiles are logical groups of beans registered only when a specific profile is active.</span></p><p><span>The @Profile annotation marks beans or configuration classes to be considered only when the specified profile is active.</span></p><p><img src="../../src/img/backend/microservices/Знімок екрана 2023-04-11 о 23.06.22.png" alt="Знімок екрана 2023-04-11 о 23.06.22" style="zoom:50%;" /></p><p><span>Property files bundled with the application source code are useful for defining some sensible defaults.</span></p><p><span>Use profiles as feature flags when they&#39;re associated with groups of beans to be loaded conditionally. Consider what functionality a profile provides (</span><code>vinyl.testdata.enable=true</code><span>), and name it accordingly, rather than thinking about where it will be enabled.</span></p><p><span>Keep </span><code>application-dev</code><span>, </span><code>-stage</code><span>, this type props preferably in external configurations because it will remain scalable. As a project grows (other services), new environments might be created to try out new functionality and we can quickly end up with way too many configurations groups, implemented like Spring profiles and requiring new builds.</span></p><h4 id='external-stuff'><span>External stuff</span></h4><p><img src="../../src/img/backend/microservices/Знімок екрана 2023-04-11 о 23.44.29.png" alt="Знімок екрана 2023-04-11 о 23.44.29" style="zoom:50%;" /></p><hr /><p>&nbsp;</p><h3 id='data-persistence-with-spring-data'><span>Data persistence with Spring Data</span></h3><p><img src="../../src/img/backend/microservices/image-20230413173715459.png" alt="image-20230413173715459" style="zoom:50%;" /></p><h4 id='spring-data-jdbc-or-spring-data-jpa?'><span>Spring Data JDBC or Spring Data JPA?</span></h4><blockquote><p><span>Spring Data offers two main options for integrating applications with a relational database over the JDBC driver: Spring Data JDBC and Spring Data JPA. How to choose between the two? As always, the answer is that it depends on your requirements and specific context.</span></p><p><span>Spring Data JPA (</span><a href='https://spring.io/projects/spring-data-jpa' target='_blank' class='url'>https://spring.io/projects/spring-data-jpa</a><span>) is the most-used module in the Spring Data project. It’s based on the Java Persistence API (JPA), a standard specification included in Jakarta EE (previously known as Java EE). Hibernate is the most popular implementation. It’s a robust and battle-tested object-relational mapping (ORM) framework for managing data persistence in Java applications. Hibernate provides many useful features, but it’s also a complex framework. If you’re not aware of aspects like persistence context, lazy loading, dirty checking, or sessions, you might face issues that will be hard to debug without a sound familiarity with JPA and Hibernate. Once you know the framework better, you’ll appreciate how much Spring Data JPA simplifies things and boosts your productivity. </span></p><p><span>Spring Data JDBC (</span><a href='https://spring.io/projects/spring-data-jdbc' target='_blank' class='url'>https://spring.io/projects/spring-data-jdbc</a><span>) is a more recent addition to the Spring Data family. It integrates with relational databases following the domain-driven design (DDD) concepts like aggregates, aggregate roots, and repositories. It’s lightweight, simpler, and an excellent choice for microservices where domains are usually defined as bounded contexts (another DDD concept). It gives developers more control over SQL queries and allows the use of immutable entities. Being a simpler alternative to Spring Data JPA, it’s not a drop-in replacement for every scenario, since it doesn’t provide all the features offered by JPA. I recommend learning both, considering your requirements, and then deciding which module suits the specific scenario better.</span></p></blockquote><hr /><p>&nbsp;</p><h3 id='containerizing-spring-boot'><span>Containerizing Spring Boot</span></h3><p><span>You can package Spring Boot applications as container images in different ways:</span></p><ul><li><span>Dockerfiles give you maximum flexibility but make it your responsibility to configure everything you need.</span></li><li><span>Cloud Native Buildpacks (integrated with the Spring Boot Plugin) let you build OCI images directly from the source code, optimizing security, performance, and storage for you.</span></li></ul><p>&nbsp;</p><hr /><h3 id='kubernetes-fundamentals-for-spring-boot'><span>Kubernetes fundamentals for Spring Boot</span></h3><p><img src="../../src/img/backend/microservices/image-20230417104218827.png" alt="image-20230417104218827" style="zoom:45%;" /></p><ul><li><span>Cluster—A set of nodes running containerized applications. It hosts the Control Plane and comprises one or more worker nodes.</span></li><li><span>Control Plane—The cluster component exposing the API and interfaces to define, deploy, and manage the life cycle of Pods. It comprises all the essential elements that implement the typical features of an orchestrator, like cluster management, scheduling, and health monitoring.</span></li><li><span>Worker nodes—Physical or virtual machines providing capacity such as CPU, memory, network, and storage so that containers can run and connect to a network.</span></li><li><span>Pod—The smallest deployable unit wrapping an application container.»</span></li></ul><p><span>Start a new Kubernetes local cluster:</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="java"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="java"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.11111px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">minikube start --cpus 2 --memory 4g --driver docker --profile polar</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 111px;"></div><div class="CodeMirror-gutters" style="display: none; height: 111px;"></div></div></div></pre><h5 id='from-containers-to-pods'><span>From containers to Pods</span></h5><p><span>A </span><em><span>Pod</span></em><span> is the smallest Kubernetes object, and it “represents a set of running containers” in a cluster. It’s usually set up to run a single primary container (your application), but it can also run optional helper containers with additional features like logging, monitoring, or security (</span><a href='https://kubernetes.io/docs/reference/glossary' target='_blank' class='url'>https://kubernetes.io/docs/reference/glossary</a><span>).</span></p><p><img src="../../src/img/backend/microservices/image-20230416221152788.png" alt="image-20230416221152788" style="zoom:30%;" /></p><p><img src="../../src/img/backend/microservices/image-20230416221207318.png" alt="image-20230416221207318" style="zoom:50%;" /></p><h5 id='controlling-pods-with-deployments'><span>Controlling Pods with Deployments</span></h5><p><span>In Docker you manage your application instances directly be creating and removing containers, in Kubernetes you don&#39;t manage Pods - we let Deployment do this for us.</span></p><p><span>A </span><em><span>Deployment</span></em><span> is an object that manages the life cycle of a stateless, replicated application. Each replica is represented by a Pod. The replicas are distributed among the nodes of a cluster for better resilience (</span><a href='https://kubernetes.io/docs/reference/glossary' target='_blank' class='url'>https://kubernetes.io/docs/reference/glossary</a><span>).</span></p><p><span>Deployment also let manage replication with </span><em><span>ReplicaSet</span></em><span>, which ensures there&#39;s always the desired number of Pods up and running in cluster.</span></p><p><img src="../../src/img/backend/microservices/image-20230416221636959.png" alt="image-20230416221636959" style="zoom:45%;" /></p><p><span></span><em><span>Declarative configuration</span></em><span> - we declare what we want to achieve (the </span><em><span>desired state</span></em><span>), and we let Kubernetes make it happen (Ansible or Puppet are imperative tools). </span></p><p><span>We describe object&#39;s desired state in a </span><em><span>manifest</span></em><span> file.</span></p><h5 id='kubernetes-manifest'><span>Kubernetes manifest</span></h5><p><img src="../../src/img/backend/microservices/image-20230416222905634.png" alt="image-20230416222905634" style="zoom:45%;" /></p><ul><li><span></span><em><span>apiVersion</span></em><span> defines the versioned schema of the specific object representation. Core resources such as Pods or Services follow a versioned schema composed of only a version number (such as v1). Other resources like Deployments or ReplicaSet follow a versioned schema consisting of a group and a version number (for example, apps/v1). If in doubt about which version to use, you can refer to the Kubernetes documentation (</span><a href='https://kubernetes.io/docs' target='_blank' class='url'>https://kubernetes.io/docs</a><span>) or use the kubectl explain &lt;object_name&gt; command to get more information about the object, including the API version to use.</span></li><li><span></span><em><span>kind</span></em><span> is the type of Kubernetes object you want to create, such as Pod, ReplicaSet, Deployment, or Service. You can use the kubectl api-resources command to list all the objects supported by the cluster.</span></li><li><span></span><em><span>metadata</span></em><span> provides details about the object you want to create, including the name and a set of labels (key/value pairs) used for categorization. For example, you can instruct Kubernetes to replicate all the objects with a specific label attached.</span></li><li><span></span><em><span>spec</span></em><span> is a section specific to each object type and is used to declare the desired configuration.</span></li></ul><p><span>An example of manifest:</span></p><p><img src="../../src/img/backend/microservices/image-20230417111114807.png" alt="image-20230417111114807" style="zoom:50%;" /></p><p><img src="../../src/img/backend/microservices/image-20230417111203299.png" alt="image-20230417111203299" style="zoom:50%;" /></p><p><span>Create a deployment object from a manifest (from a service folder):</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="java"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="java"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.11111px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">kubectl apply -f k8s/deployment.yml</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 111px;"></div><div class="CodeMirror-gutters" style="display: none; height: 111px;"></div></div></div></pre><p><span>Check which objects have been created:</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="java"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="java"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.11111px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">kubectl get all -l app=catalog-service</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 111px;"></div><div class="CodeMirror-gutters" style="display: none; height: 111px;"></div></div></div></pre><p><span>Check logs:</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="java"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="java"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.11111px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">kubectl logs deployment/catalog-service</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 111px;"></div><div class="CodeMirror-gutters" style="display: none; height: 111px;"></div></div></div></pre><p><span>Delete objects created for catalog-service:</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="java"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="java"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.11111px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">kubectl delete -f k8s</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 111px;"></div><div class="CodeMirror-gutters" style="display: none; height: 111px;"></div></div></div></pre><p><span>Delete objects created from deployment repository:</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="java"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="java"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.11111px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">kubectl delete -f services</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 111px;"></div><div class="CodeMirror-gutters" style="display: none; height: 111px;"></div></div></div></pre><p>&nbsp;</p><h5 id='client-side-service-discovery-and-load-balancing'><span>Client-side service discovery and load balancing</span></h5><p><span>Implementations: Srping Cloud Netflix Eureka, Spring Cloud Consul, Spring Cloud Zookeper Discovery.
+Spring Cloud Load Balancer can be used for client-side load balancing.</span></p><p><img src="../../src/img/backend/microservices/image-20230417114911555.png" alt="image-20230417114911555" style="zoom:45%;" /></p><p><span>Application itself defines a load-balancing strategy, and it can be a benefit because full control over this process. A drawback is that client service discovery assigns more responsibility to developers (if have different languages and frameworks we need to handle in different ways). Also, it results in one more service to deploy and maintain (the service registry).</span></p><h5 id='server-side-service-discovery-and-load-balancing'><span>Server-side service discovery and load balancing</span></h5><p><span>Server-side service discovery solutions move a lot of responsiblity to the deployment platform, so that devs can focus on the business logic and rely on the platform.</span></p><p><span>Such solutions automatically register and deregister application instances and rely on a load-balancer component to route any incoming requests to one of the available instances according to a specific strategy. In this case, the application doesn’t need to interact with the service registry, which is updated and managed by the platform.</span></p><p><img src="../../src/img/backend/microservices/image-20230417115911973.png" alt="image-20230417115911973" style="zoom:45%;" /></p><p><span>The Kubernetes implementation of this service discovery pattern is based on Service objects. A </span><em><span>Service</span></em><span> is “an abstract way to expose an application running on a set of Pods as a network service” (</span><a href='https://kubernetes.io/docs/reference/glossary' target='_blank' class='url'>https://kubernetes.io/docs/reference/glossary</a><span>).</span></p><p><span>A Service object is an abstraction targeting a set of Pods (typically using labels) and defining the access policy. When an application needs to contact a Pod exposed by a Service object, it can use the Service name instead of calling the Pod directly. The Service name is then resolved to the IP address of the Service itself by a local DNS server running in the Kubernetes Control Plane.</span></p><p><span>After resolving the Service name to its IP address, Kubernetes relies on a proxy (called </span><em><span>kube-proxy</span></em><span>), which intercepts the connection to the Service object and forwards the request to one of the Pods targeted by the Service. The proxy knows all the replicas available and adopts a load-balancing strategy depending on the type of Service and the proxy configuration. There is no DNS resolution involved in this step, solving the problems I mentioned earlier.</span></p><p><img src="../../src/img/backend/microservices/image-20230416235513952.png" alt="image-20230416235513952" style="zoom:45%;" /></p><p><span>The solution is transparent to your Spring Boot applications and you get it out of the box in Kubernetes.</span></p><h5 id='exposing-sping-boot-applications-with-kubernetes-services'><span>Exposing Sping Boot applications with Kubernetes Services</span></h5><p><span></span><em><span>ClusterIP</span></em><span> type of service exposes a set of Pods to the cluster.</span></p><p>&nbsp;</p><p><img src="../../src/img/backend/microservices/image-20230417000426810.png" alt="image-20230417000426810" style="zoom:45%;" /></p><p><img src="../../src/img/backend/microservices/image-20230417121010986.png" alt="image-20230417121010986" style="zoom:45%;" /></p><p><span>Apply configured service (from the application folder):</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="java"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="java"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.11111px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">kubectl apply -f k8s/service.yml</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 111px;"></div><div class="CodeMirror-gutters" style="display: none; height: 111px;"></div></div></div></pre><p><span>Now, the Service makes it possible for other Pods within the cluster to communicate with the Catalog Service application, either using IP (called cluster IP) or through its name.</span></p><p><span>Expose the application outside the cluster:</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="java"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="java"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.11111px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">kubectl port-forward service/catalog-service 9001:80</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 111px;"></div><div class="CodeMirror-gutters" style="display: none; height: 111px;"></div></div></div></pre><p><img src="../../src/img/backend/microservices/image-20230417000530214.png" alt="image-20230417000530214" style="zoom:45%;" /></p><h5 id='ensuring-disposability:-graceful-shutdown'><span>Ensuring disposability: Graceful shutdown</span></h5><p><span>Gracefully shutting down means the application stops accepting new requests, completes all those still in progress, and closes any open resources, like database connections.</span></p><p><span>By default, Spring Boot stops the server immediately after receiving a termination signal (</span><code>SIGTERM</code><span>). You can switch to a graceful mode by configuring the </span><code>server.shutdown</code><span> property. You can also configure the grace period, which is how long the application can spend processing all the pending requests. After the grace period expires, the application is terminated even if there are still pending requests. By default, the grace period is 30 seconds. You can change it through the </span><code>spring.lifecycle.timeout-per-shutdown-phase</code><span> property.</span></p><p><span>Need to enable also this in Deployment manifest. When Kubernetes sends a </span><code>SIGTERM</code><span> to Spring app it intercepts it and shutdowns gracefully instead. Kub waits for 30 seconds and then sends </span><code>SIGKILL</code><span>.</span></p><p><span>When it sends the </span><code>SIGTERM</code><span> signal to a Pod, Kubernetes will also inform its own components to stop forwarding requests to the terminating Pod. Since Kubernetes is a distributed system, and the two actions happen in parallel, there is a short time window when the terminating Pod might still receive requests, even if it has already started the graceful shutdown procedure. It will result in user errors. To prevent it we daly sending the </span><code>SIGTERM</code><span> signal to the Pod so that Kubernetes has enough time to spread the news across the cluster (implement with </span><code>preStop</code><span> hook).</span></p><p><img src="../../src/img/backend/microservices/image-20230417122119360.png" alt="image-20230417122119360" style="zoom:45%;" /></p><h5 id='scaling-spring-boot-applications'><span>Scaling Spring Boot applications</span></h5><p><span>Replication is handled at the Pod level by a ReplicaSet object. Deployment objects are already configured to use ReplicaSets. Need to specify how many replicas want to be deployed in Deployment manifest.</span></p><p><img src="../../src/img/backend/microservices/image-20230417122327815.png" alt="image-20230417122327815" style="zoom:45%;" /></p><p><span>The replication is controlled using labels (</span><code>app=catalog-service</code><span> in app deployment.yml).</span></p><h5 id='local-kubernetes-development-with-tilt'><span>Local Kubernetes development with Tilt</span></h5><p><span>Tilt is a tool that automates your local development workflow with Kubernetes: you work on the application while Tilt takes care of building the image, deploying it to your local Kubernetes cluster, and keeping it up-to-date whenever you change something in the code.</span></p><h5 id='octant'><span>Octant</span></h5><p><span>The Octant dashboard lets you visualize your Kubernetes workloads.</span></p><p><span>Octant is a convenient tool that you can use not only for inspecting and troubleshooting a local Kubernetes cluster but also for a remote one.</span></p><hr /><p>&nbsp;</p><h3 id='reactive-spring:-resiliency-and-scalability'><span>Reactive Spring: Resiliency and Scalability</span></h3><p><span>As you saw in chapter 3, non-reactive applications allocate a thread per request. Until a response is returned, the thread will not be used for anything. That is the thread-per-request model. When the request handling involves intensive operations like I/O, the thread will block until those operations are completed. For example, if a database read is required, the thread will wait until data is returned from the database. During the waiting time, the resources allocated to the handling thread are not used efficiently. If you want to support more concurrent users, you’ll have to ensure you have enough threads and resources available. In the end, this paradigm sets constraints on the application’s scalability and doesn’t use computational resources in the most efficient way possible.</span></p><p><span>Reactive applications are more scalable and efficient by design. Handling requests in a reactive application doesn’t involve allocating a given thread exclusively—requests are fulfilled asynchronously based on events. For example, if a database read is required, the thread handling that part of the flow will not wait until data is returned from the database. Instead, a callback is registered, and whenever the information is ready, a notification is sent, and one of the available threads will execute the callback. During that time, the thread that requested the data can be used to process other requests rather than waiting idle.</span></p><p><span>This paradigm, called </span><em><span>event loop</span></em><span>, doesn’t set hard constraints on the application’s scalability. It actually makes it easier to scale, since an increase in the number of concurrent requests does not strictly depend on the number of threads. As a matter of fact, a default configuration for reactive applications in Spring is to use only one thread per CPU core. With the non-blocking I/O capability and a communication paradigm based on events, reactive applications allow for more efficient utilization of computational resources.</span></p><p><img src="../../src/img/backend/microservices/image-20230420133055551.png" alt="image-20230420133055551" style="zoom:50%;" /></p><p><span>The reactive paradigm is a solution to the problem of blocking I/O operations that require more threads to handle high concurrency and which may lead to slow or entirely unresponsive applications. Sometimes the paradigm is mistaken as a way to increase the speed of an application. </span><strong><span>Reactive is about improving scalability and resilience, not speed</span></strong><span>.</span></p><h5 id='spring-stack'><span>Spring stack</span></h5><p><img src="../../src/img/backend/microservices/image-20230420133548968.png" alt="image-20230420133548968" style="zoom:50%;" /><span>
+Project Reactor and supports asynchronous and non-blocking operations.</span></p><h5 id='resilient-applications-with-reactive-spring'><span>Resilient applications with Reactive Spring</span></h5><p><span>The critical point in achieving resilience (or fault-tolerance) is keeping the faulty component isolated until the fault is fixed. </span></p><p><span>Use Reactive Spring to configure timeouts, retries and fallbacks.</span></p><blockquote><p><span>Placing the </span><code>retryWhen()</code><span> operator after </span><code>timeout()</code><span> means that the timeout is applied to each retry attempt.</span></p><p><span>
+Placing the </span><code>retryWhen()</code><span> operator before </span><code>timeout()</code><span> means that the timeout is applied to the overall operation (that is, the whole sequence of the initial request and retries has to happen within the given time limit).</span></p></blockquote><h5 id='testing-2'><span>Testing</span></h5><p><span>The Spring WebFlux slice can be tested through the @WebFluxTest annotation.</span></p><p><span>The persistence slice of a reactive application can be tested using the @DataR2dbcTest annotation and Testcontainers.</span></p><hr /><p>&nbsp;</p><h3 id='api-gateway-and-circuit-breakers'><span>API gateway and circuit breakers</span></h3><p><span>An API gateway provides several benefits in a distributed architecture, including decoupling the internal services from the external API and offering a central, convenient place for handling cross-cutting concerns like security, monitoring, and resilience.</span></p><p><span>Routes are the core of Spring Cloud Gateway. They are identified by a unique ID, a collection of predicates determining whether to follow the route, a URI for forwarding the request if the predicates allow, and a collection of filters that are applied before or after forwarding the request downstream.</span></p><p><img src="../../src/img/backend/microservices/Знімок екрана 2023-04-20 о 20.24.31.png" alt="Знімок екрана 2023-04-20 о 20.24.31" style="zoom:50%;" /></p><h5 id='request-rate-limiters'><span>Request rate limiters</span></h5><p><span></span><em><span>Client-side rate limiters</span></em><span> is when constraining the number of requests sent to a downstream service in a given period. Useful when the downstream service is a thirdparty and we want to avoid incurring extra costs.</span></p><p><span>If the downstream service belongs to our system, we might use a </span><em><span>bulkhead</span></em><span> pattern (or </span><em><span>concurrent request limiter</span></em><span>) that sets constraints on how many concurrent requests are allowed and queuing up the blocked ones.</span></p><p><span></span><em><span>Server-side limiters</span></em><span> are contraining the number of requets received by an upstream service in a given period. It&#39;s handy when implemented in an API gateway to protect the whole system from overloading or from DoS attacks.</span></p><blockquote><p><span>«Scaling your API with Rate Limiters” article about how they use it to implement rate limiters at Stripe (</span><a href='https://stripe.com/blog/rate-limiters' target='_blank' class='url'>https://stripe.com/blog/rate-limiters</a><span>)»</span></p></blockquote><blockquote><p><span>What happens if Redis becomes unavailable? Spring Cloud Gateway has been built with resilience in mind, so it will keep its service level, but the rate limiters would be disabled until Redis is up and running again.</span></p></blockquote><h5 id='handling-sessions'><span>Handling sessions</span></h5><p><span>Redis is a popular option for session management, and it’s supported by Spring Session Data Redis.</span></p><h5 id='ingress-object'><span>Ingress object</span></h5><p><span>An </span><em><span>Ingress</span></em><span> is an object that “manages external access to the services in a cluster, typically HTTP. Ingress may provide load balancing, SSL termination and name-based virtual hosting” (</span><a href='https://kubernetes.io/docs' target='_blank' class='url'>https://kubernetes.io/docs</a><span>). An Ingress object acts as an entry point into a Kubernetes cluster and is capable of routing traffic from a single external IP address to multiple services running inside the cluster.</span></p><p><img src="../../src/img/backend/microservices/image-20230421000025800.png" alt="image-20230421000025800" style="zoom:50%;" /></p><p><span>Ingress objects don’t accomplish anything by themselves. We use an Ingress object to declare the desired state in terms of routing and TLS termination. The actual component that enforces those rules and routes traffic from outside the cluster to the applications inside is the ingress controller.</span></p><p><span>Edge Service takes care of application routing, but it should not be concerned with the underlying infrastructure and network configuration. Using an Ingress resource, we can decouple the two responsibilities. Developers would maintain Edge Service, while the platform team would manage the ingress controller and the network configuration (perhaps relying on a service mesh like Linkerd or Istio).</span></p><hr /><p>&nbsp;</p><h3 id='event-driven-applications-and-functions'><span>Event-driven applications and functions</span></h3><p><span>Event-driven architectures are distributed systems that interact with each other by producing and consuming events.</span></p><blockquote><p><span>Articles by Martin Fowler: “Focusing on Events” (</span><a href='https://martinfowler.com/eaaDev/EventNarrative.xhtml' target='_blank' class='url'>https://martinfowler.com/eaaDev/EventNarrative.xhtml</a><span>); “Domain Event” (</span><a href='https://martinfowler.com/eaaDev/DomainEvent.xhtml' target='_blank' class='url'>https://martinfowler.com/eaaDev/DomainEvent.xhtml</a><span>); and “What do you mean by ‘Event-Driven’?” (</span><a href='https://martinfowler.com/articles/' target='_blank' class='url'>https://martinfowler.com/articles/</a><span> 201701-event-driven.xhtml), all on his MartinFowler.com blog.</span></p></blockquote><p><span>In an event-driven architecture, we identify </span><em><span>event producers</span></em><span> and </span><em><span>event consumers</span></em><span>. A producer is a component that detects the event and sends a notification. A consumer is a component that is notified when a specific event occurs. Producers and consumers don’t know each other and work independently. A producer sends an event notification by publishing a message to a channel operated by an event broker that’s responsible for collecting and routing messages to consumers. A consumer is notified by the broker when an event occurs and can act upon it.</span></p><p><span>There are 2 event-driven models:</span></p><ul><li><span></span><em><span>Publisher/subscriber</span></em><span> - based on subscriptions; producers publish events that are sent to all subscribers, events cannot be replayed after being received, so consumers not able to get the past events (RabbitMQ)</span></li><li><span></span><em><span>Event streaming</span></em><span> - events are written to a log; producers publish events as they occur, consumers don&#39;t subscribe to them but can read from any part of the event stream, so events can be replayed (Apache Kafka)</span></li></ul><p><img src="../../src/img/backend/microservices/image-20230422164045013.png" alt="image-20230422164045013" style="zoom:45%;" /></p><p><span>A messaging system requires a protocol (AMQP) and message broker (RabbitMQ). On the application side we use Spring Cloud Stream.
+In the AMQP protocol, producers send messages to an exchange in a broker that forwards them to queues according to specific routing algorithms. Consumers then receive messages from the queues in the broker.</span></p><p><img src="../../src/img/backend/microservices/image-20230422164614005.png" alt="image-20230422164614005" style="zoom:45%;" /></p><p><img src="../../src/img/backend/microservices/image-20230422164759243.png" alt="image-20230422164759243" style="zoom:45%;" /></p><h5 id='functions-with-spring-cloud-function'><span>Functions with Spring Cloud Function</span></h5><p><span>Implement business logic via functions based on the standard Java 8 interfaces:</span></p><ul><li><span></span><em><span>Supplier</span></em><span>—A supplier is a function with only output, no input. It’s also known as a producer, publisher, or source.</span></li><li><span></span><em><span>Function</span></em><span>—A function has both input and output. It’s also known as a processor.</span></li><li><span></span><em><span>Consumer</span></em><span>—A consumer is a function with input but no output. It’s also known as a subscriber or sink.</span></li></ul><p><span>Functions can be exposed as REST endpoints, packaged, and deployed in a FaaS platform as serverless applications (Knative, AWS Lambda, Azure Function, Google Cloud Functions), or they can be bound to message channels.</span></p><ul><li><span>Functions and consumers are activated automatically when new messages arrive.</span></li><li><span>Suppliers need to be explicitly activated, such as by explicitly sending a message to a destination binding.</span></li></ul><h5 id='processing-messages-with-spring-cloud-stream'><span>Processing messages with Spring Cloud Stream</span></h5><p><span>Spring Cloud Stream is a framework for building scalable, event-driven, and streaming applications. It’s built on top of Spring Integration, which offers the communication layer with message brokers; Spring Boot, which provides auto-configuration for the middleware integration; and Spring Cloud Function, which produces, processes, and consumes events.</span></p><p><span>Spring Cloud Stream is based on a few essential concepts:</span></p><ul><li><span></span><em><span>Destination binder</span></em><span> — The component providing the integration with external messaging systems, like RabbitMQ or Kafka</span></li><li><span></span><em><span>Destination binding</span></em><span> — The bridge between the external messaging system entities, like queues and topics, and the application-provided producers and consumers</span></li><li><span></span><em><span>Message</span></em><span> — The data structure used by the application producers and consumers to communicate with the destination binders, and therefore with the external messaging systems</span></li></ul><p><span>They are all handled by the framework itself, the app and business logic is not aware of the external messaging system.</span></p><p><img src="../../src/img/backend/microservices/image-20230422170144619.png" alt="image-20230422170144619" style="zoom:45%;" /></p><p><span>A </span><em><span>destination binding</span></em><span> can be either an input channel or an output channel. Names:</span></p><ul><li><span>Input binding: </span><code>&lt;functionName&gt; + -in- + &lt;index&gt;</code></li><li><span>Output binding: </span><code>&lt;functionName&gt; + -out- + &lt;index&gt;</code></li></ul><p><img src="../../src/img/backend/microservices/image-20230422171243686.png" alt="image-20230422171243686" style="zoom:47%;" /></p><h5 id='making-messaging-resilient-to-failures'><span>Making messaging resilient to failures</span></h5><p><span>Event-driven architectures solve some syncronous request/response interactions. We removed temporal coupling between applications, so no need to adopt patterns like circuit breakers. If the consumer is momentarily unavailable while the producer sends a message it doesn&#39;t matter. The consumer will receive the message once its up and running again.
+But the overall drawback is that we are introducing a new component that needs to be deployed amd maintained: the message broker.</span></p><p><span>We can make communication between the app and broker more resilient with retries and timeouts. Spring Cloud Stream has such capabilities as error channels and graceful shutdown. We may configure dead-letter queues, acknolwledgment flows, republishing messages on error.</span></p><blockquote><p><span>RabbitMQ guarantees that each message is delivered at least once (consumer might receive the same message twice).</span></p></blockquote><h5 id='implementing-event-producers'><span>Implementing event producers</span></h5><p><span>Unlike functions and consumers, suppliers need to be activated. They act only upon invocation.</span></p><blockquote><p><span>We can bridge the REST layer with the stream part of the application using a </span><code>StreamBridge</code><span>.</span></p></blockquote><h5 id='book-example-illustration'><span>Book example illustration</span></h5><p><img src="../../src/img/backend/microservices/image-20230422183407963.png" referrerpolicy="no-referrer" alt="image-20230422183407963"></p><p>&nbsp;</p></div></div>
+</body>
+</html>
