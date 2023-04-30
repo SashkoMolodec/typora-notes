@@ -178,9 +178,9 @@ You can package Spring Boot applications as container images in different ways:
 - Dockerfiles give you maximum flexibility but make it your responsibility to configure everything you need.
 - Cloud Native Buildpacks (integrated with the Spring Boot Plugin) let you build OCI images directly from the source code, optimizing security, performance, and storage for you.
 
-
-
 ---
+
+
 
 ### Kubernetes fundamentals for Spring Boot
 
@@ -516,3 +516,112 @@ Unlike functions and consumers, suppliers need to be activated. They act only up
 
 ![image-20230422183407963](../../src/img/backend/microservices/image-20230422183407963.png)
 
+---
+
+
+
+### Security: Authentication
+
+Access control systems require identification (who are you?), authentication (can you prove it’s really you?), and authorization (what are you allowed to do?).
+
+Using a dedicated service to authenticate users leads to two aspects:
+
+1. Need to establish a protocol for Edge Service to delegeate user auth to the indentity provider, and the latter provide result. Here we use **OpenID Connect**.
+2. Define a data format that the identity provider can use to securely inform Edge Service about the identity of users after they have been succesfully authenticated. Here we use **JSON Web Token**.
+
+A common strategy for implementing authentication and authorization in cloud native applications is based on JWT as the data format, OAuth2 as the authorization framework, and OpenID Connect as the authentication protocol.
+
+When using OIDC authentication, a Client application initiates the flow and delegates an Authorization Server for the actual authentication. Then the Authorization Server issues an ID Token (JSON Web Token) to the Client.
+
+<img src="../../src/img/backend/microservices/image-20230425160146900.png" alt="image-20230425160146900" style="zoom:50%;" />
+
+> OAuth2 to OIDC terminology:
+>
+> OAuth2 Authorization Server - OIDC Provider
+> OAuth2 Client - Relying Party (RP)
+> OAuth2 User - End-User
+
+The ID Token includes information about the user authentication.
+
+Keycloak is an identity and access management solution that supports OAuth2 and OpenID Connect and can be used as an Authorization Server.
+
+##### Spring support
+
+The Spring Security itself provides its main functionality by relying on *filters* (`SecurityWebFilterChain`). 
+
+Spring Security provides native support for OAuth2 and OpenID Connect, and you can use it to turn Spring Boot applications into OAuth2 Clients.
+
+<img src="../../src/img/backend/microservices/image-20230425160410390.png" alt="image-20230425160410390" style="zoom:50%;" />
+
+After user succesfully logs in, Keycloack sends the authorization code to backend. Then backend takes this authorization code + client ID + client secret, sends to Keycloak at receives an Access token and ID token (JWT).
+
+<img src="../../src/img/backend/microservices/Keycloak-modell-740x994.png" alt="Keycloak-modell-740x994.png (740×994)" style="zoom:60%;" />
+
+In Spring Security, you can configure both authentication and authorization in a `SecurityWebFilterChain` bean. To enable the OIDC authentication flow, you can use the oauth2Login() DSL.
+
+Independent of the authentication strategy adopted (whether username/password, OpenID Connect/OAuth2, or SAML2), Spring Security keeps the information about an authenticated user (also called the principal) in an `Authentication` object. In the case of OIDC, the principal object is of type `OidcUser`, and it’s where Spring Security stores the ID Token. In turn, `Authentication` is saved in a `SecurityContext` object.
+
+<img src="../../src/img/backend/microservices/image-20230425161331306.png" alt="image-20230425161331306" style="zoom:50%;" />
+
+##### User logout
+
+By default, Spring Security exposes a /logout endpoint for logging a user out.
+
+In an OIDC/OAuth2 context, we also need to propagate the logout request to the Authorization Server (such as Keycloak) to log the user out of there. We can do that via the RP-Initiated Logout flow supported by Spring Security via the `OidcClientInitiatedServerLogoutSuccessHandler` class.
+
+<img src="../../src/img/backend/microservices/image-20230425161454861.png" alt="image-20230425161454861" style="zoom:50%;" />
+
+##### The Client dillema in OAuth2
+
+Clients can be *public* or *confidential*. We register an application as a public Client if it can’t keep a secret. For example, mobile applications would be registered as public Clients. On the other hand, confidential Clients are those that can keep a secret, and they are usually backend applications like Edge Service. The registration process is similar either way. The main difference is that confidential Clients are required to authenticate themselves with the Authorization Server, such as by relying on a shared secret. It’s an additional protection layer we can’t use for public Clients, since they have no way to store the shared secret securely.
+
+From book:
+
+> «Here is my rule of thumb. If the frontend is a mobile or desktop application like iOS or Android, that will be the OAuth2 Client, and it will be categorized as a public Client. You can use libraries like AppAuth (https://appauth.io) to add support for OIDC/ OAuth2 and store the tokens as securely as possible on the device. If the frontend is a web application (like in Polar Bookshop), then a backend service should be the Client. In this case, it would be categorized as a confidential Client.»
+>
+> «I recommend basing the interaction between browser and backend on a session cookie (like you’d do for monoliths) and have the backend application be responsible for controlling the authentication flow and using the tokens issued by the Authorization Server, even in the case of SPAs. That is the current best practice recommended by security experts.»
+>
+
+From a security perspective, it is virtually impossible to secure tokens in a frontend web application. 
+
+##### Spring Testing
+
+- When a secure Spring Boot application is the backend for an SPA, we need to configure CSRF protection through cookies and implement an authentication entry point that returns an HTTP 401 response when a request is not authenticated (as opposed to the default HTTP 302 response redirecting to the Authorization Server automatically).
+- The Spring Security Test dependency supplies several convenient utilities for testing security.
+- The WebTestClient bean can be enhanced by mutating its request context through a particular configuration for OIDC login and CSRF protection.
+
+---
+
+
+
+### Security: Authorization and auditing
+
+OAuth2 is an authorization framework that enables an application (called a *Client*) to obtain limited access to a protected resource provided by another application (called a *Resource Server*) on behalf of a user. When a user authenticates with Edge Service and asks to access their book orders, OAuth2 provides a solution for Edge Service to retrieve orders from Order Service on behalf of that user. This solution relies on a trusted party (called an *Authorization Server*), which issues an *Access Token* to Edge Service and grants access to the user’s book orders from Order Service.
+
+<img src="../../src/img/backend/microservices/image-20230427092406958.png" alt="image-20230427092406958" style="zoom:50%;" />
+
+##### Token relay from Spring Cloud Gateway to other services
+
+After a user successfully authenticates with Keycloak, Edge Service (the OAuth2 Client) receives an ID Token and an Access Token:
+
+- *ID Token*—This represents a successful authentication event and includes information about the authenticated user.
+
+- *Access Token*—This represents the authorization given to the OAuth2 Client to access protected data provided by an OAuth2 Resource Server on the user’s behalf.
+
+In Edge Service, Spring Security uses the ID Token to extract information about the authenticated user, set up a context for the current user session, and make the data available through the `OidcUser` object. That’s what you saw in the previous chapter.
+
+The Access Token grants Edge Service authorized access to Catalog Service and Order Service (the OAuth2 Resource Servers) on behalf of the user. After we secure both applications, Edge Service will have to include the Access Token in all requests routed to them as an Authorization HTTP header. Unlike ID Tokens, Edge Service doesn’t read the Access Token’s content because it’s not the intended audience. It stores the Access Token received from Keycloak and then includes it as-is in any request to a protected endpoint downstream.
+
+<img src="../../src/img/backend/microservices/image-20230427092931526.png" alt="image-20230427092931526" style="zoom:50%;" />
+
+For each incoming request containing an Access Token in the `Authorization` header, Spring Security will automatically validate the token's signature using the public keys provided by Keycloack (JWK, JSON Web Key) and decode its claims via a `JwtDecoder` object (auto-configured).
+
+##### Implementation details
+
+<img src="../../src/img/backend/microservices/image-20230427093017844.png" alt="image-20230427093017844" style="zoom:50%;" />
+
+<img src="../../src/img/backend/microservices/image-20230427102706159.png" alt="image-20230427102706159" style="zoom:50%;" />
+
+##### Scopes
+
+Access to claims is controlled through *scopes*, a mechanism provided by OAuth2 to limit what data an OAuth2 Client can access. You can think of scopes as roles assigned to applications rather than to users. In the previous chapter, we used Spring Security to make Edge Service an OAuth2 Client and configured it with the `openid` scope. That scope grants Edge Service access to the authenticated user’s identity (provided in the sub claim).

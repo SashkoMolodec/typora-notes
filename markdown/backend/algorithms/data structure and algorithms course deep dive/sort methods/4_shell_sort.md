@@ -39,7 +39,7 @@ For example we have an array of 20 items so choosing $k=3$ will suit best.
 
 ##### In action:
 
-<video src="../../../../../src/video/shell_sort_in_action.mp4"></video>
+<video controls src="../../../../../src/video/shell_sort_in_action.mp4"></video>
 
 ##### Implementation:
 

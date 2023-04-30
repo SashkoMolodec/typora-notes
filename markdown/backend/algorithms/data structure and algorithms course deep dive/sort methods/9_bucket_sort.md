@@ -18,7 +18,7 @@
 
 ##### In action:
 
-<video src="../../../../../src/video/bucket_sort_in_action.mp4"></video>
+<video controls src="../../../../../src/video/bucket_sort_in_action.mp4"></video>
 
 ##### Implementation:
 

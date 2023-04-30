@@ -11,11 +11,11 @@
 - Can be in-place (depends on algorithm sort we choose)
 - Must use a stable algorithm at each stage
 
-<video src="../../../../../src/video/counting_sort_in_action.mp4"></video>
+<video controls src="../../../../../src/video/counting_sort_in_action.mp4"></video>
 
 ##### In action:
 
-<video src="../../../../../src/video/radix_sort_in_action.mp4"></video>
+<video controls src="../../../../../src/video/radix_sort_in_action.mp4"></video>
 
 
 

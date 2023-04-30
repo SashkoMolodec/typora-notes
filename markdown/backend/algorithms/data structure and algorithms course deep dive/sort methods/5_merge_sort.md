@@ -21,14 +21,14 @@
 - Divide the unsorted array into 2 parts (left array and right)
 - Split the left and right arrays into two arrays each and recursively do this until arrays with one element each - they will be sorted
 
-<video src="../../../../../src/video/merge_sort_in_action_1.mp4"></video>
+<video controls src="../../../../../src/video/merge_sort_in_action_1.mp4"></video>
 
 ##### Merging phase
 
 - Merge every left/right pair of sibling arrays into sorted array recursively until we'll have a single sorted array
 - Set `i` to the first index of the left array, and `j` to the first index of the right array; compare left[i] to right[j] and if left is smaller, we add it to the temp array and increment `i`. if right is smaller, we add it to the temp array and increment `j`
 
-<video src="../../../../../src/video/merge_sort_in_action_2.mp4"></video>
+<video controls src="../../../../../src/video/merge_sort_in_action_2.mp4"></video>
 
 ##### Implementation:
 

@@ -13,7 +13,7 @@
 
 ##### Algorithm in action:
 
-<video src="../../../../../src/video/counting_sort_in_action.mp4"></video>
+<video controls src="../../../../../src/video/counting_sort_in_action.mp4"></video>
 
 ##### Implementation:
 

@@ -13,4 +13,4 @@
 
 ##### In action:
 
-<video src="../../../../../src/video/heap_sort_in_action.mp4"></video>
+<video controls src="../../../../../src/video/heap_sort_in_action.mp4"></video>
