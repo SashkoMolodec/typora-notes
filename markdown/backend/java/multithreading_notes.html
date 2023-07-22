@@ -1,0 +1,840 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
+.mac-os-11 { --title-bar-height:28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.6; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex:2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.42857rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left: 28px solid transparent; border-right: 28px solid transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right: 8px solid transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+.md-inline-math-container mjx-container { zoom: 0.95; }
+
+
+.CodeMirror { height: auto; }
+.CodeMirror.cm-s-inner { background: inherit; }
+.CodeMirror-scroll { overflow: auto hidden; z-index: 3; }
+.CodeMirror-gutter-filler, .CodeMirror-scrollbar-filler { background-color: rgb(255, 255, 255); }
+.CodeMirror-gutters { border-right: 1px solid rgb(221, 221, 221); background: inherit; white-space: nowrap; }
+.CodeMirror-linenumber { padding: 0px 3px 0px 5px; text-align: right; color: rgb(153, 153, 153); }
+.cm-s-inner .cm-keyword { color: rgb(119, 0, 136); }
+.cm-s-inner .cm-atom, .cm-s-inner.cm-atom { color: rgb(34, 17, 153); }
+.cm-s-inner .cm-number { color: rgb(17, 102, 68); }
+.cm-s-inner .cm-def { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-variable { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-variable-2 { color: rgb(0, 85, 170); }
+.cm-s-inner .cm-variable-3 { color: rgb(0, 136, 85); }
+.cm-s-inner .cm-string { color: rgb(170, 17, 17); }
+.cm-s-inner .cm-property { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-operator { color: rgb(152, 26, 26); }
+.cm-s-inner .cm-comment, .cm-s-inner.cm-comment { color: rgb(170, 85, 0); }
+.cm-s-inner .cm-string-2 { color: rgb(255, 85, 0); }
+.cm-s-inner .cm-meta { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-qualifier { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-builtin { color: rgb(51, 0, 170); }
+.cm-s-inner .cm-bracket { color: rgb(153, 153, 119); }
+.cm-s-inner .cm-tag { color: rgb(17, 119, 0); }
+.cm-s-inner .cm-attribute { color: rgb(0, 0, 204); }
+.cm-s-inner .cm-header, .cm-s-inner.cm-header { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-quote, .cm-s-inner.cm-quote { color: rgb(0, 153, 0); }
+.cm-s-inner .cm-hr, .cm-s-inner.cm-hr { color: rgb(153, 153, 153); }
+.cm-s-inner .cm-link, .cm-s-inner.cm-link { color: rgb(0, 0, 204); }
+.cm-negative { color: rgb(221, 68, 68); }
+.cm-positive { color: rgb(34, 153, 34); }
+.cm-header, .cm-strong { font-weight: 700; }
+.cm-del { text-decoration: line-through; }
+.cm-em { font-style: italic; }
+.cm-link { text-decoration: underline; }
+.cm-error { color: red; }
+.cm-invalidchar { color: red; }
+.cm-constant { color: rgb(38, 139, 210); }
+.cm-defined { color: rgb(181, 137, 0); }
+div.CodeMirror span.CodeMirror-matchingbracket { color: rgb(0, 255, 0); }
+div.CodeMirror span.CodeMirror-nonmatchingbracket { color: rgb(255, 34, 34); }
+.cm-s-inner .CodeMirror-activeline-background { background: inherit; }
+.CodeMirror { position: relative; overflow: hidden; }
+.CodeMirror-scroll { height: 100%; outline: 0px; position: relative; box-sizing: content-box; background: inherit; }
+.CodeMirror-sizer { position: relative; }
+.CodeMirror-gutter-filler, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-vscrollbar { position: absolute; z-index: 6; display: none; outline: 0px; }
+.CodeMirror-vscrollbar { right: 0px; top: 0px; overflow: hidden; }
+.CodeMirror-hscrollbar { bottom: 0px; left: 0px; overflow: auto hidden; }
+.CodeMirror-scrollbar-filler { right: 0px; bottom: 0px; }
+.CodeMirror-gutter-filler { left: 0px; bottom: 0px; }
+.CodeMirror-gutters { position: absolute; left: 0px; top: 0px; padding-bottom: 10px; z-index: 3; overflow-y: hidden; }
+.CodeMirror-gutter { white-space: normal; height: 100%; box-sizing: content-box; padding-bottom: 30px; margin-bottom: -32px; display: inline-block; }
+.CodeMirror-gutter-wrapper { position: absolute; z-index: 4; background: 0px 0px !important; border: none !important; }
+.CodeMirror-gutter-background { position: absolute; top: 0px; bottom: 0px; z-index: 4; }
+.CodeMirror-gutter-elt { position: absolute; cursor: default; z-index: 4; }
+.CodeMirror-lines { cursor: text; }
+.CodeMirror pre { border-radius: 0px; border-width: 0px; background: 0px 0px; font-family: inherit; font-size: inherit; margin: 0px; white-space: pre; overflow-wrap: normal; color: inherit; z-index: 2; position: relative; overflow: visible; }
+.CodeMirror-wrap pre { overflow-wrap: break-word; white-space: pre-wrap; word-break: normal; }
+.CodeMirror-code pre { border-right: 30px solid transparent; width: fit-content; }
+.CodeMirror-wrap .CodeMirror-code pre { border-right: none; width: auto; }
+.CodeMirror-linebackground { position: absolute; inset: 0px; z-index: 0; }
+.CodeMirror-linewidget { position: relative; z-index: 2; overflow: auto; }
+.CodeMirror-wrap .CodeMirror-scroll { overflow-x: hidden; }
+.CodeMirror-measure { position: absolute; width: 100%; height: 0px; overflow: hidden; visibility: hidden; }
+.CodeMirror-measure pre { position: static; }
+.CodeMirror div.CodeMirror-cursor { position: absolute; visibility: hidden; border-right: none; width: 0px; }
+.CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+.CodeMirror-focused div.CodeMirror-cursor { visibility: inherit; }
+.cm-searching { background: rgba(255, 255, 0, 0.4); }
+span.cm-underlined { text-decoration: underline; }
+span.cm-strikethrough { text-decoration: line-through; }
+.cm-tw-syntaxerror { color: rgb(255, 255, 255); background-color: rgb(153, 0, 0); }
+.cm-tw-deleted { text-decoration: line-through; }
+.cm-tw-header5 { font-weight: 700; }
+.cm-tw-listitem:first-child { padding-left: 10px; }
+.cm-tw-box { border-style: solid; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-color: inherit; border-top-width: 0px !important; }
+.cm-tw-underline { text-decoration: underline; }
+@media print {
+  .CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+}
+
+
+:root {
+    --side-bar-bg-color: #fafafa;
+    --control-text-color: #777;
+}
+
+@include-when-export url(https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
+
+/* open-sans-regular - latin-ext_latin */
+  /* open-sans-italic - latin-ext_latin */
+    /* open-sans-700 - latin-ext_latin */
+    /* open-sans-700italic - latin-ext_latin */
+  html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    font-family: "Open Sans","Clear Sans", "Helvetica Neue", Helvetica, Arial, 'Segoe UI Emoji', sans-serif;
+    color: rgb(51, 51, 51);
+    line-height: 1.6;
+}
+
+#write {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 30px;
+    padding-bottom: 100px;
+}
+
+@media only screen and (min-width: 1400px) {
+    #write {
+        max-width: 1024px;
+    }
+}
+
+@media only screen and (min-width: 1800px) {
+    #write {
+        max-width: 1200px;
+    }
+}
+
+#write > ul:first-child,
+#write > ol:first-child{
+    margin-top: 30px;
+}
+
+a {
+    color: #4183C4;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+h1 tt,
+h1 code {
+    font-size: inherit;
+}
+h2 tt,
+h2 code {
+    font-size: inherit;
+}
+h3 tt,
+h3 code {
+    font-size: inherit;
+}
+h4 tt,
+h4 code {
+    font-size: inherit;
+}
+h5 tt,
+h5 code {
+    font-size: inherit;
+}
+h6 tt,
+h6 code {
+    font-size: inherit;
+}
+h1 {
+    font-size: 2.25em;
+    line-height: 1.2;
+    border-bottom: 1px solid #eee;
+}
+h2 {
+    font-size: 1.75em;
+    line-height: 1.225;
+    border-bottom: 1px solid #eee;
+}
+
+/*@media print {
+    .typora-export h1,
+    .typora-export h2 {
+        border-bottom: none;
+        padding-bottom: initial;
+    }
+
+    .typora-export h1::after,
+    .typora-export h2::after {
+        content: "";
+        display: block;
+        height: 100px;
+        margin-top: -96px;
+        border-top: 1px solid #eee;
+    }
+}*/
+
+h3 {
+    font-size: 1.5em;
+    line-height: 1.43;
+}
+h4 {
+    font-size: 1.25em;
+}
+h5 {
+    font-size: 1em;
+}
+h6 {
+   font-size: 1em;
+    color: #777;
+}
+p,
+blockquote,
+ul,
+ol,
+dl,
+table{
+    margin: 0.8em 0;
+}
+li>ol,
+li>ul {
+    margin: 0 0;
+}
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+li p.first {
+    display: inline-block;
+}
+ul,
+ol {
+    padding-left: 30px;
+}
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+blockquote {
+    border-left: 4px solid #dfe2e5;
+    padding: 0 15px;
+    color: #777777;
+}
+blockquote blockquote {
+    padding-right: 0;
+}
+table {
+    padding: 0;
+    word-break: initial;
+}
+table tr {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+table tr:nth-child(2n),
+thead {
+    background-color: #f8f8f8;
+}
+table th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    margin: 0;
+    padding: 6px 13px;
+}
+table td {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 6px 13px;
+}
+table th:first-child,
+table td:first-child {
+    margin-top: 0;
+}
+table th:last-child,
+table td:last-child {
+    margin-bottom: 0;
+}
+
+.CodeMirror-lines {
+    padding-left: 4px;
+}
+
+.code-tooltip {
+    box-shadow: 0 1px 1px 0 rgba(0,28,36,.3);
+    border-top: 1px solid #eef2f2;
+}
+
+.md-fences,
+code,
+tt {
+    border: 1px solid #e7eaed;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    padding: 0;
+    padding: 2px 4px 0px 4px;
+    font-size: 0.9em;
+}
+
+code {
+    background-color: #f3f4f4;
+    padding: 0 2px 0 2px;
+}
+
+.md-fences {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+
+
+.md-task-list-item > input {
+  margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+    table,
+    pre {
+        page-break-inside: avoid;
+    }
+    pre {
+        word-wrap: break-word;
+    }
+}
+
+.md-fences {
+    background-color: #f8f8f8;
+}
+#write pre.md-meta-block {
+    padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block>.code-tooltip {
+    bottom: .375rem;
+}
+
+.md-mathjax-midline {
+    background: #fafafa;
+}
+
+#write>h3.md-focus:before{
+    left: -1.5625rem;
+    top: .375rem;
+}
+#write>h4.md-focus:before{
+    left: -1.5625rem;
+    top: .285714286rem;
+}
+#write>h5.md-focus:before{
+    left: -1.5625rem;
+    top: .285714286rem;
+}
+#write>h6.md-focus:before{
+    left: -1.5625rem;
+    top: .285714286rem;
+}
+.md-image>.md-meta {
+    /*border: 1px solid #ddd;*/
+    border-radius: 3px;
+    padding: 2px 0px 0px 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: #a7a7a7;
+    opacity: 1;
+}
+
+.md-toc { 
+    margin-top:20px;
+    padding-bottom:20px;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/** focus mode */
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header, .context-menu, .megamenu-content, footer{
+    font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state{
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: #fafafa;
+    background-color: var(--side-bar-bg-color);
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+/*.html-for-mac {
+    --item-hover-bg-color: #E6F0FE;
+}*/
+
+#md-notification .btn {
+    border: 0;
+}
+
+.dropdown-menu .divider {
+    border-color: #e5e5e5;
+    opacity: 0.4;
+}
+
+.ty-preferences .window-content {
+    background-color: #fafafa;
+}
+
+.ty-preferences .nav-group-item.active {
+    color: white;
+    background: #999;
+}
+
+.menu-item-container a.menu-style-btn {
+    background-color: #f5f8fa;
+    background-image: linear-gradient( 180deg , hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0)); 
+}
+
+
+
+mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+  min-height: 1px;
+  min-width: 1px;
+}
+
+mjx-container[jax="SVG"] > svg a {
+  fill: blue;
+  stroke: blue;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line], svg[data-table] > g > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame], svg[data-table] > g > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed, svg[data-table] > g > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted, svg[data-table] > g > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > g > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
+  stroke-width: 3;
+}
+
+g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+.MathJax g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
+                            stroke-width: 0;
+                        }
+</style>
+<title>multithreading_notes</title>
+</head>
+<body class='typora-export'><div class='typora-export-content'>
+<div id='write'  class=''><h2 id='multithreading-course-notes'><span>Multithreading course notes</span></h2><p><a href='java_index'>◀️</a></p><div class='md-toc' mdtype='toc'><p class="md-toc-content" role="list"><span role="listitem" class="md-toc-item md-toc-h2"><a class="md-toc-inner" href="#multithreading-course-notes"><span>Multithreading course notes</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#context-switch"><span>Context switch</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#threads-scheduling"><span>Threads scheduling</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#threads-vs-processes"><span>Threads vs processes</span></a></span><span role="listitem" class="md-toc-item md-toc-h4"><a class="md-toc-inner" href="#threads-coordination"><span>Threads coordination</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#thread.interrupt()"><span>thread.interrupt()</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#daemon-threads"><span>Daemon threads</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#thread.join()"><span>thread.join()</span></a></span><span role="listitem" class="md-toc-item md-toc-h4"><a class="md-toc-inner" href="#performance-optimization"><span>Performance optimization</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#latency"><span>Latency</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#throughput"><span>Throughput</span></a></span><span role="listitem" class="md-toc-item md-toc-h4"><a class="md-toc-inner" href="#data-sharing"><span>Data sharing</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#stack"><span>Stack</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#heap"><span>Heap</span></a></span><span role="listitem" class="md-toc-item md-toc-h4"><a class="md-toc-inner" href="#concurrency-challenges"><span>Concurrency challenges</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#synchronization"><span>Synchronization</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#atomicity"><span>Atomicity</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#race-condition"><span>Race condition</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#data-race"><span>Data Race</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#deadlock"><span>Deadlock</span></a></span><span role="listitem" class="md-toc-item md-toc-h4"><a class="md-toc-inner" href="#reentrantlock"><span>ReentrantLock</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#lockinterruptibly()"><span>lockInterruptibly()</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#trylock()"><span>tryLock()</span></a></span><span role="listitem" class="md-toc-item md-toc-h4"><a class="md-toc-inner" href="#reentrantreadwritelock"><span>ReentrantReadWriteLock</span></a></span><span role="listitem" class="md-toc-item md-toc-h4"><a class="md-toc-inner" href="#semaphore"><span>Semaphore</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#semaphore---producer-consumer"><span>Semaphore - Producer Consumer</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#inter-thread-communication-with-condition"><span>Inter-thread communication with Condition</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#wait,-notify()-and-notifyall()"><span>wait, notify() and notifyAll()</span></a></span><span role="listitem" class="md-toc-item md-toc-h4"><a class="md-toc-inner" href="#lock-free-algorithms"><span>Lock-free algorithms</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#atomic-instructions"><span>Atomic instructions</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#atomicinteger"><span>AtomicInteger</span></a></span></p></div><p><span>We need threads for 2 reasons:</span></p><ul><li><p><span>Responsiveness - Concurrency</span></p><p><span>Concurrency = Multitasking (illusion that we perform many tasks at the same time, so we don&#39;t even need multiple cores)</span></p></li><li><p><span>Performance - Parallelism
+With multiple cores we can truly run tasks completely in parallel</span></p></li></ul><p><span>Single-thread application process:</span></p><p><img src="../../../src/img/java/multithreading_notes/1.png" alt="image-20230708173046578" style="zoom:50%;" /></p><p><span>In multithreaded we would have also Thread 1 and others, each with its own stack and instruction pointer</span></p><ul><li><span>Stack - region in memory where local variables are stored, and passed into functions</span></li><li><span>Instruction Pointer - address of the next instruction to execute</span></li></ul><h5 id='context-switch'><span>Context switch</span></h5><p><img src="../../../src/img/java/multithreading_notes/2.png" alt="image-20230708175532034" style="zoom:50%;" /></p><ul><li><span>Threads are competing with each other to get executed on the CPU.</span></li><li><span>The process of stoping thread, scheduling other and starting it - Context switch. </span></li><li><span>It&#39;s not cheap. When we switch thread we need to store data for onte thread and restore data for another</span></li></ul><blockquote><p><span>Threads consume less resources than processes so context switching between threads from the same process is cheaper than context switch between threads from different processes.</span></p></blockquote><h5 id='threads-scheduling'><span>Threads scheduling</span></h5><p><img src="../../../src/img/java/multithreading_notes/3.png" alt="image-20230708180740682" style="zoom:50%;" /></p><p><span>On each epoch we define different timeslices for each thread to run. The decision if to add to epoch based on formula:</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="java"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="java"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.11111px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">Dynamic</span> Priority = <span class="cm-keyword">Static</span> Priority + Bonus</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 111px;"></div><div class="CodeMirror-gutters" style="display: none; height: 111px;"></div></div></div></pre><ul><li><span>Static is set by the developer programatticaly</span></li><li><span>Bonus is adjusted by the OS in every epoch, for each thread</span></li><li><span>Bonus can be negative</span></li></ul><p><span>Using dynamic priority, the OS will give preference to interactive threads (such as user interface threads) and at the same time give preference to threads that did not complete in last epochs, or did not get enough time to run - preventing </span><em><span>Starvation</span></em><span>.</span></p><h5 id='threads-vs-processes'><span>Threads vs processes</span></h5><p><span>When to prefer multithreaded architecture</span></p><ul><li><span>Prefer if the tasks share a lot of data</span></li><li><span>Threads are much faster to create and destroy</span></li><li><span>Switching between threads of the same process is faster</span></li></ul><p><span>When to prefer multi-process architecture</span></p><ul><li><span>Security and stability are of higher importance</span></li><li><span>Tasks are unrelated to each other</span></li></ul><p>&nbsp;</p><h4 id='threads-coordination'><span>Threads coordination</span></h4><h5 id='thread.interrupt()'><span>thread.interrupt()</span></h5><p><span>Use it on thread object instance. It will will throw </span><code>InterruptedException</code><span> inside that instance - and if it has the code to catch this exception, it will do it and end thread.
+</span><img src="../../../src/img/java/multithreading_notes/4.png" alt="image-20230708190100572" style="zoom:35%;" /></p><p><span>But if we don&#39;t have </span><code>catch InterruptedException</code><span>, thread object won&#39;t stop running even after </span><code>thread.interrupt()</code><span>. To fix we need to find a hotspot and put if code </span><code>Thread.currentThread().isInterrupted()</code><span>:
+</span><img src="../../../src/img/java/multithreading_notes/5.png" alt="image-20230708185943119" style="zoom:50%;" /></p><h5 id='daemon-threads'><span>Daemon threads</span></h5><p><span>Background threads that do not prevent application from exiting if the main thread terminates. Example: file saving thread in a Text editor, that keeps saving file every 2 seconds.</span></p><h5 id='thread.join()'><span>thread.join()</span></h5><p><span>If we need for example for our main thread to wait for results from other threads, we may call on them </span><code>join()</code><span> method:</span></p><p><img src="../../../src/img/java/multithreading_notes/6.png" alt="image-20230708191738710" style="zoom:50%;" /></p><p><span>Here, after starting all threads and after join method calls (with limit of 2s), main thread goes into WAIT state. After threads are finished the main will continue.</span></p><p>&nbsp;</p><h4 id='performance-optimization'><span>Performance optimization</span></h4><p><span>Latency - the time to completion of a task. Measured in time units</span></p><p><span>Throughput - The amount of tasks completed in a given period. Measured in tasks/time unit</span></p><h5 id='latency'><span>Latency</span></h5><p><span>Break our tasks into subtasks. What could be the number N of subtasks?</span></p><p><span>On a general purpose: N = number of cores (should be as close as possible) </span></p><blockquote><p><span>It will run truly parallel.</span></p></blockquote><ul><li><span>An additional thread would give an diverse effect - it will push other threads from their core back and forth, resulting in context switching, bad caching, extra memory consumption.</span></li><li><span># threads = # cores is optimal only if all threads are runnable (all the time in RUNNABLE state) and can run without interruption (no IO/ blocking calls/ sleep)</span></li><li><span>The assumption is that nothing else is running that consumes a lot of CPU (pretty common, so our solution won&#39;t be optimal but very close to that)</span></li><li><span>Hyperthreading - Virtual threads
+</span><img src="../../../src/img/java/multithreading_notes/7.png" alt="image-20230708193813305" style="zoom:25%;" /></li><li><span>Inherent cost of parallelization and aggregation
+</span><img src="../../../src/img/java/multithreading_notes/8.png" alt="image-20230708194223292" style="zoom:30%;" /></li></ul><h5 id='throughput'><span>Throughput</span></h5><p><span>By serving each task on a different thread, in parallel, we can improve throughput by N (N = #threads = #cores) times.</span></p><p><span>Can eliminate next costs if comparing with latency approach:
+</span><img src="../../../src/img/java/multithreading_notes/9.png" alt="image-20230708201853191" style="zoom:30%;" /></p><p>&nbsp;</p><h4 id='data-sharing'><span>Data sharing</span></h4><h5 id='stack'><span>Stack</span></h5><p><span>Memory region where:</span></p><ul><li><span>methods are called</span></li><li><span>arguments are passed</span></li><li><span>local variables are stored</span></li></ul><p><span>Stack + Instruction Pointer = State of each thread&#39;s execution</span></p><p><img src="../../../src/img/java/multithreading_notes/10.png" alt="image-20230708230812462" style="zoom:50%;" /></p><p><img src="../../../src/img/java/multithreading_notes/11.png" alt="image-20230708231105900" style="zoom:50%;" /></p><p><span>Stack&#39;s properties:</span></p><ul><li><span>All variables (local primitives, local references) belong to the thread executing on that stack</span></li><li><span>Statically allocated when the tread is created</span></li><li><span>The stack&#39;s size is fixed, and relatively small (platform specific)</span></li><li><span>If our calling hierarchy is too deep, we may get StackOverflow (with recursion)</span></li></ul><h5 id='heap'><span>Heap</span></h5><blockquote><p><span>Everything located in heap is shared among threads. Stack stuff cannot be shared.</span></p></blockquote><p><span>What is allocated here:</span></p><ul><li><span>Objects: String, Object, Collections... our custom</span></li><li><span>Members of classes</span></li><li><span>Static variables (they actually don&#39;t get garbage collected)</span></li></ul><p><span>Governed and managed by Garbage Collector</span></p><p>&nbsp;</p><h4 id='concurrency-challenges'><span>Concurrency challenges</span></h4><h5 id='synchronization'><span>Synchronization</span></h5><ul><li><span>If put </span><code>synchronized</code><span> on method then when calling it, the thread will </span><strong><span>acquire lock on entire object</span></strong><span>.</span></li><li><span>May put different object locks for flexibility:
+</span><img src="../../../src/img/java/multithreading_notes/12.png" alt="image-20230709000005497" style="zoom:20%;" /></li></ul><p><span>Synhronized block is </span><u><span></span><em><span>Reentrant</span></em></u><span> - a thread cannot prevent itself from entering a critical section:
+</span><img src="../../../src/img/java/multithreading_notes/13.png" alt="image-20230709000632186" style="zoom:20%;" /></p><h5 id='atomicity'><span>Atomicity</span></h5><p><span>An operation or a set of operations is considered </span><strong><span>atomic</span></strong><span>, if it appears to the rest of the system as if it occured at once. Single step - &quot;all or nothing&quot;. No intermediate states.</span></p><blockquote><p><code>items++</code><span> - not atomic</span></p><ol><li><span>Get current value of </span><code>items</code></li><li><span>Increment current value by 1</span></li><li><span>Store the result into </span><code>items</code></li></ol></blockquote><ul><li><p><span>All reference assignments are atomic - can get and set references atomically (getters and setters)</span></p></li><li><p><span>All assignments to primitive types are safe except </span><u><span>long and double</span></u><span> (because they are 64 bits, so it may be 2 operations)
+</span><img src="../../../src/img/java/multithreading_notes/14.png" alt="image-20230709002727420" style="zoom:20%;" /></p><p><span>We may fix it with volatile</span></p></li></ul><h5 id='race-condition'><span>Race condition</span></h5><p><span>Condition when multiple threads are accessing a shared resource. The core of a problem is non atomic operations performed on the shared resource.</span></p><h5 id='data-race'><span>Data Race</span></h5><blockquote><p><span>Data race and race condition are two different concurrency issues that can occur in multi-threaded programs. A data race occurs when two or more threads access the same shared memory location concurrently and at least one of them performs a write operation. A race condition, on the other hand, occurs when the behavior of a program depends on the relative timing or interleaving of multiple threads, and the outcome is non-deterministic.</span></p></blockquote><blockquote><p><span>Read </span><a href='https://blog.regehr.org/archives/490'><span>here</span></a><span> for good example. </span></p></blockquote><p><span>Compiler and CPU may execute the instructions Out of Order to optimize performance and utilization (but they will maintain the logic corectness of code). 	</span></p><blockquote><p><span>If we have someMethod() {</span></p><p><span>​	I++;
+​	y++;</span></p><p><span>}, these increment operations may not run in order, as they not depend on each other (so logically we are not breaking anything if run in other order)</span></p></blockquote><p><span>To establish a </span><em><span>Happens - Before</span></em><span> semantics:</span></p><ul><li><span></span><em><span>Synchronization</span></em><span> of methods which modify shared variables</span></li><li><span>Declaration of shared variables with </span><em><span>volatile</span></em><span> keyword
+It declares that it will run first all instructions before volatile variable and all after </span></li></ul><blockquote><p><span>Rule of thumb:</span></p><p><span>Every shared variable should be either guarded by a synchronized block (or other locks) or declared volatile. </span></p></blockquote><h5 id='deadlock'><span>Deadlock</span></h5><p><span>Conditions for deadlock:</span></p><ul><li><span>Mutual Exclusion - Only one thread can have exclusive access to a resource</span></li><li><span>Hold and Wait - At least one thread is holding a resource and is waiting for another resource</span></li><li><span>﻿﻿Non-preemptive allocation - A resource is released only after the thread is done using it.</span></li><li><span>﻿﻿Circular wait - A chain of at least two threads each one is holding one resource and waiting for another resource</span></li></ul><p><span>Solution: avoid cirular wait - </span><strong><span>Enforce a strict order in lock acquisition</span></strong><span>.</span></p><p>&nbsp;</p><h4 id='reentrantlock'><span>ReentrantLock</span></h4><p><img src="../../../src/img/java/multithreading_notes/15.png" alt="image-20230709101441508" style="zoom:25%;" /></p><p><span>After </span><code>lock()</code><span> and throwing an exception we never reach </span><code>lockObject.unlock()</code><span>. We need to follow try-finally pattern (lock before try and unlock object in finally block).</span></p><p><span>Why use this lock?</span></p><ul><li><p><span>Query methods - For Testing</span></p><ul><li><span>﻿﻿getQueuedThreads() - Returns a list of threads waiting to acquire a lock</span></li><li><span>getOwner() - Returns the thread that currently owns the lock</span></li><li><span>isHeldByCurrent Thread() - Queries if the lock is held by the current thread</span></li><li><span>isLocked() - Queries if the lock is held by any thread</span></li></ul></li><li><p><span>Fairness</span></p><ul><li><span>ReentrantLock(true)</span></li><li><span>May reduce the throughput of the app</span></li></ul></li><li><p><span>lockInterruptibly()</span></p></li><li><p><span>tryLock()</span></p></li></ul><h5 id='lockinterruptibly()'><span>lockInterruptibly()</span></h5><p><span>Stop the thread from waiting on the lock (because just calling interrupt() won&#39;t do anything). We need to surround the code with try catch block (InterruptedException).</span></p><p><code>LockInterruptibly()</code><span> - Use Cases</span></p><ul><li><span>﻿﻿Watchdog for deadlock detection and recovery</span></li><li><span>﻿﻿Waking up threads to do clean and close the application</span></li></ul><h5 id='trylock()'><span>tryLock()</span></h5><p><code>boolean tryLock()</code><span>
+</span><code>boolean tryLock(long timeout, TimeUnit unit);</code></p><ul><li><span>﻿﻿Returns true and acquires a lock if available</span></li><li><span>﻿﻿Returns false and does not get suspended, if the lock is unavailable.</span></li></ul><p><img src="../../../src/img/java/multithreading_notes/16.png" alt="image-20230709103023555" style="zoom:30%;" /></p><p><span>tryLock() - Use Cases</span></p><ul><li><p><span>﻿﻿Real Time applications where suspending a thread on a lock() method is unacceptable.</span></p></li><li><p><span>﻿﻿Examples:</span></p><ul><li><span>﻿﻿Video/Image processing</span></li><li><span>High Speed/Low latency trading systems</span></li><li><span>﻿﻿User Interface applications</span></li></ul></li></ul><blockquote><p><span>Financial application where stock prices should be updated. We have UI component, PriceUpdater and PriceContainer - a shared resourced. When we update the prices with PriceUpdater we acquire the lock and update stock prices. At the same time UI component uses tryLock() and if it&#39;s available then it updates the prices, in other cases does nothing.</span></p></blockquote><h4 id='reentrantreadwritelock'><span>ReentrantReadWriteLock</span></h4><p><span>ReentrantReadWriteLock - Use Case</span></p><ul><li><p><span>﻿﻿Synchronized and ReentrantLock </span><u><span>do not allow</span></u><span> multiple readers to access a shared resource concurrently.</span></p></li><li><p><span>﻿﻿Not a big problem in the general case (if we keep the critical sections short, the chances of a contention over a lock are minimal)</span></p></li><li><p><span>When read operations are predominant</span></p><p><span>Or when read operations are not as fast</span></p><ul><li><span>Read from many variables</span></li><li><span>Read from a complex data structure</span></li></ul></li><li><p><span>Mutual exclusion of reading threads negatively impacts the performance</span></p></li></ul><p><img src="../../../src/img/java/multithreading_notes/17.png" alt="image-20230709105425290" style="zoom:30%;" /></p><ul><li><p><span>Multiple threads can acquire the readLock</span></p></li><li><p><span>Only a single thread is allowed to lock a writeLock</span></p></li><li><p><span>Mutual exclusion between readers and writers:</span></p><ul><li><span>If a </span><u><span>write lock</span></u><span> is acquired, no thread can acquire a </span><u><span>read lock</span></u></li><li><span>If at least one thread holds a </span><u><span>read lock</span></u><span>, no thread can acquire a </span><u><span>write lock</span></u><span> </span></li></ul></li></ul><blockquote><p><span>We have a price inventory service, where we have method for filtering the inventory and getting the sum of some items in a price range (big read operations). At same time we have methods for updating the inventory, add and remove (write operations).</span></p><p><span>In order to proper calculate prices (avoid race condition) we need to have locks on read and write operations - make those methods synchronized. But here, read operations are much more frequent than write, so we may make reading operations run concurrently.
+We create write lock and set for writing operations, read lock for reading operations. </span></p></blockquote><p>&nbsp;</p><h4 id='semaphore'><span>Semaphore</span></h4><p><span>Can be used to restrict the number of users to a particular resource or a group of resources.</span></p><ul><li><span>﻿﻿Unlike the locks that allows only one &quot;user&quot; per resource</span></li><li><span>﻿﻿The semaphore can restrict any given number of users to a resource</span></li></ul><p><span>Semaphore differences with locks</span></p><ul><li><span>Semaphore doesn&#39;t have a notion of owner thread</span></li><li><span>Many threads can acquire a permit</span></li><li><span>The same thread can acquire the semaphore multiple times</span></li><li><span>The binary semaphore ( initialized with 1) is not reentrant - so when we entered one method, acquired permit, then to another method which requires permit - we get blocked</span></li><li><span>Semaphore can be released by any thread</span></li><li><span>Even can be released by a thread that hasn&#39;t actually acquired it</span></li></ul><h5 id='semaphore---producer-consumer'><span>Semaphore - Producer Consumer</span></h5><p><img src="../../../src/img/java/multithreading_notes/18.png" alt="image-20230709144743930" style="zoom:30%;" /></p><ol><li><span>Consumer gets to full.acquire(), freezes and wait for producer</span></li><li><span>Producer acquires 1 permit, produced item (shared variable between producer and consumer)</span></li><li><span>Releases full semaphore, allowing Consumer to consumer the item</span></li><li><span>Only after Consumer has released the empty, Producer can acquire permit and produce new item</span></li></ol><p><span>Producer Consumer with Queue</span></p><p><img src="../../../src/img/java/multithreading_notes/19.png" alt="image-20230709145340060" style="zoom:30%;" /></p><p><span>The queue size CAPACITY will guarantee that consumers will keep up with the producers and queue won&#39;t grow to infinity (no memory issues).</span></p><p><span>Semaphore Producer Consumer is used in Actor model, Socket channels, Video (pretty any multithreaded app would use this pattern).</span></p><p>&nbsp;</p><h5 id='inter-thread-communication-with-condition'><span>Inter-thread communication with Condition</span></h5><p><img src="../../../src/img/java/multithreading_notes/20.png" alt="image-20230709154652870" style="zoom:30%;" /></p><p><span>Imagine we try to login, have UI and backend:</span></p><ol><li><span>On backend, left side, we see that username and password are null, so call condition.await() and put current thread to sleep + it also unlocks the lock atomically</span></li><li><span>Now we able to enter UI part (lock available) read username and password, then condition.signal() that will wake up Backend thread. But before it UI needs to finish all methods and call lock.unlock(), after that we get back to Backend thread.</span></li></ol><p><span></span><strong><span>condition.await()</span></strong></p><ul><li><span>﻿﻿</span><code>void await()</code><span> - unlock lock, wait until signalled</span></li><li><span>﻿﻿</span><code>long awaitNanos(long nanos Timeout)</code><span> - wait no longer than nanos Timeout</span></li><li><span>﻿﻿</span><code>boolean await(long time, TimeUnit unit)</code><span> - wait no longer than time, in given time units</span></li><li><span>﻿﻿</span><code>boolean awaitUntil (Date deadline)</code><span> - wake up before the deadline date</span></li></ul><h5 id='wait,-notify()-and-notifyall()'><span>wait, notify() and notifyAll()</span></h5><ul><li><p><span>The Object Class contains the following methods:</span></p><ul><li><span>public final void wait() throws InterruptedException</span></li><li><span>public final void notify()</span></li><li><span>public final void notifyAll()</span></li></ul></li><li><p><span>﻿﻿Every Java Class inherits from the Object Class</span></p></li><li><p><span>﻿﻿We can use any object as a condition variable and a lock (using the synchronized keyword)</span></p></li><li><p><span>﻿﻿wait() - Causes the current thread to wait until another thread wakes it up.</span></p><ul><li><span>﻿﻿In the wait state, the thread is not consuming any CPU</span></li></ul></li><li><p><span>﻿﻿Two ways to wake up the waiting thread:</span></p><ul><li><span>﻿﻿notify - Wakes up a single thread waiting on that object</span></li><li><span>﻿﻿notifyAll() - Wakes up all the threads waiting on that object</span></li></ul></li><li><p><span>﻿﻿To call wait(), notify() or notifyAlI() we need to acquire the monitor of that object (use synchronized on that object)</span></p></li></ul><p><span>It is same as Condition variable but we use object instead:</span></p><p><img src="../../../src/img/java/multithreading_notes/21.png" alt="image-20230709161012702" style="zoom:25%;" /></p><p><span>When the object is current object we may remove synchronized(this) and just put synchronized in method declaration</span></p><blockquote><p><span>Producer - Consumer example with custom ThreadSafeQueue (that have synchronized add and remove methods) and applied backpressure:</span></p><ol><li><span>Before adding an element to queue we check if queue size reached the capacity - if yes then </span><code>wait()</code><span> (Producer thread will freeze in ThreadSafeQueue and wait for Consumer to be notified)</span></li><li><span>In remove method, after consuming we check if queue size is equal to CAPACITY-1 - if yes then we </span><code>notifyAll()</code><span> and wake up the Producer</span></li></ol><p><span>Whenever using a queue to decouple multithreaded components, apply back-pressure and limit the size of the queue.</span></p></blockquote><p>&nbsp;</p><h4 id='lock-free-algorithms'><span>Lock-free algorithms</span></h4><h5 id='atomic-instructions'><span>Atomic instructions</span></h5><ul><li><span>Read/assignment on all primitive types (except long and double)</span></li><li><span>Read/assignment on all references</span></li><li><span>Read/assignment on volatile long and double</span></li></ul><blockquote><p><span>To avoid data races we make all shared variables (primitives and references) </span><u><span>volatile</span></u><span>.</span></p></blockquote><h5 id='atomicinteger'><span>AtomicInteger</span></h5><p><span>+ Simple, no need for locks or synchronization, no race conditions or data races.</span></p><p><span>- Only the operation itself is atomic and there&#39;s still race condition between 2 separate atomic operations.</span></p><p><span></span><strong><span>AtomicReference</span></strong></p><ul><li><p><code>boolean compareAndSet(V expectedValue, V newValue)</code></p><ul><li><span>﻿﻿Assigns new value if current value == expected value</span></li><li><span>﻿﻿Ignores the new value if the current value != expected value</span></li></ul></li></ul><p><span>Stack lock-free implementation notes:</span></p><p><img src="../../../src/img/java/multithreading_notes/22.png" alt="image-20230709205547229" style="zoom:50%;" /></p><ul><li><span>We read the head, calculate the new head, and then we hope that our head hasn&#39;t changed during previous operations - if didn&#39;t then we set the new calculated head; if head has changed then we retry the operation</span></li><li><span>Only if our head is equal to currentHeadNode (so head hasn&#39;t changed) then we set this head with our newly created </span></li></ul></div></div>
+</body>
+</html>

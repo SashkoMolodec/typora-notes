@@ -8,13 +8,13 @@ A microservice is a small, lousely coupled, distributed service. We can decompos
 
 ##### Cloud computing models
 
-<img src="../../../src/img/backend/microservices/image-20230328192910672.png" alt="image-20230328192910672" style="zoom:50%;" />
+<img src="../../../src/img/backend/microservices/spring_microservices_in_action/1.png" alt="image-20230328192910672" style="zoom:50%;" />
 
 Spring Cloud is collection of tools that wraps work of open source companies (VMware, Netflix, HashiCorp) in delivery patterns.
 
 ##### Technologies to implement microservices patterns
 
-<img src="../../../src/img/backend/microservices/image-20230328193113919.png" alt="image-20230328193113919" style="zoom:50%;" />
+<img src="../../../src/img/backend/microservices/spring_microservices_in_action/2.png" alt="image-20230328193113919" style="zoom:50%;" />
 
 > Use `dependency:tree` for checking pulled maven dependencies.
 
@@ -24,7 +24,7 @@ Spring Cloud is collection of tools that wraps work of open source companies (VM
 
 The twelve-factor application manifesto, provided by Heroku, provides best practices for building cloud-native microservices.
 
-<img src="../../../src/img/backend/microservices/image-20230329224503287.png" alt="image-20230329224503287" style="zoom:50%;" />
+<img src="../../../src/img/backend/microservices/spring_microservices_in_action/3.png" alt="image-20230329224503287" style="zoom:50%;" />
 
 > Description of each on page 40.
 
@@ -48,16 +48,16 @@ The service is likely coarse-grained if:
 
 Microservice is too fine-grained if:
 
-- The microservices in one part of the problem domian breed like rabbits - the number of services to get a piece of work works tremendously 
+- The microservices in one part of the problem domain breed like rabbits - the number of services to get a piece of work works tremendously 
 - Microservices are heavily dependant on one another - microservice keep calling back and forth between each other to complete a single user request
-- Microservice become a collection of simple CRUD (create, replace, update, delete) service - microservices are an expression o business logic and not an abstraction layer over your data sources
+- Microservice become a collection of simple CRUD (create, replace, update, delete) service - microservices are an expression of business logic and not an abstraction layer over your data sources
 
 A microservice architecutre should be developed with an evolutionary thought process, where we know that we won't get the design right the first time.
 
 #### Perspectives when designing microservices
 
 Need to have an integrated view:
-<img src="../../../src/img/backend/microservices/Знімок екрана 2023-03-29 о 23.52.31.png" alt="Знімок екрана 2023-03-29 о 23.52.31" style="zoom:67%;" />
+<img src="../../../src/img/backend/microservices/spring_microservices_in_action/4.png" alt="Знімок екрана 2023-03-29 о 23.52.31" style="zoom:67%;" />
 
 ##### When not to use microservices
 
@@ -73,13 +73,13 @@ Need to have an integrated view:
 ##### Operational lifecycles of a microservice
 
 - *Service assembly* - how you package and deploy service to guarantee repeatability and consistency so the same service code and run-time engine are deployed the same way
-  <img src="../../../src/img/backend/microservices/image-20230329234607513.png" alt="image-20230329234607513" style="zoom:70%;" />
+  <img src="../../../src/img/backend/microservices/spring_microservices_in_action/5.png" alt="image-20230329234607513" style="zoom:70%;" />
 - *Service bootstrapping* - how you separate your app and environment specific config code from the run-time code so that you can start and deploy a microservice instance quickly in any env
-  <img src="../../../src/img/backend/microservices/image-20230329234727669.png" alt="image-20230329234727669" style="zoom:70%;" />
+  <img src="../../../src/img/backend/microservices/spring_microservices_in_action/6.png" alt="image-20230329234727669" style="zoom:70%;" />
 - *Service registration/discovery* - how you make the new deployed service instance discoverable by other application clients
-  <img src="../../../src/img/backend/microservices/image-20230329235001757.png" alt="image-20230329235001757" style="zoom:70%;" />
+  <img src="../../../src/img/backend/microservices/spring_microservices_in_action/7.png" alt="image-20230329235001757" style="zoom:70%;" />
 - *Service monitoring* - need to monitor instances and ensure that any faults are routed around failing service instance, and these are taken down
-  <img src="../../../src/img/backend/microservices/image-20230329235024141.png" alt="image-20230329235024141" style="zoom:70%;" />
+  <img src="../../../src/img/backend/microservices/spring_microservices_in_action/8.png" alt="image-20230329235024141" style="zoom:70%;" />
 
 ---
 
@@ -89,17 +89,17 @@ Need to have an integrated view:
 
 Difference between VMs and containers:
 
-<img src="../../../src/img/backend/microservices/image-20230330230015532.png" alt="image-20230330230015532" style="zoom:50%;" />
+<img src="../../../src/img/backend/microservices/spring_microservices_in_action/9.png" alt="image-20230330230015532" style="zoom:50%;" />
 
 Docker architecture:
 
-<img src="../../../src/img/backend/microservices/image-20230330230108181.png" alt="image-20230330230108181" style="zoom:50%;" />
+<img src="../../../src/img/backend/microservices/spring_microservices_in_action/10.png" alt="image-20230330230108181" style="zoom:50%;" />
 
 #### Docker maven plugin
 
-<img src="../../../src/img/backend/microservices/image-20230330230625172.png" alt="image-20230330230625172" style="zoom:50%;" />
+<img src="../../../src/img/backend/microservices/spring_microservices_in_action/11.png" alt="image-20230330230625172" style="zoom:50%;" />
 
-<img src="../../../src/img/backend/microservices/image-20230330230744289.png" alt="image-20230330230744289" style="zoom:50%;" />
+<img src="../../../src/img/backend/microservices/microservices_architecture_course/22.png" alt="image-20230330230744289" style="zoom:50%;" />
 
 There are various ways to build the jar - using a basic Dockerfile or with a multistage build (more optimized, page 101). Springboot supports Buildpack with layered JARs.
 
@@ -111,10 +111,10 @@ There are various ways to build the jar - using a basic Dockerfile or with a mul
 
 With a cloud-based model, the application configuration data should be segregated completely from the application. The appropriate configuration data needs are then injected at run time so that the same server/application artifacts are consistently promoted throughout all environments.
 
-<img src="../../../src/img/backend/microservices/image-20230331200243785.png" alt="image-20230331200243785" style="zoom:55%;" />
+<img src="../../../src/img/backend/microservices/spring_microservices_in_action/12.png" alt="image-20230331200243785" style="zoom:55%;" />
 
 Comparison of various implementations:
-<img src="../../../src/img/backend/microservices/Знімок екрана 2023-03-31 о 20.03.42.png" alt="Знімок екрана 2023-03-31 о 20.03.42" style="zoom:55%;" /><img src="../../../src/img/backend/microservices/image-20230331200436315.png" alt="image-20230331200436315" style="zoom:55%;" />
+<img src="../../../src/img/backend/microservices/spring_microservices_in_action/13.png" alt="Знімок екрана 2023-03-31 о 20.03.42" style="zoom:55%;" /><img src="../../../src/img/backend/microservices/spring_microservices_in_action/30.png" alt="image-20230331200436315" style="zoom:55%;" />
 
 #### Spring Cloud Config Server
 
@@ -126,19 +126,19 @@ The Spring Cloud Config service lets you encrypt sensitive property files using 
 
 Naming conventions are *appname-env.properties* or *appname-env.yml*. The env names translate directly into the URLs that will be accesses to browse the configuration.
 
-<img src="../../../src/img/backend/microservices/image-20230331200612622.png" alt="image-20230331200612622" style="zoom:55%;" />
+<img src="../../../src/img/backend/microservices/spring_microservices_in_action/14.png" alt="image-20230331200612622" style="zoom:55%;" />
 
-<img src="../../../src/img/backend/microservices/image_2023-04-04_12-10-42.png" alt="image_2023-04-04_12-10-42" style="zoom:50%;" />
+<img src="../../../src/img/backend/microservices/spring_microservices_in_action/15.png" alt="image_2023-04-04_12-10-42" style="zoom:50%;" />
 
 Retrieving config information on service startup:
 
-<img src="../../../src/img/backend/microservices/image-20230331201003378.png" alt="image-20230331201003378" style="zoom:65%;" />
+<img src="../../../src/img/backend/microservices/spring_microservices_in_action/16.png" alt="image-20230331201003378" style="zoom:65%;" />
 
 ##### Spring Cloud Bus
 
 Update dynamically configuration without restarting services. Need to set up messaging broker (RabbitMQ) for Spring Cloud Bus to push update about config update to other services (when each of this service starts it also connects to RabbitMQ as listener). 
 
-<img src="../../../src/img/backend/microservices/image_2023-04-04_12-59-51.png" alt="image_2023-04-04_12-59-51" style="zoom:50%;" />
+<img src="../../../src/img/backend/microservices/spring_microservices_in_action/17.png" alt="image_2023-04-04_12-59-51" style="zoom:50%;" />
 
 ---
 
@@ -158,7 +158,7 @@ DNS + network load balancer.
 
 Access service by using a generic DNS (`my.app.com`) along with a path that uniquely represented the service that application want to invoke (`/service1`). The DNS would resolve to commercial or open source load balancer which has a routing table with servers hosting the service. The number of those servers is usually static and persistent (when crashes then restarts to same point). To achieve high availiablity there is secondary idle balancer that may become active when primary dies.  
 
-<img src="../../../src/img/backend/microservices/Знімок екрана 2023-04-03 о 21.50.40.png" alt="Знімок екрана 2023-04-03 о 21.50.40" style="zoom:50%;" />
+<img src="../../../src/img/backend/microservices/spring_microservices_in_action/18.png" alt="Знімок екрана 2023-04-03 о 21.50.40" style="zoom:50%;" />
 
 Drawbacks:
 
@@ -186,11 +186,11 @@ The solution for a cloud-based microservice environment lies in:
 
 - *Fault tolerant* - service discovery need to detect when a service isn't healthy and remove it from a list of available services
 
-<img src="../../../src/img/backend/microservices/Знімок екрана 2023-04-03 о 22.22.40.png" alt="Знімок екрана 2023-04-03 о 22.22.40" style="zoom:50%;" />
+<img src="../../../src/img/backend/microservices/spring_microservices_in_action/19.png" alt="Знімок екрана 2023-04-03 о 22.22.40" style="zoom:50%;" />
 
 ##### Client-side load balancing
 
-<img src="../../../src/img/backend/microservices/image-20230403222740571.png" alt="image-20230403222740571" style="zoom:50%;" />
+<img src="../../../src/img/backend/microservices/spring_microservices_in_action/20.png" alt="image-20230403222740571" style="zoom:50%;" />
 
 When a consuming client needs to invoke a service
 
@@ -214,7 +214,7 @@ You may use 3 different mechanism to invoke a service:
 
 A single, poorly performing service can trigger a cascading effect of resource exhaustion as the threads in the calling client are blocked when waiting for a service to complete.
 
-<img src="../../../src/img/backend/microservices/image-20230406012036855.png" alt="image-20230406012036855" style="zoom:50%;" />
+<img src="../../../src/img/backend/microservices/spring_microservices_in_action/21.png" alt="image-20230406012036855" style="zoom:50%;" />
 
 Resilience4j is a fault tolerance library that offers patterns:
 
@@ -234,14 +234,14 @@ Retry ( CircuitBreaker ( RateLimiter ( TimeLimiter ( Bulkhead ( Function) ) ) ) 
 There are 2 implementations:
 
 - *Semaphore bulkhead* - Uses a semaphore isolation approach, limits the number of concurrent requests to the service. Once the limit is reached, it starts rejecting requests
-  <img src="../../../src/img/backend/microservices/image-20230406014014926.png" alt="image-20230406014014926" style="zoom:50%;" />
+  <img src="../../../src/img/backend/microservices/spring_microservices_in_action/22.png" alt="image-20230406014014926" style="zoom:50%;" />
 
   > Works fine if we have small number of remote resources being accessed within an application, and the call volumes to different services are relatively evenly distributed.
   > If we have services with far higher volumes or longer completion time than other services, we can end up introducing thread exhautstion into our thread pools because one service ends up dominating all of the threads in the default thread pool.
 
 - *Thread pool bulkhead* - Uses a bounded queue and a fixed thread pool. This approach only rejects a request when the pool and the queue are full.
 
-  <img src="../../../src/img/backend/microservices/image-20230406014041550.png" alt="image-20230406014041550" style="zoom:50%;" />
+  <img src="../../../src/img/backend/microservices/spring_microservices_in_action/23.png" alt="image-20230406014041550" style="zoom:50%;" />
 
 > Proper sizing for a custom thread pool formula:
 >
@@ -263,6 +263,10 @@ Spring Cloud Gateway provides a library for building API gateways on top of Spri
 
 A Spring Cloud Gateway is a *reverse proxy*. A *reverse proxy* is an intermediate server that sits behind the client trying to reach a resource and the resource itself.
 
+> Reverse proxy is called "reverse" because it sits between the client and the server, and intercepts requests from the client before forwarding them to the server. This is different from a forward proxy, which sits between the client and the internet, intercepting requests from the client before forwarding them to the internet.
+>
+> A reverse proxy is a server that acts on behalf of a web server, whereas a forward proxy acts on behalf of a client.
+
 > Isn't a service gateway a single point of failure and potential bottleneck? To avoid this need to follow next rules:
 >
 > - Load balancers are useful when placed in front of individual groups of services. In this case, a load balancer sitting in front of multiple service gateway instances is an appropriate design and ensures that your service gateway implementation can scale as needed. But having a load balancer sitting in front of all your service instances isn't a good idea because it becomes a bottleneck
@@ -273,7 +277,7 @@ A Spring Cloud Gateway is a *reverse proxy*. A *reverse proxy* is an intermediat
 
 Architecture overview:
 
-<img src="../../../src/img/backend/microservices/Знімок екрана 2023-04-06 о 14.34.07.png" alt="Знімок екрана 2023-04-06 о 14.34.07" style="zoom:50%;" />
+<img src="../../../src/img/backend/microservices/spring_microservices_in_action/24.png" alt="Знімок екрана 2023-04-06 о 14.34.07" style="zoom:50%;" />
 
 - Predicates are objects that allows us to check if the requests fulfill a set of given conditions before executing or processing a request.
 
@@ -312,7 +316,7 @@ You should also build your microservices around the following practices:
 - Use an API gateway for all service calls
 - Provide zones for your microservices by locking down unneeded network ports (inbound and outbound)
 
-<img src="../../../src/img/backend/microservices/image-20230406223553585.png" alt="image-20230406223553585" style="zoom:50%;" />
+<img src="../../../src/img/backend/microservices/spring_microservices_in_action/25.png" alt="image-20230406223553585" style="zoom:50%;" />
 
 ---
 
@@ -322,7 +326,7 @@ You should also build your microservices around the following practices:
 
 Using messaging to communicate state changes between services:
 
-<img src="../../../src/img/backend/microservices/image-20230408174504321.png" alt="image-20230408174504321" style="zoom:50%;" />
+<img src="../../../src/img/backend/microservices/spring_microservices_in_action/26.png" alt="image-20230408174504321" style="zoom:50%;" />
 
 Provides benefits:
 
@@ -344,7 +348,7 @@ Downsides:
 
 #### Spring Cloud Stream
 
-<img src="../../../src/img/backend/microservices/image-20230408182154274.png" alt="image-20230408182154274" style="zoom:50%;" />
+<img src="../../../src/img/backend/microservices/spring_microservices_in_action/27.png" alt="image-20230408182154274" style="zoom:50%;" />
 
 - When a serive gets ready to publish a message, it will publish the message using a *source* - Spring-annotated interface that takes a POJO, which represents the message, serializes it and publishes to a channel
 
@@ -364,14 +368,14 @@ A Spring Cloud Stream message *sink* is an annotated Java method that receives m
 
 ##### Consumer group
 
-<img src="../../../src/img/backend/microservices/image-20230408190037992.png" alt="image-20230408190037992" style="zoom:50%;" />
+<img src="../../../src/img/backend/microservices/spring_microservices_in_action/28.png" alt="image-20230408190037992" style="zoom:50%;" />
 
 The concept of a consumer group is this: we can have multiple services with each service having multiple instances listening to the same message queue. We want each unique service to process a copy of a message, but we **only want one service instance within a group of service instances to consume and process a message**.
 As long as all the service instances have the same group name, Spring Cloud Stream and the underlying message broker will guarantee that only one copy of the message will be consumed by a service instance belonging to that group.
 
-
-
 ---
+
+
 
 ### Distributed tracing with Spring Cloud Sleuth and Zipkin
 
@@ -381,7 +385,7 @@ We integrate our Docker containers with the ELK (Elasticsearch, Logstash, Kibana
 
 
 
-<img src="../../../src/img/backend/microservices/image-20230408202627407.png" alt="image-20230408202627407" style="zoom:50%;" />
+<img src="../../../src/img/backend/microservices/spring_microservices_in_action/29.png" alt="image-20230408202627407" style="zoom:50%;" />
 
 Zipkin allows us to see the dependencies that exist between services and the flow of our transactions, and understand the performance characteristics of each microservice involved in a user's transaction.
 

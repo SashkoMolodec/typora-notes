@@ -39,7 +39,7 @@ Cons:
 - Services expose metadata to declare their functionality
 - Usually implemented using SOAP & WSDL and ESB
 
-<img src="/Users/okravch/my/typora-notes/src/img/backend/microservices/1.png" alt="img" style="zoom:45%;" />
+<img src="../../src/img/backend/microservices/microservices_architecture_course/1.png" alt="img" style="zoom:45%;" />
 
 Pros:
 
@@ -54,6 +54,8 @@ Cons:
   - Very difficult to maintain
   - No tooling existed to support quick testing and deployment (everything manually)
   - No time saving was achieved
+
+---
 
 
 
@@ -139,7 +141,7 @@ Tooling grealy helps in deployment using:
 - Automated Testing
 - Automated Deployment
 
-<img src="/Users/okravch/my/typora-notes/src/img/backend/microservices/2.png" alt="Знімок екрана 2023-03-01 о 15.41.49" style="zoom:70%;" />
+<img src="../../src/img/backend/microservices/microservices_architecture_course/2.png" alt="Знімок екрана 2023-03-01 о 15.41.49" style="zoom:70%;" />
 
 For microservices automation is essential.
 
@@ -165,6 +167,8 @@ Extensive logging and montioring should be in place.
 
 The move to microserices should be gradual. Start small and upgrade each part separately.
 
+---
+
 
 
 ### Problems solved by Microservices
@@ -182,19 +186,21 @@ The move to microserices should be gradual. Start small and upgrade each part se
 - Lack of tooling
   with Infrastracture automation
 
+---
+
 
 
 ### Designing Microservices Architecture
 
 Plan more, code less.
 
-<img src="/Users/okravch/my/typora-notes/src/img/backend/microservices/3.png" alt="image-20230301162902496" style="zoom:40%;" />
+<img src="../../src/img/backend/microservices/microservices_architecture_course/3.png" alt="image-20230301162902496" style="zoom:40%;" />
 
 
 
 #### Mapping the components
 
-<img src="/Users/okravch/my/typora-notes/src/img/backend/microservices/4.png" alt="Знімок екрана 2023-03-01 о 17.00.53" style="zoom:45%;" />
+<img src="../../src/img/backend/microservices/microservices_architecture_course/4.png" alt="Знімок екрана 2023-03-01 о 17.00.53" style="zoom:45%;" />
 
 Mapping should be based on:
 
@@ -240,7 +246,7 @@ Main patterns described bellow.
 ##### 1-to-1 Sync
 
 A service calls another service and waits for the response - called a *synchronous request*. Used mainly when the first service needs the response to continue processing. 
-<img src="/Users/okravch/my/typora-notes/src/img/backend/microservices/5.png" alt="image-20230301172624819" style="zoom:40%;" />
+<img src="../../src/img/backend/microservices/microservices_architecture_course/5.png" alt="image-20230301172624819" style="zoom:40%;" />
 
 Pros:
 
@@ -254,15 +260,15 @@ Cons:
 
 Direct communication is bad:
 
-<img src="../../src/img/backend/microservices/image-20230301173213469.png" alt="image-20230301173213469" style="zoom:45%;" />
+<img src="../../src/img/backend/microservices/microservices_architecture_course/6.png" alt="image-20230301173213469" style="zoom:45%;" />
 
 If some service will break it will affect others. Solutions are Service discovery:
 
-<img src="/Users/okravch/my/typora-notes/src/img/backend/microservices/image-20230301173604920.png" alt="image-20230301173604920" style="zoom:45%;" />
+<img src="../../src/img/backend/microservices/microservices_architecture_course/7.png" alt="image-20230301173604920" style="zoom:45%;" />
 
 Or Gateway:
 
-<img src="/Users/okravch/my/typora-notes/src/img/backend/microservices/image-20230301173728760.png" alt="image-20230301173728760" style="zoom:45%;" />
+<img src="../../src/img/backend/microservices/microservices_architecture_course/8.png" alt="image-20230301173728760" style="zoom:45%;" />
 
 Implementing discovery service is easier but gateway can provide more services such as monitoring, authorization, authentication and more. For now, it's becoming a more popular choice.
 
@@ -277,7 +283,7 @@ Pros:
 Cons:
 
 - Needs more setup
-  <img src="/Users/okravch/my/typora-notes/src/img/backend/microservices/image-20230301174258566.png" alt="image-20230301174258566" style="zoom:35%;" />
+  <img src="../../src/img/backend/microservices/microservices_architecture_course/9.png" alt="image-20230301174258566" style="zoom:35%;" />
 - Difficult error handling
 
 ##### Pub-Sub / Event Driven
@@ -287,7 +293,7 @@ A service wants to notify other services about something. The service has no ide
 - Uses Fire and Forget pattern
 - Used mainly when the first service wants to notify about an important event in the system
 
-<img src="/Users/okravch/my/typora-notes/src/img/backend/microservices/image-20230301174851185.png" alt="image-20230301174851185" style="zoom:35%;" />
+<img src="../../src/img/backend/microservices/microservices_architecture_course/10.png" alt="image-20230301174851185" style="zoom:35%;" />
 
 Pros:
 
@@ -306,7 +312,7 @@ Cons
 
 Development platform:
 
-<img src="/Users/okravch/my/typora-notes/src/img/backend/microservices/image-20230301175410665.png" alt="image-20230301175410665" style="zoom:45%;" />
+<img src="../../src/img/backend/microservices/microservices_architecture_course/11.png" alt="image-20230301175410665" style="zoom:45%;" />
 
 Data store:
 
@@ -338,7 +344,7 @@ Use software architectural patterns to design each service.
 
  **CI/CD** - the full automation of the integration and delivery stages.
 
-<img src="/Users/okravch/my/typora-notes/src/img/backend/microservices/image-20230301195248749.png" alt="image-20230301195248749" style="zoom:50%;" />
+<img src="../../src/img/backend/microservices/microservices_architecture_course/12.png" alt="image-20230301195248749" style="zoom:50%;" />
 
 - Faster realease cycle 
 - Reliability
@@ -398,7 +404,7 @@ Three types of **test doubles**:
 
 ### Service Mesh
 
-<img src="/Users/okravch/my/typora-notes/src/img/backend/microservices/image-20230301212127855.png" alt="image-20230301212127855" style="zoom:50%;" />
+<img src="../../src/img/backend/microservices/microservices_architecture_course/13.png" alt="image-20230301212127855" style="zoom:50%;" />
 
 Software components that sit near the service and manage all service-to-service communication
 
@@ -418,7 +424,7 @@ Mesh services:
 - Load balancing
 
 >  Circuit Breaker prevents cascading failures when a service fails.
-> <img src="/Users/okravch/my/typora-notes/src/img/backend/microservices/image-20230301211503636.png" alt="image-20230301211503636" style="zoom:50%;" />
+> <img src="../../src/img/backend/microservices/microservices_architecture_course/14.png" alt="image-20230301211503636" style="zoom:50%;" />
 >
 > Here, the blue service won't throw timeout failure as a result of the green services problem.
 
@@ -431,7 +437,7 @@ Use Service Mesh **only if**:
 
 **In-Process**
 
-<img src="/Users/okravch/my/typora-notes/src/img/backend/microservices/image-20230301212327234.png" alt="image-20230301212327234" style="zoom:50%;" />
+<img src="../../src/img/backend/microservices/microservices_architecture_course/16.png" alt="image-20230301212327234" style="zoom:50%;" />
 
 The service mesh is the part of the services process. No inter-process communication is required to use it.
 Pros:
@@ -442,7 +448,7 @@ Products: DDS Foundation (used in military).
 
 **Sidecar**
 
-<img src="/Users/okravch/my/typora-notes/src/img/backend/microservices/image-20230301212504138.png" alt="image-20230301212504138" style="zoom:50%;" />
+<img src="../../src/img/backend/microservices/microservices_architecture_course/17.png" alt="image-20230301212504138" style="zoom:50%;" />
 
 The mesh component is not placed in services process. 
 
@@ -474,7 +480,7 @@ How to handle: write to a central logging service - unified, aggregated, can be 
 
 **Correlation ID**
 
-<img src="/Users/okravch/my/typora-notes/src/img/backend/microservices/image-20230301232817033.png" alt="image-20230301232817033" style="zoom:50%;" />
+<img src="../../src/img/backend/microservices/microservices_architecture_course/18.png" alt="image-20230301232817033" style="zoom:50%;" />
 
 **Transport**
 
@@ -558,7 +564,7 @@ Strategies to break the monolith:
 
 ##### New modules as services
 
-<img src="/Users/okravch/my/typora-notes/src/img/backend/microservices/image-20230302173810776.png" alt="image-20230302173810776" style="zoom:35%;" />
+<img src="../../src/img/backend/microservices/microservices_architecture_course/19.png" alt="image-20230302173810776" style="zoom:35%;" />
 
 Pros:
 
@@ -572,7 +578,7 @@ Cons:
 
 ##### Separate existing modules to services
 
-<img src="/Users/okravch/my/typora-notes/src/img/backend/microservices/image-20230302174142339.png" alt="image-20230302174142339" style="zoom:35%;" />
+<img src="../../src/img/backend/microservices/microservices_architecture_course/20.png" alt="image-20230302174142339" style="zoom:35%;" />
 
 Pros:
 
@@ -586,7 +592,7 @@ Cons:
 
 ##### Complete rewrite 
 
-<img src="/Users/okravch/my/typora-notes/src/img/backend/microservices/image-20230302174604417.png" alt="image-20230302174604417" style="zoom:35%;" />
+<img src="../../src/img/backend/microservices/microservices_architecture_course/21.png" alt="image-20230302174604417" style="zoom:35%;" />
 
 Pros:
 

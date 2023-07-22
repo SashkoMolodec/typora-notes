@@ -28,8 +28,6 @@ To help answer this, we’ll note that the whole point of a programming language
 
 > Passing behavior as a parameter can help relieve the pain of change.
 
-
-
 > The signature of the abstract method of a functional interface is called a *function descriptor*.
 
 

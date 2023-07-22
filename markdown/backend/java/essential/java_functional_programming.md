@@ -132,6 +132,8 @@ First param - *initializer*, second is *accumulator* (analyze single stream elem
 >
 > The third method signature is used when we are processing collections in parallel. It allows Java to create intermediate reductions and then combine them at the end.
 
+> Reduce method is meant to combine two values and produce a new one; it’s an immutable reduction. In contrast, the collect method is designed to mutate a container to accumulate the result it’s supposed to produce.
+
 ##### collect()
 
 Special type of reduction called a *mutable reduction*, more efficient because we use the same mutable object while accumulating.

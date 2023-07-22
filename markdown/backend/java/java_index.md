@@ -52,3 +52,8 @@
 ​	:boot: Java Modern book [notes](java_modern)
 
 ​	:thumbsup: Java effective [notes](java_effective)
+
+​	:memo: Java memory [notes](java_memory)
+
+​	:massage: Multithreading course [notes](multithreading_notes)
+

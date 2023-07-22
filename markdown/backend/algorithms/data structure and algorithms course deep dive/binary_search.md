@@ -6,7 +6,7 @@
 - O($\log n$) - keeps dividing the array in half
 - Chooses the element in the middle of the array and compares it against the search value (if equal then we're done, if greater then search the left half of array, if less then search the right half)
 
-
+> Binary search can be used in Java for a variety of applications, such as searching for an element in a sorted array, finding the index of an element in a sorted list, or performing a binary search on a tree structure. 
 
 ##### Implementation:
 

@@ -19,13 +19,13 @@
 
 - Table comparison below:
 
-![image-20220806134740958](./../../../../../src/img/algorithms/1)
+![image-20220806134740958](./../../../../../src/img/algorithms/1.png)
 
 
 
 #### Single Quick Sort
 
-- O($nlogn$) time complexity (often performs better then merge sort)
+- O($nlogn$) time  complexity (often performs better then merge sort)
 - Algorithm is: divide and conquer, recursive, unstable
 - Does this in-place (unlike merge sort)
 - Uses a pivot element to partition the array into two parts
@@ -35,7 +35,7 @@
 
 ##### In action:
 
-<video src="../../../../../src/video/quick_sort_in_action.mp4"></video>
+<video controls src="../../../../../src/video/quick_sort_in_action.mp4"></video>
 
 ##### Implementation:
 
@@ -108,7 +108,7 @@ public class QuickSort {
 
 ##### In action:
 
-<video src="../../../../../src/video/dual_pivot_sort_example.mp4"></video>
+<video controls src="../../../../../src/video/dual_pivot_sort_example.mp4"></video>
 
 
 

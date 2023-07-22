@@ -4,7 +4,7 @@
 
 - A binary heap must be a complete tree (children are added at each level from left to right)
 - Usually implemented as arrays
-- Max heap: every parint is greater than or equal to its children
+- Max heap: every parent is greater than or equal to its children
 - Min heap: every parent is less than or equal to its children
 - The max or min value will always be at the root 
 - Heapify: process of converting a binary tree into a heap - needs to be done after an insertion or deletion

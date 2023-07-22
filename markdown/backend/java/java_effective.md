@@ -1,6 +1,6 @@
 ## Effective Java
 
-:arrow_backward:
+[:arrow_backward:](java_index)
 
 [toc]
 
@@ -405,10 +405,10 @@ Enums are more readable, safer, and more powerful.
 To associate data with enum constants, declare instane fields and write a constructor that takes the data and stores it in the fields. Enums are immutable, so all fields should be final.
 
 Associate different behavior with each constant - *constant specific method implementation*:
-<img src="../../../src/img/backend/microservices/image-20230315144714714.png" alt="image-20230315144714714" style="zoom:50%;" />
+<img src="../../../src/img/java/effective/3.png" alt="image-20230315144714714" style="zoom:50%;" />
 
 If implemented `toString`, consider also implementing `fromString`:
-<img src="../../../src/img/backend/microservices/image-20230315145047784.png" alt="image-20230315145047784" style="zoom:50%;" />
+<img src="../../../src/img/java/effective/4.png" alt="image-20230315145047784" style="zoom:50%;" />
 
 > Set of constant may be changed. The enum feature was specifically designed to allow for binary compatible evolution of enum types.
 
@@ -434,16 +434,16 @@ private final int numberOfMusicians;
 
 You may see code that uses the `ordinal` method and `values` to index into an array or list. That's bad as requires unchecked cast when implementing. `ints` do not provide type safety - if we use wrong value the program will sliently do the wrong thing or `ArrayIndexOutOfBoundsException`.
 Instead use `EnumMap`:
-<img src="../../../src/img/backend/microservices/image-20230315151853092.png" alt="image-20230315151853092" style="zoom:50%;" />
+<img src="../../../src/img/java/effective/5.png" alt="image-20230315151853092" style="zoom:50%;" />
 
 ##### Item 38: Emulate extensible enums with interfaces
 
 One compelling use case for extensible enumerated types, which is *operation codes*, also known as *opcodes* - an enumerated type whose elements represent operations on some machine (for example simple calculator).
-<img src="../../../src/img/backend/microservices/image-20230315152155027.png" alt="image-20230315152155027" style="zoom:50%;" />\
-<img src="../../../src/img/backend/microservices/image-20230315152342343.png" alt="image-20230315152342343" style="zoom:50%;" />
+<img src="../../../src/img/java/effective/6.png" alt="image-20230315152155027" style="zoom:50%;" />\
+<img src="../../../src/img/java/effective/7.png" alt="image-20230315152342343" style="zoom:50%;" />
 
 It is possible to pass in an entire extension enum type and use its elements in addidtion to or instead of those of the base type:
-<img src="../../../src/img/backend/microservices/image-20230315152510451.png" alt="image-20230315152510451" style="zoom:50%;" />
+<img src="../../../src/img/java/effective/8.png" alt="image-20230315152510451" style="zoom:50%;" />
 
 ##### Item 39: Prefer annotations to naming patterns
 
@@ -580,7 +580,7 @@ Optionals are similar in spirit to checked exceptions, they confront the fact th
 If you can *prove* that an optional is not empty then you may get the element without specifying an action to take if the optional is empty (just use `get()`).
 
 Use `map` on `Optional` instead of `isPresent` (Java 9):
-<img src="../../../src/img/backend/microservices/image-20230320161303253.png" alt="image-20230320161303253" style="zoom:50%;" />
+<img src="../../../src/img/java/effective/9.png" alt="image-20230320161303253" style="zoom:50%;" />
 
 `Optional` has a `stream()` method, that converts into a stream containing an element if one is present in the optional, or none if it is empty.
 
@@ -593,7 +593,7 @@ Finally, you should rarely use an optional in any other capacity than as a retur
 ##### Item 56: Write doc comments for all exposed API elements
 
 A good example:
-<img src="../../../src/img/backend/microservices/image-20230320162800866.png" alt="image-20230320162800866" style="zoom:50%;" />
+<img src="../../../src/img/java/effective/10.png" alt="image-20230320162800866" style="zoom:50%;" />
 
 
 
@@ -606,7 +606,7 @@ Most powerful rule - declare local variables where it is first used.
 Prefer `for` loops to `while` loops (as you may create loop variables).
 
 If you need to access iterator in loop:
-<img src="../../../src/img/backend/microservices/image-20230320165831932.png" alt="image-20230320165831932" style="zoom:50%;" />
+<img src="../../../src/img/java/effective/11.png" alt="image-20230320165831932" style="zoom:50%;" />
 
 ##### Item 58: Prefer for-each loops to traditional for loops
 
@@ -756,7 +756,7 @@ The `synchronized` keyword ensures that only a single thread can execute a metho
   - field that is accessed with normal locking
   - put it into a concurrent collection
 
-
+If we need only inter-thread communication and not mutual exclusion - use volatile.
 
 
 ## To read Item 79 and so on....

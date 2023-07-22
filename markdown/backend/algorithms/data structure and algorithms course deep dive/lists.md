@@ -40,7 +40,7 @@
 
 ##### Linked List vs ArrayList
 
-> `ArrayList `should be used where more search operations are required, and `LinkedList` should be used where more insert and delete operation is needed.
+> `ArrayList ` should be used where more search operations are required, and `LinkedList` should be used where more insert and delete operation is needed.
 
 - Search operation is O(*n*), compared to *ArrayList* O($1$)
 - Insertion, addition and removal operations are faster in *LinkedList* because no need to resize an array
@@ -68,5 +68,9 @@ Useful when working with only head or tail of the list because insertion/remove 
 
 https://www.baeldung.com/java-copy-on-write-arraylist
 
+How do we achieve thread-safety?
 
+> When we're calling the *iterator()* method on the *CopyOnWriteArrayList,* we get back an *Iterator* backed up by the immutable snapshot of the content of the *CopyOnWriteArrayList*.
+>
+> Its content is an exact copy of data that is inside an *ArrayList* from the time when the *Iterator* was created. Even if in the meantime some other thread adds or removes an element from the list, that modification is making a fresh copy of the data that will be used in any further data lookup from that list.
 

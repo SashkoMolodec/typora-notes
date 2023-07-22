@@ -4,17 +4,21 @@
 
 <img src="../../src/img/glory_backend.gif" alt="glory_backend" style="zoom: 60%;" />
 
-### :heart: java [:arrow_forward:](java/java_index)
+#### :heart: java [:arrow_forward:](java/java_index)
 
 ​	*(essential stuff, parallel programming)*
 
-### :gear: algorithms & data structures [:arrow_forward:](algorithms/algorithms_index)
+#### :gear: algorithms & data structures [:arrow_forward:](algorithms/algorithms_index)
 
 ​	*(lists, heaps, maps, queues, stacks, trees, binary search and many-many sort methods)*
 
-### :tulip: spring [:arrow_forward:](spring/spring_index)
+#### :tulip: spring [:arrow_forward:](spring/spring_index)
 
 ​	*(data, configuration props, dev tools)*
+
+#### :envelope: event-driven [:arrow_forward:](event-driven/)
+
+​	*(rabbitmq)*
 
 
 #### :books: From books & other
@@ -27,7 +31,7 @@
 
 ​	:lock: OWASP Top 10 from github [notes](owasp_top_10_from_git)
 
-​	:pen: Refactoring [principles](refactoring)
+​	:pen: Refactoring & Refactoring to patterns [notes](refactoring)
 
 ​	:fire: Microservices Architecture course guide [notes](microservices_architecture_course)
 
@@ -36,4 +40,6 @@
 ​	:cloud: Cloud computing & software architecture patterns [notes](cloud_computing_software_architecture_patterns)
 
 ​	:cloud: Cloud native in action [notes](cloud_native_in_action)
+
+​	:hammer_and_wrench: TDD with Java book [notes](tdd_with_java)
 

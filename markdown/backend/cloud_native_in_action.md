@@ -6,7 +6,7 @@
 
 Cloud native application are highly distributive (розподілені) systems that are specifically designed for and live in the cloud.
 
-The cloud is an IT infrastructure provided as a commodity (продукт) in terms of computing, storate, and networking resources.
+The cloud is an IT infrastructure provided as a commodity (продукт) in terms of computing, storage, and networking resources.
 
 The main properties of cloud native applications:
 
@@ -16,7 +16,7 @@ The main properties of cloud native applications:
 - *Observability* - inferring the internal state of an application from its external outputs
 - *Manageability* - changing the internal state and outputs via external inputs. In this and previous case, the application artifact is never changes, it's immutable
 
-Continous delivery is a holistic engineers practice for delivering high quality software quickly, reliabliy, and safely.
+Continuous delivery is a holistic engineers practice for delivering high quality software quickly, reliabliy, and safely.
 
 Devops is a culture enabling collaboration among different roles to deliver business value together.
 
@@ -25,7 +25,7 @@ Devops is a culture enabling collaboration among different roles to deliver busi
 
 Cloud native architectural elements:
 
- <img src="../../src/img/backend/microservices/image-20230410130015527.png" alt="image-20230410130015527" style="zoom:35%;" />
+ <img src="../../src/img/backend/cloud_native_in_action/1.png" alt="image-20230410130015527" style="zoom:35%;" />
 
 Dedicated platforms (such as Kubernetes) offer services to manage containers without directly handling the underlying layers. They provide container orchestration, cluster management, network services, and scheduling.
 
@@ -44,7 +44,7 @@ Dedicated platforms (such as Kubernetes) offer services to manage containers wit
    - Design API and how it will distribute among teams
    - API implementation can be changed internally in a future without affecting other application depending on it
 3. Dependency management
-   - All application dependencies should be declared explicitly in a manifest and be available for the dependency managet to download from a central repository
+   - All application dependencies should be declared explicitly in a manifest and be available for the dependency management to download from a central repository
 4. Design, build, release, run
    - A codebase goes through that stages and they should be separated
    - No code changes at runtime, the build and the release artifacts should be immutable
@@ -62,7 +62,7 @@ Dedicated platforms (such as Kubernetes) offer services to manage containers wit
 9. Environment parity
    - Keep all environments as similar as possible
    - Three gaps to solve:
-     - time gap - period between a code change and its deployment can be quite large, so promote automation and continous deployment to reduce this period
+     - time gap - period between a code change and its deployment can be quite large, so promote automation and continouos deployment to reduce this period
      - people gap - developer build applications, and operators manage their deployment in production; this gap can be resolved by embracing a DevOps culture, improving collaboration between devs and operators, "you build it, you run it"
      - tools gap - how backing services are handled, general the same type and version of them should be used in all environments
 10. Administrative processes
@@ -98,7 +98,7 @@ The number of threads defines an upper limit to how many requests are supported 
 
 ##### Thread-per-request model
 
-<img src="../../src/img/backend/microservices/image-20230410194323936.png" alt="image-20230410194323936" style="zoom:50%;" />
+<img src="../../src/img/backend/cloud_native_in_action/2.png" alt="image-20230410194323936" style="zoom:50%;" />
 
 The `DispatcherServlet` component provides a central entry point for request processing. When a client sends a new HTTP request for a specific URL pattern, `DispatcherServlet` asks the `HandlerMapping` component for the controller responsible for that endpoint, and it finally delegates the actual processing of the request to the specified controller. The controller processes the request, possibly by calling some other services, and then returns a response to `DispatcherServlet`, which finally replies to the client with an HTTP response.
 
@@ -106,11 +106,11 @@ Spring MVC relies on the web server to accomplish its functionality. The same is
 
 An example:
 
-<img src="../../src/img/backend/microservices/image-20230410225846573.png" alt="image-20230410225846573" style="zoom:50%;" />
+<img src="../../src/img/backend/cloud_native_in_action/3.png" alt="image-20230410225846573" style="zoom:50%;" />
 
 #### Testing
 
-<img src="../../src/img/backend/microservices/image-20230411105054651.png" alt="image-20230411105054651" style="zoom:50%;" />
+<img src="../../src/img/backend/cloud_native_in_action/4.png" alt="image-20230411105054651" style="zoom:50%;" />
 
 Following continous delivery practices, we should aim at achieving fully automated tests in three out of four quadrants.
 
@@ -138,7 +138,7 @@ Profiles are logical groups of beans registered only when a specific profile is 
 
 The @Profile annotation marks beans or configuration classes to be considered only when the specified profile is active.
 
-<img src="../../src/img/backend/microservices/Знімок екрана 2023-04-11 о 23.06.22.png" alt="Знімок екрана 2023-04-11 о 23.06.22" style="zoom:50%;" />
+<img src="../../src/img/backend/cloud_native_in_action/5.png" alt="Знімок екрана 2023-04-11 о 23.06.22" style="zoom:50%;" />
 
 Property files bundled with the application source code are useful for defining some sensible defaults.
 
@@ -148,7 +148,7 @@ Keep `application-dev`, `-stage`, this type props preferably in external configu
 
 #### External stuff
 
-<img src="../../src/img/backend/microservices/Знімок екрана 2023-04-11 о 23.44.29.png" alt="Знімок екрана 2023-04-11 о 23.44.29" style="zoom:50%;" />
+<img src="../../src/img/backend/cloud_native_in_action/6.png" alt="Знімок екрана 2023-04-11 о 23.44.29" style="zoom:50%;" />
 
 ---
 
@@ -156,7 +156,7 @@ Keep `application-dev`, `-stage`, this type props preferably in external configu
 
 ### Data persistence with Spring Data
 
-<img src="../../src/img/backend/microservices/image-20230413173715459.png" alt="image-20230413173715459" style="zoom:50%;" />
+<img src="../../src/img/backend/cloud_native_in_action/7.png" alt="image-20230413173715459" style="zoom:50%;" />
 
 #### Spring Data JDBC or Spring Data JPA?
 
@@ -184,7 +184,7 @@ You can package Spring Boot applications as container images in different ways:
 
 ### Kubernetes fundamentals for Spring Boot
 
-<img src="../../src/img/backend/microservices/image-20230417104218827.png" alt="image-20230417104218827" style="zoom:45%;" />
+<img src="../../src/img/backend/cloud_native_in_action/8.png" alt="image-20230417104218827" style="zoom:45%;" />
 
 - Cluster—A set of nodes running containerized applications. It hosts the Control Plane and comprises one or more worker nodes.
 
@@ -192,7 +192,7 @@ You can package Spring Boot applications as container images in different ways:
 
 - Worker nodes—Physical or virtual machines providing capacity such as CPU, memory, network, and storage so that containers can run and connect to a network.
 
-- Pod—The smallest deployable unit wrapping an application container.»
+- Pod—The smallest deployable unit wrapping an application container.
 
 Start a new Kubernetes local cluster:
 
@@ -204,9 +204,9 @@ minikube start --cpus 2 --memory 4g --driver docker --profile polar
 
 A *Pod* is the smallest Kubernetes object, and it “represents a set of running containers” in a cluster. It’s usually set up to run a single primary container (your application), but it can also run optional helper containers with additional features like logging, monitoring, or security (https://kubernetes.io/docs/reference/glossary).
 
-<img src="../../src/img/backend/microservices/image-20230416221152788.png" alt="image-20230416221152788" style="zoom:30%;" />
+<img src="../../src/img/backend/cloud_native_in_action/9.png" alt="image-20230416221152788" style="zoom:30%;" />
 
-<img src="../../src/img/backend/microservices/image-20230416221207318.png" alt="image-20230416221207318" style="zoom:50%;" />
+<img src="../../src/img/backend/cloud_native_in_action/50.png" alt="image-20230416221207318" style="zoom:50%;" />
 
 ##### Controlling Pods with Deployments
 
@@ -216,7 +216,7 @@ A *Deployment* is an object that manages the life cycle of a stateless, replicat
 
 Deployment also let manage replication with *ReplicaSet*, which ensures there's always the desired number of Pods up and running in cluster.
 
-<img src="../../src/img/backend/microservices/image-20230416221636959.png" alt="image-20230416221636959" style="zoom:45%;" />
+<img src="../../src/img/backend/cloud_native_in_action/10.png" alt="image-20230416221636959" style="zoom:45%;" />
 
 *Declarative configuration* - we declare what we want to achieve (the *desired state*), and we let Kubernetes make it happen (Ansible or Puppet are imperative tools). 
 
@@ -224,7 +224,7 @@ We describe object's desired state in a *manifest* file.
 
 ##### Kubernetes manifest
 
-<img src="../../src/img/backend/microservices/image-20230416222905634.png" alt="image-20230416222905634" style="zoom:45%;" />
+<img src="../../src/img/backend/cloud_native_in_action/11.png" alt="image-20230416222905634" style="zoom:45%;" />
 
 - *apiVersion* defines the versioned schema of the specific object representation. Core resources such as Pods or Services follow a versioned schema composed of only a version number (such as v1). Other resources like Deployments or ReplicaSet follow a versioned schema consisting of a group and a version number (for example, apps/v1). If in doubt about which version to use, you can refer to the Kubernetes documentation (https://kubernetes.io/docs) or use the kubectl explain <object_name> command to get more information about the object, including the API version to use.
 
@@ -236,9 +236,9 @@ We describe object's desired state in a *manifest* file.
 
 An example of manifest:
 
-<img src="../../src/img/backend/microservices/image-20230417111114807.png" alt="image-20230417111114807" style="zoom:50%;" />
+<img src="../../src/img/backend/cloud_native_in_action/12.png" alt="image-20230417111114807" style="zoom:50%;" />
 
-<img src="../../src/img/backend/microservices/image-20230417111203299.png" alt="image-20230417111203299" style="zoom:50%;" />
+<img src="../../src/img/backend/cloud_native_in_action/13.png" alt="image-20230417111203299" style="zoom:50%;" />
 
 Create a deployment object from a manifest (from a service folder):
 
@@ -277,7 +277,7 @@ kubectl delete -f services
 Implementations: Srping Cloud Netflix Eureka, Spring Cloud Consul, Spring Cloud Zookeper Discovery.
 Spring Cloud Load Balancer can be used for client-side load balancing.
 
-<img src="../../src/img/backend/microservices/image-20230417114911555.png" alt="image-20230417114911555" style="zoom:45%;" />
+<img src="../../src/img/backend/cloud_native_in_action/14.png" alt="image-20230417114911555" style="zoom:45%;" />
 
 Application itself defines a load-balancing strategy, and it can be a benefit because full control over this process. A drawback is that client service discovery assigns more responsibility to developers (if have different languages and frameworks we need to handle in different ways). Also, it results in one more service to deploy and maintain (the service registry).
 
@@ -287,7 +287,7 @@ Server-side service discovery solutions move a lot of responsiblity to the deplo
 
 Such solutions automatically register and deregister application instances and rely on a load-balancer component to route any incoming requests to one of the available instances according to a specific strategy. In this case, the application doesn’t need to interact with the service registry, which is updated and managed by the platform.
 
-<img src="../../src/img/backend/microservices/image-20230417115911973.png" alt="image-20230417115911973" style="zoom:45%;" />
+<img src="../../src/img/backend/cloud_native_in_action/15.png" alt="image-20230417115911973" style="zoom:45%;" />
 
 The Kubernetes implementation of this service discovery pattern is based on Service objects. A *Service* is “an abstract way to expose an application running on a set of Pods as a network service” (https://kubernetes.io/docs/reference/glossary).
 
@@ -295,7 +295,7 @@ A Service object is an abstraction targeting a set of Pods (typically using labe
 
 After resolving the Service name to its IP address, Kubernetes relies on a proxy (called *kube-proxy*), which intercepts the connection to the Service object and forwards the request to one of the Pods targeted by the Service. The proxy knows all the replicas available and adopts a load-balancing strategy depending on the type of Service and the proxy configuration. There is no DNS resolution involved in this step, solving the problems I mentioned earlier.
 
-<img src="../../src/img/backend/microservices/image-20230416235513952.png" alt="image-20230416235513952" style="zoom:45%;" />
+<img src="../../src/img/backend/cloud_native_in_action/16.png" alt="image-20230416235513952" style="zoom:45%;" />
 
 The solution is transparent to your Spring Boot applications and you get it out of the box in Kubernetes.
 
@@ -305,9 +305,9 @@ The solution is transparent to your Spring Boot applications and you get it out 
 
 
 
-<img src="../../src/img/backend/microservices/image-20230417000426810.png" alt="image-20230417000426810" style="zoom:45%;" />
+<img src="../../src/img/backend/cloud_native_in_action/17.png" alt="image-20230417000426810" style="zoom:45%;" />
 
-<img src="../../src/img/backend/microservices/image-20230417121010986.png" alt="image-20230417121010986" style="zoom:45%;" />
+<img src="../../src/img/backend/cloud_native_in_action/18.png" alt="image-20230417121010986" style="zoom:45%;" />
 
 Apply configured service (from the application folder):
 
@@ -323,7 +323,7 @@ Expose the application outside the cluster:
 kubectl port-forward service/catalog-service 9001:80
 ```
 
-<img src="../../src/img/backend/microservices/image-20230417000530214.png" alt="image-20230417000530214" style="zoom:45%;" />
+<img src="../../src/img/backend/cloud_native_in_action/19.png" alt="image-20230417000530214" style="zoom:45%;" />
 
 ##### Ensuring disposability: Graceful shutdown
 
@@ -335,13 +335,13 @@ Need to enable also this in Deployment manifest. When Kubernetes sends a `SIGTER
 
 When it sends the `SIGTERM` signal to a Pod, Kubernetes will also inform its own components to stop forwarding requests to the terminating Pod. Since Kubernetes is a distributed system, and the two actions happen in parallel, there is a short time window when the terminating Pod might still receive requests, even if it has already started the graceful shutdown procedure. It will result in user errors. To prevent it we daly sending the `SIGTERM` signal to the Pod so that Kubernetes has enough time to spread the news across the cluster (implement with `preStop` hook).
 
-<img src="../../src/img/backend/microservices/image-20230417122119360.png" alt="image-20230417122119360" style="zoom:45%;" />
+<img src="../../src/img/backend/cloud_native_in_action/20.png" alt="image-20230417122119360" style="zoom:45%;" />
 
 ##### Scaling Spring Boot applications
 
 Replication is handled at the Pod level by a ReplicaSet object. Deployment objects are already configured to use ReplicaSets. Need to specify how many replicas want to be deployed in Deployment manifest.
 
-<img src="../../src/img/backend/microservices/image-20230417122327815.png" alt="image-20230417122327815" style="zoom:45%;" />
+<img src="../../src/img/backend/cloud_native_in_action/21.png" alt="image-20230417122327815" style="zoom:45%;" />
 
 The replication is controlled using labels (`app=catalog-service` in app deployment.yml).
 
@@ -367,13 +367,13 @@ Reactive applications are more scalable and efficient by design. Handling reques
 
 This paradigm, called *event loop*, doesn’t set hard constraints on the application’s scalability. It actually makes it easier to scale, since an increase in the number of concurrent requests does not strictly depend on the number of threads. As a matter of fact, a default configuration for reactive applications in Spring is to use only one thread per CPU core. With the non-blocking I/O capability and a communication paradigm based on events, reactive applications allow for more efficient utilization of computational resources.
 
-<img src="../../src/img/backend/microservices/image-20230420133055551.png" alt="image-20230420133055551" style="zoom:50%;" />
+<img src="../../src/img/backend/cloud_native_in_action/22.png" alt="image-20230420133055551" style="zoom:50%;" />
 
 The reactive paradigm is a solution to the problem of blocking I/O operations that require more threads to handle high concurrency and which may lead to slow or entirely unresponsive applications. Sometimes the paradigm is mistaken as a way to increase the speed of an application. **Reactive is about improving scalability and resilience, not speed**.
 
 ##### Spring stack
 
-<img src="../../src/img/backend/microservices/image-20230420133548968.png" alt="image-20230420133548968" style="zoom:50%;" />
+<img src="../../src/img/backend/cloud_native_in_action/23.png" alt="image-20230420133548968" style="zoom:50%;" />
 Project Reactor and supports asynchronous and non-blocking operations.
 
 ##### Resilient applications with Reactive Spring
@@ -403,7 +403,7 @@ An API gateway provides several benefits in a distributed architecture, includin
 
 Routes are the core of Spring Cloud Gateway. They are identified by a unique ID, a collection of predicates determining whether to follow the route, a URI for forwarding the request if the predicates allow, and a collection of filters that are applied before or after forwarding the request downstream.
 
-<img src="../../src/img/backend/microservices/Знімок екрана 2023-04-20 о 20.24.31.png" alt="Знімок екрана 2023-04-20 о 20.24.31" style="zoom:50%;" />
+<img src="../../src/img/backend/cloud_native_in_action/24.png" alt="Знімок екрана 2023-04-20 о 20.24.31" style="zoom:50%;" />
 
 ##### Request rate limiters
 
@@ -427,7 +427,7 @@ Redis is a popular option for session management, and it’s supported by Spring
 
 An *Ingress* is an object that “manages external access to the services in a cluster, typically HTTP. Ingress may provide load balancing, SSL termination and name-based virtual hosting” (https://kubernetes.io/docs). An Ingress object acts as an entry point into a Kubernetes cluster and is capable of routing traffic from a single external IP address to multiple services running inside the cluster.
 
-<img src="../../src/img/backend/microservices/image-20230421000025800.png" alt="image-20230421000025800" style="zoom:50%;" />
+<img src="../../src/img/backend/cloud_native_in_action/25.png" alt="image-20230421000025800" style="zoom:50%;" />
 
 Ingress objects don’t accomplish anything by themselves. We use an Ingress object to declare the desired state in terms of routing and TLS termination. The actual component that enforces those rules and routes traffic from outside the cluster to the applications inside is the ingress controller.
 
@@ -438,6 +438,8 @@ Edge Service takes care of application routing, but it should not be concerned w
 
 
 ### Event-driven applications and functions
+
+> «Even if the reactive programming paradigm lets you subscribe to producers and process the incoming data asynchronously, the interaction between the two applications is synchronous. The first application (the client) sends a request to the second one (the server) and expects a response to arrive in a short time.»
 
 Event-driven architectures are distributed systems that interact with each other by producing and consuming events.
 
@@ -451,14 +453,14 @@ There are 2 event-driven models:
 - *Publisher/subscriber* - based on subscriptions; producers publish events that are sent to all subscribers, events cannot be replayed after being received, so consumers not able to get the past events (RabbitMQ)
 - *Event streaming* - events are written to a log; producers publish events as they occur, consumers don't subscribe to them but can read from any part of the event stream, so events can be replayed (Apache Kafka)
 
-<img src="../../src/img/backend/microservices/image-20230422164045013.png" alt="image-20230422164045013" style="zoom:45%;" />
+<img src="../../src/img/backend/cloud_native_in_action/26.png" alt="image-20230422164045013" style="zoom:45%;" />
 
 A messaging system requires a protocol (AMQP) and message broker (RabbitMQ). On the application side we use Spring Cloud Stream.
 In the AMQP protocol, producers send messages to an exchange in a broker that forwards them to queues according to specific routing algorithms. Consumers then receive messages from the queues in the broker.
 
-<img src="../../src/img/backend/microservices/image-20230422164614005.png" alt="image-20230422164614005" style="zoom:45%;" />
+<img src="../../src/img/backend/cloud_native_in_action/27.png" alt="image-20230422164614005" style="zoom:45%;" />
 
-<img src="../../src/img/backend/microservices/image-20230422164759243.png" alt="image-20230422164759243" style="zoom:45%;" />
+<img src="../../src/img/backend/cloud_native_in_action/28.png" alt="image-20230422164759243" style="zoom:45%;" />
 
 ##### Functions with Spring Cloud Function
 
@@ -488,14 +490,14 @@ Spring Cloud Stream is based on a few essential concepts:
 
 They are all handled by the framework itself, the app and business logic is not aware of the external messaging system.
 
-<img src="../../src/img/backend/microservices/image-20230422170144619.png" alt="image-20230422170144619" style="zoom:45%;" />
+<img src="../../src/img/backend/cloud_native_in_action/29.png" alt="image-20230422170144619" style="zoom:45%;" />
 
 A *destination binding* can be either an input channel or an output channel. Names:
 
 - Input binding: `<functionName> + -in- + <index>`
 - Output binding: `<functionName> + -out- + <index>`
 
-<img src="../../src/img/backend/microservices/image-20230422171243686.png" alt="image-20230422171243686" style="zoom:47%;" />
+<img src="../../src/img/backend/cloud_native_in_action/30.png" alt="image-20230422171243686" style="zoom:47%;" />
 
 ##### Making messaging resilient to failures
 
@@ -514,7 +516,7 @@ Unlike functions and consumers, suppliers need to be activated. They act only up
 
 ##### Book example illustration
 
-![image-20230422183407963](../../src/img/backend/microservices/image-20230422183407963.png)
+![image-20230422183407963](../../src/img/backend/cloud_native_in_action/31.png)
 
 ---
 
@@ -533,7 +535,7 @@ A common strategy for implementing authentication and authorization in cloud nat
 
 When using OIDC authentication, a Client application initiates the flow and delegates an Authorization Server for the actual authentication. Then the Authorization Server issues an ID Token (JSON Web Token) to the Client.
 
-<img src="../../src/img/backend/microservices/image-20230425160146900.png" alt="image-20230425160146900" style="zoom:50%;" />
+<img src="../../src/img/backend/cloud_native_in_action/32.png" alt="image-20230425160146900" style="zoom:50%;" />
 
 > OAuth2 to OIDC terminology:
 >
@@ -551,17 +553,17 @@ The Spring Security itself provides its main functionality by relying on *filter
 
 Spring Security provides native support for OAuth2 and OpenID Connect, and you can use it to turn Spring Boot applications into OAuth2 Clients.
 
-<img src="../../src/img/backend/microservices/image-20230425160410390.png" alt="image-20230425160410390" style="zoom:50%;" />
+<img src="../../src/img/backend/cloud_native_in_action/33.png" alt="image-20230425160410390" style="zoom:50%;" />
 
 After user succesfully logs in, Keycloack sends the authorization code to backend. Then backend takes this authorization code + client ID + client secret, sends to Keycloak at receives an Access token and ID token (JWT).
 
-<img src="../../src/img/backend/microservices/Keycloak-modell-740x994.png" alt="Keycloak-modell-740x994.png (740×994)" style="zoom:60%;" />
+<img src="../../src/img/backend/cloud_native_in_action/34.png" alt="Keycloak-modell-740x994.png (740×994)" style="zoom:60%;" />
 
 In Spring Security, you can configure both authentication and authorization in a `SecurityWebFilterChain` bean. To enable the OIDC authentication flow, you can use the oauth2Login() DSL.
 
 Independent of the authentication strategy adopted (whether username/password, OpenID Connect/OAuth2, or SAML2), Spring Security keeps the information about an authenticated user (also called the principal) in an `Authentication` object. In the case of OIDC, the principal object is of type `OidcUser`, and it’s where Spring Security stores the ID Token. In turn, `Authentication` is saved in a `SecurityContext` object.
 
-<img src="../../src/img/backend/microservices/image-20230425161331306.png" alt="image-20230425161331306" style="zoom:50%;" />
+<img src="../../src/img/backend/cloud_native_in_action/35.png" alt="image-20230425161331306" style="zoom:50%;" />
 
 ##### User logout
 
@@ -569,7 +571,7 @@ By default, Spring Security exposes a /logout endpoint for logging a user out.
 
 In an OIDC/OAuth2 context, we also need to propagate the logout request to the Authorization Server (such as Keycloak) to log the user out of there. We can do that via the RP-Initiated Logout flow supported by Spring Security via the `OidcClientInitiatedServerLogoutSuccessHandler` class.
 
-<img src="../../src/img/backend/microservices/image-20230425161454861.png" alt="image-20230425161454861" style="zoom:50%;" />
+<img src="../../src/img/backend/cloud_native_in_action/36.png" alt="image-20230425161454861" style="zoom:50%;" />
 
 ##### The Client dillema in OAuth2
 
@@ -598,7 +600,7 @@ From a security perspective, it is virtually impossible to secure tokens in a fr
 
 OAuth2 is an authorization framework that enables an application (called a *Client*) to obtain limited access to a protected resource provided by another application (called a *Resource Server*) on behalf of a user. When a user authenticates with Edge Service and asks to access their book orders, OAuth2 provides a solution for Edge Service to retrieve orders from Order Service on behalf of that user. This solution relies on a trusted party (called an *Authorization Server*), which issues an *Access Token* to Edge Service and grants access to the user’s book orders from Order Service.
 
-<img src="../../src/img/backend/microservices/image-20230427092406958.png" alt="image-20230427092406958" style="zoom:50%;" />
+<img src="../../src/img/backend/cloud_native_in_action/37.png" alt="image-20230427092406958" style="zoom:50%;" />
 
 ##### Token relay from Spring Cloud Gateway to other services
 
@@ -612,16 +614,55 @@ In Edge Service, Spring Security uses the ID Token to extract information about 
 
 The Access Token grants Edge Service authorized access to Catalog Service and Order Service (the OAuth2 Resource Servers) on behalf of the user. After we secure both applications, Edge Service will have to include the Access Token in all requests routed to them as an Authorization HTTP header. Unlike ID Tokens, Edge Service doesn’t read the Access Token’s content because it’s not the intended audience. It stores the Access Token received from Keycloak and then includes it as-is in any request to a protected endpoint downstream.
 
-<img src="../../src/img/backend/microservices/image-20230427092931526.png" alt="image-20230427092931526" style="zoom:50%;" />
+<img src="../../src/img/backend/cloud_native_in_action/38.png" alt="image-20230427092931526" style="zoom:50%;" />
 
 For each incoming request containing an Access Token in the `Authorization` header, Spring Security will automatically validate the token's signature using the public keys provided by Keycloack (JWK, JSON Web Key) and decode its claims via a `JwtDecoder` object (auto-configured).
 
 ##### Implementation details
 
-<img src="../../src/img/backend/microservices/image-20230427093017844.png" alt="image-20230427093017844" style="zoom:50%;" />
+<img src="../../src/img/backend/cloud_native_in_action/39.png" alt="image-20230427093017844" style="zoom:50%;" />
 
-<img src="../../src/img/backend/microservices/image-20230427102706159.png" alt="image-20230427102706159" style="zoom:50%;" />
+<img src="../../src/img/backend/cloud_native_in_action/40.png" alt="image-20230427102706159" style="zoom:50%;" />
 
 ##### Scopes
 
 Access to claims is controlled through *scopes*, a mechanism provided by OAuth2 to limit what data an OAuth2 Client can access. You can think of scopes as roles assigned to applications rather than to users. In the previous chapter, we used Spring Security to make Edge Service an OAuth2 Client and configured it with the `openid` scope. That scope grants Edge Service access to the authenticated user’s identity (provided in the sub claim).
+
+---
+
+
+
+### Monitoring application
+
+We have logs:
+
+<img src="../../src/img/backend/cloud_native_in_action/41.png" alt="image-20230710181336174" style="zoom:40%;" />
+
+<img src="../../src/img/backend/cloud_native_in_action/42.png" alt="image-20230710184341390" style="zoom:40%;" />
+
+Health information:
+
+<img src="../../src/img/backend/cloud_native_in_action/43.png" alt="image-20230710184811680" style="zoom:35%;" />
+
+<img src="../../src/img/backend/cloud_native_in_action/44.png" alt="image-20230710184845535" style="zoom:40%;" />
+
+And metrics using Prometheus:
+
+<img src="../../src/img/backend/cloud_native_in_action/45.png" alt="image-20230710191056425" style="zoom:40%;" />
+
+Spring Boot Actuator collects application metrics out of the box by leveraging the Micrometer library (https://micrometer.io). Micrometer contains instrumentation code for collecting valuable metrics from common components in a JVM-based application. May export them to Prometheus.
+
+> Need to expose the **metrics** Actuator endpoint. Or if use Prometheus then **prometheus**.
+>
+> The default strategy used by Prometheus is pull-based, meaning that a Prometheus instance scrapes (pulls) metrics in regular time intervals from the application via a dedicated endpoint, which is /actuator/prometheus
+>
+
+<img src="../../src/img/backend/cloud_native_in_action/46.png" alt="image-20230710191332765" style="zoom:40%;" />
+
+<img src="../../src/img/backend/cloud_native_in_action/47.png" alt="image-20230710191738684" style="zoom:40%;" />
+
+For distributed tracking may use OpenTelemetry. We need instrumentation (have OpenTelemetry implementation) and as well need to collect and store traces - use Tempo for that. Tempo follows push-based model where the applicaiton pushed data to the distributed tracing backend.
+
+<img src="../../src/img/backend/cloud_native_in_action/48.png" alt="image-20230710192407776" style="zoom:40%;" />
+
+<img src="../../src/img/backend/cloud_native_in_action/49.png" alt="image-20230710192441804" style="zoom:40%;" />

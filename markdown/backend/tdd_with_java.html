@@ -1,0 +1,850 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
+.mac-os-11 { --title-bar-height:28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.6; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex:2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.42857rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left: 28px solid transparent; border-right: 28px solid transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right: 8px solid transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+.md-inline-math-container mjx-container { zoom: 0.95; }
+
+
+.CodeMirror { height: auto; }
+.CodeMirror.cm-s-inner { background: inherit; }
+.CodeMirror-scroll { overflow: auto hidden; z-index: 3; }
+.CodeMirror-gutter-filler, .CodeMirror-scrollbar-filler { background-color: rgb(255, 255, 255); }
+.CodeMirror-gutters { border-right: 1px solid rgb(221, 221, 221); background: inherit; white-space: nowrap; }
+.CodeMirror-linenumber { padding: 0px 3px 0px 5px; text-align: right; color: rgb(153, 153, 153); }
+.cm-s-inner .cm-keyword { color: rgb(119, 0, 136); }
+.cm-s-inner .cm-atom, .cm-s-inner.cm-atom { color: rgb(34, 17, 153); }
+.cm-s-inner .cm-number { color: rgb(17, 102, 68); }
+.cm-s-inner .cm-def { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-variable { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-variable-2 { color: rgb(0, 85, 170); }
+.cm-s-inner .cm-variable-3 { color: rgb(0, 136, 85); }
+.cm-s-inner .cm-string { color: rgb(170, 17, 17); }
+.cm-s-inner .cm-property { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-operator { color: rgb(152, 26, 26); }
+.cm-s-inner .cm-comment, .cm-s-inner.cm-comment { color: rgb(170, 85, 0); }
+.cm-s-inner .cm-string-2 { color: rgb(255, 85, 0); }
+.cm-s-inner .cm-meta { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-qualifier { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-builtin { color: rgb(51, 0, 170); }
+.cm-s-inner .cm-bracket { color: rgb(153, 153, 119); }
+.cm-s-inner .cm-tag { color: rgb(17, 119, 0); }
+.cm-s-inner .cm-attribute { color: rgb(0, 0, 204); }
+.cm-s-inner .cm-header, .cm-s-inner.cm-header { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-quote, .cm-s-inner.cm-quote { color: rgb(0, 153, 0); }
+.cm-s-inner .cm-hr, .cm-s-inner.cm-hr { color: rgb(153, 153, 153); }
+.cm-s-inner .cm-link, .cm-s-inner.cm-link { color: rgb(0, 0, 204); }
+.cm-negative { color: rgb(221, 68, 68); }
+.cm-positive { color: rgb(34, 153, 34); }
+.cm-header, .cm-strong { font-weight: 700; }
+.cm-del { text-decoration: line-through; }
+.cm-em { font-style: italic; }
+.cm-link { text-decoration: underline; }
+.cm-error { color: red; }
+.cm-invalidchar { color: red; }
+.cm-constant { color: rgb(38, 139, 210); }
+.cm-defined { color: rgb(181, 137, 0); }
+div.CodeMirror span.CodeMirror-matchingbracket { color: rgb(0, 255, 0); }
+div.CodeMirror span.CodeMirror-nonmatchingbracket { color: rgb(255, 34, 34); }
+.cm-s-inner .CodeMirror-activeline-background { background: inherit; }
+.CodeMirror { position: relative; overflow: hidden; }
+.CodeMirror-scroll { height: 100%; outline: 0px; position: relative; box-sizing: content-box; background: inherit; }
+.CodeMirror-sizer { position: relative; }
+.CodeMirror-gutter-filler, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-vscrollbar { position: absolute; z-index: 6; display: none; outline: 0px; }
+.CodeMirror-vscrollbar { right: 0px; top: 0px; overflow: hidden; }
+.CodeMirror-hscrollbar { bottom: 0px; left: 0px; overflow: auto hidden; }
+.CodeMirror-scrollbar-filler { right: 0px; bottom: 0px; }
+.CodeMirror-gutter-filler { left: 0px; bottom: 0px; }
+.CodeMirror-gutters { position: absolute; left: 0px; top: 0px; padding-bottom: 10px; z-index: 3; overflow-y: hidden; }
+.CodeMirror-gutter { white-space: normal; height: 100%; box-sizing: content-box; padding-bottom: 30px; margin-bottom: -32px; display: inline-block; }
+.CodeMirror-gutter-wrapper { position: absolute; z-index: 4; background: 0px 0px !important; border: none !important; }
+.CodeMirror-gutter-background { position: absolute; top: 0px; bottom: 0px; z-index: 4; }
+.CodeMirror-gutter-elt { position: absolute; cursor: default; z-index: 4; }
+.CodeMirror-lines { cursor: text; }
+.CodeMirror pre { border-radius: 0px; border-width: 0px; background: 0px 0px; font-family: inherit; font-size: inherit; margin: 0px; white-space: pre; overflow-wrap: normal; color: inherit; z-index: 2; position: relative; overflow: visible; }
+.CodeMirror-wrap pre { overflow-wrap: break-word; white-space: pre-wrap; word-break: normal; }
+.CodeMirror-code pre { border-right: 30px solid transparent; width: fit-content; }
+.CodeMirror-wrap .CodeMirror-code pre { border-right: none; width: auto; }
+.CodeMirror-linebackground { position: absolute; inset: 0px; z-index: 0; }
+.CodeMirror-linewidget { position: relative; z-index: 2; overflow: auto; }
+.CodeMirror-wrap .CodeMirror-scroll { overflow-x: hidden; }
+.CodeMirror-measure { position: absolute; width: 100%; height: 0px; overflow: hidden; visibility: hidden; }
+.CodeMirror-measure pre { position: static; }
+.CodeMirror div.CodeMirror-cursor { position: absolute; visibility: hidden; border-right: none; width: 0px; }
+.CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+.CodeMirror-focused div.CodeMirror-cursor { visibility: inherit; }
+.cm-searching { background: rgba(255, 255, 0, 0.4); }
+span.cm-underlined { text-decoration: underline; }
+span.cm-strikethrough { text-decoration: line-through; }
+.cm-tw-syntaxerror { color: rgb(255, 255, 255); background-color: rgb(153, 0, 0); }
+.cm-tw-deleted { text-decoration: line-through; }
+.cm-tw-header5 { font-weight: 700; }
+.cm-tw-listitem:first-child { padding-left: 10px; }
+.cm-tw-box { border-style: solid; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-color: inherit; border-top-width: 0px !important; }
+.cm-tw-underline { text-decoration: underline; }
+@media print {
+  .CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+}
+
+
+:root {
+    --side-bar-bg-color: #fafafa;
+    --control-text-color: #777;
+}
+
+@include-when-export url(https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
+
+/* open-sans-regular - latin-ext_latin */
+  /* open-sans-italic - latin-ext_latin */
+    /* open-sans-700 - latin-ext_latin */
+    /* open-sans-700italic - latin-ext_latin */
+  html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    font-family: "Open Sans","Clear Sans", "Helvetica Neue", Helvetica, Arial, 'Segoe UI Emoji', sans-serif;
+    color: rgb(51, 51, 51);
+    line-height: 1.6;
+}
+
+#write {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 30px;
+    padding-bottom: 100px;
+}
+
+@media only screen and (min-width: 1400px) {
+    #write {
+        max-width: 1024px;
+    }
+}
+
+@media only screen and (min-width: 1800px) {
+    #write {
+        max-width: 1200px;
+    }
+}
+
+#write > ul:first-child,
+#write > ol:first-child{
+    margin-top: 30px;
+}
+
+a {
+    color: #4183C4;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+h1 tt,
+h1 code {
+    font-size: inherit;
+}
+h2 tt,
+h2 code {
+    font-size: inherit;
+}
+h3 tt,
+h3 code {
+    font-size: inherit;
+}
+h4 tt,
+h4 code {
+    font-size: inherit;
+}
+h5 tt,
+h5 code {
+    font-size: inherit;
+}
+h6 tt,
+h6 code {
+    font-size: inherit;
+}
+h1 {
+    font-size: 2.25em;
+    line-height: 1.2;
+    border-bottom: 1px solid #eee;
+}
+h2 {
+    font-size: 1.75em;
+    line-height: 1.225;
+    border-bottom: 1px solid #eee;
+}
+
+/*@media print {
+    .typora-export h1,
+    .typora-export h2 {
+        border-bottom: none;
+        padding-bottom: initial;
+    }
+
+    .typora-export h1::after,
+    .typora-export h2::after {
+        content: "";
+        display: block;
+        height: 100px;
+        margin-top: -96px;
+        border-top: 1px solid #eee;
+    }
+}*/
+
+h3 {
+    font-size: 1.5em;
+    line-height: 1.43;
+}
+h4 {
+    font-size: 1.25em;
+}
+h5 {
+    font-size: 1em;
+}
+h6 {
+   font-size: 1em;
+    color: #777;
+}
+p,
+blockquote,
+ul,
+ol,
+dl,
+table{
+    margin: 0.8em 0;
+}
+li>ol,
+li>ul {
+    margin: 0 0;
+}
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+li p.first {
+    display: inline-block;
+}
+ul,
+ol {
+    padding-left: 30px;
+}
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+blockquote {
+    border-left: 4px solid #dfe2e5;
+    padding: 0 15px;
+    color: #777777;
+}
+blockquote blockquote {
+    padding-right: 0;
+}
+table {
+    padding: 0;
+    word-break: initial;
+}
+table tr {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+table tr:nth-child(2n),
+thead {
+    background-color: #f8f8f8;
+}
+table th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    margin: 0;
+    padding: 6px 13px;
+}
+table td {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 6px 13px;
+}
+table th:first-child,
+table td:first-child {
+    margin-top: 0;
+}
+table th:last-child,
+table td:last-child {
+    margin-bottom: 0;
+}
+
+.CodeMirror-lines {
+    padding-left: 4px;
+}
+
+.code-tooltip {
+    box-shadow: 0 1px 1px 0 rgba(0,28,36,.3);
+    border-top: 1px solid #eef2f2;
+}
+
+.md-fences,
+code,
+tt {
+    border: 1px solid #e7eaed;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    padding: 0;
+    padding: 2px 4px 0px 4px;
+    font-size: 0.9em;
+}
+
+code {
+    background-color: #f3f4f4;
+    padding: 0 2px 0 2px;
+}
+
+.md-fences {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+
+
+.md-task-list-item > input {
+  margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+    table,
+    pre {
+        page-break-inside: avoid;
+    }
+    pre {
+        word-wrap: break-word;
+    }
+}
+
+.md-fences {
+    background-color: #f8f8f8;
+}
+#write pre.md-meta-block {
+    padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block>.code-tooltip {
+    bottom: .375rem;
+}
+
+.md-mathjax-midline {
+    background: #fafafa;
+}
+
+#write>h3.md-focus:before{
+    left: -1.5625rem;
+    top: .375rem;
+}
+#write>h4.md-focus:before{
+    left: -1.5625rem;
+    top: .285714286rem;
+}
+#write>h5.md-focus:before{
+    left: -1.5625rem;
+    top: .285714286rem;
+}
+#write>h6.md-focus:before{
+    left: -1.5625rem;
+    top: .285714286rem;
+}
+.md-image>.md-meta {
+    /*border: 1px solid #ddd;*/
+    border-radius: 3px;
+    padding: 2px 0px 0px 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: #a7a7a7;
+    opacity: 1;
+}
+
+.md-toc { 
+    margin-top:20px;
+    padding-bottom:20px;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/** focus mode */
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header, .context-menu, .megamenu-content, footer{
+    font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state{
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: #fafafa;
+    background-color: var(--side-bar-bg-color);
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+/*.html-for-mac {
+    --item-hover-bg-color: #E6F0FE;
+}*/
+
+#md-notification .btn {
+    border: 0;
+}
+
+.dropdown-menu .divider {
+    border-color: #e5e5e5;
+    opacity: 0.4;
+}
+
+.ty-preferences .window-content {
+    background-color: #fafafa;
+}
+
+.ty-preferences .nav-group-item.active {
+    color: white;
+    background: #999;
+}
+
+.menu-item-container a.menu-style-btn {
+    background-color: #f5f8fa;
+    background-image: linear-gradient( 180deg , hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0)); 
+}
+
+
+
+mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+  min-height: 1px;
+  min-width: 1px;
+}
+
+mjx-container[jax="SVG"] > svg a {
+  fill: blue;
+  stroke: blue;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line], svg[data-table] > g > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame], svg[data-table] > g > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed, svg[data-table] > g > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted, svg[data-table] > g > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > g > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
+  stroke-width: 3;
+}
+
+g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+.MathJax g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
+                            stroke-width: 0;
+                        }
+</style>
+<title>tdd_with_java</title>
+</head>
+<body class='typora-export'><div class='typora-export-content'>
+<div id='write'  class=''><h2 id='tdd-with-java'><span>TDD with Java</span></h2><p><a href='backend_index'>◀️</a></p><div class='md-toc' mdtype='toc'><p class="md-toc-content" role="list"><span role="listitem" class="md-toc-item md-toc-h2"><a class="md-toc-inner" href="#tdd-with-java"><span>TDD with Java</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#benefits-of-writing-tests-before-implementing"><span>Benefits of writing tests before implementing</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#first"><span>FIRST</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#learning-from-our-tests"><span>Learning from our tests</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#rgr"><span>RGR</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#using-mocks-and-stubs"><span>Using mocks and stubs</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#when-not-to-use-mocks"><span>When not to use mocks</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#when-to-use-mocks"><span>When to use mocks</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#hexagonal-architecture"><span>Hexagonal architecture</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#unit-testing-bigger-units"><span>Unit testing bigger units</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#when-not-to-use-hexagonal-architecture"><span>When not to use hexagonal architecture</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#test-pyramid"><span>Test pyramid</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#consumer-driving-contarct-testing"><span>Consumer-driving contarct testing</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#end-to-end-and-user-acceptance-tests"><span>End-to-end and user acceptance tests</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#ci/cd"><span>CI/CD</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#exploring-tdd-with-qa"><span>Exploring TDD with QA</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#test-first,-test-later,-test-never"><span>Test First, Test Later, Test Never</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#inside-out-development"><span>Inside-out development</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#outside-in-development"><span>Outside-in development</span></a></span><span role="listitem" class="md-toc-item md-toc-h5"><a class="md-toc-inner" href="#user-stories-can-be-tested-across-the-domain-model"><span>User stories can be tested across the domain model</span></a></span></p></div><h5 id='benefits-of-writing-tests-before-implementing'><span>Benefits of writing tests before implementing</span></h5><ul><li><p><span>Revealing design flaws
+strive with </span><em><span>outside-in</span></em><span> thinking - consider the usage of the code from outside callers before we consider any inside implementation</span></p></li><li><p><span>When writing tests after implementation:</span></p><ul><li><span>Missing tests - undetected error
+we write tests after implementation and forget about some edge conditions, just because we didn&#39;t thought about it when writing code and having a lots of ideads; if we would write tests before then we could think only about design and possible conditions</span></li><li><span>Leaky abstractions - exposing irrelevant things
+focus too much on the inside of the method and also forget about the initial design = high level abstractions are mixed together with low level, creating coupling; </span></li></ul></li><li><p><span>Preventing logic flaws - did it work right?
+manual testing can reveal these logic flows but manual test plans are fragile (more expensive), better to automatize it with code tests</span></p></li><li><p><span>Protecting against future defects
+team has the confidence to make changes safely, with confidence, and know they have tests automatically looking after them - this is true agility, the freedom to change</span></p></li><li><p><span>Documenting our code
+tests are like documentation for developers, they should be as close as possible to them; the worst documentation is often contained in the glossiest productions (these artifacts was created a long time ago by teams with separate skillsets - copywriting, graphic design and so on, which is not maintainable)</span></p></li></ul><h5 id='first'><span>FIRST</span></h5><ul><li><span>Fast</span></li><li><span>Isolated</span></li><li><span>Repetable</span></li><li><span>Self-veryfying
+step of veryfying whether the outputs are expected should be automated</span></li><li><span>Timely</span></li></ul><h5 id='learning-from-our-tests'><span>Learning from our tests</span></h5><ul><li><span>messy Arrange step
+too many parameters in a constructor or too many optional parameters left as null, too many dependencies injected, to many primitive data to pass</span></li><li><span>messy Act step
+unclear parameters we pass, when act step requires multiple calls to made in some order (that&#39;s error-prone and bad)</span></li><li><span>messy Assert step
+whether the results are difficult to use, return some code smells</span></li></ul><blockquote><p><span>Must we stick to one test class per production class?</span></p><p><span>No, and this is a common misunderstanding when using unit tests. The goal of each test is to specify and run a behavior. This behavior will be implemented in some way using code – functions, classes, objects, library calls, and the like – but this test in no way constrains how the behavior is implemented. Some unit tests test only one function. Some have one test per public method per class. Others give rise to more than one class to satisfy the test. </span></p></blockquote><h5 id='rgr'><span>RGR</span></h5><p><span>Once we have written our test, we turn to creating the code that is inside our object - the private fields and methods, use RGR (Red, Green, Refactor) for that. This is a three-step process that helps us to build confidence in out test, create a basic implementation of our code, and then refine it safely.</span></p><p><span></span><strong><span>Red phase</span></strong><span> - use AAA template to get our test up and running and ready to test the code we will write next.</span></p><p><span></span><strong><span>Green phase</span></strong><span> - write the code that will make test pass, called production code.</span></p><ul><li><span>Use the simplest code that could possibly work - at this stage our goal is to get the test to pass and nothing more</span></li><li><span>Don&#39;t overthink the implementation details - no need to create a perfect code on first attempt, as we will improve this code in the next step</span></li></ul><p><span></span><strong><span>Refactoring</span></strong><span> - refine that passed code into clean code, may use:</span></p><ul><li><span>Extracting a method to remove duplicated code</span></li><li><span>Renaming a method to express what it does better</span></li><li><span>Renaming a variable to express what it contains better</span></li><li><span>Splitting a long method into several smaller ones</span></li><li><span>Extracting a smaller class</span></li><li><span>Combining a long parameter list into its own class</span></li></ul><p><span>Remember to keep that green test passing throughout these changes!</span></p><h5 id='using-mocks-and-stubs'><span>Using mocks and stubs</span></h5><p><span></span><strong><span>Stubs</span></strong><span> are useful whenever our SUT (System under test) uses a </span><em><span>pull model</span></em><span> of collaborating. Use DI and dependency injection to plug in (</span><em><span>wiring</span></em><span>) stub object instead of production one (some db object, call to third party service). </span></p><p><span>Some objects use </span><em><span>push model</span></em><span>, when calling a method on our SUT, we expect it to call another method on some other object. Our test must confirm that some method was called with proper parameters. For that we use </span><strong><span>mock objects</span></strong><span>, they record interactions.</span></p><blockquote><p><span>Stub provides a simple, pre-determined response to a function call, while a mock is a more complex object that can be used to verify that the code being tested interacts correctly with it.</span></p></blockquote><h5 id='when-not-to-use-mocks'><span>When not to use mocks</span></h5><ul><li><p><span>Avoiding the overuse of mock objects</span></p><blockquote><p><span>Test verifies </span><em><span>behaviors</span></em><span> and is independent of </span><em><span>implementation</span></em><span>.</span></p></blockquote><p><span>It&#39;s easy to create a mock for an implementation details, not abstraction - don&#39;t do this; once a test is coupled to an implementation then changing the impl requires change to the test - but test should really pass without any changes</span></p></li><li><p><span>Don&#39;t mock code you don&#39;t own
+There is a third-party library class that we may mock but after version update the test may still run (as we mocked the change) but won&#39;t compile; a good aproach is to wrap the third-party library, and place it behind an interface to invert the dependency on it, isolating it fully</span></p></li><li><p><span>Don&#39;t mock value objects 
+Value objects just hold values, we should easily create them so no mocking required</span></p></li><li><p><span>You can&#39;t mock without dependency injection
+If in production code we are creating real object without injections then we cannot test it; better to redesign and allow injection</span></p></li><li><p><span>Don&#39;t test the mock
+</span><em><span>Testing the mock</span></em><span> describes a test with too many assumptions built into a test double. If the stub is very hard, in a future it can result in an invalid test that passes but with stubbed responses that can no longer happen in reality
+SUT may not have any real logic inside, so no point in writing a unit test at this level </span></p></li></ul><h5 id='when-to-use-mocks'><span>When to use mocks</span></h5><ul><li><span>Requesting an action from a remote service, such as sending an email to a mail server</span></li><li><span>Inserting or deleteing data from a db</span></li><li><span>Sending a command over a TCP socket or serial interface</span></li><li><span>Invalidating a cache</span></li><li><span>Writing logging information either to a log file or distributing logging endpoint</span></li></ul><h5 id='hexagonal-architecture'><span>Hexagonal architecture</span></h5><p><span>Isolating of our core application logic from technical stuff = decoupling external systems from our domain code using the Dependency Inversion principle = Hexagonical architecture (ports and adapters technique).
+Hexagon shape has sides, and each side represents one external system.</span></p><p><img src="../../src/img/backend/tdd_with_java/1.png" alt="image-20230506190543279" style="zoom:50%;" /></p><p><span>4 spaces:</span></p><ul><li><p><span>External systems like web browsers, db, other computing services</span></p></li><li><p><span>Adapters implement the specific APIs required by the external systems (technical specific)</span></p><blockquote><p><span>Adapters encapsulate all the knowledge our system needs to interact with an external system – and nothing else. This knowledge is defined by the external system’s specifications. Some of those may be designed by ourselves.</span></p></blockquote></li><li><p><span>Ports are abstraction of what our application needs from the external system (domain specific)</span></p><blockquote><p><span>Ports use dependency inversion to isolate our domain code from knowing any details about the adapters.</span></p><p><span>Ports provide a logical view of what our application needs from an external system, without constraining how those needs should be met technically.</span></p></blockquote></li><li><p><span>The domain model contains our app logic, free of external system details</span></p><blockquote><p><span>The domain model contains code that describes how the user’s problem is being solved. This is the essential logic of our application that creates business value.</span></p></blockquote></li></ul><p><span>The golden rule - the domain never connects directly to adapters.</span></p><p><span>As a bonus, we isolate ourselves from future changes in those external systems, limiting the amount of rework that would be required to support new technologies</span></p><p><span>We can easily replace ports with test doubles. Benefits:</span></p><ul><li><span>Write TDD tests first with ease</span></li><li><span>Gain FIRST unit test benefits</span></li><li><span>It unlocks our team - build the core logic of our system without having to wait for test envs to be designed and built</span></li></ul><h5 id='unit-testing-bigger-units'><span>Unit testing bigger units</span></h5><p><span>The combined approach of designing with the hexagonal architecture and testing behaviors instead of implementation details leads to an interesting system layering. Instead of having traditional layers, as we might do in a three-tier architecture, we have circles of increasingly higher-level behavior. Inside our domain model, we will find those tests-in-the-small. But as we move outward, toward the adapter layer, we will find bigger units of behavior.</span></p><p><span>Think of tests as covering behavior - entire user stories, better confirms that our core logic is correct.</span></p><blockquote><p><span>Traditionally, testing user stories involved slower integration tests in a test environment. The hexagonal architecture enables unit tests to replace some of these integration tests, speeding up our builds and providing greater repeatability of our testing.</span></p></blockquote><h5 id='when-not-to-use-hexagonal-architecture'><span>When not to use hexagonal architecture</span></h5><p><span>When we have no real logic in our domain model. This is common for very small CRUD microservices that typically frontend a database table. With no logic to isolate, putting in all this code has no benefit. We may as well do TDD with integration tests only and accept that we won’t be able to use FIRST unit tests.</span></p><h5 id='test-pyramid'><span>Test pyramid</span></h5><p><img src="../../src/img/backend/tdd_with_java/2.png" alt="image-20230506220702391" style="zoom:50%;" /></p><p><span></span><strong><span>Unit tests</span></strong><span> only test components of our domain model.
+</span><img src="../../src/img/backend/tdd_with_java/13.png" alt="image-20230506221657161" style="zoom:50%;" /></p><p><span></span><strong><span>Integration tests</span></strong><span> exist to test that our code will successfully integrate with external systems.</span></p><p><img src="../../src/img/backend/tdd_with_java/14.png" alt="image-20230506225145745" style="zoom:50%;" /></p><p><img src="../../src/img/backend/tdd_with_java/3.png" alt="image-20230506230811044" style="zoom:40%;" /></p><h5 id='consumer-driving-contarct-testing'><span>Consumer-driving contarct testing</span></h5><p><span>We consider our code as having a contract with the external service. We agree to call certain API functions on the external service, supplying data in the form required. We need the external service to respond to us predictably, with data in a known format and well-understood status codes. This forms a </span><em><span>contract</span></em><span> between the two parties – our code and the external service API.</span></p><p><img src="../../src/img/backend/tdd_with_java/4.png" alt="image-20230507120836816" style="zoom:50%;" /></p><p><span>A contract test is two tests:</span></p><ul><li><p><span>One confirms that the outside interface is compatible with our code</span></p><blockquote><p><span>We may generate a stub of the external service and use it as a test double as we write our adapter code. We test our adapter logic without accessing the external system - verify that it sends appropriate request and handle response correctly.</span></p></blockquote></li><li><p><span>Other confirms that the implementation of that interface works and gives the expected results</span></p><blockquote><p><span>Run tests against the real external service - possibly in sandbox mode (if we cannot run live-like external service locally). We are not testing the functionality of the external service - we are verifying that we believe about its API is true.</span></p></blockquote></li></ul><h5 id='end-to-end-and-user-acceptance-tests'><span>End-to-end and user acceptance tests</span></h5><p><span>We start up the software fully configured to run in its most live-like test environment, or possibly in production. The system is tested as whole from one end to the other.</span></p><p><img src="../../src/img/backend/tdd_with_java/15.png" alt="image-20230507132118542" style="zoom:50%;" /></p><p><span>One specific use of an end-to-end test is for </span><strong><span>user acceptance testing (UAT)</span></strong><span>. This is often a contractual stage in commercial development, where the software buyer agrees that the development contract has been satisfied. It&#39;s still end-to-end testing.</span></p><p><span>The goal is not to verify the behaviors we already tested (unit+integration) but to verify that we have injected the correct production objects, confirming that the system as a whole behaves correctly when connected to prod services.</span></p><p><span>Those tests have legal contract nature: </span><em><span>Have we built what was asked of us?</span></em><span> With iterative approach we should achieve that.</span></p><blockquote><p><span>May use RestAssured as a tool for HTTP testing.</span></p></blockquote><h5 id='ci/cd'><span>CI/CD</span></h5><ul><li><span>CI stands for </span><strong><span>continuous integration</span></strong><span>
+Integration is where we take individual software components and join them together to make a whole. CI means we do this all the time as we write new code.</span></li><li><span>CD stands for either </span><strong><span>continuous delivery</span></strong><span> or </span><strong><span>continuous deployment</span></strong><span> 
+The idea is that we are taking the latest and greatest version of our integrated software and delivering it to a stakeholder. The goal of continuous delivery is that we could – if we wanted to – deploy every single code change to production with a single click of a button.</span></li></ul><p><span>The idea if </span><strong><span>integration</span></strong><span> is fundamental to building software as we in solo or in a team are building something from block components (code blocks, features, services) and then integrating - bringing together as a whole.</span></p><ul><li><p><span></span><strong><span>Continuous delivery</span></strong></p><p><span>We deliver software to internal stakeholders, such as product owners and QA engineers</span></p></li><li><p><span></span><strong><span>Continuous deployment</span></strong></p><p><span>We deliver software into production and to end users</span></p></li></ul><p><span>Types of production deployments:</span></p><ul><li><span>Blue-green deployment
+</span><img src="../../src/img/backend/tdd_with_java/5.png" alt="image-20230507134317454" style="zoom:40%;" /><span>
+Once the code has been deployed to the green group, we switch over the production configuration to connect to green group servers. We retain the previous working production code on the blue servers. If our testing goes well against the green group, then we’re done. Production is now working with the latest green group code. If the testing fails, we revert that configuration to connect to the blue servers once again. It’s a fast rollback system that enables our experimentation.</span></li><li><span>Traffic partitioning
+Limit the amount of traffic that we send to our test servers
+</span><img src="../../src/img/backend/tdd_with_java/6.png" alt="image-20230507134506244" style="zoom:40%;" /></li></ul><h5 id='exploring-tdd-with-qa'><span>Exploring TDD with QA</span></h5><p><span>The main manual steps we replace with automation are feature testing during development and regression testing before release. TDD replaces test plans written in a word processor with test code written in an IDE.</span></p><p><img src="../../src/img/backend/tdd_with_java/7.png" alt="image-20230507223702383" style="zoom:50%;" /></p><p><span>The biggest threat to our sucess with TDD lies in our ability to think about all the conditions our software needs to handle. Automated tests cannot:</span></p><ul><li><span>Ask a stakeholder what they want the software to do</span></li><li><span>Spot a missing test</span></li></ul><p><span></span><strong><span>Manual exploratory testing</span></strong><span> helps with it.</span></p><p><img src="../../src/img/backend/tdd_with_java/8.png" alt="image-20230507224404294" style="zoom:50%;" /></p><p><span>TDD is primarly concerned with the design of our code, but not with the implementation. For us, software developers, we need </span><strong><span>code reviews</span></strong><span>, </span><strong><span>pair programming</span></strong><span>, </span><strong><span>ensemble (mob) programming</span></strong><span> with other teammates and </span><strong><span>static code analysis tools</span></strong><span> such as SonarQube.</span></p><blockquote><p><span>Difference is that a code review happens after the code is written (frequently happen to late to allow meaninful changes to be made) but pair programming and mobbing (when the whole team is developing) happen while the code is being written (changes are made the instant they are identified).</span></p></blockquote><p><span>Other types of manual testing:</span></p><ul><li><span></span><strong><span>User interface</span></strong><span> </span></li><li><span></span><strong><span>User experience testing</span></strong></li><li><span></span><strong><span>Security testing</span></strong><span> (penetration testing)</span></li><li><span></span><strong><span>Operations monitoring</span></strong><span> </span></li></ul><h5 id='test-first,-test-later,-test-never'><span>Test First, Test Later, Test Never</span></h5><p><img src="../../src/img/backend/tdd_with_java/9.png" alt="image-20230507231511133" style="zoom:50%;" /></p><p><span>Coding Arrange step helps us think:</span></p><ul><li><span>What configuration data will be needed?</span></li><li><span>What connections to other objects or function will be needed?</span></li><li><span>What behavior should this code provide?</span></li><li><span>What extra inputs are needed to provide that behavior?</span></li></ul><p><span>Coding Act step recommendations:</span></p><ul><li><span>The method name should describe the outcome of calling the method.</span></li><li><span>Pass in as few parameters as possible. Possibly group parameters into their own object.</span></li><li><span>Avoid Boolean flags that modify the behavior of the code. Use separate methods with appropriate names.</span></li><li><span>Avoid requiring multiple method calls to do one thing. It is too easy to miss out on an important call in the sequence if we are unfamiliar with the code.</span></li></ul><p><span>The code in our Assert step is the first consumer of the results of our code. If the result is easy to obtain then good.</span></p><p><span>About test-later:</span></p><ul><li><p><span>Test-later makes it harder to test every code path</span></p></li><li><p><span>Test-later makes it harder to influence the software design</span></p><ul><li><span>It gets harder to incorporate feedback, after writing a lot of code we just may leave it as it is (even if it&#39;s bad)</span></li></ul></li><li><p><span>Test-later may never happen</span></p></li></ul><h5 id='inside-out-development'><span>Inside-out development</span></h5><p><img src="../../src/img/backend/tdd_with_java/10.png" alt="image-20230507235325802" style="zoom:50%;" /></p><p><span>One place to start building, then, is on the </span><em><span>inside</span></em><span> of this software system. Starting with an overall user story, we can imagine a small component that is likely to be of use to us. We can begin our TDD efforts around this component and see where that leads us. This is a bottom-up approach to the design, composing the whole from smaller parts.</span></p><p><span>Advantages:</span></p><ul><li><span></span><strong><span>Quick start to development</span></strong><span>: no setup for user interfaces, web service stubs, or databases - just dive right in and code </span></li><li><span></span><strong><span>Good for known designs</span></strong><span>: as we gain experience, we recognize some problems as having known solutions (can use some design patterns)</span></li><li><span></span><strong><span>Works well with hexagonal architecture</span></strong></li></ul><p><span>Disadvantages:</span></p><ul><li><span></span><strong><span>Possibility of waste</span></strong><span>: maybe the component we creates firstly won&#39;t be needed at all</span></li><li><span></span><strong><span>Risk of implementation lock-in</span></strong><span>: always a temptation to keep using a component we wrote earlier even if it no longer fits as well, just because we investend time and money in it</span></li></ul><p><span>Inside-out works well with the domain model.</span></p><h5 id='outside-in-development'><span>Outside-in development</span></h5><p><span>Outside-in TDD begins with the external users of the system. They may be human users or machines, consuming some API offered by our software. This approach to TDD begins by simulating some external input, such as the submission of a web form.</span></p><p><img src="../../src/img/backend/tdd_with_java/11.png" alt="image-20230508000607643" style="zoom:50%;" /></p><p><span>The test will typically use some kind of test framework – such as Selenium or Cypress for web applications – that allows the test to call up a specific web view, and simulate typing text into fields, then clicking a submit button. We can then make this test pass in the normal way, only we will have written some code that directly deals with the input from a user this time. In our hexagonal architecture model, we will end up writing the user input adapter first.</span></p><p><span>Advantages:</span></p><ul><li><span></span><strong><span>Less waste</span></strong><span>: Outside-in TDD encourages a quite minimal approach to satisfying external behavior. The code produced tends to be highly customized to the application at hand.</span></li><li><span></span><strong><span>Delivers user value quickly</span></strong><span>: Because we start from a test that simulates a user request, the code we write will satisfy a user request. We can deliver value to users almost immediately.</span></li></ul><p><span>Disadvantages:</span></p><ul><li><span></span><strong><span>Fewest abstractions</span></strong><span>: On a related note, when writing the minimum code necessary to make a test pass, outside-in TDD may lead to application logic being present in the adapter layer. This can be refactored later but can lead to a less organized code base.</span></li><li><span></span><strong><span>Inverted test pyramid</span></strong><span>: If all our TDD test efforts focus on the external responses, they are, in fact, end-to-end tests. This opposes the recommended pattern of the test pyramid, which prefers faster unit tests inside the code base. Having only slower, less repeatable end-to-end tests can slow development.</span></li></ul><p><span>Outside-in works well with adapters.</span></p><h5 id='user-stories-can-be-tested-across-the-domain-model'><span>User stories can be tested across the domain model</span></h5><p><img src="../../src/img/backend/tdd_with_java/12.png" alt="image-20230508002208203" style="zoom:50%;" /></p></div></div>
+</body>
+</html>

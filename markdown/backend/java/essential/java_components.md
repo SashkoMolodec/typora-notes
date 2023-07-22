@@ -8,7 +8,7 @@
 
 The Java Development Kit (JDK) contains the minimum software to do Java development. Key pieces:
 
-- compiler (javac), which converts .java filest to .class files
+- compiler (javac), which converts .java files to .class files
 - launcher java, which creates the virtual machine and executes program
 - archiver (jar) command, which can package files together
 - API documentation (javadoc) command for generating documentation

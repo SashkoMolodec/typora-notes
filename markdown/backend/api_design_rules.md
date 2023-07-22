@@ -66,7 +66,7 @@ A controller resource models a procedural concept (some action). Controller reso
 
 > POST /alerts/245743/resend
 
-<img src="./../../src/img/backend/1.png" alt="image-20221022115726198" style="zoom: 40%;" />
+<img src="../../src/img/backend/api_design_rules/1.png" alt="image-20221022115726198" style="zoom: 40%;" />
 
 
 
@@ -92,7 +92,7 @@ A controller resource models a procedural concept (some action). Controller reso
 
 ### Response Status codes
 
-<img src="./../../src/img/backend/2.png" alt="image-20221022122919210" style="zoom: 35%;" />
+<img src="../../src/img/backend/api_design_rules/2.png" alt="image-20221022122919210" style="zoom: 35%;" />
 
 - Rule: 202 (“Accepted”) must be used to indicate successful start of an asynchronous action
 
@@ -162,3 +162,19 @@ The type value may be one of: application, audio, image, message, model, multipa
 - OAuth (Open Authorization) is an open standard that provides secure authorization using a consistent approach for all clients.
 
 - An API reverse proxy is a relatively new type of network-based intermediary that may be used to secure a REST API’s resources.
+
+
+
+### Idempotency
+
+Property of a request that can be repeated mutliple times without changing the behaviour in server (and mostly we will get the same response multiple times). 
+
+`GET`, `PUT` and `DELETE` are idempotent.
+
+> Even if second DELETE request will give 404, the behaviour in server application is not changing, we won't break anything in our logic if call DELETE many times.
+
+`POST` is not idempotent, as we will get the new object or other modified.
+
+`PATCH` is not idempotent. It allows clients to update only specific parts of the resource. Because the effect of a PATCH request can depend on the current state of the resource, it is not considered to be idempotent by default.
+
+> However, it is possible to implement PATCH requests in an idempotent way by ensuring that subsequent requests with the same payload have the same effect as the initial request. This can be achieved by using conditional requests, such as If-Match or If-Unmodified-Since headers, to ensure that the resource has not been modified since the previous request.

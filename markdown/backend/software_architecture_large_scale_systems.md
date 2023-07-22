@@ -64,12 +64,12 @@ Steps:
 
    - Each event contain **Action** and **Data**
    - We may describe it with a sequence diagram (but the data is not represented in this diagram)
-     <img src="./../../src/img/image-20230303160310797.png" alt="image-20230303160310797" style="zoom:45%;" />
+     <img src="../../src/img/backend/software_architecture_large_scale_systems/1.png" alt="image-20230303160310797" style="zoom:45%;" />
 
    
 
 > Sequence Diagram - diagram that represents interactions between actors and objects. Part of the UML design language. 
-> <img src="./../../src/img/image-20230303160058420.png" alt="image-20230303160058420" style="zoom:40%;" />
+> <img src="../../src/img/backend/software_architecture_large_scale_systems/2.png" alt="image-20230303160058420" style="zoom:40%;" />
 
 #### Quality attributes
 

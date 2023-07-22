@@ -1,6 +1,6 @@
 ## The Complete Coding Interview Guide in Java
 
-<img src="../../src/img/backend/microservices/Знімок екрана 2023-04-27 о 16.43.31.png" alt="Знімок екрана 2023-04-27 о 16.43.31" style="zoom:50%;" />
+<img src="../../src/img/work/1.png" alt="Знімок екрана 2023-04-27 о 16.43.31" style="zoom:50%;" />
 
 - *Understand the problem* - ask questions, don't solve the problem immediately
 - *Build an example* - expected input & output

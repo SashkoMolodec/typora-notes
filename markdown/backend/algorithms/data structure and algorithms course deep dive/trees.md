@@ -57,4 +57,4 @@ In-order: 15, 20, 22, 25, 26, 27, 29, 30, 32\
 
 ##### Example:
 
-<video src="../../../../src/video/trees_delete_example.mp4"></video>
+<video controls src="../../../../src/video/trees_delete_example.mp4"></video>
